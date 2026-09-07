@@ -1,0 +1,110 @@
+---
+/**
+ * / — manifest route: src/pages/Index.tsx → url_path "/"
+ * Canonical: https://ladestack.in/
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Values from '../components/Values.astro';
+import Impact from '../components/Impact.astro';
+import Products from '../components/Products.astro';
+import FreeForever from '../components/FreeForever.astro';
+import Community from '../components/Community.astro';
+import Testimonials from '../components/Testimonials.astro';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    applicationCategory: 'DeveloperApplication',
+    description:
+      'AI-powered developer tools platform with code editor, API testing, website builder, and file management.',
+    name: 'Lade Stack',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    operatingSystem: 'Web Browser',
+    url: 'https://ladestack.in',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      availableLanguage: 'English',
+      contactType: 'customer support',
+      email: 'admin@ladestack.in',
+    },
+    description: 'AI-powered developer tools and SaaS solutions for modern development teams.',
+    founder: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
+    logo: 'https://ladestack.in/favicon.ico',
+    name: 'Lade Stack',
+    sameAs: [
+      'https://github.com/girishlade111',
+      'https://www.linkedin.com/in/girish-lade-075bba201/',
+      'https://www.instagram.com/girish_lade_/',
+      'https://codepen.io/Girish-Lade-the-looper',
+    ],
+    url: 'https://ladestack.in',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    aggregateRating: { '@type': 'AggregateRating', ratingCount: '150', ratingValue: '4.1' },
+    applicationCategory: 'DeveloperApplication',
+    author: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
+    description:
+      'AI-powered developer tools and SaaS solutions including API testing platform, website builder, file management system, and documentation summarizer.',
+    name: 'Lade Stack',
+    offers: {
+      '@type': 'Offer',
+      availability: 'https://schema.org/InStock',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    operatingSystem: 'Web Browser',
+    url: 'https://ladestack.in',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    description: 'AI-Powered Developer Tools & SaaS Solutions',
+    name: 'Lade Stack',
+    publisher: { '@type': 'Organization', name: 'Lade Stack' },
+    url: 'https://ladestack.in',
+  },
+];
+---
+
+<BaseLayout
+  title="Lade Stack – AI-Powered Developer Platform | Build Smarter, Ship Faster"
+  description="The complete AI-powered development ecosystem. Intelligent tools for coding, API testing, website building, file sharing, and documentation — all free. Built for modern developers."
+  canonical="https://ladestack.in/"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'Lade Stack – AI-Powered Developer Ecosystem',
+    description:
+      'Enterprise-grade AI tools at startup velocity. Code editing, API testing, file sharing, and automation for 10x developer productivity.',
+    url: 'https://ladestack.in/',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Lade Stack – AI-Powered Developer Ecosystem',
+    description:
+      'Enterprise-grade AI tools at startup velocity. Code editing, API testing, file sharing, and automation for 10x developer productivity.',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <Hero />
+  <About />
+  <Values />
+  <Impact />
+  <div id="products">
+    <Products />
+  </div>
+  <FreeForever />
+  <Community />
+  <Testimonials />
+</BaseLayout>

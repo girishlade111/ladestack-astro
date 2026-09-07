@@ -1,0 +1,103 @@
+---
+/**
+ * SEO.astro — reusable head-metadata component.
+ *
+ * Contract mirrors migration-seo-manifest.json → routes[].meta exactly:
+ *   meta: {
+ *     title, description, canonical,
+ *     robots: { index, follow, custom },
+ *     open_graph: { title, description, url, type, image },
+ *     twitter: { card, title, description, image }
+ *   }
+ *   structured_data: [{ type, raw_json_ld }]
+ *
+ * Every page passes its manifest entry through; JSON-LD is injected
+ * unaltered inside <script type="application/ld+json">.
+ */
+
+export interface RobotsMeta {
+  index: boolean;
+  follow: boolean;
+  custom?: string | null;
+}
+
+export interface OpenGraphMeta {
+  title?: string | null;
+  description?: string | null;
+  url?: string | null;
+  type?: string | null;
+  image?: string | null;
+}
+
+export interface TwitterMeta {
+  card?: string | null;
+  title?: string | null;
+  description?: string | null;
+  image?: string | null;
+}
+
+export interface Props {
+  title: string;
+  description?: string | null;
+  canonical: string;
+  robots?: RobotsMeta;
+  openGraph?: OpenGraphMeta;
+  twitter?: TwitterMeta;
+  /** Raw JSON-LD objects — injected verbatim, structure never altered. */
+  structuredData?: Record<string, unknown>[];
+  siteName?: string;
+  locale?: string;
+}
+
+const {
+  title,
+  description = null,
+  canonical,
+  robots = { index: true, follow: true, custom: null },
+  openGraph = {},
+  twitter = {},
+  structuredData = [],
+  siteName = 'Lade Stack',
+  locale = 'en_US',
+} = Astro.props;
+
+// Rebuild the exact robots string the manifest encodes, e.g.
+// "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+// or "noindex, nofollow" for /apps/admin and /404.
+const robotsContent = [
+  robots.index ? 'index' : 'noindex',
+  robots.follow ? 'follow' : 'nofollow',
+  robots.custom ?? '',
+]
+  .filter(Boolean)
+  .join(', ');
+---
+
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<meta name="robots" content={robotsContent} />
+<link rel="canonical" href={canonical} />
+
+{/* Open Graph — emitted exactly as defined in the manifest */}
+{openGraph.title && <meta property="og:title" content={openGraph.title} />}
+{openGraph.description && (
+  <meta property="og:description" content={openGraph.description} />
+)}
+{openGraph.url && <meta property="og:url" content={openGraph.url} />}
+{openGraph.type && <meta property="og:type" content={openGraph.type} />}
+{openGraph.image && <meta property="og:image" content={openGraph.image} />}
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={locale} />
+
+{/* Twitter Card — emitted exactly as defined in the manifest */}
+{twitter.card && <meta name="twitter:card" content={twitter.card} />}
+{twitter.title && <meta name="twitter:title" content={twitter.title} />}
+{twitter.description && (
+  <meta name="twitter:description" content={twitter.description} />
+)}
+{twitter.image && <meta name="twitter:image" content={twitter.image} />}
+
+{/* JSON-LD schemas — structure preserved verbatim from raw_json_ld */}
+{structuredData.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

@@ -1,0 +1,15 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="24" fill="#E5322D" fill-opacity="0.12"/>
+  <rect x="22" y="16" width="56" height="68" rx="8" fill="url(#pdfGrad)" />
+  <path d="M58 16L78 36H64C60.6863 36 58 33.3137 58 30V16Z" fill="#B3201C"/>
+  <rect x="30" y="48" width="40" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.9"/>
+  <rect x="30" y="58" width="28" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.7"/>
+  <rect x="30" y="68" width="34" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.8"/>
+  <text x="32" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5">PDF</text>
+  <defs>
+    <linearGradient id="pdfGrad" x1="22" y1="16" x2="78" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E5322D"/>
+      <stop offset="1" stop-color="#B3201C"/>
+    </linearGradient>
+  </defs>
+</svg>

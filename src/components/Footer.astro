@@ -1,0 +1,382 @@
+---
+/**
+ * Footer.astro — 1:1 port of the source Footer.tsx.
+ * Same three zones (CTA band, nav grid, bottom bar + wordmark), same data,
+ * same classes. Framer-motion reveals become static final states; the
+ * newsletter form keeps its idle → sending → done states via inline script.
+ */
+import Icon from './Icon.astro';
+
+const products = [
+  { name: 'AI Code Editor', href: '/ai-code-viewer-ai', icon: 'code-2', color: '#6E8F6A', live: true },
+  { name: 'LS PDF Toolkit', href: 'https://pdf.ladestack.in/', icon: 'file-text', color: '#E5322D', live: true },
+  { name: 'LS Image Compress', href: 'https://img.ladestack.in/', icon: 'image', color: '#8B5CF6', live: true },
+  { name: 'Swift Resume', href: 'https://resume.ladestack.in/', icon: 'file-check', color: '#2563EB', live: true },
+  { name: 'Bharat Land', href: 'https://land.ladestack.in/', icon: 'map-pin', color: '#EA580C', live: true },
+  { name: 'API Tester', href: '/apps', icon: 'cpu', color: '#4ec2e8', live: false },
+  { name: 'No-Code Builder', href: '/apps', icon: 'globe', color: '#b47ee8', live: false },
+  { name: 'Doc Generator', href: '/apps', icon: 'brain', color: '#e8a64e', live: false },
+  { name: 'File Sharing', href: '/apps', icon: 'file-text', color: '#e87070', live: false },
+];
+
+const navColumns = [
+  {
+    heading: 'Platform',
+    links: [
+      { label: 'AI Code Editor', href: '/ai-code-viewer-ai' },
+      { label: 'LS PDF Toolkit', href: 'https://pdf.ladestack.in/' },
+      { label: 'LS Image Compress', href: 'https://img.ladestack.in/' },
+      { label: 'Swift Resume', href: 'https://resume.ladestack.in/' },
+      { label: 'Bharat Land', href: 'https://land.ladestack.in/' },
+      { label: 'API Tester', href: '/apps' },
+      { label: 'No-Code Builder', href: '/apps' },
+      { label: 'Doc Generator', href: '/apps' },
+      { label: 'File Sharing', href: '/apps' },
+      { label: 'Apps Gallery', href: '/apps' },
+    ],
+  },
+  {
+    heading: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'All Products', href: '/apps' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+  {
+    heading: 'Resources',
+    links: [
+      { label: 'Documentation', href: '/docs' },
+      { label: 'Support', href: '/support' },
+      { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Terms of Service', href: '/terms' },
+    ],
+  },
+];
+
+const socials = [
+  { icon: 'github', label: 'GitHub', href: 'https://github.com/girishlade111', color: '#6E8F6A' },
+  { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/girish-lade-075bba201/', color: '#0A66C2' },
+  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/girish_lade_/', color: '#E1306C' },
+  { icon: 'code', label: 'CodePen', href: 'https://codepen.io/Girish-Lade-the-looper', color: '#FFC933' },
+  { icon: 'mail', label: 'Email', href: 'mailto:admin@ladestack.in', color: '#b47ee8' },
+];
+
+const trustItems = [
+  { icon: 'shield', text: 'SOC 2 Compliant' },
+  { icon: 'zap', text: '99.9% Uptime' },
+  { icon: 'heart', text: 'Free Forever' },
+  { icon: 'globe', text: '100+ Countries' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative bg-[#EFEAE0] dark:bg-[#050505] overflow-hidden">
+  {/* Grid lines */}
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    {[20, 50, 80].map((p) => (
+      <div class="absolute left-0 right-0 h-px bg-[#6E8F6A]/[0.04] dark:bg-[#6E8F6A]/[0.06]" style={`top: ${p}%`}></div>
+    ))}
+    {[25, 50, 75].map((p) => (
+      <div class="absolute top-0 bottom-0 w-px bg-[#6E8F6A]/[0.04] dark:bg-[#6E8F6A]/[0.06]" style={`left: ${p}%`}></div>
+    ))}
+  </div>
+
+  {/* Atmosphere */}
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 dark:hidden">
+      <div class="absolute top-0 left-0 w-[700px] h-[500px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.09),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.06),_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 hidden dark:block">
+      <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#6E8F6A]/25 to-transparent"></div>
+      <div class="absolute top-0 left-0 w-[800px] h-[600px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.08),_transparent_60%)]"></div>
+      <div class="absolute top-0 right-0 w-[600px] h-[500px] bg-[radial-gradient(ellipse,_rgba(78,194,232,0.04),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.05),_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 dot-pattern opacity-[0.22]"></div>
+  </div>
+
+  {/* ZONE 1 — CTA band */}
+  <div class="relative z-10 border-b border-[#E0DACE] dark:border-white/[0.06]">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="tag-pill inline-flex items-center gap-2 mb-5">
+            <Icon name="sparkles" class="w-3.5 h-3.5" />
+            Free forever
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white leading-[1.12] mb-5">
+            Build smarter.<br />
+            <span class="text-[#6E8F6A]">Ship faster.</span><br />
+            Pay nothing.
+          </h2>
+          <p class="text-neutral-500 dark:text-neutral-400 text-base leading-relaxed max-w-md mb-8">
+            Nine enterprise-grade AI tools — unified, open, and completely free.
+            No credit card. No usage limits. No catch.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {
+              trustItems.map((t) => (
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#E0E0E0] dark:border-white/[0.08] bg-white/60 dark:bg-white/[0.03] text-xs font-medium text-neutral-600 dark:text-neutral-400">
+                  <Icon name={t.icon} class="w-3 h-3 text-[#6E8F6A]" />
+                  {t.text}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {
+              products.map((product) => {
+                const isExternal = product.href.startsWith('http');
+                const pill = (
+                  <>
+                    <span
+                      class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={`background: ${product.color}18; color: ${product.color}`}
+                    >
+                      <Icon name={product.icon} class="w-3.5 h-3.5" />
+                    </span>
+                    <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-900 dark:group-hover:text-white transition-colors whitespace-nowrap">
+                      {product.name}
+                    </span>
+                    {product.live ? (
+                      <span
+                        class="ml-auto text-[9px] font-bold px-1.5 py-0.5 rounded-full"
+                        style={`background: ${product.color}18; color: ${product.color}`}
+                      >
+                        LIVE
+                      </span>
+                    ) : (
+                      <span class="ml-auto text-[9px] text-neutral-400 dark:text-neutral-600 font-medium">Soon</span>
+                    )}
+                  </>
+                );
+                const cls =
+                  'group flex items-center gap-2.5 px-4 py-2.5 rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white/80 dark:bg-white/[0.03] hover:border-[#C8C8C8] dark:hover:border-white/[0.14] transition-all duration-200';
+                return isExternal ? (
+                  <a href={product.href} target="_blank" rel="noopener noreferrer" class={cls}>
+                    {pill}
+                  </a>
+                ) : (
+                  <a href={product.href} class={cls}>
+                    {pill}
+                  </a>
+                );
+              })
+            }
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <a
+              href="https://code.ladestack.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#6E8F6A] text-white text-sm font-bold shadow-[0_4px_20px_rgba(110,143,106,0.30)] hover:bg-[#5F7F63] hover:shadow-[0_4px_24px_rgba(110,143,106,0.40)] transition-all duration-200"
+            >
+              Start Building Free
+              <Icon name="arrow-up-right" class="w-4 h-4" />
+            </a>
+            <a
+              href="/apps"
+              class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#D0D0D0] dark:border-white/[0.12] text-sm font-semibold text-neutral-700 dark:text-neutral-300 hover:border-[#6E8F6A]/50 hover:text-[#6E8F6A] dark:hover:text-white transition-all duration-200"
+            >
+              Explore All Products
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* ZONE 2 — Nav grid */}
+  <div class="relative z-10 border-b border-[#E0DACE] dark:border-white/[0.05]">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1.4fr] gap-10 lg:gap-8">
+        <div>
+          <a href="/" class="inline-flex items-center gap-2.5 mb-5 group">
+            <span class="w-10 h-10 rounded-2xl bg-[#6E8F6A] flex items-center justify-center shadow-sm group-hover:scale-105 group-hover:shadow-[0_0_16px_rgba(110,143,106,0.45)] transition-all duration-200">
+              <span class="text-sm font-mono font-bold text-white leading-none">{'</>'}</span>
+            </span>
+            <span>
+              <span class="block text-sm font-bold text-neutral-900 dark:text-white leading-tight">
+                Lade <span class="text-[#6E8F6A]">Stack</span>
+              </span>
+              <span class="block text-[10px] text-neutral-400 dark:text-neutral-600 font-mono">v2.0 · 2026</span>
+            </span>
+          </a>
+          <p class="text-sm text-neutral-500 dark:text-neutral-500 leading-relaxed mb-6 max-w-[220px]">
+            The AI-powered dev ecosystem. Enterprise tools, zero cost, built in the open.
+          </p>
+          <div class="flex flex-wrap gap-2 mb-5">
+            {
+              socials.map((s) => (
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  data-social-color={s.color}
+                  class="w-8 h-8 rounded-xl bg-white dark:bg-white/[0.04] border border-[#E6E6E6] dark:border-white/[0.07] flex items-center justify-center text-neutral-500 dark:text-neutral-500 transition-all duration-200"
+                >
+                  <Icon name={s.icon} class="w-3.5 h-3.5" />
+                </a>
+              ))
+            }
+          </div>
+          <div class="flex items-center gap-1.5 text-[11px] text-neutral-400 dark:text-neutral-600">
+            <Icon name="map-pin" class="w-3 h-3 flex-shrink-0" />
+            Built with ♥ by Girish Lade
+          </div>
+        </div>
+
+        {
+          navColumns.map((col) => (
+            <div>
+              <h4 class="text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-400 dark:text-neutral-600 mb-5">
+                {col.heading}
+              </h4>
+              <ul class="flex flex-col gap-3">
+                {col.links.map((l) => {
+                  const isExternal = l.href.startsWith('http');
+                  return (
+                    <li>
+                      <a
+                        href={l.href}
+                        target={isExternal ? '_blank' : undefined}
+                        rel={isExternal ? 'noopener noreferrer' : undefined}
+                        class="group flex items-center gap-1 text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#6E8F6A] dark:hover:text-white transition-colors duration-200"
+                      >
+                        <span class="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 flex-shrink-0">
+                          <span class="block w-1 h-1 rounded-full bg-[#6E8F6A]"></span>
+                        </span>
+                        {l.label}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))
+        }
+
+        <div>
+          <h4 class="text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-400 dark:text-neutral-600 mb-5">
+            Newsletter
+          </h4>
+          <div data-newsletter>
+            <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-1">Stay ahead of the curve</p>
+            <p class="text-xs text-neutral-500 dark:text-neutral-500 mb-4 leading-relaxed">
+              New tools, tutorials, and updates. No spam, ever.
+            </p>
+            <form data-newsletter-form class="flex gap-2">
+              <input
+                type="email"
+                required
+                placeholder="your@email.com"
+                aria-label="Email address"
+                class="flex-1 min-w-0 h-10 px-3.5 text-sm bg-white dark:bg-white/[0.05] border border-[#E0E0E0] dark:border-white/[0.09] rounded-xl text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-white/25 focus:outline-none focus:border-[#6E8F6A]/60 transition-colors duration-200"
+              />
+              <button
+                type="submit"
+                class="flex-shrink-0 h-10 px-4 bg-[#6E8F6A] text-white text-sm font-semibold rounded-xl items-center gap-1.5 hover:bg-[#5F7F63] transition-colors duration-200 inline-flex"
+              >
+                <span data-newsletter-label>Subscribe</span>
+                <Icon name="arrow-right" class="w-3.5 h-3.5" />
+              </button>
+            </form>
+            <p data-newsletter-done class="hidden items-center gap-2 h-10 text-[#6E8F6A]">
+              <Icon name="check" class="w-3.5 h-3.5" />
+              <span class="text-sm font-medium">You&apos;re on the list!</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* ZONE 3 — Bottom bar + wordmark */}
+  <div class="relative z-10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-neutral-500 dark:text-neutral-600 order-2 sm:order-1 text-center sm:text-left">
+          © {year} Lade Stack · All rights reserved
+        </p>
+        <div class="flex items-center gap-1 order-1 sm:order-2">
+          <span class="flex items-center">
+            <a href="/privacy" class="text-xs text-neutral-500 dark:text-neutral-600 hover:text-[#6E8F6A] dark:hover:text-white transition-colors duration-200">Privacy</a>
+          </span>
+          <span class="flex items-center">
+            <span class="mx-3 w-px h-3 bg-[#D0D0D0] dark:bg-white/[0.08]"></span>
+            <a href="/terms" class="text-xs text-neutral-500 dark:text-neutral-600 hover:text-[#6E8F6A] dark:hover:text-white transition-colors duration-200">Terms</a>
+          </span>
+        </div>
+        <div class="flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-600 order-3">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6E8F6A] opacity-50"></span>
+            <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6E8F6A]"></span>
+          </span>
+          All systems operational
+        </div>
+      </div>
+    </div>
+    <div class="flex items-end justify-center overflow-hidden pointer-events-none select-none" aria-hidden="true">
+      <span
+        class="font-bold leading-none tracking-[-0.04em] whitespace-nowrap"
+        style="font-size: clamp(60px, 14vw, 180px); color: transparent; -webkit-text-stroke: 1px; -webkit-text-stroke-color: rgba(110,143,106,0.07); margin-bottom: -0.12em;"
+      >
+        LADE STACK
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  (function () {
+    // Social hover brand colors (mirrors source mouseenter/leave)
+    document.querySelectorAll('[data-social-color]').forEach(function (el) {
+      var c = el.getAttribute('data-social-color');
+      el.addEventListener('mouseenter', function () {
+        el.style.backgroundColor = c;
+        el.style.borderColor = c;
+        el.style.color = '#fff';
+      });
+      el.addEventListener('mouseleave', function () {
+        el.style.backgroundColor = '';
+        el.style.borderColor = '';
+        el.style.color = '';
+      });
+    });
+    // Newsletter idle → sending → done
+    document.querySelectorAll('[data-newsletter]').forEach(function (box) {
+      var form = box.querySelector('[data-newsletter-form]');
+      var done = box.querySelector('[data-newsletter-done]');
+      var label = box.querySelector('[data-newsletter-label]');
+      form &&
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (label) label.textContent = 'Sending…';
+          setTimeout(function () {
+            form.classList.add('hidden');
+            if (done) {
+              done.classList.remove('hidden');
+              done.classList.add('flex');
+            }
+          }, 900);
+          setTimeout(function () {
+            if (label) label.textContent = 'Subscribe';
+            form.classList.remove('hidden');
+            if (done) {
+              done.classList.add('hidden');
+              done.classList.remove('flex');
+            }
+            form.reset();
+          }, 5300);
+        });
+    });
+  })();
+</script>

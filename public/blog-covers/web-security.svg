@@ -1,0 +1,36 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC2626;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B91C1C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7F1D1D;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)"/>
+  
+  <!-- Shield icon -->
+  <circle cx="200" cy="120" r="50" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <path d="M200 90 Q240 90 240 110 L240 130 Q240 150 200 170 Q160 150 160 130 L160 110 Q160 90 200 90 Z" 
+        fill="none" stroke="#DC2626" stroke-width="3"/>
+  <path d="M190 110 L200 120 L210 110" stroke="#DC2626" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M200 120 L200 150" stroke="#DC2626" stroke-width="3" stroke-linecap="round"/>
+  <path d="M190 130 L210 130" stroke="#DC2626" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Lock -->
+  <circle cx="200" cy="200" r="25" fill="white" opacity="0.8" filter="url(#shadow)"/>
+  <rect x="185" y="195" width="30" height="20" rx="2" fill="none" stroke="#DC2626" stroke-width="3"/>
+  <path d="M190 195 Q190 180 200 180 Q210 180 210 195" fill="none" stroke="#DC2626" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Code elements -->
+  <rect x="100" y="230" width="200" height="50" rx="6" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="245" text-anchor="middle" font-family="Arial, monospace" font-size="12" fill="#DC2626">encrypt()</text>
+  <text x="200" y="265" text-anchor="middle" font-family="Arial, monospace" font-size="12" fill="#B91C1C">validate()</text>
+  
+  <!-- Title -->
+  <text x="200" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">WEB SECURITY</text>
+</svg>

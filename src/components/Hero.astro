@@ -1,0 +1,295 @@
+---
+/**
+ * Hero.astro — 1:1 port of the source LightHero (default light theme).
+ * Same background stack, word-reveal H1, CTAs, social proof, trust strip,
+ * rotating product cards + scroll cue. Rotation runs as a tiny inline
+ * script; all styling is the source's own Tailwind classes.
+ */
+import Icon from './Icon.astro';
+
+const products = [
+  { icon: 'code-2', label: 'AI Code Editor', color: '#6E8F6A', url: 'https://code.ladestack.in/' },
+  { icon: 'zap', label: 'API Tester', color: '#4ec2e8', url: 'https://api.ladestack.in/' },
+  { icon: 'file-text', label: 'Doc Generator', color: '#e8a64e', url: 'https://docs.ladestack.in/' },
+  { icon: 'globe', label: 'No-Code Builder', color: '#b47ee8', url: 'https://builder.ladestack.in/' },
+  { icon: 'database', label: 'File Sharing', color: '#e87070', url: 'https://files.ladestack.in/' },
+];
+
+const trustStats = [
+  { value: '8K+', label: 'Developers' },
+  { value: '5', label: 'AI Products' },
+  { value: '100+', label: 'Countries' },
+  { value: 'Free', label: 'Forever' },
+];
+
+const line1 = ['Build', 'smarter'];
+const line2 = ['products', 'with', 'AI'];
+const STAGGER = 0.1;
+const LINE2_DELAY = line1.length * STAGGER + 0.15;
+const TOOLS_DELAY = LINE2_DELAY + line2.length * STAGGER;
+const UNDERLINE_DELAY = TOOLS_DELAY + STAGGER + 0.1;
+const h1Cls = 'text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5rem] text-[#1C1C1C]';
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden">
+  {/* Background */}
+  <div class="absolute inset-0" aria-hidden="true">
+    <picture>
+      <source srcset="/hero/background.avif" type="image/avif" />
+      <source srcset="/hero/background.webp" type="image/webp" />
+      <img
+        src="/hero/background.png"
+        alt=""
+        width="1536"
+        height="1024"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+    <div class="absolute inset-0 bg-gradient-to-b from-[#F5F3EB]/85 via-[#F5F3EB]/70 to-[#F5F3EB]/92"></div>
+    <div class="absolute inset-0 bg-radial-fade"></div>
+  </div>
+
+  <div class="relative z-10 w-full container mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
+      {/* ── Left column ── */}
+      <div class="flex flex-col gap-7">
+        <div style="animation: hero-fade-up 0.3s ease-out 0.04s both;">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm bg-[#DDE7D8] text-[#4a6347]">
+            <span class="relative flex h-1.5 w-1.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6E8F6A] opacity-70"></span>
+              <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#6E8F6A]"></span>
+            </span>
+            AI-Powered Developer Platform
+          </span>
+        </div>
+
+        <h1 class="font-bold leading-[1.12] tracking-[-0.02em]" style="font-family: 'DM Serif Display', serif; perspective: 800px;">
+          <span class="flex flex-wrap gap-x-[0.22em] overflow-hidden pb-1">
+            {
+              line1.map((w, i) => (
+                <span
+                  class={h1Cls}
+                  style={`display: inline-block; transform-origin: bottom center; animation: hero-word-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${i * STAGGER}s both;`}
+                >
+                  {w}
+                </span>
+              ))
+            }
+          </span>
+          <span class="flex flex-wrap gap-x-[0.22em] overflow-hidden pb-1">
+            {
+              line2.map((w, i) => (
+                <span
+                  class={`${h1Cls} ${w === 'AI' ? 'text-[#6E8F6A]' : ''}`}
+                  style={`display: inline-block; transform-origin: bottom center; animation: hero-word-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${LINE2_DELAY + i * STAGGER}s both;`}
+                >
+                  {w}
+                </span>
+              ))
+            }
+          </span>
+          <span class="flex flex-wrap gap-x-[0.22em] overflow-hidden pb-1">
+            <span
+              class={h1Cls}
+              style={`display: inline-block; transform-origin: bottom center; position: relative; animation: hero-word-reveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${TOOLS_DELAY}s both;`}
+            >
+              tools.
+              <span
+                class="absolute -bottom-1 left-0 right-0 h-[4px] rounded-full"
+                style={`background: linear-gradient(90deg, #6E8F6A, #8BAF87, transparent); transform-origin: left; animation: hero-underline-grow 0.55s cubic-bezier(0.22, 1, 0.36, 1) ${UNDERLINE_DELAY}s both;`}
+              ></span>
+            </span>
+          </span>
+        </h1>
+
+        <p
+          class="text-base sm:text-lg leading-relaxed max-w-lg text-neutral-600"
+          style="animation: hero-fade-up 0.38s ease-out 0.18s both;"
+        >
+          Lade Stack unifies code editing, API testing, documentation, and automation into one
+          powerful ecosystem — enterprise-grade, zero cost, built for every developer.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3" style="animation: hero-fade-up 0.35s ease-out 0.27s both;">
+          <a
+            href="https://code.ladestack.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="soft-btn inline-flex items-center justify-center gap-2 font-medium h-12 px-8 text-base rounded-[10px] bg-[#6E8F6A] text-white hover:bg-[#5F7F63] shadow-sm"
+          >
+            Start Building Free
+            <Icon name="arrow-right" class="w-4 h-4" />
+          </a>
+          <a
+            href="/apps"
+            class="soft-btn inline-flex items-center justify-center gap-2 font-medium h-12 px-8 text-base rounded-[10px] bg-transparent border border-[#6E8F6A] text-[#6E8F6A] hover:bg-[#6E8F6A]/5 w-full sm:w-auto"
+          >
+            Explore Platform
+            <Icon name="arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+
+        <div class="flex items-center gap-5 flex-wrap" style="animation: hero-fade-up 0.4s ease-out 0.48s both;">
+          {
+            trustStats.map((s, i) => (
+              <div class="flex items-center gap-2">
+                {i > 0 && <div class="w-px h-6 bg-neutral-200"></div>}
+                <div>
+                  <p class="text-xl font-bold tracking-tight leading-none text-neutral-900">{s.value}</p>
+                  <p class="text-[11px] mt-0.5 text-neutral-500">{s.label}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2" style="animation: hero-fade-up 0.35s ease-out 0.55s both;">
+          {
+            products.map((p) => (
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm bg-white/60 border border-[#E6E6E6] text-[#555]">
+                <Icon name={p.icon} class="w-3 h-3" />
+                {p.label}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* ── Right column: rotating product cards ── */}
+      <div class="hidden lg:flex justify-center" style="animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;">
+        <div data-product-cards class="relative w-full max-w-sm mx-auto lg:mx-0">
+          <div class="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,_rgba(110,143,106,0.10),_transparent_70%)] blur-xl" aria-hidden="true"></div>
+          <div class="relative flex flex-col gap-3">
+            {
+              products.map((p, i) => (
+                <div
+                  data-featured-card={i}
+                  class={`rounded-2xl border border-[#E0E0E0] bg-white/90 backdrop-blur-md p-5 shadow-[0_8px_40px_rgba(0,0,0,0.08)] ${i === 0 ? '' : 'hidden'}`}
+                >
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="w-9 h-9 rounded-xl flex items-center justify-center" style={`background: ${p.color}18; color: ${p.color}`}>
+                      <Icon name={p.icon} class="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p class="text-sm font-semibold text-neutral-900">{p.label}</p>
+                      <div class="flex items-center gap-1 mt-0.5" aria-label="5 star rating">
+                        {[0, 1, 2, 3, 4].map(() => (
+                          <Icon name="star" class="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                    </div>
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${p.label}`}
+                      class="ml-auto w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                      style={`background: ${p.color}15; color: ${p.color}`}
+                    >
+                      <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                  <div class="h-1 rounded-full bg-neutral-100 overflow-hidden">
+                    <div class="h-full rounded-full" style={`background: ${p.color};`} data-progress-bar></div>
+                  </div>
+                </div>
+              ))
+            }
+
+            <div class="grid grid-cols-5 gap-2">
+              {
+                products.map((p, i) => (
+                  <button
+                    type="button"
+                    data-pill={i}
+                    aria-label={p.label}
+                    class="aspect-square rounded-xl flex flex-col items-center justify-center gap-1 border transition-all duration-200 hover:-translate-y-0.5 border-[#E8E8E8] bg-white/70 hover:border-[#D0D0D0]"
+                    style={i === 0 ? `background: ${p.color}15; border-color: ${p.color}30;` : undefined}
+                    data-color={p.color}
+                  >
+                    <Icon name={p.icon} class="w-4 h-4" />
+                    <span class="text-[8px] text-center leading-tight font-medium" style={i === 0 ? `color: ${p.color};` : 'color: #aaa;'}>
+                      {p.label.split(' ')[0]}
+                    </span>
+                  </button>
+                ))
+              }
+            </div>
+
+            <div class="grid grid-cols-4 gap-2">
+              {
+                trustStats.map((s) => (
+                  <div class="rounded-xl border border-[#E8E8E8] bg-white/80 py-2.5 flex flex-col items-center">
+                    <span class="text-sm font-bold text-neutral-900 leading-none">{s.value}</span>
+                    <span class="text-[9px] text-neutral-500 mt-0.5">{s.label}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-neutral-400">
+    <div class="flex flex-col items-center gap-1.5" style="animation: hero-fade-up 1s ease-in-out 1s both;">
+      <span class="text-[9px] uppercase tracking-[0.2em] font-medium">Scroll</span>
+      <div class="w-5 h-8 rounded-full border flex items-start justify-center pt-1.5 border-neutral-300">
+        <div class="w-1 h-1.5 rounded-full bg-neutral-400 animate-bounce"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ count: products.length }}>
+  (function (count) {
+    var root = document.querySelector('[data-product-cards]');
+    if (!root) return;
+    var cards = Array.prototype.slice.call(root.querySelectorAll('[data-featured-card]'));
+    var pills = Array.prototype.slice.call(root.querySelectorAll('[data-pill]'));
+    var active = 0;
+    var timer = null;
+    function paint(i) {
+      active = i;
+      cards.forEach(function (c, k) { c.classList.toggle('hidden', k !== i); });
+      pills.forEach(function (pill, k) {
+        var color = pill.getAttribute('data-color');
+        var label = pill.querySelector('span');
+        var icon = pill.querySelector('svg');
+        if (k === i) {
+          pill.style.background = color + '15';
+          pill.style.borderColor = color + '30';
+          if (label) label.style.color = color;
+          if (icon) icon.style.color = color;
+        } else {
+          pill.style.background = '';
+          pill.style.borderColor = '';
+          if (label) label.style.color = '#aaa';
+          if (icon) icon.style.color = '#999';
+        }
+      });
+      var bar = cards[i].querySelector('[data-progress-bar]');
+      if (bar) {
+        bar.style.animation = 'none';
+        void bar.offsetWidth;
+        bar.style.animation = 'hero-underline-grow 2.8s linear both';
+      }
+    }
+    function next() { paint((active + 1) % count); }
+    function restart() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function () {
+        if (root.getBoundingClientRect().bottom > 0 && root.getBoundingClientRect().top < window.innerHeight) next();
+      }, 2800);
+    }
+    pills.forEach(function (pill, k) {
+      pill.addEventListener('click', function () { paint(k); restart(); });
+    });
+    paint(0);
+    restart();
+  })(count);
+</script>

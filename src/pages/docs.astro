@@ -1,0 +1,465 @@
+---
+/**
+ * /docs — full port of src/pages/Documentation.tsx.
+ * Same 8 categories (with guides), 4 articles, changelog, live search,
+ * guide/article dialogs (native <dialog>), API CTA.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    description: 'Comprehensive documentation for Lade Stack developer tools.',
+    name: 'Lade Stack Documentation',
+    publisher: { '@type': 'Organization', name: 'Lade Stack' },
+    url: 'https://ladestack.in/docs',
+  },
+];
+
+const docsCategories = [
+  {
+    id: 'getting-started', icon: 'book-open', title: 'Getting Started', description: 'Learn the basics and get up and running quickly',
+    overview: 'Start your journey with Lade Stack. This guide covers everything from installation to your first deployment.',
+    sections: [
+      { title: 'Installation', content: 'Install Lade Stack via npm or yarn.\n\n`npm install lade-stack`\n\nor\n\n`yarn add lade-stack`' },
+      { title: 'Account Setup', content: 'Create your account on the Lade Stack dashboard to access your API keys and project settings.' },
+      { title: 'First Project', content: 'Initialize your first project using the CLI:\n\n`lade init my-project`' },
+    ],
+  },
+  {
+    id: 'api-reference', icon: 'code', title: 'API Reference', description: 'Complete documentation for all our APIs',
+    overview: 'Comprehensive API reference for developers.',
+    sections: [
+      { title: 'Authentication', content: 'Learn how to authenticate your requests using API keys.' },
+      { title: 'Endpoints', content: 'Explore our RESTful endpoints for managing resources.' },
+      { title: 'Rate Limiting', content: 'Understand our rate limiting policies to ensure stability.' },
+    ],
+  },
+  {
+    id: 'integrations', icon: 'zap', title: 'Integrations', description: 'Connect Lade Stack with your favorite tools',
+    overview: 'Integrate Lade Stack with third-party services.',
+    sections: [
+      { title: 'GitHub Actions', content: 'Automate your workflows with our GitHub Actions integration.' },
+      { title: 'Slack', content: 'Receive notifications and updates directly in your Slack channels.' },
+    ],
+  },
+  {
+    id: 'tutorials', icon: 'file-text', title: 'Tutorials', description: 'Step-by-step guides for common tasks',
+    overview: 'Follow our step-by-step tutorials to master Lade Stack.',
+    sections: [
+      { title: 'Building a To-Do App', content: 'Create a simple to-do application to learn the basics.' },
+      { title: 'Deploying to Production', content: 'Learn how to deploy your Lade Stack application to a production environment.' },
+    ],
+  },
+  {
+    id: 'security', icon: 'shield', title: 'Security', description: 'Security best practices and compliance information',
+    overview: 'Keep your application secure with our best practices.',
+    sections: [
+      { title: 'Data Encryption', content: 'Learn how we encrypt your data at rest and in transit.' },
+      { title: 'Access Control', content: 'Manage user permissions and roles effectively.' },
+    ],
+  },
+  {
+    id: 'team-management', icon: 'users', title: 'Team Management', description: 'Collaborate with your team effectively',
+    overview: 'Manage your team and collaborate efficiently.',
+    sections: [
+      { title: 'Inviting Members', content: 'Invite new members to your organization.' },
+      { title: 'Roles & Permissions', content: 'Assign roles to control access to resources.' },
+    ],
+  },
+  {
+    id: 'data-management', icon: 'database', title: 'Data Management', description: 'Working with data in Lade Stack',
+    overview: 'Handle your data with ease using Lade Stack.',
+    sections: [
+      { title: 'Database Schema', content: 'Design your database schema using our visual editor.' },
+      { title: 'Migrations', content: 'Manage database migrations seamlessly.' },
+    ],
+  },
+  {
+    id: 'deployment', icon: 'cloud', title: 'Deployment', description: 'Deploy and manage your applications',
+    overview: 'Deploy your applications to the cloud with a single click.',
+    sections: [
+      { title: 'CI/CD Pipelines', content: 'Set up CI/CD pipelines for automated deployments.' },
+      { title: 'Monitoring', content: "Monitor your application's performance and health." },
+    ],
+  },
+];
+
+const docsArticles = [
+  {
+    id: 'api-test-setup', title: 'Setting up your first API test', category: 'API Reference', readTime: '5 min read',
+    intro: "Learn how to set up your first API test using Lade Stack's testing tools.",
+    steps: ['Install the testing library.', 'Create a test file.', 'Write your first test case.', 'Run the test using the CLI.'],
+    summary: 'By following these steps, you can ensure your API is working correctly.',
+  },
+  {
+    id: 'github-actions', title: 'Integrating with GitHub Actions', category: 'Integrations', readTime: '8 min read',
+    intro: 'Automate your workflows by integrating Lade Stack with GitHub Actions.',
+    steps: ['Create a .github/workflows directory.', 'Add a workflow file.', 'Configure the Lade Stack action.', 'Push your changes to GitHub.'],
+    summary: 'Your workflows will now run automatically on every push.',
+  },
+  {
+    id: 'team-permissions', title: 'Managing team permissions', category: 'Team Management', readTime: '6 min read',
+    intro: 'Control who has access to your project resources.',
+    steps: ['Go to the Team Settings page.', 'Select a member.', 'Assign a role.', 'Save changes.'],
+    summary: 'Effectively managing permissions ensures security and collaboration.',
+  },
+  {
+    id: 'security-best-practices', title: 'Security best practices', category: 'Security', readTime: '10 min read',
+    intro: 'Keep your application secure by following these best practices.',
+    steps: ['Use strong passwords.', 'Enable 2FA.', 'Regularly rotate API keys.', 'Audit access logs.'],
+    summary: 'Security is a shared responsibility. Stay vigilant.',
+  },
+];
+
+const changelog = [
+  { version: 'v2.4.0', date: 'June 10, 2024', type: 'New Feature', description: 'Added AI-powered test generation for API endpoints.' },
+  { version: 'v2.3.5', date: 'May 28, 2024', type: 'Improvement', description: 'Enhanced performance for large dataset processing.' },
+  { version: 'v2.3.0', date: 'May 15, 2024', type: 'Bug Fix', description: 'Resolved issues with authentication tokens expiring prematurely.' },
+  { version: 'v2.2.1', date: 'April 20, 2024', type: 'New Feature', description: 'Introduced dark mode support for the dashboard.' },
+  { version: 'v2.2.0', date: 'April 05, 2024', type: 'Improvement', description: 'Optimized database queries for faster load times.' },
+  { version: 'v2.1.5', date: 'March 18, 2024', type: 'Bug Fix', description: 'Fixed an issue where user avatars were not loading.' },
+  { version: 'v2.1.0', date: 'March 01, 2024', type: 'Feature', description: 'Added support for multi-language localization.' },
+  { version: 'v2.0.5', date: 'February 15, 2024', type: 'Optimization', description: 'Reduced bundle size by 20%.' },
+  { version: 'v2.0.1', date: 'February 01, 2024', type: 'Bug Fix', description: 'Corrected a typo in the welcome email.' },
+  { version: 'v2.0.0', date: 'January 15, 2024', type: 'Launch', description: 'Official launch of Lade Stack v2.0.' },
+];
+---
+
+<BaseLayout
+  title="Documentation – Guides & API Reference | Lade Stack"
+  description="Comprehensive documentation for Lade Stack's developer tools. Step-by-step guides, API references, and tutorials to get started quickly."
+  canonical="https://ladestack.in/docs"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'Lade Stack Documentation',
+    description: "Guides, API references, and tutorials for Lade Stack's AI developer tools.",
+    url: 'https://ladestack.in/docs',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Lade Stack Documentation',
+    description: "Guides, API references, and tutorials for Lade Stack's AI developer tools.",
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background relative overflow-hidden">
+    <div class="absolute inset-0 hidden dark:block pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 left-[15%] w-[650px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.11),_transparent_60%)]"></div>
+      <div class="absolute top-[40%] right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(139,175,135,0.06),_transparent_55%)]"></div>
+      <div class="absolute bottom-0 left-[40%] w-[500px] h-[300px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.05),_transparent_50%)]"></div>
+    </div>
+
+    <div class="pt-24 pb-16">
+      <section class="py-12 sm:py-16 lg:py-20">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              <span class="bg-gradient-to-r from-[#6E8F6A] to-[#4E6F4A] bg-clip-text text-transparent">Documentation</span>
+            </h1>
+            <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#6E8F6A] to-[#4E6F4A] mx-auto mb-6 rounded-full"></div>
+            <p class="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+              Comprehensive guides, API references, and tutorials to help you make the most of Lade Stack&apos;s powerful development tools.
+            </p>
+            <div class="mt-8 max-w-2xl mx-auto">
+              <div class="relative">
+                <input
+                  type="text"
+                  data-docs-search
+                  placeholder="Search documentation..."
+                  aria-label="Search documentation"
+                  class="w-full px-4 py-3 sm:py-6 pl-12 rounded-lg sm:rounded-xl border border-border bg-background/50 backdrop-blur-sm text-foreground focus:outline-none focus:ring-2 focus:ring-[#6E8F6A] focus:border-transparent text-lg shadow-sm"
+                />
+                <Icon name="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4" data-docs-cat-heading>Documentation Categories</h2>
+              <p class="text-lg text-muted-foreground max-w-2xl mx-auto" data-docs-cat-sub>Browse our documentation by topic to find what you need</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-docs-cats>
+              {
+                docsCategories.map((category) => (
+                  <button
+                    type="button"
+                    data-docs-cat={category.id}
+                    data-search-text={`${category.title} ${category.description}`.toLowerCase()}
+                    class="text-left bg-card rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md transition-shadow group cursor-pointer relative overflow-hidden"
+                  >
+                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#6E8F6A] to-[#4E6F4A] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Icon name={category.icon} class="w-5 h-5 text-white" />
+                    </div>
+                    <h3 class="text-lg font-bold text-foreground mb-2">{category.title}</h3>
+                    <p class="text-sm text-muted-foreground mb-3">{category.description}</p>
+                    <div class="flex items-center text-xs text-[#6E8F6A] font-medium mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                      View Guide <Icon name="arrow-right" class="w-3 h-3 ml-1" />
+                    </div>
+                  </button>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16 bg-muted/20">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4" data-docs-art-heading>Popular Articles</h2>
+              <p class="text-lg text-muted-foreground max-w-2xl mx-auto" data-docs-art-sub>Most frequently viewed documentation articles</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-docs-articles>
+              {
+                docsArticles.map((article) => (
+                  <div
+                    data-docs-article={article.id}
+                    data-search-text={`${article.title} ${article.category}`.toLowerCase()}
+                    class="bg-card rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm border border-border hover:shadow-md transition-shadow"
+                  >
+                    <div class="flex justify-between items-start mb-3">
+                      <span class="px-2 py-1 bg-[#6E8F6A]/10 text-[#6E8F6A] text-xs rounded-full">{article.category}</span>
+                      <div class="flex items-center text-xs text-muted-foreground">
+                        <Icon name="clock" class="w-3 h-3 mr-1" />
+                        {article.readTime}
+                      </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-foreground mb-3">{article.title}</h3>
+                    <button
+                      type="button"
+                      data-docs-open-article={article.id}
+                      class="p-0 h-auto text-[#6E8F6A] hover:text-[#5F7F63] group text-sm font-medium inline-flex items-center"
+                    >
+                      Read Article <Icon name="arrow-right" class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16" data-docs-changelog-wrap>
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4">What&apos;s New</h2>
+              <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Recent updates and improvements to our platform</p>
+            </div>
+            <div class="bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md border border-border">
+              <div class="space-y-6" data-docs-changelog>
+                {
+                  changelog.map((item, index) => (
+                    <div data-changelog-item class={`flex items-start pb-6 border-b border-border last:border-0 last:pb-0 ${index >= 3 ? 'hidden' : ''}`}>
+                      <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-[#6E8F6A] to-[#4E6F4A] flex items-center justify-center mr-4">
+                        <span class="text-white font-bold text-xs sm:text-sm">{item.version}</span>
+                      </div>
+                      <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                          <span class="text-foreground font-medium">{item.type}</span>
+                          <span class="text-sm text-muted-foreground">{item.date}</span>
+                        </div>
+                        <p class="text-muted-foreground text-sm sm:text-base">{item.description}</p>
+                      </div>
+                    </div>
+                  ))
+                }
+              </div>
+              <div class="mt-8 text-center">
+                <button
+                  type="button"
+                  data-docs-changelog-toggle
+                  class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted/40 transition-colors"
+                >
+                  View Full Changelog
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16 bg-muted/20" data-docs-api-cta>
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md border border-border text-center">
+              <h3 class="text-2xl font-bold text-foreground mb-4">Developer API Reference</h3>
+              <p class="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Access our complete API documentation with interactive examples,
+                code samples, and detailed endpoint descriptions.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <button type="button" data-docs-coming-soon class="inline-flex items-center justify-center px-6 h-11 rounded-xl bg-[#6E8F6A] text-white text-sm font-semibold hover:bg-[#5F7F63] transition-colors">
+                  View API Documentation
+                </button>
+                <button type="button" data-docs-coming-soon class="inline-flex items-center justify-center px-6 h-11 rounded-xl border border-border text-sm font-semibold hover:bg-muted/40 transition-colors">
+                  Download SDKs
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  {/* Category dialogs */}
+  {
+    docsCategories.map((category) => (
+      <dialog data-docs-dialog={category.id} class="max-w-2xl w-[calc(100%-2rem)] max-h-[80vh] overflow-y-auto rounded-2xl border border-border bg-background p-6 backdrop:bg-black/50">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#6E8F6A] to-[#4E6F4A] flex items-center justify-center">
+            <Icon name={category.icon} class="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-bold">{category.title}</h3>
+            <p class="text-sm text-muted-foreground">{category.description}</p>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="p-4 bg-muted/50 rounded-lg">
+            <p class="text-foreground">{category.overview}</p>
+          </div>
+          <div class="space-y-4">
+            {category.sections.map((section) => (
+              <div class="border-l-2 border-[#6E8F6A] pl-4">
+                <h4 class="text-lg font-semibold text-foreground mb-2">{section.title}</h4>
+                <div class="text-muted-foreground whitespace-pre-wrap font-mono text-sm bg-black/20 p-3 rounded">{section.content}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <form method="dialog" class="mt-6 text-right">
+          <button class="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted/40">Close</button>
+        </form>
+      </dialog>
+    ))
+  }
+
+  {/* Article dialogs */}
+  {
+    docsArticles.map((article) => (
+      <dialog data-docs-article-dialog={article.id} class="max-w-3xl w-[calc(100%-2rem)] max-h-[80vh] overflow-y-auto rounded-2xl border border-border bg-background p-6 backdrop:bg-black/50">
+        <div class="mb-2">
+          <span class="px-2 py-1 bg-[#6E8F6A]/10 text-[#6E8F6A] text-xs rounded-full">{article.category}</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">{article.title}</h3>
+        <p class="flex items-center gap-2 text-sm text-muted-foreground">
+          <Icon name="clock" class="w-4 h-4" /> {article.readTime}
+        </p>
+        <div class="space-y-6 mt-4">
+          <div class="text-lg text-foreground font-medium">{article.intro}</div>
+          <div class="space-y-4">
+            <h4 class="text-lg font-bold text-foreground flex items-center gap-2">
+              <Icon name="chevron-right" class="w-5 h-5 text-[#6E8F6A]" /> Steps
+            </h4>
+            <div class="grid gap-3">
+              {article.steps.map((step, idx) => (
+                <div class="flex items-start gap-3 bg-card p-3 rounded-lg border border-border">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#6E8F6A]/20 text-[#6E8F6A] flex items-center justify-center text-sm font-bold">
+                    {idx + 1}
+                  </span>
+                  <span class="text-muted-foreground">{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="bg-[#6E8F6A]/5 border border-[#6E8F6A]/10 rounded-xl p-4 sm:p-6 mt-6">
+            <h4 class="text-lg font-bold text-foreground mb-2">Summary</h4>
+            <p class="text-muted-foreground">{article.summary}</p>
+          </div>
+        </div>
+        <form method="dialog" class="mt-6 text-right">
+          <button class="px-4 py-2 rounded-lg border border-border text-sm font-medium hover:bg-muted/40">Close</button>
+        </form>
+      </dialog>
+    ))
+  }
+
+  <div data-docs-toast class="hidden fixed inset-0 z-50 items-center justify-center pointer-events-none">
+    <div class="text-3xl sm:text-5xl font-semibold text-foreground">Coming Soon</div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var search = document.querySelector('[data-docs-search]');
+      var catHeading = document.querySelector('[data-docs-cat-heading]');
+      var catSub = document.querySelector('[data-docs-cat-sub]');
+      var artHeading = document.querySelector('[data-docs-art-heading]');
+      var artSub = document.querySelector('[data-docs-art-sub]');
+      function applyFilter() {
+        var q = (search.value || '').trim().toLowerCase();
+        var catCount = 0;
+        document.querySelectorAll('[data-docs-cat]').forEach(function (el) {
+          var hit = !q || el.getAttribute('data-search-text').indexOf(q) !== -1;
+          el.classList.toggle('hidden', !hit);
+          if (hit) catCount++;
+        });
+        var artCount = 0;
+        document.querySelectorAll('[data-docs-article]').forEach(function (el) {
+          var hit = !q || el.getAttribute('data-search-text').indexOf(q) !== -1;
+          el.classList.toggle('hidden', !hit);
+          if (hit) artCount++;
+        });
+        if (catHeading) catHeading.textContent = q ? 'Search Results' : 'Documentation Categories';
+        if (catSub) catSub.textContent = q ? 'Found ' + catCount + ' categories' : 'Browse our documentation by topic to find what you need';
+        if (artHeading) artHeading.textContent = q ? 'Matching Articles' : 'Popular Articles';
+        if (artSub) artSub.textContent = q ? 'Found ' + artCount + ' articles' : 'Most frequently viewed documentation articles';
+        ['[data-docs-changelog-wrap]', '[data-docs-api-cta]'].forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) {
+            el.classList.toggle('hidden', !!q);
+          });
+        });
+      }
+      if (search) search.addEventListener('input', applyFilter);
+      document.querySelectorAll('[data-docs-cat]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var d = document.querySelector('[data-docs-dialog="' + btn.getAttribute('data-docs-cat') + '"]');
+          if (d && d.showModal) d.showModal();
+        });
+      });
+      document.querySelectorAll('[data-docs-open-article]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var d = document.querySelector('[data-docs-article-dialog="' + btn.getAttribute('data-docs-open-article') + '"]');
+          if (d && d.showModal) d.showModal();
+        });
+      });
+      var toggle = document.querySelector('[data-docs-changelog-toggle]');
+      var expanded = false;
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          expanded = !expanded;
+          document.querySelectorAll('[data-changelog-item]').forEach(function (el, i) {
+            el.classList.toggle('hidden', !expanded && i >= 3);
+          });
+          toggle.textContent = expanded ? 'Show Less' : 'View Full Changelog';
+        });
+      }
+      var toast = document.querySelector('[data-docs-toast]');
+      document.querySelectorAll('[data-docs-coming-soon]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!toast) return;
+          toast.classList.remove('hidden');
+          toast.classList.add('flex');
+          setTimeout(function () {
+            toast.classList.add('hidden');
+            toast.classList.remove('flex');
+          }, 2500);
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

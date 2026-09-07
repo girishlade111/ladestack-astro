@@ -1,0 +1,6 @@
+# Carried over 1:1 from the source public/robots.txt.
+# /apps/admin stays disallowed (matches manifest robots index:false).
+User-agent: *
+Disallow: /apps/admin
+
+Sitemap: https://ladestack.in/sitemap-index.xml

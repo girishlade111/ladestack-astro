@@ -1,0 +1,185 @@
+---
+/**
+ * Icon.astro — exact Lucide + brand SVGs as inline markup.
+ * Stroke icons: lucide-static (?raw). Brands: simple-icons (GitHub,
+ * Instagram) + canonical LinkedIn path (removed upstream) — sized via
+ * the `class` prop exactly like lucide-react's className.
+ */
+import alertCircle from 'lucide-static/icons/alert-circle.svg?raw';
+import arrowLeft from 'lucide-static/icons/arrow-left.svg?raw';
+import arrowRight from 'lucide-static/icons/arrow-right.svg?raw';
+import arrowUpRight from 'lucide-static/icons/arrow-up-right.svg?raw';
+import award from 'lucide-static/icons/award.svg?raw';
+import barChart3 from 'lucide-static/icons/bar-chart-3.svg?raw';
+import bookOpen from 'lucide-static/icons/book-open.svg?raw';
+import bot from 'lucide-static/icons/bot.svg?raw';
+import brain from 'lucide-static/icons/brain.svg?raw';
+import calendar from 'lucide-static/icons/calendar.svg?raw';
+import check from 'lucide-static/icons/check.svg?raw';
+import checkCircle from 'lucide-static/icons/check-circle.svg?raw';
+import checkCircle2 from 'lucide-static/icons/check-circle-2.svg?raw';
+import chevronDown from 'lucide-static/icons/chevron-down.svg?raw';
+import chevronLeft from 'lucide-static/icons/chevron-left.svg?raw';
+import chevronRight from 'lucide-static/icons/chevron-right.svg?raw';
+import clock from 'lucide-static/icons/clock.svg?raw';
+import cloud from 'lucide-static/icons/cloud.svg?raw';
+import code from 'lucide-static/icons/code.svg?raw';
+import code2 from 'lucide-static/icons/code-2.svg?raw';
+import codeXml from 'lucide-static/icons/code-xml.svg?raw';
+import copy from 'lucide-static/icons/copy.svg?raw';
+import cpu from 'lucide-static/icons/cpu.svg?raw';
+import database from 'lucide-static/icons/database.svg?raw';
+import eye from 'lucide-static/icons/eye.svg?raw';
+import externalLink from 'lucide-static/icons/external-link.svg?raw';
+import fileCheck from 'lucide-static/icons/file-check.svg?raw';
+import fileText from 'lucide-static/icons/file-text.svg?raw';
+import fileJson from 'lucide-static/icons/file-json.svg?raw';
+import filter from 'lucide-static/icons/filter.svg?raw';
+import gitFork from 'lucide-static/icons/git-fork.svg?raw';
+import globe from 'lucide-static/icons/globe.svg?raw';
+import gift from 'lucide-static/icons/gift.svg?raw';
+import heart from 'lucide-static/icons/heart.svg?raw';
+import heartHandshake from 'lucide-static/icons/heart-handshake.svg?raw';
+import home from 'lucide-static/icons/home.svg?raw';
+import image from 'lucide-static/icons/image.svg?raw';
+import key from 'lucide-static/icons/key.svg?raw';
+import layers from 'lucide-static/icons/layers.svg?raw';
+import lightbulb from 'lucide-static/icons/lightbulb.svg?raw';
+import lock from 'lucide-static/icons/lock.svg?raw';
+import mail from 'lucide-static/icons/mail.svg?raw';
+import mapPin from 'lucide-static/icons/map-pin.svg?raw';
+import menu from 'lucide-static/icons/menu.svg?raw';
+import messageSquare from 'lucide-static/icons/message-square.svg?raw';
+import moon from 'lucide-static/icons/moon.svg?raw';
+import palette from 'lucide-static/icons/palette.svg?raw';
+import play from 'lucide-static/icons/play.svg?raw';
+import plus from 'lucide-static/icons/plus.svg?raw';
+import quote from 'lucide-static/icons/quote.svg?raw';
+import refreshCcw from 'lucide-static/icons/refresh-ccw.svg?raw';
+import rocket from 'lucide-static/icons/rocket.svg?raw';
+import rss from 'lucide-static/icons/rss.svg?raw';
+import save from 'lucide-static/icons/save.svg?raw';
+import scale from 'lucide-static/icons/scale.svg?raw';
+import search from 'lucide-static/icons/search.svg?raw';
+import send from 'lucide-static/icons/send.svg?raw';
+import server from 'lucide-static/icons/server.svg?raw';
+import serverCog from 'lucide-static/icons/server-cog.svg?raw';
+import shield from 'lucide-static/icons/shield.svg?raw';
+import shieldCheck from 'lucide-static/icons/shield-check.svg?raw';
+import creditCard from 'lucide-static/icons/credit-card.svg?raw';
+import sparkles from 'lucide-static/icons/sparkles.svg?raw';
+import star from 'lucide-static/icons/star.svg?raw';
+import sun from 'lucide-static/icons/sun.svg?raw';
+import tag from 'lucide-static/icons/tag.svg?raw';
+import target from 'lucide-static/icons/target.svg?raw';
+import trash2 from 'lucide-static/icons/trash-2.svg?raw';
+import trendingUp from 'lucide-static/icons/trending-up.svg?raw';
+import upload from 'lucide-static/icons/upload.svg?raw';
+import user from 'lucide-static/icons/user.svg?raw';
+import userX from 'lucide-static/icons/user-x.svg?raw';
+import users from 'lucide-static/icons/users.svg?raw';
+import x from 'lucide-static/icons/x.svg?raw';
+import xCircle from 'lucide-static/icons/x-circle.svg?raw';
+import zap from 'lucide-static/icons/zap.svg?raw';
+import { siGithub, siInstagram } from 'simple-icons';
+
+const LUCIDE: Record<string, string> = {
+  'alert-circle': alertCircle,
+  'arrow-left': arrowLeft,
+  'arrow-right': arrowRight,
+  'arrow-up-right': arrowUpRight,
+  award,
+  'bar-chart-3': barChart3,
+  'book-open': bookOpen,
+  bot,
+  brain,
+  calendar,
+  check,
+  'check-circle': checkCircle,
+  'check-circle-2': checkCircle2,
+  'chevron-down': chevronDown,
+  'chevron-left': chevronLeft,
+  'chevron-right': chevronRight,
+  clock,
+  cloud,
+  code,
+  'code-2': code2,
+  'code-xml': codeXml,
+  copy,
+  cpu,
+  'credit-card': creditCard,
+  database,
+  eye,
+  'external-link': externalLink,
+  'file-check': fileCheck,
+  'file-text': fileText,
+  'file-json': fileJson,
+  filter,
+  'git-fork': gitFork,
+  gift,
+  globe,
+  heart,
+  'heart-handshake': heartHandshake,
+  home,
+  image,
+  key,
+  layers,
+  lightbulb,
+  lock,
+  mail,
+  'map-pin': mapPin,
+  menu,
+  'message-square': messageSquare,
+  moon,
+  palette,
+  play,
+  plus,
+  quote,
+  'refresh-ccw': refreshCcw,
+  rocket,
+  rss,
+  save,
+  scale,
+  search,
+  send,
+  server,
+  'server-cog': serverCog,
+  shield,
+  'shield-check': shieldCheck,
+  sparkles,
+  star,
+  sun,
+  tag,
+  target,
+  'trash-2': trash2,
+  'trending-up': trendingUp,
+  user,
+  'user-x': userX,
+  users,
+  upload,
+  x,
+  'x-circle': xCircle,
+  zap,
+};
+
+// Brand glyphs (fill icons). GitHub/Instagram from simple-icons;
+// LinkedIn uses its canonical path (removed from upstream sets).
+const BRANDS: Record<string, string> = {
+  github: siGithub.svg,
+  instagram: siInstagram.svg,
+  linkedin:
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>',
+};
+
+export interface Props {
+  name: string;
+  class?: string;
+  style?: string;
+}
+
+const { name, class: cls = 'w-4 h-4', style = '' } = Astro.props;
+const raw = LUCIDE[name] ?? BRANDS[name] ?? '';
+const svg = raw ? raw.replace('<svg', `<svg class="${cls}" aria-hidden="true"${style ? ` style="${style}"` : ''}`) : '';
+---
+
+<Fragment set:html={svg} />

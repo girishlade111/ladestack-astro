@@ -1,0 +1,52 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9333EA;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#A855F7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C084FC;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)"/>
+  
+  <!-- Left side - REST -->
+  <circle cx="150" cy="120" r="25" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="150" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#9333EA">REST</text>
+  
+  <!-- REST API endpoints -->
+  <rect x="120" y="160" width="60" height="30" rx="4" fill="white" opacity="0.8" filter="url(#shadow)"/>
+  <text x="150" y="175" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#9333EA">/api/users</text>
+  <text x="150" y="188" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#9333EA">GET POST PUT</text>
+  
+  <!-- Right side - GraphQL -->
+  <circle cx="250" cy="120" r="25" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="250" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#A855F7">GraphQL</text>
+  
+  <!-- GraphQL query -->
+  <rect x="220" y="160" width="60" height="40" rx="4" fill="white" opacity="0.8" filter="url(#shadow)"/>
+  <text x="250" y="172" text-anchor="middle" font-family="Arial, monospace" font-size="7" fill="#A855F7">query {</text>
+  <text x="250" y="182" text-anchor="middle" font-family="Arial, monospace" font-size="7" fill="#C084FC">  users {</text>
+  <text x="250" y="192" text-anchor="middle" font-family="Arial, monospace" font-size="7" fill="#A855F7">    name age</text>
+  <text x="250" y="202" text-anchor="middle" font-family="Arial, monospace" font-size="7" fill="#9333EA">  }</text>
+  
+  <!-- VS symbol -->
+  <circle cx="200" cy="80" r="15" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#9333EA">VS</text>
+  
+  <!-- Comparison arrows -->
+  <path d="M120 100 L170 110" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M230 110 L280 100" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Performance metrics -->
+  <rect x="120" y="220" width="160" height="50" rx="6" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#9333EA">Performance</text>
+  <text x="170" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#9333EA">REST: 100ms</text>
+  <text x="230" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#A855F7">GraphQL: 50ms</text>
+  
+  <!-- Title -->
+  <text x="200" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">GRAPHQL vs REST</text>
+</svg>

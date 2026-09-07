@@ -1,0 +1,207 @@
+---
+/**
+ * /support — full port of src/pages/Support.tsx.
+ * Same hero, support options, FAQ, help topics, community CTA.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    description: 'Support center and FAQ for Lade Stack platform.',
+    name: 'Lade Stack Support',
+    url: 'https://ladestack.in/support',
+  },
+];
+
+const supportOptions = [
+  { icon: 'mail', title: 'Email Support', description: "Send us an email and we'll respond within 24 hours", responseTime: '24 hours', action: 'admin@ladestack.in' },
+  { icon: 'message-square', title: 'Live Chat', description: 'Chat with our support team in real-time', responseTime: 'Immediate', action: 'Start Chat' },
+  { icon: 'book-open', title: 'Knowledge Base', description: 'Browse our comprehensive documentation and guides', responseTime: 'Self-service', action: 'Browse Articles' },
+];
+
+const faqs = [
+  { question: 'How do I reset my password?', answer: "You can reset your password by clicking 'Forgot Password' on the login page. Enter your email address and follow the instructions sent to your inbox." },
+  { question: 'What payment methods do you accept?', answer: 'We accept all major credit cards including Visa, Mastercard, American Express, and Discover. We also support PayPal and bank transfers for annual plans.' },
+  { question: 'How do I cancel my subscription?', answer: "You can cancel your subscription at any time from your account settings. Navigate to Billing > Subscription and click 'Cancel Plan'." },
+  { question: 'Is there a free trial available?', answer: 'Yes, we offer a 14-day free trial for all our plans. No credit card is required to start your trial.' },
+  { question: 'How do I upgrade my plan?', answer: "You can upgrade your plan at any time from your account dashboard. Go to Billing > Subscription and select 'Upgrade Plan'." },
+  { question: 'Do you offer discounts for non-profits or educational institutions?', answer: 'Yes, we offer special pricing for non-profit organizations and educational institutions. Please contact our sales team for more information.' },
+];
+
+const helpTopics = [
+  { icon: 'user', title: 'Account Management', description: 'Learn how to manage your account settings, billing, and user permissions' },
+  { icon: 'zap', title: 'API Integration', description: 'Documentation and guides for integrating our APIs into your applications' },
+  { icon: 'shield', title: 'Security & Compliance', description: 'Information about our security measures, compliance certifications, and data protection' },
+];
+---
+
+<BaseLayout
+  title="Support Center – Help & FAQ | Lade Stack"
+  description="Get help with Lade Stack's platform. Troubleshoot issues, browse FAQs, or contact our support team. We respond within 24 hours."
+  canonical="https://ladestack.in/support"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'Lade Stack Support Center',
+    description: "Get help with Lade Stack's AI developer tools. FAQs, troubleshooting, and 24-hour support.",
+    url: 'https://ladestack.in/support',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Lade Stack Support Center',
+    description: "Get help with Lade Stack's AI developer tools. FAQs, troubleshooting, and 24-hour support.",
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background relative overflow-hidden">
+    <div class="absolute inset-0 hidden dark:block pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.10),_transparent_60%)]"></div>
+      <div class="absolute top-[45%] right-0 w-[450px] h-[350px] bg-[radial-gradient(ellipse_at_center,_rgba(139,175,135,0.06),_transparent_55%)]"></div>
+    </div>
+
+    <div class="pt-24 pb-16">
+      <section class="py-12 sm:py-16 lg:py-20">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Support <span class="bg-gradient-to-r from-[#6E8F6A] to-[#4E6F4A] bg-clip-text text-transparent">Center</span>
+            </h1>
+            <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#6E8F6A] to-[#4E6F4A] mx-auto mb-6 rounded-full"></div>
+            <p class="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+              Get help with our platform, troubleshoot issues, and find answers to common questions.
+              Our support team is here to assist you every step of the way.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4">How Can We Help You?</h2>
+              <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Choose the support option that works best for you</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {
+                supportOptions.map((option) => (
+                  <div class="bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md border border-border hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#6E8F6A] to-[#4E6F4A] flex items-center justify-center mb-6">
+                      <Icon name={option.icon} class="w-6 h-6 text-white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-foreground mb-3">{option.title}</h3>
+                    <p class="text-muted-foreground mb-4">{option.description}</p>
+                    <div class="flex items-center text-sm text-muted-foreground mb-6">
+                      <Icon name="clock" class="w-4 h-4 mr-2" />
+                      <span>Response time: {option.responseTime}</span>
+                    </div>
+                    <span class="inline-flex items-center justify-center w-full px-4 py-2 rounded-lg border border-border text-sm font-medium">
+                      {option.action}
+                    </span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16 bg-muted/20">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4">Frequently Asked Questions</h2>
+              <div class="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#6E8F6A] to-[#4E6F4A] mx-auto mb-6 rounded-full"></div>
+              <p class="text-lg text-muted-foreground">Find quick answers to common questions</p>
+            </div>
+            <div class="space-y-4 sm:space-y-6">
+              {
+                faqs.map((faq) => (
+                  <details class="group bg-card rounded-lg sm:rounded-xl p-5 sm:p-6 shadow-sm border border-border">
+                    <summary class="text-base sm:text-lg font-semibold text-foreground mb-0 cursor-pointer list-none flex items-center justify-between gap-4">
+                      {faq.question}
+                      <Icon name="chevron-down" class="w-5 h-5 flex-shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+                    </summary>
+                    <p class="text-sm sm:text-base text-muted-foreground pt-2">{faq.answer}</p>
+                  </details>
+                ))
+              }
+            </div>
+            <div class="text-center mt-10">
+              <a
+                href="/contact"
+                class="inline-flex items-center px-4 py-2 bg-[#6E8F6A] text-white rounded-lg hover:bg-[#5F7F63] transition-colors"
+              >
+                Contact Support Team
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-4">Help Topics</h2>
+              <p class="text-lg text-muted-foreground max-w-2xl mx-auto">Browse our documentation by category</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {
+                helpTopics.map((topic) => (
+                  <div class="bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md border border-border hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-[#6E8F6A] to-[#4E6F4A] flex items-center justify-center mb-6">
+                      <Icon name={topic.icon} class="w-6 h-6 text-white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-foreground mb-3">{topic.title}</h3>
+                    <p class="text-muted-foreground mb-6">{topic.description}</p>
+                    <a href="/docs" class="p-0 h-auto text-[#6E8F6A] hover:text-[#5F7F63] text-sm font-medium">
+                      Learn More →
+                    </a>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-12 sm:py-16 bg-muted/20">
+        <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto">
+            <div class="bg-card rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-md border border-border text-center">
+              <h3 class="text-2xl font-bold text-foreground mb-4">Community Support</h3>
+              <p class="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Join our developer community to connect with other users, share knowledge,
+                and get help from our community experts.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href="https://github.com/girishlade111"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center px-6 h-11 rounded-xl bg-[#6E8F6A] text-white text-sm font-semibold hover:bg-[#5F7F63] transition-colors"
+                >
+                  Join Community Forum
+                </a>
+                <a
+                  href="https://github.com/girishlade111"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center px-6 h-11 rounded-xl border border-border text-sm font-semibold hover:bg-muted/40 transition-colors"
+                >
+                  View GitHub Discussions
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

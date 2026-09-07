@@ -1,0 +1,320 @@
+---
+/**
+ * /apps/admin — full port of src/pages/AppsAdmin.tsx (dark dashboard).
+ * Same add-app form, features/integrations tag editors, apps list with
+ * remove, JSON export download. State runs client-side over the
+ * server-rendered initial dataset.
+ * NON-INDEXABLE: robots noindex/nofollow + sitemap filter (see config).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import appsData from '../../data/apps.json';
+
+const apps = appsData as Array<{
+  id: string;
+  slug: string;
+  title: string;
+  tagline: string;
+  description: string;
+  icon: string;
+  category: string;
+  features: string[];
+  timeToValue: string;
+  integrations: string[];
+  lifetimeFree: boolean;
+  landingUrl: string;
+  createdAt: string;
+  popularityScore: number;
+  iconAlt: string;
+  comingSoon?: boolean;
+}>;
+
+const inputCls = 'w-full h-10 px-3 rounded-lg bg-gray-700 border border-gray-600 text-white text-sm placeholder:text-gray-500 focus:outline-none focus:border-[#6E8F6A]';
+---
+
+<BaseLayout
+  title="Apps Admin Dashboard - Lade Stack"
+  description={null}
+  canonical="https://ladestack.in/apps/admin"
+  robots={{ index: false, follow: false, custom: null }}
+  openGraph={{
+    title: 'Apps Admin Dashboard - Lade Stack',
+    description: null,
+    url: 'https://ladestack.in/apps/admin',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Apps Admin Dashboard - Lade Stack',
+    description: null,
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={[]}
+>
+  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white p-6 relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-0 left-[20%] w-[600px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.10),_transparent_60%)]"></div>
+      <div class="absolute top-[50%] right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(139,175,135,0.06),_transparent_55%)]"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto relative z-10 pt-16">
+      <h1 class="text-3xl font-bold mb-8 text-center">Apps Admin Dashboard</h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="rounded-xl bg-gray-800/50 border border-gray-700">
+          <div class="p-6 pb-0">
+            <h2 class="text-xl font-semibold">Add New App</h2>
+          </div>
+          <div class="p-6 space-y-4">
+            <div class="space-y-2">
+              <label for="admin-title" class="text-sm font-medium">App Title *</label>
+              <input id="admin-title" data-admin-field="title" placeholder="Enter app title" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-slug" class="text-sm font-medium">App Slug *</label>
+              <input id="admin-slug" data-admin-field="slug" placeholder="Enter app slug (e.g. api-testing)" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-tagline" class="text-sm font-medium">Tagline</label>
+              <input id="admin-tagline" data-admin-field="tagline" placeholder="Enter app tagline" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-description" class="text-sm font-medium">Description</label>
+              <textarea id="admin-description" data-admin-field="description" placeholder="Enter app description" rows="3" class={inputCls + ' min-h-[100px] py-2 h-auto'}></textarea>
+            </div>
+            <div class="space-y-2">
+              <label for="admin-icon" class="text-sm font-medium">Icon Path</label>
+              <input id="admin-icon" data-admin-field="icon" placeholder="Enter icon path (e.g. /api-testing-project.svg)" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-category" class="text-sm font-medium">Category</label>
+              <input id="admin-category" data-admin-field="category" placeholder="Enter category (e.g. API, No-Code, Productivity)" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-ttv" class="text-sm font-medium">Time to Value</label>
+              <input id="admin-ttv" data-admin-field="timeToValue" placeholder="Enter time (e.g. 5 min)" class={inputCls} />
+            </div>
+            <div class="space-y-2">
+              <label for="admin-url" class="text-sm font-medium">Landing URL</label>
+              <input id="admin-url" data-admin-field="landingUrl" placeholder="Enter landing page URL (e.g. /projects/api-testing)" class={inputCls} />
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label for="admin-score" class="text-sm font-medium">Popularity (0-100)</label>
+                <input id="admin-score" data-admin-field="popularityScore" type="number" min="0" max="100" value="50" class={inputCls} />
+              </div>
+              <div class="space-y-2">
+                <label for="admin-alt" class="text-sm font-medium">Icon Alt Text</label>
+                <input id="admin-alt" data-admin-field="iconAlt" placeholder="Alt text" class={inputCls} />
+              </div>
+            </div>
+            <div class="flex items-center space-x-2">
+              <input type="checkbox" id="admin-free" data-admin-field="lifetimeFree" checked class="h-4 w-4 text-blue-600 rounded bg-gray-700 border-gray-600" />
+              <label for="admin-free" class="text-sm font-medium">Lifetime Free</label>
+            </div>
+            <div class="space-y-2">
+              <span class="text-sm font-medium">Features</span>
+              <div class="flex gap-2">
+                <input data-admin-feature-input placeholder="Add a feature" class={inputCls} />
+                <button type="button" data-admin-feature-add class="px-3 h-10 rounded-lg bg-blue-600 hover:bg-blue-700 flex items-center" aria-label="Add feature">
+                  <Icon name="plus" class="w-4 h-4" />
+                </button>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-2" data-admin-feature-list></div>
+            </div>
+            <div class="space-y-2">
+              <span class="text-sm font-medium">Integrations</span>
+              <div class="flex gap-2">
+                <input data-admin-integration-input placeholder="Add an integration" class={inputCls} />
+                <button type="button" data-admin-integration-add class="px-3 h-10 rounded-lg bg-blue-600 hover:bg-blue-700 flex items-center" aria-label="Add integration">
+                  <Icon name="plus" class="w-4 h-4" />
+                </button>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-2" data-admin-integration-list></div>
+            </div>
+            <button type="button" data-admin-add class="w-full h-10 rounded-lg bg-green-600 hover:bg-green-700 font-medium flex items-center justify-center gap-2">
+              <Icon name="plus" class="w-4 h-4" />
+              Add App
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-gray-800/50 border border-gray-700">
+          <div class="p-6 pb-0 flex justify-between items-center">
+            <h2 class="text-xl font-semibold">Current Apps (<span data-admin-count>{apps.length}</span>)</h2>
+            <button type="button" data-admin-save class="h-9 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-sm font-medium flex items-center gap-2">
+              <Icon name="save" class="w-4 h-4" />
+              Save Changes
+            </button>
+          </div>
+          <div class="p-6">
+            <div data-admin-message class="hidden mb-4 p-3 bg-blue-900/30 text-blue-300 rounded-lg text-sm"></div>
+            <div class="space-y-4 max-h-[600px] overflow-y-auto pr-2" data-admin-list></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center text-sm text-gray-500">
+        <a href="/apps" class="hover:text-gray-300 transition-colors">← Back to Apps Gallery</a>
+      </p>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ initialApps: apps }}>
+    (function (initialApps) {
+      var list = initialApps.slice();
+      var features = [];
+      var integrations = [];
+      var listEl = document.querySelector('[data-admin-list]');
+      var countEl = document.querySelector('[data-admin-count]');
+      var msgEl = document.querySelector('[data-admin-message]');
+      function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+      function message(t) {
+        if (!msgEl) return;
+        msgEl.textContent = t;
+        msgEl.classList.remove('hidden');
+      }
+      function field(name) {
+        var el = document.querySelector('[data-admin-field="' + name + '"]');
+        if (!el) return '';
+        if (el.type === 'checkbox') return el.checked;
+        return el.value;
+      }
+      function paintTags(kind, arr) {
+        var host = document.querySelector(kind === 'f' ? '[data-admin-feature-list]' : '[data-admin-integration-list]');
+        if (!host) return;
+        host.innerHTML = '';
+        arr.forEach(function (tag, i) {
+          var pill = document.createElement('span');
+          pill.className =
+            'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs ' +
+            (kind === 'f' ? 'bg-blue-900/30 text-blue-400' : 'bg-purple-900/30 text-purple-400');
+          pill.textContent = tag;
+          var x = document.createElement('button');
+          x.type = 'button';
+          x.className = 'ml-1 hover:text-white';
+          x.textContent = '×';
+          x.setAttribute('aria-label', 'Remove');
+          x.addEventListener('click', function () {
+            arr.splice(i, 1);
+            paintTags(kind, arr);
+          });
+          pill.appendChild(x);
+          host.appendChild(pill);
+        });
+      }
+      function paintList() {
+        if (!listEl) return;
+        listEl.innerHTML = '';
+        if (countEl) countEl.textContent = String(list.length);
+        list.forEach(function (app, index) {
+          var card = document.createElement('div');
+          card.className = 'rounded-xl bg-gray-700/50 border border-gray-600 p-4';
+          var feats = (app.features || [])
+            .slice(0, 2)
+            .map(function (f) {
+              return '<span class="px-2 py-0.5 rounded border border-gray-500 text-xs">' + esc(f) + '</span>';
+            })
+            .join('');
+          if ((app.features || []).length > 2) {
+            feats += '<span class="px-2 py-0.5 rounded border border-gray-500 text-xs">+' + (app.features.length - 2) + ' more</span>';
+          }
+          card.innerHTML =
+            '<div class="flex justify-between items-start gap-3">' +
+            '<div class="flex-1 min-w-0">' +
+            '<h3 class="font-bold text-lg truncate">' + esc(app.title) + '</h3>' +
+            '<p class="text-sm text-gray-400 truncate">' + esc(app.tagline || '') + '</p>' +
+            '<p class="text-sm text-gray-300 mt-1 line-clamp-2">' + esc(app.description || '') + '</p>' +
+            '<div class="flex flex-wrap gap-1 mt-2">' +
+            '<span class="px-2 py-0.5 rounded-full bg-green-900/30 text-green-400 text-xs">' + esc(app.category || '') + '</span>' +
+            (app.lifetimeFree ? '<span class="px-2 py-0.5 rounded-full bg-blue-900/30 text-blue-400 text-xs">Lifetime Free</span>' : '') +
+            '</div>' +
+            '<div class="flex flex-wrap gap-1 mt-2">' + feats + '</div>' +
+            '</div>' +
+            '<button type="button" data-remove class="ml-2 flex-shrink-0 px-2.5 h-8 rounded-lg bg-red-600 hover:bg-red-700 text-xs font-medium">Remove</button>' +
+            '</div>';
+          card.querySelector('[data-remove]').addEventListener('click', function () {
+            list.splice(index, 1);
+            paintList();
+            message('App removed successfully');
+          });
+          listEl.appendChild(card);
+        });
+      }
+      function bindTag(kind) {
+        var input = document.querySelector(kind === 'f' ? '[data-admin-feature-input]' : '[data-admin-integration-input]');
+        var add = document.querySelector(kind === 'f' ? '[data-admin-feature-add]' : '[data-admin-integration-add]');
+        var arr = kind === 'f' ? features : integrations;
+        if (add && input) {
+          add.addEventListener('click', function () {
+            var v = input.value.trim();
+            if (v && arr.indexOf(v) === -1) {
+              arr.push(v);
+              input.value = '';
+              paintTags(kind, arr);
+            }
+          });
+        }
+      }
+      bindTag('f');
+      bindTag('i');
+      var addBtn = document.querySelector('[data-admin-add]');
+      if (addBtn) {
+        addBtn.addEventListener('click', function () {
+          var title = field('title');
+          var slug = field('slug');
+          if (!title || !slug) {
+            message('Title and slug are required');
+            return;
+          }
+          list.push({
+            id: 'app-' + Date.now(),
+            slug: slug,
+            title: title,
+            tagline: field('tagline'),
+            description: field('description'),
+            icon: field('icon'),
+            category: field('category'),
+            features: features.slice(),
+            timeToValue: field('timeToValue'),
+            integrations: integrations.slice(),
+            lifetimeFree: !!field('lifetimeFree'),
+            landingUrl: field('landingUrl'),
+            createdAt: new Date().toISOString().split('T')[0],
+            popularityScore: Number(field('popularityScore')) || 50,
+            iconAlt: field('iconAlt'),
+          });
+          document.querySelectorAll('[data-admin-field]').forEach(function (el) {
+            if (el.type === 'checkbox') el.checked = el.getAttribute('data-admin-field') === 'lifetimeFree';
+            else if (el.getAttribute('data-admin-field') === 'popularityScore') el.value = '50';
+            else el.value = '';
+          });
+          features = [];
+          integrations = [];
+          paintTags('f', features);
+          paintTags('i', integrations);
+          paintList();
+          message('App added successfully');
+        });
+      }
+      var saveBtn = document.querySelector('[data-admin-save]');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          message('Apps saved successfully! (In a real app, this would save to a database)');
+          var blob = new Blob([JSON.stringify(list, null, 2)], { type: 'application/json' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'apps.json';
+          a.click();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+      }
+      paintTags('f', features);
+      paintTags('i', integrations);
+      paintList();
+    })(initialApps);
+  </script>
+</BaseLayout>

@@ -1,0 +1,89 @@
+---
+/**
+ * BaseLayout.astro — shared document shell for every migrated page.
+ * Receives one manifest `routes[]` entry's meta + structured_data and renders
+ * <SEO> into <head>, plus site-wide Header/Footer carrying the exact
+ * internal-link set from `internal_links_outbound`.
+ *
+ * Visual system: Tailwind v3 (same config as source) + ported global.css
+ * tokens + Google Fonts (Inter / DM Serif Display / JetBrains Mono) + the
+ * source's localStorage theme pre-paint guard (default light).
+ */
+import SEO, {
+  type RobotsMeta,
+  type OpenGraphMeta,
+  type TwitterMeta,
+} from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string | null;
+  canonical: string;
+  robots?: RobotsMeta;
+  openGraph?: OpenGraphMeta;
+  twitter?: TwitterMeta;
+  structuredData?: Record<string, unknown>[];
+  lang?: string;
+  /** Pages with their own footer (e.g. /ai-code-viewer-ai) set this. */
+  hideFooter?: boolean;
+}
+
+const { title, description, canonical, robots, openGraph, twitter, structuredData, lang = 'en', hideFooter = false } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        try {
+          if (localStorage.getItem('ladestack-theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      robots={robots}
+      openGraph={openGraph}
+      twitter={twitter}
+      structuredData={structuredData}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    {!hideFooter && <Footer />}
+    <script is:inline>
+      (function () {
+        document.addEventListener('click', function (e) {
+          var t = e.target.closest('[data-theme-toggle]');
+          if (!t) return;
+          var el = document.documentElement;
+          var dark = el.classList.toggle('dark');
+          try {
+            localStorage.setItem('ladestack-theme', dark ? 'dark' : 'light');
+          } catch (err) {}
+        });
+      })();
+    </script>
+  </body>
+</html>

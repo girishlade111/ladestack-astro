@@ -1,0 +1,61 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)"/>
+  
+  <!-- Monitoring dashboard -->
+  <rect x="50" y="80" width="300" height="120" rx="8" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  
+  <!-- Charts and graphs -->
+  <rect x="70" y="100" width="60" height="60" rx="4" fill="#F3F4F6"/>
+  <path d="M75 140 L85 130 L95 135 L105 125 L115 130 L125 120" stroke="#3B82F6" stroke-width="2" fill="none"/>
+  <circle cx="75" cy="140" r="2" fill="#3B82F6"/>
+  <circle cx="85" cy="130" r="2" fill="#3B82F6"/>
+  <circle cx="95" cy="135" r="2" fill="#3B82F6"/>
+  <circle cx="105" cy="125" r="2" fill="#3B82F6"/>
+  <circle cx="115" cy="130" r="2" fill="#3B82F6"/>
+  <circle cx="125" cy="120" r="2" fill="#3B82F6"/>
+  
+  <!-- Bar chart -->
+  <rect x="150" y="130" width="60" height="30" rx="2" fill="#F3F4F6"/>
+  <rect x="155" y="145" width="8" height="15" fill="#1E40AF"/>
+  <rect x="167" y="140" width="8" height="20" fill="#3B82F6"/>
+  <rect x="179" y="125" width="8" height="35" fill="#60A5FA"/>
+  <rect x="191" y="135" width="8" height="25" fill="#1E40AF"/>
+  
+  <!-- Metrics display -->
+  <rect x="240" y="100" width="90" height="60" rx="4" fill="#F3F4F6"/>
+  <text x="285" y="120" text-anchor="middle" font-family="Arial, monospace" font-size="12" fill="#1E40AF">CPU: 85%</text>
+  <text x="285" y="135" text-anchor="middle" font-family="Arial, monospace" font-size="12" fill="#3B82F6">Memory: 72%</text>
+  <text x="285" y="150" text-anchor="middle" font-family="Arial, monospace" font-size="12" fill="#60A5FA">Network: 45%</text>
+  
+  <!-- Observability pillars -->
+  <circle cx="100" cy="230" r="12" fill="#3B82F6"/>
+  <text x="100" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">LOG</text>
+  
+  <circle cx="200" cy="230" r="12" fill="#1E40AF"/>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">MET</text>
+  
+  <circle cx="300" cy="230" r="12" fill="#60A5FA"/>
+  <text x="300" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="white">TRC</text>
+  
+  <!-- Alert indicators -->
+  <circle cx="350" cy="50" r="8" fill="#EF4444" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="50" cy="50" r="6" fill="#10B981" opacity="0.8"/>
+  
+  <!-- Title -->
+  <text x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">OBSERVABILITY</text>
+  <text x="200" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="rgba(255,255,255,0.9)">& MONITORING</text>
+</svg>

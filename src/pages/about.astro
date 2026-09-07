@@ -1,0 +1,560 @@
+---
+/**
+ * /about — full port of src/pages/AboutUs.tsx.
+ * Same hero stats, story timeline, pivot before/after, mission + philosophy,
+ * core values, Girish team card, closing CTA.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'admin@ladestack.in' },
+    description: 'AI-powered development tools ecosystem founded by Girish Lade, democratizing advanced development tools for creators and startups worldwide.',
+    founder: {
+      '@type': 'Person',
+      description: 'Multi-disciplinary engineer and designer with expertise in AI systems, web development, and user experience',
+      jobTitle: 'Founder & Lead Developer',
+      name: 'Girish Lade',
+      url: 'https://ladestack.in/about',
+    },
+    foundingDate: '2020',
+    logo: 'https://ladestack.in/logo.png',
+    name: 'Lade Stack',
+    sameAs: [
+      'https://www.instagram.com/girish_lade_/',
+      'https://www.linkedin.com/in/girish-lade-075bba201/',
+      'https://github.com/girishlade111',
+      'https://codepen.io/Girish-Lade-the-looper',
+    ],
+    url: 'https://ladestack.in',
+  },
+];
+
+const heroStats = [
+  { value: '2020', label: 'Founded' },
+  { value: '5+', label: 'AI Tools' },
+  { value: '8K+', label: 'Developers' },
+  { value: '100%', label: 'Free' },
+];
+
+const storyTimeline = [
+  { year: '2020', title: 'The Beginning', text: 'Girish starts building personal dev tools and AI automation experiments.' },
+  { year: '2022', title: 'First Products', text: 'Multi-LLM projects, e-commerce suites, and productivity platforms take shape.' },
+  { year: '2024', title: 'Lade Stack Born', text: 'The vision crystallises — a unified AI developer ecosystem for everyone.' },
+  { year: '2025', title: 'Growing Fast', text: '5+ tools live, 8K+ developers, and the roadmap keeps expanding.' },
+];
+
+const beforeItems = [
+  { icon: 'cpu', label: 'AI integrations', sub: 'Personal experiments & scripts' },
+  { icon: 'palette', label: 'UX/UI design', sub: 'Crafting interfaces solo' },
+  { icon: 'server-cog', label: 'Backend systems', sub: 'One-off productivity tools' },
+];
+
+const afterItems = [
+  { icon: 'bot', label: 'AI-powered suite', sub: '5+ tools for every workflow' },
+  { icon: 'globe', label: 'Global developer reach', sub: '1,000+ creators empowered' },
+  { icon: 'layers', label: 'Lade Stack ecosystem', sub: 'Unified, free, production-grade' },
+];
+
+const coreValues = [
+  { icon: 'sparkles', title: 'AI-First Innovation', description: "Every Lade Stack product begins with intelligent automation — from smart build pipelines to autonomous testing agents. We're redefining how developers work with machine learning as their co-creator.", accent: 'from-violet-500/20 to-violet-500/5', iconBg: 'bg-violet-500/10 text-violet-500', border: 'border-violet-500/15' },
+  { icon: 'users', title: 'Developer Empowerment', description: 'Lade Stack is built by a developer, for developers. We focus on creating intuitive, accessible, and powerful tools that remove friction and enhance creativity.', accent: 'from-sky-500/20 to-sky-500/5', iconBg: 'bg-sky-500/10 text-sky-500', border: 'border-sky-500/15' },
+  { icon: 'award', title: 'Production-Ready Quality', description: "We don't just build prototypes — we build production-grade systems with high uptime, enterprise-level security, and world-class scalability.", accent: 'from-amber-500/20 to-amber-500/5', iconBg: 'bg-amber-500/10 text-amber-500', border: 'border-amber-500/15' },
+  { icon: 'eye', title: 'Open Source Transparency', description: 'Transparency is our foundation. Our open-source initiatives, clear documentation, and API accessibility enable true collaboration across the developer community.', accent: 'from-emerald-500/20 to-emerald-500/5', iconBg: 'bg-emerald-500/10 text-emerald-500', border: 'border-emerald-500/15' },
+];
+
+const teamSocials = [
+  { icon: 'github', label: 'GitHub', href: 'https://github.com/girishlade111' },
+  { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/girish-lade-075bba201/' },
+  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/girish_lade_/' },
+];
+
+const skills = ['AI Systems', 'Web Development', 'UX/UI Design', 'Full-Stack', 'Supabase', 'Genkit', 'Multi-LLM'];
+---
+
+<BaseLayout
+  title="About Lade Stack - Empowering Developers Through AI Innovation & Visionary Leadership"
+  description="Discover Lade Stack's inspiring journey from a developer's vision to an AI-powered development ecosystem. Founded by Girish Lade, we democratize advanced development tools for creators worldwide."
+  canonical="https://ladestack.in/about"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'About Lade Stack - Visionary AI Development Tools & Founder Story',
+    description: 'Learn how Girish Lade transformed from a passionate developer to founding Lade Stack - an AI-powered ecosystem revolutionizing how creators build, test, and deploy modern applications.',
+    url: 'https://ladestack.in/about',
+    type: 'website',
+    image: 'https://ladestack.in/og-about.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'About Lade Stack - AI Development Revolution & Founder Story',
+    description: "Discover how Girish Lade's vision became Lade Stack - transforming developer workflows through AI-powered tools and innovation.",
+    image: 'https://ladestack.in/og-about.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background">
+    <div class="pt-16">
+      {/* HERO */}
+      <section class="relative pt-24 pb-20 overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_top,_rgba(110,143,106,0.11),_transparent_60%)]"></div>
+          <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-violet-500/5 blur-3xl"></div>
+          <div class="absolute top-32 -left-24 w-80 h-80 rounded-full bg-[#6E8F6A]/5 blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+              <Icon name="sparkles" class="w-3.5 h-3.5" />
+              Our Story
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight leading-[1.08] mb-6">
+              About{' '}
+              <span class="relative">
+                <span class="text-[#6E8F6A]">Lade Stack</span>
+                <span class="absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-[#6E8F6A]/40" style="transform-origin: left;"></span>
+              </span>
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
+              Empowering developers through innovation, automation, and intelligence
+            </p>
+            <p class="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Lade Stack redefines how developers build, test, and deploy modern applications
+              with AI-powered tools that accelerate workflows, ensure production-grade reliability,
+              and simplify development for teams of all sizes.
+            </p>
+            <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl mx-auto">
+              {
+                heroStats.map((s) => (
+                  <div class="text-center p-4 rounded-2xl border border-border bg-background/60">
+                    <p class="text-2xl font-extrabold text-foreground">{s.value}</p>
+                    <p class="text-xs text-muted-foreground mt-0.5">{s.label}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STORY */}
+      <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div class="relative">
+                <div class="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#6E8F6A]/60 via-[#6E8F6A]/20 to-transparent"></div>
+                <div class="space-y-8 pl-16">
+                  {
+                    storyTimeline.map((t) => (
+                      <div class="relative">
+                        <div class="absolute -left-[2.6rem] top-1 w-3 h-3 rounded-full bg-[#6E8F6A] ring-4 ring-background"></div>
+                        <span class="text-xs font-bold text-[#6E8F6A] uppercase tracking-widest">{t.year}</span>
+                        <h4 class="text-base font-bold text-foreground mt-0.5 mb-1">{t.title}</h4>
+                        <p class="text-sm text-muted-foreground leading-relaxed">{t.text}</p>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div class="space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                  <Icon name="lightbulb" class="w-3.5 h-3.5" />
+                  Our Story
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
+                  Built from a developer&apos;s <span class="text-[#6E8F6A]">real frustrations</span>
+                </h2>
+                <p class="text-base text-muted-foreground leading-relaxed">
+                  In 2020, Girish Lade — an engineer, developer, and designer — began building
+                  something extraordinary. What started as a personal mission to streamline his
+                  own development process quickly evolved into a vision that would transform how
+                  creators and startups approach software development.
+                </p>
+                <p class="text-base text-muted-foreground leading-relaxed">
+                  Born from years of working on multi-LLM projects and AI automation tools,
+                  Girish witnessed firsthand the power of intelligent systems. His journey from
+                  building personal productivity tools to full-fledged e-commerce platforms
+                  revealed a critical gap in the market: most developers lacked access to
+                  enterprise-grade AI capabilities that could democratize advanced development practices.
+                </p>
+                <p class="text-base text-muted-foreground leading-relaxed">
+                  Today, Lade Stack stands as a testament to what passionate innovation can achieve.
+                  We&apos;re not just building tools; we&apos;re building the future of development — one
+                  where AI and human creativity work in perfect harmony.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PIVOT POINT */}
+      <section class="py-16 sm:py-24 overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                <Icon name="lightbulb" class="w-3.5 h-3.5" />
+                The turning moment
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
+                The Pivot <span class="text-[#6E8F6A]">Point</span>
+              </h2>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-stretch gap-4 md:gap-0 mb-10">
+              <div class="flex-1 relative rounded-3xl border border-border bg-background p-7 sm:p-8 md:rounded-r-none md:border-r-0">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/60 border border-border text-muted-foreground text-[11px] font-bold uppercase tracking-widest mb-6">
+                  <span class="w-1.5 h-1.5 rounded-full bg-muted-foreground/60"></span>
+                  Before
+                </div>
+                <div class="space-y-5">
+                  {
+                    beforeItems.map((item) => (
+                      <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-muted/50 border border-border flex items-center justify-center flex-shrink-0 text-muted-foreground">
+                          <Icon name={item.icon} class="w-5 h-5" />
+                        </div>
+                        <div>
+                          <p class="text-sm font-semibold text-foreground">{item.label}</p>
+                          <p class="text-xs text-muted-foreground">{item.sub}</p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div class="relative z-10 flex items-center justify-center self-center md:self-auto md:-mx-1">
+                <div class="w-12 h-12 rounded-full bg-[#6E8F6A] shadow-lg shadow-[#6E8F6A]/30 flex items-center justify-center flex-shrink-0 rotate-90 md:rotate-0">
+                  <Icon name="arrow-right" class="w-5 h-5 text-white" />
+                </div>
+              </div>
+              <div class="flex-1 relative rounded-3xl border border-[#6E8F6A]/25 bg-gradient-to-br from-[#6E8F6A]/8 via-background to-background p-7 sm:p-8 md:rounded-l-none md:border-l-0 overflow-hidden">
+                <div class="absolute top-0 right-0 w-48 h-48 bg-[#6E8F6A]/10 blur-3xl pointer-events-none rounded-full"></div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-[11px] font-bold uppercase tracking-widest mb-6">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#6E8F6A] animate-pulse"></span>
+                  After
+                </div>
+                <div class="relative space-y-5">
+                  {
+                    afterItems.map((item) => (
+                      <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-[#6E8F6A]/12 border border-[#6E8F6A]/20 flex items-center justify-center flex-shrink-0 text-[#6E8F6A]">
+                          <Icon name={item.icon} class="w-5 h-5" />
+                        </div>
+                        <div>
+                          <p class="text-sm font-semibold text-foreground">{item.label}</p>
+                          <p class="text-xs text-muted-foreground">{item.sub}</p>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="relative rounded-3xl border border-border bg-background overflow-hidden">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#6E8F6A] via-[#8BAF87] to-[#6E8F6A]/20 rounded-l-3xl"></div>
+              <div class="p-8 sm:p-10 pl-10 sm:pl-12 grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+                <div class="lg:col-span-2 flex flex-col gap-4">
+                  <div class="w-14 h-14 rounded-2xl bg-[#6E8F6A]/12 border border-[#6E8F6A]/20 flex items-center justify-center">
+                    <Icon name="lightbulb" class="w-7 h-7 text-[#6E8F6A]" />
+                  </div>
+                  <p class="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                    The moment everything changed
+                  </p>
+                  <div class="h-px bg-gradient-to-r from-[#6E8F6A] to-transparent"></div>
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    {['AI integrations', 'UX/UI design', 'Backend systems'].map((chip) => (
+                      <span class="px-2.5 py-1 rounded-full text-[11px] font-medium text-muted-foreground bg-muted/50 border border-border">
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div class="lg:col-span-3 space-y-5">
+                  <p class="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                    What began as Girish&apos;s early work in AI integrations, UX/UI design, and
+                    backend systems became the foundation for something bigger. The transition
+                    from personal productivity tools to an entire suite of intelligent development
+                    utilities wasn&apos;t just business growth — it was a response to a calling.
+                  </p>
+                  <div class="relative rounded-2xl bg-[#6E8F6A]/8 border border-[#6E8F6A]/15 px-6 py-5">
+                    <div class="absolute -top-3 left-6 text-4xl text-[#6E8F6A]/40 font-serif leading-none select-none">❝</div>
+                    <p class="text-base sm:text-lg font-semibold text-foreground leading-relaxed">
+                      A calling to empower developers worldwide, regardless of their scale
+                      or resources.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MISSION + PHILOSOPHY */}
+      <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="rounded-3xl border border-border bg-background p-8 sm:p-10 flex flex-col gap-6">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                    <Icon name="award" class="w-3.5 h-3.5" />
+                    Our Mission
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl font-bold text-foreground leading-tight">
+                    Bridging AI and everyday <span class="text-[#6E8F6A]">developers</span>
+                  </h2>
+                </div>
+                <div class="space-y-4 flex-1">
+                  <p class="text-base text-muted-foreground leading-relaxed">
+                    Lade Stack&apos;s mission is to bridge the gap between complex AI systems and
+                    everyday developers. We believe innovation should be inclusive, transparent,
+                    and human-centered — enabling developers to build smarter, faster, and better.
+                  </p>
+                  <p class="text-base text-muted-foreground leading-relaxed">
+                    Our focus is making enterprise-grade capabilities accessible — like automation,
+                    smart APIs, and multi-agent collaboration systems. We&apos;re transforming the
+                    development landscape by ensuring that cutting-edge AI tools aren&apos;t just for
+                    tech giants, but for every passionate creator with a vision.
+                  </p>
+                </div>
+                <div class="grid grid-cols-3 gap-3 pt-2">
+                  {['Inclusive', 'Transparent', 'Human-centered'].map((pillar) => (
+                    <div class="flex flex-col items-center text-center p-3 rounded-2xl bg-muted/40 border border-border">
+                      <span class="text-xs font-semibold text-foreground">{pillar}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div class="rounded-3xl border border-[#6E8F6A]/20 bg-gradient-to-br from-[#6E8F6A]/8 to-background p-8 sm:p-10 flex flex-col gap-6">
+                <div>
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                    <Icon name="sparkles" class="w-3.5 h-3.5" />
+                    Our Philosophy
+                  </div>
+                  <h2 class="text-2xl sm:text-3xl font-bold text-foreground leading-tight">
+                    Technology should amplify <span class="text-[#6E8F6A]">human potential</span>
+                  </h2>
+                </div>
+                <p class="text-base text-muted-foreground leading-relaxed flex-1">
+                  At Lade Stack, we believe technology should amplify human potential — not replace it.
+                  Our journey continues as we push boundaries in AI-driven development, open
+                  innovation, and community-led engineering.
+                </p>
+                <div class="relative pl-5 border-l-2 border-[#6E8F6A]">
+                  <p class="text-base sm:text-lg font-semibold text-foreground italic leading-relaxed">
+                    &quot;Innovation begins when imagination meets execution — and Lade Stack stands
+                    at that intersection.&quot;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CORE VALUES */}
+      <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                <Icon name="sparkles" class="w-3.5 h-3.5" />
+                What we stand for
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Core Values</h2>
+              <p class="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+                Principles that guide everything we build and every decision we make
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {
+                coreValues.map((value) => (
+                  <div class={`group relative rounded-3xl border ${value.border} bg-background overflow-hidden p-7 cursor-default hover:-translate-y-1 transition-transform duration-200`}>
+                    <div class={`absolute inset-0 bg-gradient-to-br ${value.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                    <div class="relative flex items-start gap-5">
+                      <div class={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${value.iconBg}`}>
+                        <Icon name={value.icon} class="w-6 h-6" />
+                      </div>
+                      <div class="flex-1">
+                        <h3 class="text-lg font-bold text-foreground mb-2">{value.title}</h3>
+                        <p class="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                <Icon name="users" class="w-3.5 h-3.5" />
+                The people behind the product
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Meet Our Team</h2>
+              <p class="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+                Passionate developers, designers, and innovators dedicated to advancing
+                the future of software development
+              </p>
+            </div>
+
+            <div class="relative rounded-3xl border border-border bg-background overflow-hidden">
+              <div class="h-28 bg-gradient-to-r from-[#6E8F6A]/20 via-[#8BAF87]/15 to-[#6E8F6A]/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,_rgba(110,143,106,0.25),_transparent_60%)]"></div>
+                <div class="absolute right-8 top-4 w-24 h-24 opacity-20" style="background-image: radial-gradient(circle, #6E8F6A 1px, transparent 1px); background-size: 8px 8px;"></div>
+              </div>
+              <div class="px-6 sm:px-10 pb-10">
+                <div class="flex flex-col md:flex-row md:items-end gap-0 md:gap-8 -mt-16 mb-8">
+                  <div class="relative flex-shrink-0 self-center md:self-auto">
+                    <div class="relative group">
+                      <div class="absolute -inset-2 rounded-3xl bg-gradient-to-br from-[#6E8F6A]/30 to-[#8BAF87]/10 blur-xl opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
+                      <div class="absolute -inset-[2px] rounded-3xl" style="background: linear-gradient(135deg, #6E8F6A 0%, #C8D9C5 40%, #6E8F6A 70%, #8BAF87 100%);"></div>
+                      <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="width: 148px;">
+                        <img
+                          src="/img/girish.jpg"
+                          alt="Girish Lade - Founder & Lead Developer"
+                          width="2262"
+                          height="3393"
+                          loading="lazy"
+                          decoding="async"
+                          class="w-full aspect-[2/3] object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                        <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-3 left-0 right-0 flex justify-center">
+                          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-semibold tracking-wide">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#6E8F6A] animate-pulse"></span>
+                            Founder & CEO
+                          </span>
+                        </div>
+                      </div>
+                      <div class="absolute -top-2 -right-2 z-10 w-9 h-9 rounded-full bg-gradient-to-br from-[#6E8F6A] to-[#4a6b47] shadow-lg flex items-center justify-center ring-2 ring-background">
+                        <Icon name="award" class="w-4 h-4 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex-1 pt-6 md:pt-0 text-center md:text-left">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-2 justify-center md:justify-start mb-1">
+                      <h3 class="text-2xl sm:text-3xl font-bold text-foreground">Girish Lade</h3>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-[11px] font-semibold self-center">
+                        Founder
+                      </span>
+                    </div>
+                    <p class="text-sm text-muted-foreground font-medium">Founder & Lead Developer</p>
+                    <div class="flex gap-2 mt-3 justify-center md:justify-start">
+                      {
+                        teamSocials.map((s) => (
+                          <a
+                            href={s.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={s.label}
+                            class="w-8 h-8 rounded-lg flex items-center justify-center border border-border bg-muted/40 hover:bg-[#6E8F6A]/10 hover:border-[#6E8F6A]/30 hover:text-[#6E8F6A] text-muted-foreground transition-all duration-200"
+                          >
+                            <Icon name={s.icon} class="w-3.5 h-3.5" />
+                          </a>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                  <p class="text-sm text-muted-foreground leading-relaxed">
+                    A multi-disciplinary engineer and designer with expertise in AI systems,
+                    web development, and user experience. Girish has developed multiple full-stack
+                    platforms including Lade Stack Dev Tools, AI-powered website builder, File
+                    Management System, Docs Summariser, and an E-commerce suite with Supabase
+                    and Genkit.
+                  </p>
+                  <p class="text-sm text-muted-foreground leading-relaxed">
+                    His mission is to empower developers through creativity, intelligence, and
+                    collaboration — creating tools that don&apos;t just solve problems, but inspire
+                    innovation.
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-8">
+                  {
+                    skills.map((skill) => (
+                      <span class="px-3 py-1 rounded-full text-xs font-medium text-muted-foreground bg-muted/50 border border-border">
+                        {skill}
+                      </span>
+                    ))
+                  }
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl bg-[#6E8F6A] hover:bg-[#5F7F63] text-white text-sm font-semibold transition-colors duration-200"
+                  >
+                    Connect with Girish
+                    <Icon name="external-link" class="w-4 h-4" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/girish-lade-075bba201/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl border border-border bg-background hover:bg-muted/40 text-foreground text-sm font-semibold transition-colors duration-200"
+                  >
+                    <Icon name="linkedin" class="w-4 h-4" />
+                    LinkedIn Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CLOSING CTA */}
+      <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto relative rounded-3xl overflow-hidden border border-[#6E8F6A]/25 bg-gradient-to-br from-[#6E8F6A]/8 via-background to-background p-10 sm:p-16 text-center">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-[#6E8F6A]/10 blur-3xl pointer-events-none"></div>
+            <div class="relative">
+              <div class="w-16 h-16 rounded-2xl bg-[#6E8F6A]/15 flex items-center justify-center mx-auto mb-6">
+                <Icon name="sparkles" class="w-8 h-8 text-[#6E8F6A]" />
+              </div>
+              <blockquote class="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground leading-relaxed mb-5 max-w-2xl mx-auto">
+                &quot;Innovation begins when imagination meets execution — and Lade Stack stands
+                at that intersection.&quot;
+              </blockquote>
+              <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-10 max-w-xl mx-auto">
+                At Lade Stack, we believe technology should amplify human potential — not replace it.
+                Our journey continues as we push boundaries in AI-driven development, open innovation,
+                and community-led engineering.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href="/"
+                  class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl bg-[#6E8F6A] hover:bg-[#5F7F63] text-white text-sm font-semibold transition-colors duration-200"
+                >
+                  Try Our AI Tools
+                  <Icon name="arrow-right" class="w-4 h-4" />
+                </a>
+                <a
+                  href="/apps"
+                  class="inline-flex items-center justify-center gap-2 h-12 px-8 rounded-xl border border-border bg-background hover:bg-muted/40 text-foreground text-sm font-semibold transition-colors duration-200"
+                >
+                  Explore Products
+                  <Icon name="arrow-right" class="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

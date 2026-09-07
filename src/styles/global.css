@@ -1,0 +1,378 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ported 1:1 from the source app's src/index.css.
+   Only change: `.dark #root` (React mount node) → `header/main/footer`
+   stacking, since Astro renders directly into <body>. */
+
+@layer base {
+  :root {
+    --background: 40 30% 94%;
+    --foreground: 0 0% 11%;
+    --card: 40 30% 98%;
+    --card-foreground: 0 0% 11%;
+    --popover: 40 30% 98%;
+    --popover-foreground: 0 0% 11%;
+    --primary: 130 16% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 35 25% 88%;
+    --secondary-foreground: 0 0% 11%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 0 0% 33%;
+    --accent: 25 30% 80%;
+    --accent-foreground: 0 0% 11%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 130 16% 48%;
+    --radius: 0.75rem;
+    --sidebar-background: 40 25% 92%;
+    --sidebar-foreground: 0 0% 11%;
+    --sidebar-primary: 130 16% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 20% 90%;
+    --sidebar-accent-foreground: 0 0% 11%;
+    --sidebar-border: 40 15% 85%;
+    --sidebar-ring: 130 16% 48%;
+  }
+
+  .dark {
+    --background: 30 10% 12%;
+    --foreground: 40 20% 92%;
+    --card: 30 10% 15%;
+    --card-foreground: 40 20% 92%;
+    --popover: 30 10% 15%;
+    --popover-foreground: 40 20% 92%;
+    --primary: 130 16% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 10% 20%;
+    --secondary-foreground: 40 20% 92%;
+    --muted: 30 10% 20%;
+    --muted-foreground: 40 10% 78%;
+    --accent: 25 20% 30%;
+    --accent-foreground: 40 20% 92%;
+    --destructive: 0 60% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 10% 22%;
+    --input: 30 10% 22%;
+    --ring: 130 16% 52%;
+    --sidebar-background: 30 10% 14%;
+    --sidebar-foreground: 40 20% 92%;
+    --sidebar-primary: 130 16% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 10% 20%;
+    --sidebar-accent-foreground: 40 20% 92%;
+    --sidebar-border: 30 10% 22%;
+    --sidebar-ring: 130 16% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  /* ── Dark theme global gradient background ──────────────── */
+  .dark body {
+    background-color: #050505;
+    background-image:
+      radial-gradient(ellipse 120% 50% at 50% 0%, rgba(110,143,106,0.13) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 40% at 0% 30%, rgba(110,143,106,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 40% at 100% 60%, rgba(139,175,135,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 30% at 50% 100%, rgba(110,143,106,0.06) 0%, transparent 50%);
+  }
+
+  .dark body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 50% 35% at 20% 15%, rgba(110,143,106,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 35% at 80% 75%, rgba(139,175,135,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 60% 40%, rgba(110,143,106,0.04) 0%, transparent 50%);
+  }
+
+  .dark header,
+  .dark main,
+  .dark footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* ── 3D Hero Text ────────────────────────────────────────── */
+  .text-3d {
+    color: #1C1C1C;
+    text-shadow:
+      0 1px 0 #ccc,
+      0 2px 0 #c3c3c3,
+      0 3px 0 #bbb,
+      0 4px 3px rgba(0, 0, 0, 0.1),
+      0 6px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .text-3d {
+    color: #E8E4DA;
+    text-shadow:
+      0 1px 0 #555,
+      0 2px 0 #4a4a4a,
+      0 3px 0 #444,
+      0 4px 3px rgba(0, 0, 0, 0.25),
+      0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ── Metallic Text ───────────────────────────────────────── */
+  .text-metallic {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      145deg,
+      #4a4a4a 0%,
+      #8a8078 25%,
+      #a09688 45%,
+      #8a8078 55%,
+      #6a625a 75%,
+      #4a4a4a 100%
+    );
+    text-shadow: none;
+  }
+
+  .dark .text-metallic {
+    background-image: linear-gradient(
+      145deg,
+      #a09688 0%,
+      #c8bcae 25%,
+      #d8ccbe 45%,
+      #c8bcae 55%,
+      #a09688 75%,
+      #8a8078 100%
+    );
+  }
+
+  /* ── Hero metallic text (bg-clip, no box) ───────────────── */
+  .hero-metallic {
+    @apply bg-clip-text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #e0e0e0 30%,
+      #ffffff 50%,
+      #d4d4d4 70%,
+      #ffffff 100%
+    );
+  }
+
+  /* ── Warm section backgrounds ────────────────────────────── */
+  .bg-warm {
+    background-color: #F5F3EB;
+  }
+
+  .dark .bg-warm {
+    background-color: hsl(30 10% 12%);
+  }
+
+  .bg-sage {
+    background-color: #E7EDD8;
+  }
+
+  .dark .bg-sage {
+    background-color: hsl(100 10% 16%);
+  }
+
+  .bg-beige {
+    background-color: #EDE3D8;
+  }
+
+  .dark .bg-beige {
+    background-color: hsl(25 10% 16%);
+  }
+
+  .bg-peach {
+    background-color: #D8C1B3;
+  }
+
+  .dark .bg-peach {
+    background-color: hsl(20 15% 22%);
+  }
+
+  .bg-footer {
+    background-color: #EFEAE0;
+  }
+
+  .dark .bg-footer {
+    background-color: hsl(30 10% 10%);
+  }
+
+  /* ── Soft card style ─────────────────────────────────────── */
+  .soft-card {
+    background: white;
+    border: 1px solid #E6E6E6;
+    border-radius: 16px;
+  }
+
+  .dark .soft-card {
+    background: hsl(30 10% 16%);
+    border-color: hsl(30 10% 22%);
+  }
+
+  /* ── Radial fade overlay for hero readability ────────────── */
+  .bg-radial-fade {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(245, 243, 235, 0.7) 0%,
+      transparent 70%
+    );
+  }
+
+  .dark .bg-radial-fade {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(30, 28, 24, 0.7) 0%,
+      transparent 70%
+    );
+  }
+
+  /* ── Subtle dot pattern ──────────────────────────────────── */
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(110, 143, 106, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .dark .dot-pattern {
+    background-image: radial-gradient(circle, rgba(110, 143, 106, 0.06) 1px, transparent 1px);
+  }
+
+  /* ── Soft tag pill ───────────────────────────────────────── */
+  .tag-pill {
+    background-color: #DDE7D8;
+    color: #4a6347;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .dark .tag-pill {
+    background-color: hsl(120 10% 22%);
+    color: hsl(130 16% 60%);
+  }
+}
+
+/* ── Selection ───────────────────────────────────────────── */
+::selection {
+  background: rgba(110, 143, 106, 0.2);
+  color: #1C1C1C;
+}
+
+.dark ::selection {
+  color: #E8E4DA;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── CSS keyframes replacing framer-motion JS animations ─── */
+@keyframes header-slide-in {
+  from {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-word-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(44px) rotateX(30deg);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: blur(0px);
+  }
+}
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-underline-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* SoftButton hover — compositor-only */
+.soft-btn {
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+}
+.soft-btn:hover {
+  transform: translateY(-1px);
+}
+.soft-btn:active {
+  transform: scale(0.98);
+}

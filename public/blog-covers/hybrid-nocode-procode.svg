@@ -1,0 +1,57 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#34D399;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGradient)"/>
+  
+  <!-- Left side - No-Code -->
+  <rect x="50" y="80" width="120" height="100" rx="8" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <circle cx="80" cy="100" r="8" fill="#059669"/>
+  <rect x="70" y="95" width="20" height="8" rx="2" fill="#059669"/>
+  <text x="110" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">NO-CODE</text>
+  <text x="110" y="120" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#10B981">drag & drop</text>
+  <text x="110" y="132" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#34D399">visual builder</text>
+  <text x="110" y="144" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#059669">quick deploy</text>
+  
+  <!-- Right side - Pro-Code -->
+  <rect x="230" y="80" width="120" height="100" rx="8" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <rect x="260" y="95" width="25" height="25" rx="3" fill="#059669"/>
+  <text x="290" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#059669">PRO-CODE</text>
+  <text x="290" y="120" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#10B981">custom logic</text>
+  <text x="290" y="132" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#34D399">full control</text>
+  <text x="290" y="144" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#059669">advanced features</text>
+  
+  <!-- Bridge/connection -->
+  <rect x="170" y="120" width="60" height="20" rx="10" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="133" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">HYBRID</text>
+  <text x="200" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#10B981">bridge</text>
+  
+  <!-- Arrows showing integration -->
+  <path d="M170 110 L170 130" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M170 110 L165 115" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M170 110 L175 115" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  
+  <path d="M230 110 L230 130" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M230 110 L225 115" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  <path d="M230 110 L235 115" stroke="#10B981" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Combined benefits -->
+  <rect x="80" y="200" width="240" height="60" rx="8" fill="white" opacity="0.9" filter="url(#shadow)"/>
+  <text x="200" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#059669">Best of Both Worlds</text>
+  <text x="140" y="235" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#10B981">speed + control</text>
+  <text x="200" y="235" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#34D399">scalable + flexible</text>
+  <text x="260" y="235" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#059669">rapid + custom</text>
+  
+  <!-- Title -->
+  <text x="200" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">HYBRID</text>
+  <text x="200" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">NO-CODE/PRO-CODE</text>
+</svg>

@@ -1,0 +1,313 @@
+---
+/**
+ * /contact — full port of src/pages/Contact.tsx.
+ * Same hero, 4 contact cards, form + map sidebar, email CTA, socials,
+ * FAQ accordion (native <details>), bottom assistance banner.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    description: 'Get in touch with Lade Stack for AI development support, technical assistance, and enterprise solutions.',
+    mainEntity: {
+      '@type': 'Organization',
+      address: { '@type': 'PostalAddress', addressCountry: 'IN', addressLocality: 'Mumbai', addressRegion: 'Maharashtra' },
+      contactPoint: { '@type': 'ContactPoint', availableLanguage: 'English', contactType: 'customer support', email: 'admin@ladestack.in' },
+      name: 'Lade Stack',
+    },
+    name: 'Contact Lade Stack',
+    url: 'https://ladestack.in/contact',
+  },
+];
+
+const contactCards = [
+  { icon: 'mail', label: 'Email', title: 'admin@ladestack.in', sub: 'Replies within a few hours', href: 'mailto:admin@ladestack.in', accent: '#6E8F6A' },
+  { icon: 'message-square', label: 'Support', title: 'Email Support Only', sub: 'Available around the clock', href: null, accent: '#7B8FC4' },
+  { icon: 'map-pin', label: 'Location', title: 'Mumbai, India', sub: 'Available for scheduled meetings', href: null, accent: '#C47B7B' },
+  { icon: 'clock', label: 'Hours', title: '24 / 7', sub: 'Every day of the year', href: null, accent: '#C4A97B' },
+];
+
+const socials = [
+  { icon: 'github', label: 'GitHub', href: 'https://github.com/girishlade111' },
+  { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/girish-lade-075bba201/' },
+  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/girish_lade_/' },
+];
+
+const faqs = [
+  { q: 'How quickly can I expect a response?', a: "We typically respond within a few hours as we operate 24/7. For complex queries, our team may take up to 24 hours to provide a thorough response." },
+  { q: 'Do you provide enterprise support?', a: "Yes, we offer priority support and custom enterprise solutions tailored to your team's needs. Reach out to discuss your requirements." },
+  { q: 'Is Lade Stack available globally?', a: 'Yes, our platform is accessible worldwide. All tools are cloud-based and available from any location with an internet connection.' },
+  { q: 'Can I schedule a demo of your platform?', a: "Absolutely. Send us an email at admin@ladestack.in with your preferred time and we'll set up a personalized walkthrough." },
+  { q: 'Do you offer technical support with your products?', a: 'Yes, all users receive technical support. We also offer documentation, guides, and direct assistance for implementation.' },
+];
+---
+
+<BaseLayout
+  title="Contact Lade Stack – Get in Touch for AI Development Support"
+  description="Contact Lade Stack for AI development support, technical assistance, and enterprise solutions. We operate 24/7 and respond within hours. Based in Mumbai, India."
+  canonical="https://ladestack.in/contact"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'Contact Lade Stack – AI Development Support',
+    description: 'Get in touch with Lade Stack for AI development support, technical assistance, and enterprise solutions.',
+    url: 'https://ladestack.in/contact',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Contact Lade Stack – AI Development Support',
+    description: 'Get in touch for AI development support and technical assistance. 24/7 availability.',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background">
+    <div class="pt-16">
+      {/* Hero */}
+      <section class="relative pt-24 pb-16 overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_top,_rgba(110,143,106,0.12),_transparent_65%)]"></div>
+          <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#6E8F6A]/5 blur-3xl"></div>
+          <div class="absolute top-20 -left-24 w-72 h-72 rounded-full bg-[#6E8F6A]/4 blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div class="max-w-3xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-6">
+              <Icon name="sparkles" class="w-3.5 h-3.5" />
+              We&apos;re here to help
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight mb-5 leading-[1.1]">
+              Let&apos;s build something
+              <br />
+              <span class="text-[#6E8F6A]">great together</span>
+            </h1>
+            <p class="text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Have a question, idea, or need support? Our team is available
+              around the clock — drop us a message and we&apos;ll get back to you fast.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact cards */}
+      <section class="pb-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto">
+            {
+              contactCards.map((card) => {
+                const inner = (
+                  <div class="group relative rounded-2xl border border-border bg-background p-5 sm:p-6 overflow-hidden h-full hover:-translate-y-1 transition-transform duration-200">
+                    <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`background: radial-gradient(ellipse at 30% 0%, ${card.accent}12, transparent 70%);`}></div>
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={`background: ${card.accent}18; color: ${card.accent};`}>
+                      <Icon name={card.icon} class="w-5 h-5" />
+                    </div>
+                    <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">{card.label}</p>
+                    <p class="text-sm sm:text-base font-bold text-foreground leading-snug mb-1">{card.title}</p>
+                    <p class="text-xs text-muted-foreground">{card.sub}</p>
+                  </div>
+                );
+                return card.href ? (
+                  <a href={card.href} class="block h-full">{inner}</a>
+                ) : (
+                  <div class="h-full">{inner}</div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </section>
+
+      {/* Form + sidebar */}
+      <section class="py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+            <div class="lg:col-span-3">
+              <div class="rounded-3xl border border-border bg-background p-6 sm:p-8 shadow-sm">
+                <div class="mb-7">
+                  <h2 class="text-2xl font-bold text-foreground mb-1">Send a message</h2>
+                  <p class="text-sm text-muted-foreground">Fill in the form — we&apos;ll reply to your inbox.</p>
+                </div>
+                <form data-contact-form class="space-y-4">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                      <label for="firstName" class="block text-xs font-semibold text-foreground">First Name</label>
+                      <input id="firstName" required placeholder="Girish" class="w-full rounded-xl bg-muted/40 border border-border text-sm h-11 px-3 focus:outline-none focus:ring-2 focus:ring-[#6E8F6A]/40" />
+                    </div>
+                    <div class="space-y-1.5">
+                      <label for="lastName" class="block text-xs font-semibold text-foreground">Last Name</label>
+                      <input id="lastName" required placeholder="Lade" class="w-full rounded-xl bg-muted/40 border border-border text-sm h-11 px-3 focus:outline-none focus:ring-2 focus:ring-[#6E8F6A]/40" />
+                    </div>
+                  </div>
+                  <div class="space-y-1.5">
+                    <label for="email" class="block text-xs font-semibold text-foreground">Email Address</label>
+                    <input id="email" type="email" required placeholder="you@example.com" class="w-full rounded-xl bg-muted/40 border border-border text-sm h-11 px-3 focus:outline-none focus:ring-2 focus:ring-[#6E8F6A]/40" />
+                  </div>
+                  <div class="space-y-1.5">
+                    <label for="subject" class="block text-xs font-semibold text-foreground">Subject</label>
+                    <input id="subject" required placeholder="How can we help you?" class="w-full rounded-xl bg-muted/40 border border-border text-sm h-11 px-3 focus:outline-none focus:ring-2 focus:ring-[#6E8F6A]/40" />
+                  </div>
+                  <div class="space-y-1.5">
+                    <label for="message" class="block text-xs font-semibold text-foreground">Message</label>
+                    <textarea id="message" required placeholder="Tell us about your project or question..." rows="5" class="w-full rounded-xl bg-muted/40 border border-border text-sm p-3 resize-none focus:outline-none focus:ring-2 focus:ring-[#6E8F6A]/40"></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full h-12 rounded-xl bg-[#6E8F6A] hover:bg-[#5F7F63] active:scale-[0.98] text-white text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-60"
+                  >
+                    <span data-contact-label>Send Message</span>
+                    <Icon name="send" class="w-4 h-4" />
+                  </button>
+                </form>
+                <div data-contact-success class="hidden flex-col items-center justify-center py-14 gap-4 text-center">
+                  <div class="w-16 h-16 rounded-full bg-[#6E8F6A]/15 flex items-center justify-center">
+                    <Icon name="check-circle-2" class="w-8 h-8 text-[#6E8F6A]" />
+                  </div>
+                  <h3 class="text-xl font-bold text-foreground">Message sent!</h3>
+                  <p class="text-sm text-muted-foreground max-w-xs">
+                    Thanks for reaching out. We&apos;ll get back to you within a few hours.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-2 flex flex-col gap-6">
+              <div class="rounded-3xl border border-border overflow-hidden shadow-sm flex-1 min-h-[220px]">
+                <iframe
+                  src="https://www.google.com/maps?q=Mumbai,India&output=embed"
+                  class="w-full h-full min-h-[220px]"
+                  loading="lazy"
+                  title="Lade Stack Location – Mumbai, India"
+                ></iframe>
+              </div>
+              <div class="rounded-3xl border border-border bg-background p-6">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#6E8F6A]/12 flex items-center justify-center">
+                    <Icon name="mail" class="w-5 h-5 text-[#6E8F6A]" />
+                  </div>
+                  <div>
+                    <p class="text-xs text-muted-foreground font-medium">Prefer email?</p>
+                    <p class="text-sm font-bold text-foreground">admin@ladestack.in</p>
+                  </div>
+                </div>
+                <a
+                  href="mailto:admin@ladestack.in"
+                  class="flex items-center justify-center gap-2 w-full h-10 rounded-xl border border-border text-sm font-medium text-foreground hover:bg-muted/40 transition-colors duration-200"
+                >
+                  Open in mail app
+                  <Icon name="arrow-right" class="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <div class="rounded-3xl border border-border bg-background p-6">
+                <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Follow us</p>
+                <div class="flex flex-col gap-2">
+                  {
+                    socials.map((s) => (
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-muted/40 transition-colors duration-200 group"
+                      >
+                        <Icon name={s.icon} class="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                        <span class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">{s.label}</span>
+                        <Icon name="arrow-right" class="w-3 h-3 ml-auto text-muted-foreground/40 group-hover:text-muted-foreground transition-colors" />
+                      </a>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section class="py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+              <h2 class="text-3xl font-bold text-foreground mb-3">Frequently asked questions</h2>
+              <p class="text-sm text-muted-foreground">Quick answers to what developers ask us most.</p>
+            </div>
+            <div class="space-y-3">
+              {
+                faqs.map((faq) => (
+                  <details class="group border border-border rounded-2xl overflow-hidden">
+                    <summary class="w-full flex items-center justify-between px-6 py-5 text-left gap-4 hover:bg-muted/30 transition-colors duration-200 cursor-pointer list-none">
+                      <span class="text-sm font-semibold text-foreground leading-snug">{faq.q}</span>
+                      <Icon name="chevron-down" class="w-4 h-4 flex-shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+                    </summary>
+                    <p class="px-6 pb-5 text-sm text-muted-foreground leading-relaxed border-t border-border pt-4">{faq.a}</p>
+                  </details>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section class="py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="max-w-4xl mx-auto relative rounded-3xl overflow-hidden border border-[#6E8F6A]/25 bg-gradient-to-br from-[#6E8F6A]/8 via-background to-background p-10 sm:p-14 text-center">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-40 bg-[#6E8F6A]/10 blur-3xl pointer-events-none"></div>
+            <div class="relative">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E8F6A]/10 border border-[#6E8F6A]/20 text-[#6E8F6A] text-xs font-semibold mb-5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#6E8F6A] animate-pulse"></span>
+                Available 24 / 7
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-bold text-foreground mb-3">Need immediate assistance?</h3>
+              <p class="text-sm text-muted-foreground mb-8 max-w-lg mx-auto">
+                Our team is always on. Whether it&apos;s a critical bug or a product question,
+                we&apos;ll help you get unstuck fast.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a
+                  href="mailto:admin@ladestack.in"
+                  class="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl bg-[#6E8F6A] hover:bg-[#5F7F63] text-white text-sm font-semibold transition-colors duration-200"
+                >
+                  <Icon name="mail" class="w-4 h-4" />
+                  Email us directly
+                </a>
+                <a
+                  href="/support"
+                  class="inline-flex items-center justify-center gap-2 h-12 px-7 rounded-xl border border-border bg-background hover:bg-muted/40 text-foreground text-sm font-semibold transition-colors duration-200"
+                >
+                  Visit Support Center
+                  <Icon name="arrow-right" class="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var form = document.querySelector('[data-contact-form]');
+      var success = document.querySelector('[data-contact-success]');
+      var label = document.querySelector('[data-contact-label]');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('button[type="submit"]');
+          if (btn) btn.disabled = true;
+          if (label) label.textContent = 'Sending…';
+          setTimeout(function () {
+            form.classList.add('hidden');
+            if (success) {
+              success.classList.remove('hidden');
+              success.classList.add('flex');
+            }
+          }, 1200);
+        });
+      }
+    })();
+  </script>
+</BaseLayout>

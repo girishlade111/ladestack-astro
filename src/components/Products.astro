@@ -1,0 +1,118 @@
+---
+/**
+ * Products.astro — 1:1 port of the source ProductsSection.tsx.
+ * Same 5 live tiles, tile grid/carousel, bottom CTA row.
+ */
+import Icon from './Icon.astro';
+
+const products = [
+  { id: 'ai-code-viewer', icon: 'code-2', title: 'AI Code Editor', tagline: 'Write, compile & optimize with AI', url: 'https://code.ladestack.in/', internalUrl: '/ai-code-viewer-ai', color: '#6E8F6A' },
+  { id: 'ls-pdf', icon: 'file-text', title: 'LS PDF', tagline: '17 client-side tools, 100% privacy', url: 'https://pdf.ladestack.in/', internalUrl: 'https://pdf.ladestack.in/', color: '#E5322D' },
+  { id: 'ls-img', icon: 'image', title: 'LS Image Compressor', tagline: '9+ image formats, up to 90% smaller', url: 'https://img.ladestack.in/', internalUrl: 'https://img.ladestack.in/', color: '#8B5CF6' },
+  { id: 'swift-resume', icon: 'file-check', title: 'Swift Resume', tagline: 'ATS-optimized resume builder & scoring', url: 'https://resume.ladestack.in/', internalUrl: 'https://resume.ladestack.in/', color: '#2563EB' },
+  { id: 'bharat-land', icon: 'map-pin', title: 'Bharat Land Converter', tagline: 'Convert land units across India', url: 'https://land.ladestack.in/', internalUrl: 'https://land.ladestack.in/', color: '#EA580C' },
+];
+---
+
+<section id="products" class="relative py-24 md:py-32 bg-white dark:bg-black overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 dark:hidden">
+      <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.07),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 left-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.05),_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 hidden dark:block">
+      <div class="absolute inset-0 bg-gradient-to-b from-black via-[#070707] to-black"></div>
+      <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.10),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 left-0 w-[600px] h-[400px] bg-[radial-gradient(ellipse,_rgba(78,194,232,0.05),_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 dot-pattern opacity-[0.3]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-12 md:mb-16">
+      <div class="tag-pill inline-flex items-center gap-2 mb-5">
+        <Icon name="layers" class="w-3.5 h-3.5" />
+        Our Products
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white mb-5">
+        What drives{' '}
+        <span class="relative inline-block">
+          <span class="text-[#6E8F6A]">everything</span>
+          <span class="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#6E8F6A]/35 rounded-full"></span>
+        </span>{' '}
+        we build
+      </h2>
+      <p class="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
+        Nine AI-powered tools that cover every phase of modern development — unified, free, and production-ready.
+      </p>
+    </div>
+
+    <div class="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none gap-4 sm:gap-5 pb-4 sm:pb-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-16 -mx-4 px-4 sm:mx-0 sm:px-0">
+      {
+        products.map((product) => {
+          const tile = (
+            <div class="group relative overflow-hidden rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white dark:bg-white/[0.02] hover:border-[#6E8F6A]/40 dark:hover:border-white/[0.2] hover:shadow-md hover:-translate-y-1 transition-all duration-200 p-4 sm:p-5 flex flex-row sm:flex-col items-center sm:items-start gap-3.5 sm:gap-4 h-full snap-start flex-shrink-0 w-[260px] sm:w-auto">
+              <div
+                class="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={`background: radial-gradient(ellipse 80% 60% at 20% 0%, ${product.color}10, transparent 70%);`}
+              ></div>
+              <div
+                class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex-shrink-0 flex items-center justify-center transition-transform duration-200 group-hover:scale-105"
+                style={`background: ${product.color}15; color: ${product.color};`}
+              >
+                <Icon name={product.icon} class="w-5 h-5" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm sm:text-base font-bold text-neutral-900 dark:text-white truncate group-hover:text-[#6E8F6A] dark:group-hover:text-white transition-colors duration-200">
+                  {product.title}
+                </h3>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 truncate mt-0.5 sm:mt-1">
+                  {product.tagline}
+                </p>
+              </div>
+            </div>
+          );
+          return product.internalUrl.startsWith('http') ? (
+            <a href={product.url} target="_blank" rel="noopener noreferrer" class="block h-full cursor-pointer focus:outline-none">
+              {tile}
+            </a>
+          ) : (
+            <a href={product.internalUrl} class="block h-full cursor-pointer focus:outline-none">
+              {tile}
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-8 border-t border-[#E6E6E6] dark:border-white/[0.06]">
+      <div>
+        <p class="text-sm font-semibold text-neutral-900 dark:text-white mb-0.5">
+          All tools are free for developers
+        </p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-500">
+          No credit card · No usage limits · Lifetime access
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a
+          href="/apps"
+          class="soft-btn inline-flex items-center justify-center gap-2 font-medium h-12 px-8 text-base rounded-[10px] bg-[#6E8F6A] text-white hover:bg-[#5F7F63] shadow-sm"
+        >
+          Explore All Products
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </a>
+        <a
+          href="/about"
+          class="soft-btn inline-flex items-center justify-center gap-2 font-medium h-12 px-8 text-base rounded-[10px] bg-transparent border border-[#6E8F6A] text-[#6E8F6A] hover:bg-[#6E8F6A]/5"
+        >
+          About Lade Stack
+        </a>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-center py-8 mt-10">
+      <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent" style="width: 60%;"></div>
+    </div>
+  </div>
+</section>

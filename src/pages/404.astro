@@ -1,0 +1,42 @@
+---
+/**
+ * 404 — manifest route: src/pages/NotFound.tsx → url_path "/*"
+ * NON-INDEXABLE: robots index:false, follow:false. Astro serves this file as
+ * the 404 page; it is excluded from the sitemap via astro.config.mjs filter.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 - Page Not Found - Lade Stack"
+  description={null}
+  canonical="https://ladestack.in/404"
+  robots={{ index: false, follow: false, custom: null }}
+  openGraph={{
+    title: '404 - Page Not Found - Lade Stack',
+    description: null,
+    url: 'https://ladestack.in/404',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: '404 - Page Not Found - Lade Stack',
+    description: null,
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={[]}
+>
+  <div class="flex min-h-screen items-center justify-center bg-background relative overflow-hidden">
+    <div class="absolute inset-0 hidden dark:block pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.12),_transparent_60%)]"></div>
+    </div>
+    <div class="text-center relative z-10">
+      <h1 class="mb-4 text-4xl font-bold text-foreground">404</h1>
+      <p class="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
+      <a href="/" class="text-[#6E8F6A] hover:underline">
+        Return to Home
+      </a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,289 @@
+---
+/**
+ * About.astro — 1:1 port of the source AboutSection.tsx (homepage section).
+ * Same header, stats, mission/vision/approach bento, pillars, product ticker.
+ * Expandable timeline uses native <details>; ticker via CSS marquee.
+ */
+import Icon from './Icon.astro';
+
+const timeline = [
+  { year: '2024', label: 'Foundation', desc: 'Lade Stack born from a vision to democratize AI dev tools.', detail: 'Started with a single AI code editor prototype, iterating with 500 early adopters to shape the product direction.', color: '#6E8F6A' },
+  { year: '2025', label: 'Platform Launch', desc: 'AI Code Editor shipped to 10,000+ developers worldwide.', detail: 'Released full AI Code Editor with real-time compilation, intelligent suggestions, and multi-language support.', color: '#4ec2e8' },
+  { year: '2026', label: 'Full Ecosystem', desc: '5 AI-powered products. One unified developer suite.', detail: 'API Testing, Website Builder, File Sharing, and Doc AI join the platform — completing the Lade Suite.', color: '#b47ee8' },
+];
+
+const pillars = [
+  { icon: 'target', label: 'Mission', headline: 'Democratize AI tooling', body: 'Enterprise-grade AI solutions that cut development time dramatically — available to every developer, not just teams with budget.', color: '#6E8F6A' },
+  { icon: 'eye', label: 'Vision', headline: 'AI handles complexity', body: 'A future where anyone ships enterprise-quality software, with AI absorbing the hard parts so developers focus on creativity.', color: '#4ec2e8' },
+  { icon: 'sparkles', label: 'Approach', headline: 'Open by default', body: 'Core tools open-sourced, roadmap public, pricing transparent. Trust is the only moat that compounds without limits.', color: '#b47ee8' },
+];
+
+const visionFeatures = [
+  { icon: 'code', text: 'AI-powered code assistance', color: '#6E8F6A' },
+  { icon: 'zap', text: 'Intelligent code optimization', color: '#e8a64e' },
+  { icon: 'shield', text: 'Enterprise-grade security', color: '#4ec2e8' },
+  { icon: 'globe', text: 'Global developer collaboration', color: '#b47ee8' },
+  { icon: 'users', text: 'Community-driven development', color: '#e87070' },
+  { icon: 'layers', text: 'Unified multi-tool ecosystem', color: '#6E8F6A' },
+];
+
+const suiteProducts = [
+  { name: 'AI Code Editor', tag: 'Write · Review · Ship', color: '#6E8F6A', url: 'https://code.ladestack.in/' },
+  { name: 'LS PDF Toolkit', tag: '17 Tools · Zero Uploads', color: '#E5322D', url: 'https://pdf.ladestack.in/' },
+  { name: 'LS Image Compress', tag: '9+ Formats · In-Browser', color: '#8B5CF6', url: 'https://img.ladestack.in/' },
+  { name: 'Swift Resume', tag: 'ATS-Optimized · Live Score', color: '#2563EB', url: 'https://resume.ladestack.in/' },
+  { name: 'Bharat Land', tag: 'All India Units · Instant', color: '#EA580C', url: 'https://land.ladestack.in/' },
+  { name: 'API Tester', tag: 'Test · Mock · Automate', color: '#4ec2e8', url: '/apps' },
+  { name: 'No-Code Builder', tag: 'Design · Launch · Scale', color: '#b47ee8', url: '/apps' },
+  { name: 'Doc Generator', tag: 'Write · Sync · Publish', color: '#e8a64e', url: '/apps' },
+  { name: 'File Sharing', tag: 'Upload · Manage · Share', color: '#e87070', url: '/apps' },
+];
+
+const snapStats = [
+  { value: '8K+', label: 'Developers' },
+  { value: '80+', label: 'Projects Built' },
+  { value: '100+', label: 'Countries' },
+  { value: '99%', label: 'Uptime' },
+];
+---
+
+<section class="relative py-24 md:py-36 bg-white dark:bg-black overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute inset-0 dark:hidden">
+      <div class="absolute top-0 right-0 w-[700px] h-[500px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.08),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 left-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse,_rgba(110,143,106,0.06),_transparent_60%)]"></div>
+    </div>
+    <div class="absolute inset-0 hidden dark:block">
+      <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,_rgba(110,143,106,0.15),_transparent_60%)]"></div>
+      <div class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#6E8F6A]/[0.05] to-transparent"></div>
+    </div>
+    <div class="absolute inset-0 dot-pattern opacity-[0.3]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <div class="tag-pill inline-flex items-center gap-2 mb-5">
+        <Icon name="rocket" class="w-3.5 h-3.5" />
+        About Lade Stack
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white mb-5 leading-tight">
+        Building the{' '}
+        <span class="relative inline-block">
+          <span class="text-[#6E8F6A]">future</span>
+          <span class="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#6E8F6A]/35 rounded-full"></span>
+        </span>{' '}
+        of AI development
+      </h2>
+      <p class="text-neutral-500 dark:text-neutral-400 text-lg max-w-xl mx-auto leading-relaxed">
+        An AI-powered SaaS ecosystem designed to give every developer enterprise-grade tools at startup velocity — free, open, and built to last.
+      </p>
+    </div>
+
+    <div class="mb-16">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {
+          snapStats.map((s) => (
+            <div class="flex flex-col items-center gap-1 py-5 rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.02] backdrop-blur-sm hover:-translate-y-1 transition-transform duration-200">
+              <span class="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white tracking-tight">{s.value}</span>
+              <span class="text-[11px] text-neutral-500 dark:text-neutral-500">{s.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-5 mb-5">
+      {/* Mission card */}
+      <div class="relative overflow-hidden rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white dark:bg-white/[0.02] p-7 lg:p-8">
+        <div class="absolute -top-16 -left-16 w-64 h-64 rounded-full pointer-events-none bg-[radial-gradient(circle,_rgba(110,143,106,0.12),_transparent_70%)]" aria-hidden="true"></div>
+        <div class="absolute top-5 right-6 font-mono text-6xl font-bold text-[#6E8F6A]/[0.07] select-none pointer-events-none leading-none" aria-hidden="true">
+          MISSION
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-[#6E8F6A]/15 flex items-center justify-center">
+              <Icon name="target" class="w-5 h-5 text-[#6E8F6A]" />
+            </div>
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-[#6E8F6A]">Our Mission</span>
+              <p class="text-xs text-neutral-500 dark:text-neutral-500">Why we exist</p>
+            </div>
+          </div>
+          <p class="text-neutral-800 dark:text-neutral-200 text-base leading-relaxed mb-5">
+            Democratize advanced development tools by providing{' '}
+            <span class="text-[#6E8F6A] font-semibold">enterprise-grade AI solutions</span>{' '}
+            that dramatically reduce development time — available to every developer, regardless of team size or budget.
+          </p>
+          <p class="text-[13px] text-neutral-500 dark:text-neutral-500 leading-relaxed mb-7">
+            We believe the gap between a solo developer and a FAANG team shouldn&apos;t be measured in tooling. When the tools level the playing field, creativity and execution are all that matters.
+          </p>
+          {/* Timeline */}
+          <div class="relative pl-8">
+            <div class="absolute left-3 top-2 bottom-2 w-px bg-[#E6E6E6] dark:bg-white/[0.07]" aria-hidden="true"></div>
+            <div class="absolute left-3 top-2 w-px origin-top" style="bottom: 8px; background: linear-gradient(to bottom, #6E8F6A, #4ec2e8, #b47ee8);" aria-hidden="true"></div>
+            <div class="flex flex-col gap-0">
+              {
+                timeline.map((item) => (
+                  <details class="relative pb-8 last:pb-0 group">
+                    <span
+                      class="absolute -left-8 top-1 w-3.5 h-3.5 rounded-full border-2 border-white dark:border-black"
+                      style={`background: ${item.color}; box-shadow: 0 0 0 3px ${item.color}30;`}
+                      aria-hidden="true"
+                    ></span>
+                    <summary class="w-full text-left cursor-pointer list-none">
+                      <div class="flex items-center gap-2 mb-0.5">
+                        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full" style={`background: ${item.color}18; color: ${item.color};`}>
+                          {item.year}
+                        </span>
+                        <span class="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-[#6E8F6A] transition-colors duration-200">
+                          {item.label}
+                        </span>
+                        <span class="ml-auto"><Icon name="chevron-right" class="w-3.5 h-3.5 text-neutral-400 transition-transform group-open:rotate-90" /></span>
+                      </div>
+                      <p class="text-[13px] text-neutral-500 dark:text-neutral-500 leading-relaxed">{item.desc}</p>
+                    </summary>
+                    <p class="overflow-hidden text-[12px] text-neutral-500 dark:text-neutral-500 mt-2 pl-3 border-l-2 rounded-sm leading-relaxed" style={`border-color: ${item.color};`}>
+                      {item.detail}
+                    </p>
+                  </details>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right stack */}
+      <div class="flex flex-col gap-5">
+        <div class="relative overflow-hidden rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white dark:bg-white/[0.02] p-7">
+          <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none bg-[radial-gradient(circle,_rgba(78,194,232,0.10),_transparent_70%)]" aria-hidden="true"></div>
+          <div class="absolute top-5 right-6 font-mono text-6xl font-bold text-[#4ec2e8]/[0.07] select-none pointer-events-none leading-none" aria-hidden="true">
+            VISION
+          </div>
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-xl bg-[#4ec2e8]/15 flex items-center justify-center">
+                <Icon name="eye" class="w-5 h-5 text-[#4ec2e8]" />
+              </div>
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-widest text-[#4ec2e8]">Our Vision</span>
+                <p class="text-xs text-neutral-500 dark:text-neutral-500">Where we&apos;re heading</p>
+              </div>
+            </div>
+            <p class="text-neutral-800 dark:text-neutral-200 text-[15px] leading-relaxed mb-5">
+              A world where{' '}
+              <span class="text-[#4ec2e8] font-semibold">anyone can ship enterprise-quality software</span>{' '}
+              — AI handling the complexity, developers focusing on creativity and impact.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {
+                visionFeatures.map((f) => (
+                  <div class="flex items-center gap-2.5 p-3 rounded-xl border border-[#E6E6E6] dark:border-white/[0.06] bg-white/60 dark:bg-white/[0.02]">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={`background: ${f.color}18; color: ${f.color};`}>
+                      <Icon name={f.icon} class="w-3.5 h-3.5" />
+                    </div>
+                    <span class="text-[11px] font-medium text-neutral-700 dark:text-neutral-300 leading-tight">{f.text}</span>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-[#6E8F6A] p-6 flex items-center gap-5">
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_120%_120%_at_100%_0%,_rgba(255,255,255,0.10),_transparent_55%)]"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_0%_100%,_rgba(255,255,255,0.06),_transparent_60%)]"></div>
+          <div class="relative z-10 w-12 h-12 rounded-2xl bg-white/15 flex-shrink-0 flex items-center justify-center">
+            <Icon name="sparkles" class="w-5 h-5 text-white" />
+          </div>
+          <div class="relative z-10 flex-1">
+            <p class="text-white font-bold text-sm mb-1">Open by default</p>
+            <p class="text-white/70 text-[12px] leading-relaxed">
+              Core tools open-source, roadmap public, pricing transparent. Trust compounds without limits.
+            </p>
+          </div>
+          <div class="relative z-10 flex-shrink-0">
+            <div class="flex flex-col gap-1">
+              {['12K+ stars', '200+ contributors', 'Public roadmap'].map((t) => (
+                <div class="flex items-center gap-1.5">
+                  <Icon name="check-circle-2" class="w-3 h-3 text-white/70 flex-shrink-0" />
+                  <span class="text-[11px] text-white/80 whitespace-nowrap">{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-14">
+      {
+        pillars.map((p) => (
+          <div class="group relative overflow-hidden rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white dark:bg-white/[0.02] p-6 flex flex-col gap-4 cursor-default hover:-translate-y-1 transition-transform duration-300">
+            <div class="absolute inset-0 pointer-events-none rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={`background: radial-gradient(ellipse 80% 60% at 10% 0%, ${p.color}14, transparent 65%);`}></div>
+            <div class="flex items-center gap-3 relative z-10">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={`background: ${p.color}18; color: ${p.color};`}>
+                <Icon name={p.icon} class="w-5 h-5" />
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-widest" style={`color: ${p.color};`}>{p.label}</span>
+            </div>
+            <h3 class="text-lg font-bold text-neutral-900 dark:text-white leading-tight relative z-10">{p.headline}</h3>
+            <p class="text-[13px] text-neutral-500 dark:text-neutral-500 leading-relaxed relative z-10 flex-1">{p.body}</p>
+            <div class="h-px rounded-full relative z-10" style={`background: linear-gradient(90deg, ${p.color}70, transparent);`}></div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mb-4">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-[#E6E6E6] dark:via-white/[0.07] to-transparent"></div>
+        <span class="text-[11px] font-medium text-neutral-400 dark:text-neutral-600 uppercase tracking-widest flex items-center gap-1.5 flex-shrink-0">
+          <Icon name="layers" class="w-3 h-3" />
+          The Lade Suite
+        </span>
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-[#E6E6E6] dark:via-white/[0.07] to-transparent"></div>
+      </div>
+      <div class="relative overflow-hidden">
+        <div class="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white dark:from-black to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white dark:from-black to-transparent z-10 pointer-events-none"></div>
+        <div class="flex items-center gap-3 about-marquee" style="width: max-content;">
+          {
+            [...suiteProducts, ...suiteProducts].map((p) => (
+              <a
+                href={p.url}
+                target={p.url.startsWith('http') ? '_blank' : undefined}
+                rel={p.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="flex-shrink-0 flex items-center gap-3 px-5 py-3 rounded-2xl border border-[#E6E6E6] dark:border-white/[0.07] bg-white dark:bg-white/[0.02] hover:border-[#C8C8C8] dark:hover:border-white/[0.15] transition-colors duration-200 group"
+              >
+                <div class="w-6 h-6 rounded-lg flex items-center justify-center" style={`background: ${p.color}20;`}>
+                  <div class="w-2 h-2 rounded-full" style={`background: ${p.color};`}></div>
+                </div>
+                <div class="text-left">
+                  <p class="text-xs font-semibold text-neutral-900 dark:text-white whitespace-nowrap">{p.name}</p>
+                  <p class="text-[10px] text-neutral-400 dark:text-neutral-500 whitespace-nowrap">{p.tag}</p>
+                </div>
+                <Icon name="arrow-up-right" class="w-3 h-3 text-neutral-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-center py-8 mt-10">
+      <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent" style="width: 60%;"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes about-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .about-marquee {
+    animation: about-marquee 30s linear infinite;
+  }
+</style>

@@ -1,0 +1,254 @@
+---
+/**
+ * Values.astro — 1:1 port of the source ValuesSection.tsx.
+ * Same header, 4 value cards, mobile filter tabs, principles marquee.
+ * Motion reveals render in final state; tabs + marquee via CSS/inline JS.
+ */
+import Icon from './Icon.astro';
+
+const values = [
+  {
+    id: '01',
+    number: '01',
+    title: 'AI-First Innovation',
+    tagline: 'Intelligence in every keystroke',
+    badge: 'Context-Aware AI',
+    badgeIcon: 'zap',
+    description:
+      'Cutting-edge AI woven directly into developer tools — automating repetitive tasks and anticipating workflow needs before you even type.',
+    bullets: ['Context-aware code completions', 'Multi-language synthesis', 'Real-time codebase adaptation'],
+    color: '#6E8F6A',
+    border: 'border-[#6E8F6A]/30',
+    glow: 'rgba(110, 143, 106, 0.18)',
+  },
+  {
+    id: '02',
+    number: '02',
+    title: 'Developer Empowerment',
+    tagline: 'Enterprise power, zero gatekeeping',
+    badge: '100% Free Tier',
+    badgeIcon: 'shield-check',
+    description:
+      'Professional-grade developer tooling made freely accessible to indie hackers and global enterprise teams alike.',
+    bullets: ['Unlimited free core features', 'No credit card required', 'Built-in team collaboration'],
+    color: '#7C86E8',
+    border: 'border-[#7C86E8]/30',
+    glow: 'rgba(124, 134, 232, 0.18)',
+  },
+  {
+    id: '03',
+    number: '03',
+    title: 'Production Quality',
+    tagline: 'Battle-tested, not beta-grade',
+    badge: '99.9% SLA Uptime',
+    badgeIcon: 'cpu',
+    description:
+      'Stress-tested against real enterprise workloads with failover redundancy, zero-downtime deploys, and end-to-end encryption.',
+    bullets: ['99.9% uptime guarantee', 'SOC 2 Type II compliance', 'End-to-end encryption'],
+    color: '#E8A64E',
+    border: 'border-[#E8A64E]/30',
+    glow: 'rgba(232, 166, 78, 0.18)',
+  },
+  {
+    id: '04',
+    number: '04',
+    title: 'Open & Transparent',
+    tagline: 'Nothing to hide, everything to share',
+    badge: 'Open Source',
+    badgeIcon: 'git-fork',
+    description:
+      'Core algorithms open-sourced with a public roadmap and community-driven features. We build in the open because trust compounds.',
+    bullets: ['Open-source core architecture', 'Public product roadmap', 'Community-driven feature votes'],
+    color: '#4EC2E8',
+    border: 'border-[#4EC2E8]/30',
+    glow: 'rgba(78, 194, 232, 0.18)',
+  },
+];
+
+const floatingPrinciples = [
+  'Open Source', 'AI-Native', 'Developer-First', 'Zero Lock-In',
+  'Free Forever', 'Community-Driven', 'Transparent', 'Enterprise-Ready',
+  'SOC 2 Compliant', 'Privacy-First',
+];
+---
+
+<section class="relative py-20 sm:py-24 md:py-32 bg-[#E7EDD8] dark:bg-black overflow-hidden transition-colors duration-300">
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="absolute inset-0 dark:hidden">
+      <div class="absolute top-0 left-1/4 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_top,_rgba(110,143,106,0.12),_transparent_70%)]"></div>
+      <div class="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_bottom,_rgba(110,143,106,0.08),_transparent_70%)]"></div>
+    </div>
+    <div class="absolute inset-0 hidden dark:block">
+      <div class="absolute top-0 left-1/3 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_top,_rgba(110,143,106,0.12),_transparent_70%)]"></div>
+      <div class="absolute bottom-0 right-1/3 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_bottom,_rgba(124,134,232,0.08),_transparent_70%)]"></div>
+    </div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#6E8F6A]/15 dark:bg-[#6E8F6A]/20 border border-[#6E8F6A]/30 text-[#4E6F4A] dark:text-[#8EAF8A] text-xs font-semibold tracking-wide uppercase mb-4 shadow-sm">
+        <Icon name="sparkles" class="w-3.5 h-3.5" />
+        Values & Principles
+      </div>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.15] mb-5">
+        What drives{' '}
+        <span class="relative inline-block text-[#6E8F6A] dark:text-[#8EAF8A]">
+          everything
+          <span class="absolute -bottom-1 left-0 right-0 h-[3px] bg-[#6E8F6A]/40 dark:bg-[#8EAF8A]/40 rounded-full"></span>
+        </span>{' '}
+        we build
+      </h2>
+      <p class="text-neutral-600 dark:text-neutral-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        Four fundamental principles that shape every line of code, every architectural decision, and every product we ship.
+      </p>
+    </div>
+
+    {/* Mobile quick selector */}
+    <div class="flex sm:hidden overflow-x-auto gap-2 mb-8 pb-2 -mx-4 px-4 justify-start" data-values-tabs>
+      <button
+        type="button"
+        data-values-filter="all"
+        class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 bg-[#6E8F6A] text-white shadow-md shadow-[#6E8F6A]/20"
+      >
+        All Principles ({values.length})
+      </button>
+      {
+        values.map((v) => (
+          <button
+            type="button"
+            data-values-filter={v.id}
+            class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 bg-white/80 dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10"
+          >
+            {v.number} {v.title.split(' ')[0]}
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" data-values-grid>
+      {
+        values.map((value) => (
+          <div data-value-card={value.id} class="h-full">
+            <div
+              class={`h-full relative overflow-hidden rounded-2xl border bg-white/90 dark:bg-[#0c0c0e]/80 backdrop-blur-md p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-black/5 dark:hover:shadow-black/40 hover:-translate-y-1.5 ${value.border}`}
+              style={`box-shadow: 0 10px 30px -15px ${value.glow};`}
+            >
+              <div class="absolute top-0 left-0 right-0 h-1.5" style={`background-color: ${value.color};`}></div>
+              <div>
+                <div class="flex items-center justify-between mb-5">
+                  <span
+                    class="font-mono text-xs font-extrabold px-2.5 py-1 rounded-md border"
+                    style={`color: ${value.color}; background-color: ${value.color}15; border-color: ${value.color}30;`}
+                  >
+                    {value.number}
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full border"
+                    style={`color: ${value.color}; background-color: ${value.color}10; border-color: ${value.color}25;`}
+                  >
+                    <Icon name={value.badgeIcon} class="w-3 h-3" />
+                    {value.badge}
+                  </span>
+                </div>
+                <div class="mb-4">
+                  <h3 class="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-white tracking-tight mb-1.5">
+                    {value.title}
+                  </h3>
+                  <p class="text-xs font-semibold tracking-wide uppercase" style={`color: ${value.color};`}>
+                    {value.tagline}
+                  </p>
+                </div>
+                <p class="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-6">
+                  {value.description}
+                </p>
+              </div>
+              <div class="pt-4 border-t border-neutral-100 dark:border-white/10 mt-auto">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">
+                  Key Pillars
+                </p>
+                <ul class="space-y-2">
+                  {value.bullets.map((bullet) => (
+                    <li class="flex items-start gap-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+                              <span
+                                class="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                                style={`background-color: ${value.color}20; color: ${value.color};`}
+                              >
+                        <Icon name="check" class="w-2.5 h-2.5" />
+                      </span>
+                      <span class="leading-snug">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 h-[2px]" style={`background-color: ${value.color};`}></div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Principles marquee */}
+    <div class="relative w-full overflow-hidden pointer-events-none select-none mt-12 py-4" aria-hidden="true">
+      <div class="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#E7EDD8] dark:from-black to-transparent z-10"></div>
+      <div class="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#E7EDD8] dark:from-black to-transparent z-10"></div>
+      <div class="flex overflow-hidden">
+        <div class="flex items-center gap-3 pr-3 values-marquee" style="white-space: nowrap;">
+          {
+            [...floatingPrinciples, ...floatingPrinciples].map((p) => (
+              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#6E8F6A]/20 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] backdrop-blur-sm text-xs font-medium text-neutral-700 dark:text-neutral-300 shadow-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#6E8F6A]"></span>
+                {p}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-center py-8 mt-8">
+      <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent" style="width: 60%;"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes values-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .values-marquee {
+    width: max-content;
+    animation: values-marquee 25s linear infinite;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var tabs = document.querySelector('[data-values-tabs]');
+    if (!tabs) return;
+    var buttons = Array.prototype.slice.call(tabs.querySelectorAll('[data-values-filter]'));
+    var grid = document.querySelector('[data-values-grid]');
+    var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('[data-value-card]')) : [];
+    var ACTIVE = ['bg-[#6E8F6A]', 'text-white', 'shadow-md', 'shadow-[#6E8F6A]/20'];
+    function paint(filter) {
+      buttons.forEach(function (b) {
+        var on = b.getAttribute('data-values-filter') === filter;
+        b.classList.toggle('bg-[#6E8F6A]', on && filter === 'all');
+        b.classList.toggle('text-white', on);
+      });
+      cards.forEach(function (c) {
+        c.classList.toggle('hidden', window.innerWidth < 640 && filter !== 'all' && c.getAttribute('data-value-card') !== filter);
+      });
+      if (grid) {
+        grid.classList.toggle('sm:grid-cols-2', filter === 'all');
+        grid.classList.toggle('lg:grid-cols-4', filter === 'all');
+        grid.classList.toggle('max-w-xl', filter !== 'all');
+        grid.classList.toggle('mx-auto', filter !== 'all');
+      }
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { paint(b.getAttribute('data-values-filter')); });
+    });
+  })();
+</script>

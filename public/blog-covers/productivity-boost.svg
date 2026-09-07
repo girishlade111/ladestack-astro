@@ -1,0 +1,64 @@
+<svg width="400" height="225" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="productivityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffeaa7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fab1a0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="225" fill="url(#productivityGrad)"/>
+  
+  <!-- Upward Arrow/Triangle Pattern -->
+  <g opacity="0.3">
+    <polygon points="50,180 70,180 60,160" fill="white"/>
+    <polygon points="120,160 140,160 130,140" fill="white"/>
+    <polygon points="190,140 210,140 200,120" fill="white"/>
+    <polygon points="260,120 280,120 270,100" fill="white"/>
+    <polygon points="330,100 350,100 340,80" fill="white"/>
+  </g>
+  
+  <!-- Rocket/Growth Icon -->
+  <g transform="translate(320, 120)" filter="url(#glow)">
+    <!-- Rocket Body -->
+    <path d="M40,50 L45,30 L55,30 L60,50 Z" fill="white"/>
+    <!-- Rocket Window -->
+    <circle cx="50" cy="38" r="4" fill="#ffeaa7"/>
+    <!-- Rocket Fins -->
+    <polygon points="40,50 35,60 45,50" fill="white"/>
+    <polygon points="60,50 65,60 55,50" fill="white"/>
+    <!-- Rocket Flame -->
+    <polygon points="47,60 50,70 53,60" fill="#ff6b6b">
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="0.5s" repeatCount="indefinite"/>
+    </polygon>
+  </g>
+  
+  <!-- Gear/Process Icon -->
+  <g transform="translate(60, 150)" filter="url(#glow)">
+    <!-- Gear wheel -->
+    <circle cx="30" cy="30" r="20" fill="none" stroke="white" stroke-width="3"/>
+    <circle cx="30" cy="30" r="12" fill="none" stroke="white" stroke-width="2"/>
+    <!-- Gear teeth -->
+    <rect x="28" y="8" width="4" height="8" fill="white"/>
+    <rect x="28" y="44" width="4" height="8" fill="white"/>
+    <rect x="8" y="28" width="8" height="4" fill="white"/>
+    <rect x="44" y="28" width="8" height="4" fill="white"/>
+    <rect x="15" y="15" width="4" height="8" fill="white" transform="rotate(45 17 19)"/>
+    <rect x="15" y="37" width="4" height="8" fill="white" transform="rotate(315 17 41)"/>
+    <rect x="41" y="15" width="4" height="8" fill="white" transform="rotate(-45 43 19)"/>
+    <rect x="41" y="37" width="4" height="8" fill="white" transform="rotate(45 43 41)"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">Developer Productivity</text>
+  
+  <!-- Subtitle -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Efficiency & Workflow Optimization</text>
+</svg>

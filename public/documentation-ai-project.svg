@@ -1,0 +1,124 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ea580c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="docBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#fef7ed;stop-opacity:0.95" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#aiBg)" rx="20"/>
+  
+  <!-- Main Interface -->
+  <rect x="50" y="60" width="700" height="480" fill="url(#docBg)" rx="20" filter="url(#shadow)"/>
+  
+  <!-- Header -->
+  <rect x="70" y="80" width="660" height="50" fill="#fef7ed" rx="10"/>
+  <text x="90" y="112" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#9a3412">AI Documentation Generator</text>
+  <circle cx="650" cy="105" r="12" fill="#ea580c"/>
+  <circle cx="650" cy="105" r="6" fill="#ffffff"/>
+  
+  <!-- Code Input Section -->
+  <rect x="70" y="150" width="660" height="120" fill="#ffffff" rx="12"/>
+  <text x="90" y="180" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#374151">Source Code Input</text>
+  
+  <!-- Code Window -->
+  <rect x="90" y="190" width="620" height="70" fill="#1f2937" rx="8"/>
+  <rect x="100" y="200" width="80" height="4" fill="#10b981" rx="2"/>
+  <rect x="100" y="210" width="120" height="4" fill="#3b82f6" rx="2"/>
+  <rect x="100" y="220" width="100" height="4" fill="#f59e0b" rx="2"/>
+  <rect x="100" y="230" width="140" height="4" fill="#8b5cf6" rx="2"/>
+  <rect x="100" y="240" width="90" height="4" fill="#ef4444" rx="2"/>
+  
+  <!-- AI Brain Processing -->
+  <g transform="translate(400, 300)">
+    <circle cx="0" cy="0" r="50" fill="#fef2f2" stroke="#ea580c" stroke-width="3"/>
+    <circle cx="0" cy="0" r="35" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+    <circle cx="0" cy="0" r="20" fill="#fecaca" stroke="#b91c1c" stroke-width="1"/>
+    
+    <!-- Brain Lines -->
+    <path d="M-25,0 L25,0 M0,-25 L0,25 M-18,-18 L18,18 M-18,18 L18,-18" stroke="#ea580c" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Processing Dots -->
+    <circle cx="-30" cy="0" r="3" fill="#ea580c">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="30" cy="0" r="3" fill="#ea580c">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="-30" r="3" fill="#ea580c">
+      <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="30" r="3" fill="#ea580c">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Generated Documentation Output -->
+  <rect x="70" y="370" width="320" height="150" fill="#f0fdf4" rx="12"/>
+  <text x="90" y="395" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#166534">Generated Documentation</text>
+  
+  <!-- Documentation Content -->
+  <rect x="90" y="410" width="280" height="8" fill="#16a34a" rx="4"/>
+  <rect x="90" y="425" width="250" height="6" fill="#22c55e" rx="3"/>
+  <rect x="90" y="438" width="200" height="6" fill="#4ade80" rx="3"/>
+  <rect x="90" y="451" width="270" height="6" fill="#22c55e" rx="3"/>
+  <rect x="90" y="464" width="180" height="6" fill="#4ade80" rx="3"/>
+  <rect x="90" y="477" width="240" height="6" fill="#16a34a" rx="3"/>
+  <rect x="90" y="490" width="220" height="6" fill="#22c55e" rx="3"/>
+  
+  <!-- API Spec Generation -->
+  <rect x="410" y="370" width="320" height="150" fill="#eff6ff" rx="12"/>
+  <text x="430" y="395" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1e40af">API Specification</text>
+  
+  <!-- API Spec Content -->
+  <rect x="430" y="410" width="280" height="8" fill="#3b82f6" rx="4"/>
+  <rect x="430" y="425" width="200" height="6" fill="#60a5fa" rx="3"/>
+  <rect x="430" y="438" width="260" height="6" fill="#93c5fd" rx="3"/>
+  <rect x="430" y="451" width="180" height="6" fill="#60a5fa" rx="3"/>
+  <rect x="430" y="464" width="240" height="6" fill="#93c5fd" rx="3"/>
+  <rect x="430" y="477" width="220" height="6" fill="#3b82f6" rx="3"/>
+  <rect x="430" y="490" width="200" height="6" fill="#60a5fa" rx="3"/>
+  
+  <!-- Features Panel -->
+  <rect x="70" y="250" width="660" height="80" fill="#fefce8" rx="12"/>
+  <text x="90" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#854d0e">AI-Powered Features</text>
+  
+  <!-- Feature Tags -->
+  <rect x="90" y="290" width="120" height="25" fill="#fed7aa" rx="12"/>
+  <text x="105" y="306" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9a3412">Code Context</text>
+  
+  <rect x="220" y="290" width="100" height="25" fill="#ddd6fe" rx="12"/>
+  <text x="235" y="306" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#7c3aed">IDE Integration</text>
+  
+  <rect x="330" y="290" width="140" height="25" fill="#bae6fd" rx="12"/>
+  <text x="345" y="306" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0369a1">Multi-language</text>
+  
+  <rect x="480" y="290" width="100" height="25" fill="#bbf7d0" rx="12"/>
+  <text x="495" y="306" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#15803d">Auto Updates</text>
+  
+  <!-- Integration Icons -->
+  <g transform="translate(600, 295)">
+    <rect x="0" y="0" width="40" height="25" fill="#f3f4f6" rx="6"/>
+    <text x="8" y="16" font-family="Arial, sans-serif" font-size="10" fill="#374151">VS Code</text>
+  </g>
+  
+  <g transform="translate(650, 295)">
+    <rect x="0" y="0" width="40" height="25" fill="#f3f4f6" rx="6"/>
+    <text x="6" y="16" font-family="Arial, sans-serif" font-size="10" fill="#374151">GitHub</text>
+  </g>
+  
+  <!-- Floating AI Indicators -->
+  <circle cx="120" cy="120" r="8" fill="#ea580c"/>
+  <circle cx="140" cy="120" r="8" fill="#dc2626"/>
+  <circle cx="160" cy="120" r="8" fill="#b91c1c"/>
+  
+  <text x="180" y="125" font-family="Arial, sans-serif" font-size="12" fill="#ffffff">Analyzing Code...</text>
+</svg>

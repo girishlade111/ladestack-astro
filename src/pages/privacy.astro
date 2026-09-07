@@ -1,0 +1,397 @@
+---
+/**
+ * /privacy — full port of src/pages/PrivacyPolicy.tsx.
+ * Same hero, trust badges, data-flow visual, 11 numbered sections,
+ * collapsible advanced blocks (native <details>), contact CTA.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy - Lade Stack"
+  description="Read our Privacy Policy to understand how we collect, use, and protect your personal information at Lade Stack."
+  canonical="https://ladestack.in/privacy"
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: 'Privacy Policy - Lade Stack',
+    description: 'Read our Privacy Policy to understand how we collect, use, and protect your personal information at Lade Stack.',
+    url: 'https://ladestack.in/privacy',
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: 'Privacy Policy - Lade Stack',
+    description: 'Read our Privacy Policy to understand how we collect, use, and protect your personal information at Lade Stack.',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={[]}
+>
+  <div class="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none hidden dark:block" aria-hidden="true">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.10),_transparent_60%)]"></div>
+      <div class="absolute top-[50%] right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse_at_center,_rgba(139,175,135,0.06),_transparent_55%)]"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[300px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.05),_transparent_55%)]"></div>
+    </div>
+
+    <div class="pt-24 pb-16">
+      <div class="container mx-auto px-4 py-12 max-w-4xl">
+        <div class="text-center mb-12 relative">
+          <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-primary/10 blur-3xl -z-10"></div>
+          <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Privacy <span class="bg-gradient-to-r from-primary/80 to-primary bg-clip-text text-transparent">Policy</span>
+          </h1>
+          <div class="w-20 h-1 bg-gradient-to-r from-primary/80 to-primary mx-auto mb-6 rounded-full"></div>
+          <p class="text-lg text-muted-foreground">Last Updated: June 15, 2024</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+          <div class="flex items-center gap-2 bg-secondary border border-border px-4 py-2 rounded-full">
+            <Icon name="shield" class="w-4 h-4 text-primary" />
+            <span class="text-secondary-foreground text-sm">GDPR Ready</span>
+          </div>
+          <div class="flex items-center gap-2 bg-secondary border border-border px-4 py-2 rounded-full">
+            <Icon name="lock" class="w-4 h-4 text-primary" />
+            <span class="text-secondary-foreground text-sm">SOC2 Aligned</span>
+          </div>
+          <div class="flex items-center gap-2 bg-secondary border border-border px-4 py-2 rounded-full">
+            <Icon name="database" class="w-4 h-4 text-primary" />
+            <span class="text-secondary-foreground text-sm">Secure Infrastructure</span>
+          </div>
+        </div>
+
+        <p class="text-muted-foreground leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+          At Lade Stack, we are committed to protecting your personal information and your right to privacy.
+          This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you
+          visit our website and use our services.
+        </p>
+
+        <div class="space-y-8">
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h3 class="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Icon name="arrow-right" class="w-5 h-5 text-primary" />
+              How Your Data Flows
+            </h3>
+            <div class="flex items-center justify-center gap-4 flex-wrap pb-4">
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                  <Icon name="users" class="w-8 h-8 text-primary" />
+                </div>
+                <span class="text-muted-foreground text-sm">You</span>
+              </div>
+              <Icon name="arrow-right" class="w-6 h-6 text-muted-foreground" />
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                  <Icon name="shield" class="w-8 h-8 text-primary" />
+                </div>
+                <span class="text-muted-foreground text-sm">Lade Stack</span>
+              </div>
+              <Icon name="arrow-right" class="w-6 h-6 text-muted-foreground" />
+              <div class="flex flex-col items-center gap-2">
+                <div class="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
+                  <Icon name="server" class="w-8 h-8 text-primary" />
+                </div>
+                <span class="text-muted-foreground text-sm">Secure Storage</span>
+              </div>
+            </div>
+            <p class="text-muted-foreground text-sm text-center mt-4">
+              Enterprise-grade protection at every step
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="file-text" class="w-6 h-6 text-primary" />
+              1. Information We Collect
+            </h2>
+            <h3 class="text-lg font-medium text-foreground mt-4">Personal Information You Disclose to Us</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              We collect personal information that you voluntarily provide to us when you register on the Services,
+              express an interest in obtaining information about us or our products and Services, when you participate
+              in activities on the Services, or otherwise when you contact us.
+            </p>
+            <p class="text-muted-foreground leading-relaxed">The personal information we collect may include:</p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Name</li>
+              <li>Email address</li>
+              <li>Phone number</li>
+              <li>Billing and payment information</li>
+              <li>Company name and job title</li>
+              <li>Any other information you choose to provide</li>
+            </ul>
+            <h3 class="text-lg font-medium text-foreground mt-6">Information Automatically Collected</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              We automatically collect certain information when you visit, use, or navigate the Services.
+              This information does not reveal your specific identity but may include:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Device and usage information</li>
+              <li>IP address and browser type</li>
+              <li>Operating system and device characteristics</li>
+              <li>Referring URLs and exit pages</li>
+              <li>Language preferences</li>
+              <li>Clickstream data</li>
+            </ul>
+            <div class="rounded-md bg-muted p-4 mt-6">
+              <h4 class="text-foreground font-medium mb-2 flex items-center gap-2">
+                <Icon name="alert-circle" class="w-4 h-4 text-primary" />
+                Example Scenario
+              </h4>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                When you sign up for our API testing platform, we collect your name and email to create your account.
+                We also automatically collect your browser type and IP address to ensure secure access and prevent fraud.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="key" class="w-6 h-6 text-primary" />
+              2. How We Use Your Information
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We use personal information collected via our Services for a variety of business purposes described below:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>To facilitate account creation and login process</li>
+              <li>To manage user accounts and provide customer support</li>
+              <li>To send administrative information and respond to inquiries</li>
+              <li>To fulfill and manage purchases and payments</li>
+              <li>To send marketing and promotional communications (with your consent)</li>
+              <li>To protect our Services and enforce our terms and policies</li>
+              <li>To comply with legal obligations</li>
+            </ul>
+            <div class="rounded-md bg-primary/10 border border-primary/20 p-4 text-primary mt-6">
+              <p class="font-medium">
+                We only use your data for the purposes explicitly stated in this policy. We never sell your personal information.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="globe" class="w-6 h-6 text-primary" />
+              3. Sharing Your Information
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We may process or share your data that we hold based on the following legal basis:
+            </p>
+            <h3 class="text-lg font-medium text-foreground mt-4">A. Legal Basis for Processing</h3>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>
+                <strong class="text-foreground">Consent</strong>
+                <ul class="list-disc pl-6 mt-2 space-y-1 text-muted-foreground">
+                  <li>What it means: Your explicit permission to process your data</li>
+                  <li>When we request it: For marketing communications and optional features</li>
+                  <li>How to withdraw: Contact us anytime or use the unsubscribe link</li>
+                </ul>
+              </li>
+              <li>
+                <strong class="text-foreground">Contractual necessity</strong>
+                <span class="text-muted-foreground"> — Processing required to fulfill our services to you</span>
+              </li>
+              <li>
+                <strong class="text-foreground">Legal obligations</strong>
+                <span class="text-muted-foreground"> — Compliance with applicable laws and regulations</span>
+              </li>
+            </ul>
+            <h3 class="text-lg font-medium text-foreground mt-6">B. Third-Party Providers</h3>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Hosting providers — Secure cloud infrastructure</li>
+              <li>Payment processors — PCI-compliant payment handling</li>
+              <li>Analytics providers — Usage insights and improvements</li>
+              <li>Infrastructure vendors — Email delivery and support tools</li>
+            </ul>
+            <h3 class="text-lg font-medium text-foreground mt-6">C. Business Transfers</h3>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Mergers — Combined entity data handling</li>
+              <li>Acquisition — Transfer of assets and data</li>
+              <li>Asset transfers — Business continuity provisions</li>
+            </ul>
+            <h3 class="text-lg font-medium text-foreground mt-6">D. International Data Transfers</h3>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Safeguards — Standard contractual clauses</li>
+              <li>Data residency — Regional storage options</li>
+              <li>Compliance standards — GDPR and international frameworks</li>
+            </ul>
+            <div class="rounded-md bg-primary/10 border border-primary/20 p-4 text-primary mt-6">
+              <p class="font-medium">
+                We never sell personal data. All third-party sharing is strictly for service delivery and legal compliance.
+              </p>
+            </div>
+            <div class="mt-6">
+              <details class="group">
+                <summary class="w-full flex items-center justify-between bg-muted border border-border rounded-xl p-4 text-left hover:bg-muted/80 transition-colors cursor-pointer list-none">
+                  <span class="text-foreground font-medium">Advanced: Data Transfer Safeguards</span>
+                  <Icon name="chevron-down" class="w-5 h-5 text-muted-foreground transition-transform group-open:rotate-180" />
+                </summary>
+                <div class="bg-muted border border-border rounded-xl p-4 mt-4">
+                  <p class="text-muted-foreground text-sm leading-relaxed">
+                    For international data transfers, we implement appropriate safeguards including Standard Contractual Clauses (SCCs)
+                    approved by the European Commission, binding corporate rules for intra-group transfers, and adherence to
+                    applicable privacy frameworks. We regularly audit our third-party processors to ensure compliance with
+                    these safeguards and maintain data protection standards equivalent to those required in your jurisdiction.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="shield" class="w-6 h-6 text-primary" />
+              4. Data Security
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We use administrative, technical, and physical security measures to protect your personal information.
+              While we have taken reasonable steps to secure the personal information you provide to us, please be aware
+              that despite our efforts, no security measures are perfect or impenetrable.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+              <div class="bg-muted border border-border rounded-xl p-4 text-center">
+                <Icon name="lock" class="w-8 h-8 text-primary mx-auto mb-2" />
+                <p class="text-foreground font-medium">Encryption</p>
+                <p class="text-muted-foreground text-sm">AES-256 at rest</p>
+              </div>
+              <div class="bg-muted border border-border rounded-xl p-4 text-center">
+                <Icon name="globe" class="w-8 h-8 text-primary mx-auto mb-2" />
+                <p class="text-foreground font-medium">TLS 1.3</p>
+                <p class="text-muted-foreground text-sm">In transit</p>
+              </div>
+              <div class="bg-muted border border-border rounded-xl p-4 text-center">
+                <Icon name="check-circle" class="w-8 h-8 text-primary mx-auto mb-2" />
+                <p class="text-foreground font-medium">2FA</p>
+                <p class="text-muted-foreground text-sm">Optional</p>
+              </div>
+            </div>
+            <div class="rounded-md bg-muted p-4 mt-6">
+              <h4 class="text-foreground font-medium mb-2 flex items-center gap-2">
+                <Icon name="alert-circle" class="w-4 h-4 text-primary" />
+                Security in Practice
+              </h4>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                All data transmitted between your browser and our servers is encrypted using TLS 1.3.
+                Your stored data is encrypted at rest using AES-256 encryption, ensuring protection even in the unlikely event of a breach.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="refresh-ccw" class="w-6 h-6 text-primary" />
+              5. Data Retention
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We will retain your personal information only for as long as is necessary for the purposes set out in
+              this Privacy Policy, unless a longer retention period is required or permitted by law.
+            </p>
+            <div class="mt-6">
+              <details class="group">
+                <summary class="w-full flex items-center justify-between bg-muted border border-border rounded-xl p-4 text-left hover:bg-muted/80 transition-colors cursor-pointer list-none">
+                  <span class="text-foreground font-medium">Advanced: Retention Periods</span>
+                  <Icon name="chevron-down" class="w-5 h-5 text-muted-foreground transition-transform group-open:rotate-180" />
+                </summary>
+                <div class="bg-muted border border-border rounded-xl p-4 mt-4">
+                  <ul class="text-muted-foreground text-sm space-y-2">
+                    <li><strong class="text-foreground">Account data:</strong> Retained while your account is active plus 3 years</li>
+                    <li><strong class="text-foreground">Transaction data:</strong> 7 years for tax compliance</li>
+                    <li><strong class="text-foreground">Analytics data:</strong> 26 months, then anonymized</li>
+                    <li><strong class="text-foreground">Support tickets:</strong> 3 years from resolution</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="users" class="w-6 h-6 text-primary" />
+              6. Your Privacy Rights
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              Depending on your location, you may have the following rights regarding your personal information:
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>The right to access, update, or delete your information</li>
+              <li>The right to rectification and erasure</li>
+              <li>The right to restrict or object to processing</li>
+              <li>The right to data portability</li>
+              <li>The right to withdraw consent</li>
+            </ul>
+            <div class="rounded-md bg-primary/10 border border-primary/20 p-4 text-primary mt-6">
+              <p class="font-medium">
+                To exercise your rights, contact our privacy team at privacy@ladestack.in. We respond within 30 days.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="database" class="w-6 h-6 text-primary" />
+              7. Cookies and Tracking Technologies
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We use cookies and similar tracking technologies to access or store information.
+              You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.
+            </p>
+            <ul class="list-disc pl-6 text-muted-foreground space-y-2">
+              <li>Essential cookies — Required for site functionality</li>
+              <li>Analytics cookies — Help us understand usage patterns</li>
+              <li>Preference cookies — Remember your settings</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground">8. Third-Party Websites</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              Our Services may contain links to third-party websites. We are not responsible for the privacy practices
+              or content of these third-party sites. We encourage you to review the privacy policies of these websites.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground">9. Children&apos;s Privacy</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              Our Services do not address anyone under the age of 18. We do not knowingly collect personal information
+              from children under 18. If we become aware that a child under 18 has provided us with personal information,
+              we will take steps to delete such information.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground">10. Changes to This Privacy Policy</h2>
+            <p class="text-muted-foreground leading-relaxed">
+              We may update our Privacy Policy from time to time. We will notify you of any changes by posting the
+              new Privacy Policy on this page and updating the &quot;Last Updated&quot; date.
+            </p>
+          </div>
+
+          <div class="rounded-xl border border-border bg-card p-6 space-y-4 shadow-sm">
+            <h2 class="text-2xl font-semibold text-foreground flex items-center gap-2">
+              <Icon name="file-text" class="w-6 h-6 text-primary" />
+              11. Contact Us
+            </h2>
+            <p class="text-muted-foreground leading-relaxed">
+              If you have questions or comments about this Privacy Policy, you may contact us at:
+            </p>
+            <div class="bg-muted border border-border rounded-xl p-6 mt-4">
+              <p class="text-foreground font-medium mb-2">Lade Stack</p>
+              <p class="text-muted-foreground">Email: privacy@ladestack.in</p>
+              <p class="text-muted-foreground">Address: Mumbai, Maharashtra, India</p>
+            </div>
+            <div class="mt-8 pt-6 border-t border-border">
+              <a
+                href="/contact"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-medium"
+              >
+                Contact Our Privacy Team
+                <Icon name="arrow-right" class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
