@@ -52,7 +52,7 @@ const isExternalHref = (app: AppData) =>
 
 <BaseLayout
   title="Apps Gallery – Lade Stack AI Developer Tools"
-  description="Explore Lade Stack's suite of AI-powered developer tools: code editor, 17-in-1 PDF toolkit, image compressor, resume builder, and upcoming utilities. All free forever."
+  description="Explore Lade Stack's suite of developer tools: code editor, 17-in-1 PDF toolkit, image compressor, and productivity utilities. All free forever."
   canonical="https://ladestack.in/apps"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
@@ -162,6 +162,7 @@ const isExternalHref = (app: AppData) =>
     {/* APPS GRID */}
     <section class="py-12 sm:py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Available Tools Catalog</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-apps-grid>
           {
             apps.map((app) => {
