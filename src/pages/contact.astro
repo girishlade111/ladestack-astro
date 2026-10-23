@@ -28,10 +28,10 @@ const structuredData = [
 ];
 
 const contactCards = [
-  { icon: 'mail', label: 'Direct Email', title: 'admin@ladestack.in', sub: 'Responses within 24 hours', href: 'mailto:admin@ladestack.in' },
+  { icon: 'mail', label: 'Direct Email', title: 'admin@ladestack.in', sub: 'Direct founder inbox', href: 'mailto:admin@ladestack.in' },
   { icon: 'message-square', label: 'Developer Support', title: 'Technical Help', sub: 'Architecture & bug reports', href: 'mailto:admin@ladestack.in' },
   { icon: 'map-pin', label: 'Headquarters', title: 'Mumbai, India', sub: 'Global remote operations', href: null },
-  { icon: 'clock', label: 'Availability', title: '24 / 7 Monitoring', sub: 'Evergreen uptime SLA', href: null },
+  { icon: 'globe', label: 'Architecture', title: 'Client-Side Tools', sub: 'Runs locally in browser', href: null },
 ];
 
 const socials = [
@@ -41,29 +41,29 @@ const socials = [
 ];
 
 const faqs = [
-  { q: 'How quickly can I expect a response?', a: 'We typically respond within a few hours. For complex architectural or bug reports, response times may take up to 24 hours.' },
+  { q: 'How quickly can I expect a response?', a: 'We review messages regularly and aim to respond promptly, typically within 1–2 business days.' },
   { q: 'Can I report a bug or request a feature?', a: 'Yes! Please email admin@ladestack.in or open an issue on our GitHub repository at github.com/girishlade111.' },
   { q: 'Do you offer custom integrations for teams?', a: 'Yes. If your engineering team needs self-hosted versions of our client-side tools or specialized workflows, reach out directly.' },
-  { q: 'Is Lade Stack available globally without restrictions?', a: 'Yes, our platform is 100% cloud-accessible globally with no regional geo-blocking.' },
+  { q: 'Is Lade Stack available globally without restrictions?', a: 'Yes, our platform is 100% accessible in modern browsers globally with no regional geo-blocking.' },
 ];
 ---
 
 <BaseLayout
-  title="Contact Lade Stack – Get in Touch for AI Development Support"
-  description="Contact Lade Stack for AI development support, technical assistance, and enterprise solutions. We operate 24/7 and respond within hours. Based in Mumbai, India."
+  title="Contact Lade Stack – Direct Developer Support"
+  description="Contact Lade Stack for developer tool inquiries, feedback, and technical support. Direct email assistance at admin@ladestack.in."
   canonical="https://ladestack.in/contact"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'Contact Lade Stack – AI Development Support',
-    description: 'Get in touch with Lade Stack for AI development support, technical assistance, and enterprise solutions.',
+    title: 'Contact Lade Stack – Direct Developer Support',
+    description: 'Contact Lade Stack for developer tool inquiries, feedback, and technical support. Direct email assistance at admin@ladestack.in.',
     url: 'https://ladestack.in/contact',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
   }}
   twitter={{
     card: 'summary_large_image',
-    title: 'Contact Lade Stack – AI Development Support',
-    description: 'Get in touch for AI development support and technical assistance. 24/7 availability.',
+    title: 'Contact Lade Stack – Direct Developer Support',
+    description: 'Contact Lade Stack for developer tool inquiries, feedback, and technical support. Direct email assistance at admin@ladestack.in.',
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}
@@ -115,33 +115,37 @@ const faqs = [
           {/* Form */}
           <div class="lg:col-span-7 rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-card">
             <h2 class="text-xl font-bold text-foreground mb-2">Send a Message</h2>
-            <p class="text-xs text-muted-foreground mb-6">We read every message and respond directly to your inbox.</p>
+            <p class="text-xs text-muted-foreground mb-6">
+              Compose a message below to launch your default email client addressed to <strong class="text-foreground">admin@ladestack.in</strong>. No message data is transmitted to or stored on third-party servers.
+            </p>
 
             <form data-contact-form class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="space-y-1.5">
                   <label for="firstName" class="block text-xs font-medium text-foreground">First Name</label>
-                  <input id="firstName" required placeholder="Girish" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                  <input id="firstName" name="firstName" required placeholder="Girish" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
                 </div>
                 <div class="space-y-1.5">
                   <label for="lastName" class="block text-xs font-medium text-foreground">Last Name</label>
-                  <input id="lastName" placeholder="Lade" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                  <input id="lastName" name="lastName" placeholder="Lade" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
                 </div>
               </div>
 
               <div class="space-y-1.5">
-                <label for="email" class="block text-xs font-medium text-foreground">Work Email</label>
-                <input id="email" type="email" required placeholder="developer@company.com" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
+                <label for="email" class="block text-xs font-medium text-foreground">Your Email</label>
+                <input id="email" name="email" type="email" required placeholder="developer@company.com" class="w-full text-xs sm:text-sm h-10 px-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand" />
               </div>
 
               <div class="space-y-1.5">
                 <label for="message" class="block text-xs font-medium text-foreground">Message</label>
-                <textarea id="message" rows="5" required placeholder="How can we help your team?" class="w-full text-xs sm:text-sm p-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"></textarea>
+                <textarea id="message" name="message" rows="5" required placeholder="Describe your question, issue, or project inquiry..." class="w-full text-xs sm:text-sm p-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"></textarea>
               </div>
 
+              <div role="status" aria-live="polite" data-contact-status class="text-xs text-brand font-medium hidden"></div>
+
               <Button type="submit" size="md" class="w-full justify-center">
-                <span>Send Message</span>
-                <Icon name="arrow-right" class="w-4 h-4" />
+                <span>Compose in Email Client</span>
+                <Icon name="mail" class="w-4 h-4" />
               </Button>
             </form>
           </div>
@@ -204,21 +208,25 @@ const faqs = [
   <script is:inline>
     (function () {
       var f = document.querySelector('[data-contact-form]');
+      var status = document.querySelector('[data-contact-status]');
       if (f) {
         f.addEventListener('submit', function (e) {
           e.preventDefault();
-          var btn = f.querySelector('button[type="submit"]');
-          if (btn) {
-            btn.innerHTML = '<span>Message Delivered!</span>';
-            btn.disabled = true;
+          var firstName = (document.getElementById('firstName') || {}).value || '';
+          var lastName = (document.getElementById('lastName') || {}).value || '';
+          var email = (document.getElementById('email') || {}).value || '';
+          var message = (document.getElementById('message') || {}).value || '';
+
+          var subject = 'Lade Stack Inquiry: ' + firstName + ' ' + lastName;
+          var body = message + '\n\n---\nSender: ' + firstName + ' ' + lastName + '\nEmail: ' + email;
+          var mailtoUrl = 'mailto:admin@ladestack.in?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+          if (status) {
+            status.textContent = 'Opening your email client addressed to admin@ladestack.in... If it does not open automatically, please email admin@ladestack.in directly.';
+            status.classList.remove('hidden');
           }
-          f.reset();
-          setTimeout(function () {
-            if (btn) {
-              btn.innerHTML = '<span>Send Message</span>';
-              btn.disabled = false;
-            }
-          }, 3500);
+
+          window.location.href = mailtoUrl;
         });
       }
     })();
