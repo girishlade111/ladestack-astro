@@ -43,7 +43,7 @@ export const fr: UIStrings = {
     'Utilitaires de développement haute performance avec exécution côté client. Aucun téléversement vers des serveurs, aucun abonnement payant et une réactivité instantanée.',
   'hero.ctaPrimary': 'Découvrir 17+ outils',
   'hero.ctaSecondary': 'Lancer le Studio IDE',
-  'hero.ctaSecondaryAria': 'Lancer CodeEnhance Studio IDE dans un nouvel onglet',
+  'hero.ctaSecondaryAria': 'Lancer GB Coder IDE dans un nouvel onglet',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'Exécution dans le navigateur',
@@ -69,7 +69,7 @@ export const fr: UIStrings = {
   'features.title': 'Conçu pour la vitesse, la confidentialité et la souveraineté',
   'features.subtitle':
     'Chaque utilitaire s’exécute strictement dans le moteur de votre navigateur. Pas d’inscription obligatoire, pas de télémétrie cloud et zéro latence.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     'Éditeur interactif HTML, CSS et JavaScript moderne avec compilation en temps réel, prévisualisation live dans un iframe et formatage accessible.',
   'features.card1Badge': 'IDE Vedette',
@@ -126,7 +126,7 @@ export const fr: UIStrings = {
   'faq.subtitle': 'Tout ce que vous devez savoir sur les outils, la confidentialité et l’architecture de LadeStack.',
   'faq.q1': 'Les outils LadeStack sont-ils vraiment gratuits ?',
   'faq.a1':
-    'Oui. Tous les outils pour développeurs, y compris CodeEnhance Studio, la suite PDF et l’optimiseur d’images, sont gratuits pour toujours, pour vos projets personnels comme commerciaux.',
+    'Oui. Tous les outils pour développeurs, y compris GB Coder, la suite PDF et l’optimiseur d’images, sont gratuits pour toujours, pour vos projets personnels comme commerciaux.',
   'faq.q2': 'Comment la confidentialité de mes fichiers est-elle assurée ?',
   'faq.a2':
     'L’ensemble des opérations sur les documents et le code s’exécute exclusivement dans le bac à sable local de votre navigateur. Aucun fichier n’est envoyé vers un serveur distant.',

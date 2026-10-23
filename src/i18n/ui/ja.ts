@@ -43,7 +43,7 @@ export const ja: UIStrings = {
     'クライアントサイドで完結する高性能開発者向けユーティリティ。サーバーへのファイル送信ゼロ、有料プランなし、全ツール即座に高速動作。',
   'hero.ctaPrimary': '17以上のツールを見る',
   'hero.ctaSecondary': 'Studio IDEを起動',
-  'hero.ctaSecondaryAria': 'CodeEnhance Studio IDEを新しいタブで開く',
+  'hero.ctaSecondaryAria': 'GB Coder IDEを新しいタブで開く',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'ブラウザ内実行',
@@ -69,7 +69,7 @@ export const ja: UIStrings = {
   'features.title': '速度、プライバシー、自己主権のために設計',
   'features.subtitle':
     'すべてのツールはブラウザのランタイム上で厳格に実行されます。アカウント登録不要、クラウドテレメトリなし、レイテンシゼロ。',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     'リアルタイムコンパイル、iframeライブプレビュー、アクセシブルなHTML/CSS/モダンJavaScriptフォーマッターを備えたIDE。',
   'features.card1Badge': '旗艦IDE',
@@ -126,7 +126,7 @@ export const ja: UIStrings = {
   'faq.subtitle': 'LadeStackのツール、セキュリティ、アーキテクチャに関する主な質問と回答。',
   'faq.q1': 'LadeStackのユーティリティは完全無料ですか？',
   'faq.a1':
-    'はい。CodeEnhance Studio、LS PDFツールキット、LS画像オプティマイザーを含む全開発者ツールは、個人利用および商用クライアントワークを問わず永久に無料です。',
+    'はい。GB Coder、LS PDFツールキット、LS画像オプティマイザーを含む全開発者ツールは、個人利用および商用クライアントワークを問わず永久に無料です。',
   'faq.q2': 'ユーザーデータとファイルのプライバシーはどのように保護されますか？',
   'faq.a2':
     'すべての文書やコードの処理は、お使いのブラウザ内のローカルサンドボックスメモリ内でのみ実行されます。リモートサーバーへアップロードされることはありません。',

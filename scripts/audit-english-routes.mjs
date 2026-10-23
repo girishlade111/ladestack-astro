@@ -11,6 +11,7 @@ const DIST_DIR = path.resolve('dist');
 
 const ENGLISH_SUBPAGES = [
   { path: 'about/index.html', canonical: 'https://ladestack.in/about' },
+  { path: 'gb-coder/index.html', canonical: 'https://ladestack.in/gb-coder' },
   { path: 'apps/index.html', canonical: 'https://ladestack.in/apps' },
   { path: 'docs/index.html', canonical: 'https://ladestack.in/docs' },
   { path: 'blog/index.html', canonical: 'https://ladestack.in/blog' },

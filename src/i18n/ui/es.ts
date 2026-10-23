@@ -43,7 +43,7 @@ export const es: UIStrings = {
     'Utilidades para desarrolladores de alto rendimiento con ejecución del lado del cliente. Sin subida de archivos al servidor, sin muros de pago y con velocidad instantánea.',
   'hero.ctaPrimary': 'Explorar 17+ Herramientas',
   'hero.ctaSecondary': 'Iniciar Studio IDE',
-  'hero.ctaSecondaryAria': 'Abrir CodeEnhance Studio IDE en una pestaña nueva',
+  'hero.ctaSecondaryAria': 'Abrir GB Coder IDE en una pestaña nueva',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'Ejecución en el Navegador',
@@ -69,7 +69,7 @@ export const es: UIStrings = {
   'features.title': 'Diseñado para velocidad, privacidad y soberanía',
   'features.subtitle':
     'Cada herramienta se ejecuta rigurosamente en el entorno de tu navegador. Sin registros obligatorios, sin telemetría en la nube y sin latencia.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     'Editor interactivo de HTML, CSS y JavaScript moderno con compilación en tiempo real, vista previa en iframe y formateo accesible.',
   'features.card1Badge': 'IDE Insignia',
@@ -126,7 +126,7 @@ export const es: UIStrings = {
   'faq.subtitle': 'Todo lo que necesitas saber sobre las herramientas, la privacidad y la arquitectura de LadeStack.',
   'faq.q1': '¿Las utilidades de LadeStack son totalmente gratuitas?',
   'faq.a1':
-    'Sí. Todas las herramientas de desarrollo, incluidas CodeEnhance Studio, las herramientas PDF y el optimizador de imágenes, son gratuitas para siempre para uso personal y proyectos comerciales.',
+    'Sí. Todas las herramientas de desarrollo, incluidas GB Coder, las herramientas PDF y el optimizador de imágenes, son gratuitas para siempre para uso personal y proyectos comerciales.',
   'faq.q2': '¿Cómo se protege la privacidad de los datos y archivos?',
   'faq.a2':
     'Todo el procesamiento de código y documentos ocurre estrictamente en la memoria del sandbox local de tu navegador. Ningún archivo se envía a servidores remotos.',
