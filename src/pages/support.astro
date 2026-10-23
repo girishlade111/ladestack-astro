@@ -12,6 +12,13 @@ import SectionHeader from '../components/ui/SectionHeader.astro';
 import Accordion from '../components/ui/Accordion.astro';
 import AccordionItem from '../components/ui/AccordionItem.astro';
 
+const faqs = [
+  { question: 'Are Lade Stack utilities completely free for commercial use?', answer: 'Yes. All output generated in the AI Code Studio, LS PDF Toolkit, and LS Image Compressor is unrestricted and free for commercial client work.' },
+  { question: 'How do you guarantee privacy for processed documents?', answer: 'We use WebAssembly sandboxes that execute strictly in local browser memory. Files are never uploaded to our servers, eliminating cloud exfiltration risks.' },
+  { question: 'What browsers are compatible with Lade Stack?', answer: 'All modern evergreen browsers supporting WebAssembly and standard Canvas APIs (Chrome, Firefox, Safari, Edge, Arc) are fully supported.' },
+  { question: 'How can I submit feature requests or report a bug?', answer: 'You can submit issues directly via our GitHub repository or email us at admin@ladestack.in with reproducible details.' },
+];
+
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -34,13 +41,6 @@ const supportOptions = [
   { icon: 'mail', title: 'Email Assistance', description: 'Direct contact with our engineering and support leads for all inquiries.', responseTime: 'Direct email', action: 'admin@ladestack.in', href: 'mailto:admin@ladestack.in' },
   { icon: 'book-open', title: 'Knowledge Base', description: 'Comprehensive documentation, API specs, and client-side setup guides.', responseTime: 'Self-service', action: 'Browse Documentation', href: '/docs' },
   { icon: 'message-square', title: 'GitHub Discussions', description: 'Open community discussions, feature proposals, and bug tracker.', responseTime: 'Community driven', action: 'Join on GitHub', href: 'https://github.com/girishlade111' },
-];
-
-const faqs = [
-  { question: 'Are Lade Stack utilities completely free for commercial use?', answer: 'Yes. All output generated in the AI Code Studio, LS PDF Toolkit, and LS Image Compressor is unrestricted and free for commercial client work.' },
-  { question: 'How do you guarantee privacy for processed documents?', answer: 'We use WebAssembly sandboxes that execute strictly in local browser memory. Files are never uploaded to our servers, eliminating cloud exfiltration risks.' },
-  { question: 'What browsers are compatible with Lade Stack?', answer: 'All modern evergreen browsers supporting WebAssembly and standard Canvas APIs (Chrome, Firefox, Safari, Edge, Arc) are fully supported.' },
-  { question: 'How can I submit feature requests or report a bug?', answer: 'You can submit issues directly via our GitHub repository or email us at admin@ladestack.in with reproducible details.' },
 ];
 ---
 
