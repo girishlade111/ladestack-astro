@@ -1,8 +1,9 @@
 ---
 /**
  * SEO.astro — Complete reusable head-metadata component.
- * Supports canonical URLs, hreflang alternates (with x-default), OpenGraph,
- * Twitter Cards, theme-color, and schema.org JSON-LD injections.
+ * Supports canonical URLs, extensible hreflang alternates (rendered only when
+ * genuine localized pages exist), OpenGraph with dimensions, Twitter Cards,
+ * theme-color, and schema.org JSON-LD injections.
  */
 
 export interface RobotsMeta {
@@ -17,6 +18,9 @@ export interface OpenGraphMeta {
   url?: string | null;
   type?: string | null;
   image?: string | null;
+  width?: number;
+  height?: number;
+  alt?: string | null;
 }
 
 export interface TwitterMeta {
@@ -24,6 +28,14 @@ export interface TwitterMeta {
   title?: string | null;
   description?: string | null;
   image?: string | null;
+  alt?: string | null;
+  site?: string | null;
+  creator?: string | null;
+}
+
+export interface HreflangMeta {
+  lang: string;
+  href: string;
 }
 
 export interface Props {
@@ -33,6 +45,7 @@ export interface Props {
   robots?: RobotsMeta;
   openGraph?: OpenGraphMeta;
   twitter?: TwitterMeta;
+  hreflangs?: HreflangMeta[];
   structuredData?: Record<string, unknown>[];
   siteName?: string;
   lang?: string;
@@ -46,6 +59,7 @@ const {
   robots = { index: true, follow: true, custom: null },
   openGraph = {},
   twitter = {},
+  hreflangs = [],
   structuredData = [],
   siteName = 'Lade Stack',
   lang = 'en',
@@ -62,6 +76,9 @@ const robotsContent = [
 
 const ogImage = openGraph.image ?? 'https://ladestack.in/og-image.png';
 const twitterImage = twitter.image ?? ogImage;
+const ogAlt = openGraph.alt ?? title;
+const ogWidth = openGraph.width ?? 1200;
+const ogHeight = openGraph.height ?? 630;
 ---
 
 <title>{title}</title>
@@ -73,13 +90,10 @@ const twitterImage = twitter.image ?? ogImage;
 <meta name="theme-color" content="#090D16" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
 
-{/* Hreflang alternates + x-default for search engine international indexation */}
-<link rel="alternate" hreflang="en" href={canonical} />
-<link rel="alternate" hreflang="hi" href={canonical} />
-<link rel="alternate" hreflang="es" href={canonical} />
-<link rel="alternate" hreflang="de" href={canonical} />
-<link rel="alternate" hreflang="fr" href={canonical} />
-<link rel="alternate" hreflang="x-default" href={canonical} />
+{/* Extensible localized alternates — only rendered when authentic translated URLs are provided */}
+{hreflangs.length > 0 && hreflangs.map((h) => (
+  <link rel="alternate" hreflang={h.lang} href={h.href} />
+))}
 
 {/* Open Graph */}
 <meta property="og:title" content={openGraph.title ?? title} />
@@ -87,6 +101,9 @@ const twitterImage = twitter.image ?? ogImage;
 <meta property="og:url" content={openGraph.url ?? canonical} />
 <meta property="og:type" content={openGraph.type ?? 'website'} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content={String(ogWidth)} />
+<meta property="og:image:height" content={String(ogHeight)} />
+<meta property="og:image:alt" content={ogAlt} />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content={locale} />
 
@@ -95,6 +112,9 @@ const twitterImage = twitter.image ?? ogImage;
 <meta name="twitter:title" content={twitter.title ?? title} />
 {description && <meta name="twitter:description" content={twitter.description ?? description} />}
 <meta name="twitter:image" content={twitterImage} />
+<meta name="twitter:image:alt" content={twitter.alt ?? ogAlt} />
+{twitter.site && <meta name="twitter:site" content={twitter.site} />}
+{twitter.creator && <meta name="twitter:creator" content={twitter.creator} />}
 
 {/* Structured Data (JSON-LD) */}
 {structuredData.map((schema) => (

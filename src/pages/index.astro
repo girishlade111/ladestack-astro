@@ -16,17 +16,6 @@ import CtaBanner from '../components/sections/CtaBanner.astro';
 const structuredData = [
   {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    applicationCategory: 'DeveloperApplication',
-    description:
-      'AI-powered developer platform with in-browser code editor, 17-in-1 PDF toolkit, image compressor, and productivity utilities.',
-    name: 'Lade Stack',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-    operatingSystem: 'Web Browser',
-    url: 'https://ladestack.in',
-  },
-  {
-    '@context': 'https://schema.org',
     '@type': 'Organization',
     contactPoint: {
       '@type': 'ContactPoint',
@@ -34,9 +23,9 @@ const structuredData = [
       contactType: 'customer support',
       email: 'admin@ladestack.in',
     },
-    description: 'AI-powered developer tools and SaaS solutions for modern engineering teams.',
+    description: 'AI-powered developer tools and browser utilities for modern engineering workflows.',
     founder: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
-    logo: 'https://ladestack.in/favicon.ico',
+    logo: 'https://ladestack.in/logo.png',
     name: 'Lade Stack',
     sameAs: [
       'https://github.com/girishlade111',
@@ -49,11 +38,10 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    aggregateRating: { '@type': 'AggregateRating', ratingCount: '150', ratingValue: '4.8' },
     applicationCategory: 'DeveloperApplication',
     author: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
     description:
-      'AI-powered developer tools including in-browser code editor, PDF toolkit, image optimizer, and ATS resume builder.',
+      'In-browser developer tools including code editor, PDF toolkit, image optimizer, and productivity utilities.',
     name: 'Lade Stack',
     offers: {
       '@type': 'Offer',
@@ -88,15 +76,15 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title="Lade Stack – AI Developer Platform | Code Studio, PDF Toolkit & Developer Utilities"
-  description="The complete AI developer ecosystem. In-browser code editing, 17-in-1 private PDF toolkit, high-ratio image compression, and career utilities — free forever."
-  canonical="https://ladestack.in/"
+  title="Lade Stack – AI Developer Platform & Browser Utilities"
+  description="In-browser developer tools: code editor, 17-in-1 private PDF toolkit, high-ratio image compression, and career utilities. Free forever with client-side execution."
+  canonical="https://ladestack.in"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
     title: 'Lade Stack – AI-Powered Developer Ecosystem',
     description:
-      'In-browser AI code studio, private PDF tools, image compressor, and productivity utilities for 10x developer productivity. Free forever.',
-    url: 'https://ladestack.in/',
+      'In-browser code studio, private PDF tools, image compressor, and productivity utilities for developers. Free forever.',
+    url: 'https://ladestack.in',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
   }}
@@ -104,7 +92,7 @@ const structuredData = [
     card: 'summary_large_image',
     title: 'Lade Stack – AI-Powered Developer Ecosystem',
     description:
-      'In-browser AI code studio, private PDF tools, image compressor, and productivity utilities for 10x developer productivity. Free forever.',
+      'In-browser code studio, private PDF tools, image compressor, and productivity utilities for developers. Free forever.',
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}

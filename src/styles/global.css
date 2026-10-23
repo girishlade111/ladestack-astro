@@ -13,13 +13,13 @@
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 160 84% 34%;
+    --primary: 161 94% 24%;
     --primary-foreground: 0 0% 100%;
-    --brand: 160 84% 34%;
-    --brand-hover: 161 94% 24%;
+    --brand: 161 94% 24%;
+    --brand-hover: 161 94% 19%;
     --brand-foreground: 0 0% 100%;
-    --brand-subtle: 160 84% 34% / 0.08;
-    --brand-border: 160 84% 34% / 0.2;
+    --brand-subtle: 161 94% 24% / 0.08;
+    --brand-border: 161 94% 24% / 0.2;
     --secondary: 210 40% 96%;
     --secondary-foreground: 222 47% 11%;
     --muted: 210 40% 96%;
@@ -31,9 +31,9 @@
     --border: 214 32% 91%;
     --border-subtle: 210 40% 94%;
     --input: 214 32% 91%;
-    --ring: 160 84% 34%;
+    --ring: 161 94% 24%;
     --radius: 0.5rem;
-    --success: 160 84% 34%;
+    --success: 161 94% 24%;
     --warning: 38 92% 50%;
   }
 
