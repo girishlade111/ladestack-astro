@@ -223,6 +223,26 @@ const faqs = [
     (function () {
       var f = document.querySelector('[data-contact-form]');
       var status = document.querySelector('[data-contact-status]');
+      var copyBtn = document.querySelector('[data-copy-email]');
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText('admin@ladestack.in').then(function () {
+              if (status) {
+                status.textContent = 'Copied "admin@ladestack.in" to clipboard. You can now paste into your email application.';
+                status.classList.remove('hidden');
+              }
+            }).catch(function () {
+              if (status) {
+                status.textContent = 'Please email admin@ladestack.in directly from your email client.';
+                status.classList.remove('hidden');
+              }
+            });
+          }
+        });
+      }
+
       if (f) {
         f.addEventListener('submit', function (e) {
           e.preventDefault();
@@ -236,7 +256,7 @@ const faqs = [
           var mailtoUrl = 'mailto:admin@ladestack.in?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 
           if (status) {
-            status.textContent = 'Opening your email client addressed to admin@ladestack.in... If it does not open automatically, please email admin@ladestack.in directly.';
+            status.textContent = 'Opening your local email client with a pre-filled draft to admin@ladestack.in. Please click "Send" in your email app to deliver the message.';
             status.classList.remove('hidden');
           }
 

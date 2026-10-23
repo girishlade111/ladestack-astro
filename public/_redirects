@@ -1,0 +1,14 @@
+# LadeStack Edge Redirects (RFC 7231 / Cloudflare Pages / Netlify compatible)
+# Format: <source> <destination> <status>
+
+/projects                   /apps                                               301
+/file-sharing-platform      /apps                                               301
+/api-testing-platform       /apps                                               301
+/blog/1                     /blog/future-of-ai-in-software-development         301
+/blog/2                     /blog/building-ai-powered-code-review-systems       301
+/blog/3                     /blog/machine-learning-pipelines-for-web-developers 301
+/blog/4                     /blog/generative-ai-for-content-creation            301
+/blog/5                     /blog/building-rag-applications-vector-databases    301
+/blog/6                     /blog/fine-tuning-llms-domain-specific-tasks        301
+/sitemap-pages.xml          /sitemap-index.xml                                  301
+/sitemap-blog.xml           /sitemap-index.xml                                  301

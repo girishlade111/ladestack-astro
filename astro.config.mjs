@@ -46,6 +46,8 @@ export default defineConfig({
     '/blog/4': '/blog/generative-ai-for-content-creation',
     '/blog/5': '/blog/building-rag-applications-vector-databases',
     '/blog/6': '/blog/fine-tuning-llms-domain-specific-tasks',
+    '/sitemap-pages.xml': '/sitemap-index.xml',
+    '/sitemap-blog.xml': '/sitemap-index.xml',
   },
 
   integrations: [
