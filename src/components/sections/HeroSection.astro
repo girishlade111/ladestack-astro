@@ -2,11 +2,10 @@
 /**
  * HeroSection.astro
  * Minimal, high-craft developer hero with studio visual mockup.
- * No gimmicky 3D shadows; strict token typography and authentic product storytelling.
+ * Strictly adheres to craft floor: no eyebrow/kicker labels, authentic product storytelling.
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
-import Badge from '../ui/Badge.astro';
 
 const trustPills = [
   { icon: 'shield-check', text: '100% In-Browser Privacy' },
@@ -15,20 +14,14 @@ const trustPills = [
 ];
 ---
 
-<section class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 overflow-hidden">
-  {/* Ambient Studio Lighting (Hardware-accelerated, respects reduced motion) */}
+<section class="relative pt-14 pb-20 sm:pt-24 sm:pb-32 overflow-hidden">
+  {/* Ambient Studio Lighting */}
   <div class="pointer-events-none absolute inset-0 hero-glow -z-10" aria-hidden="true"></div>
-  <div class="pointer-events-none absolute inset-0 dot-pattern opacity-40 -z-10" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
-      {/* Release Tag */}
-      <Badge variant="brand" size="md" dot={true} class="mb-6">
-        Lade Stack v1.0 Developer Suite
-      </Badge>
-
-      {/* Primary H1 */}
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground text-balance leading-[1.1]">
+      {/* Primary H1: No kicker/eyebrow, heading carries its own authority */}
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground text-balance leading-[1.08]">
         Build, review, and ship software with <span class="text-brand">AI precision</span>.
       </h1>
 
@@ -37,7 +30,7 @@ const trustPills = [
         An ecosystem of intelligent developer tools — in-browser code editing, private PDF manipulation, high-ratio image compression, and AI optimization. Enterprise power, zero cost.
       </p>
 
-      {/* CTAs */}
+      {/* Primary CTAs */}
       <div class="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
         <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
           <span>Start Building Free</span>
@@ -63,7 +56,7 @@ const trustPills = [
     </div>
 
     {/* ── Studio Product Visual Mockup ── */}
-    <div class="mt-14 sm:mt-18 max-w-5xl mx-auto">
+    <div class="mt-14 sm:mt-20 max-w-5xl mx-auto">
       <div class="rounded-2xl border border-border bg-surface shadow-elevated overflow-hidden transition-all duration-300 hover:border-border/80">
         {/* IDE Titlebar */}
         <div class="flex items-center justify-between px-4 py-3 bg-surface-muted border-b border-border text-xs text-muted-foreground select-none">
@@ -84,8 +77,8 @@ const trustPills = [
           </div>
 
           <div class="flex items-center gap-3">
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-mono text-[10px]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand/10 text-brand font-mono text-[11px]">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
               Compiled in 18ms
             </span>
             <span class="hidden md:inline font-mono text-[11px] text-muted-foreground">
@@ -133,13 +126,13 @@ const trustPills = [
               </div>
             </div>
 
-            {/* In-editor inline AI notification pill */}
+            {/* In-editor inline notification */}
             <div class="mt-6 p-3 rounded-lg border border-brand/30 bg-brand/5 flex items-center justify-between gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <Icon name="check-circle-2" class="w-4 h-4 text-brand" />
-                <span class="text-foreground font-medium">AI Optimization Complete: 0 memory leaks, 100% test coverage</span>
+                <span class="text-foreground font-medium">AST optimization verified: 0 memory leaks, 100% test coverage</span>
               </div>
-              <span class="font-mono text-[10px] text-brand uppercase tracking-wider">Ready to deploy</span>
+              <span class="font-mono text-[10px] text-brand uppercase tracking-wider">Ready to ship</span>
             </div>
           </div>
 
@@ -167,20 +160,20 @@ const trustPills = [
 
                 <div class="p-3 rounded-lg border border-border bg-surface flex items-center justify-between">
                   <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 rounded-md bg-sky-500/10 text-sky-500 flex items-center justify-center">
-                      <Icon name="shield" class="w-4 h-4" />
+                    <div class="w-7 h-7 rounded-md bg-brand/10 text-brand flex items-center justify-center">
+                      <Icon name="shield-check" class="w-4 h-4" />
                     </div>
                     <div>
                       <p class="text-xs font-semibold text-foreground">Cloud Data Exfiltration</p>
                       <p class="text-[11px] text-muted-foreground">No telemetry payloads</p>
                     </div>
                   </div>
-                  <span class="font-mono text-sm font-semibold text-sky-500">0.00 KB</span>
+                  <span class="font-mono text-sm font-semibold text-brand">0.00 KB</span>
                 </div>
 
                 <div class="p-3 rounded-lg border border-border bg-surface flex items-center justify-between">
                   <div class="flex items-center gap-2.5">
-                    <div class="w-7 h-7 rounded-md bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                    <div class="w-7 h-7 rounded-md bg-brand/10 text-brand flex items-center justify-center">
                       <Icon name="layers" class="w-4 h-4" />
                     </div>
                     <div>
@@ -188,7 +181,7 @@ const trustPills = [
                       <p class="text-[11px] text-muted-foreground">LCP &lt; 0.8s, CLS 0.00</p>
                     </div>
                   </div>
-                  <span class="font-mono text-sm font-semibold text-emerald-500">100 / 100</span>
+                  <span class="font-mono text-sm font-semibold text-brand">100 / 100</span>
                 </div>
               </div>
             </div>

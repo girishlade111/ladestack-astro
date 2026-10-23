@@ -19,8 +19,25 @@ export default {
       },
     },
     fontFamily: {
-      sans: ['Outfit', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-      mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+      sans: [
+        'Plus Jakarta Sans',
+        'Inter',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
+        'sans-serif',
+      ],
+      mono: [
+        'JetBrains Mono',
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'monospace',
+      ],
     },
     extend: {
       colors: {
@@ -95,23 +112,18 @@ export default {
           to: { opacity: "1" },
         },
         "slide-down": {
-          from: { opacity: "0", transform: "translateY(-8px)" },
+          from: { opacity: "0", transform: "translateY(-6px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-up": {
-          from: { opacity: "0", transform: "translateY(8px)" },
+          from: { opacity: "0", transform: "translateY(6px)" },
           to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "pulse-subtle": {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
         },
       },
       animation: {
-        "fade-in": "fade-in 0.25s ease-out both",
-        "slide-down": "slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1) both",
-        "slide-up": "slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) both",
-        "pulse-subtle": "pulse-subtle 2.5s ease-in-out infinite",
+        "fade-in": "fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "slide-down": "slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "slide-up": "slide-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
       },
     },
   },

@@ -2,25 +2,26 @@
 /**
  * HowItWorks.astro
  * Step-by-step flow diagram in SVG + crisp technical narrative.
+ * Mobile-first responsive workflow with on-device execution proof.
  */
 import Icon from '../Icon.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 
 const steps = [
   {
-    number: '01',
+    step: '01',
     title: 'Select your utility',
     description: 'Jump straight into the AI Code Studio, PDF Toolkit, or Image Compressor with zero signup friction, no credit cards, and no API keys required.',
     icon: 'play',
   },
   {
-    number: '02',
+    step: '02',
     title: 'Client-side processing',
     description: 'Your browser executes local WebAssembly sandboxes and lightweight AI pipelines. Files and code remain strictly on your device.',
     icon: 'cpu',
   },
   {
-    number: '03',
+    step: '03',
     title: 'Export & ship instantly',
     description: 'Download optimized assets, validated ATS resumes, or production-ready HTML/CSS bundles with unlimited free capacity.',
     icon: 'rocket',
@@ -35,53 +36,59 @@ const steps = [
       description="Engineered from the ground up to eliminate servers as points of failure, latency, and privacy compromise."
     />
 
-    {/* ── Bespoke Flow Diagram (SVG + HTML) ── */}
-    <div class="mb-16 p-6 sm:p-10 rounded-2xl border border-border bg-surface shadow-soft">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-8 relative">
+    {/* ── Flow Diagram (SVG + HTML) ── */}
+    <div class="mb-14 p-6 sm:p-10 rounded-2xl border border-border bg-surface shadow-soft">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 relative">
         {/* Node 1 */}
         <div class="flex flex-col items-center text-center max-w-[220px]">
-          <div class="w-14 h-14 rounded-2xl border border-border bg-surface-muted flex items-center justify-center text-foreground mb-3 shadow-soft">
+          <div class="w-14 h-14 rounded-xl border border-border bg-surface-muted flex items-center justify-center text-foreground mb-3 shadow-soft">
             <Icon name="globe" class="w-6 h-6 text-brand" />
           </div>
           <span class="text-xs font-mono text-muted-foreground uppercase tracking-wider">Step 1</span>
           <p class="text-sm font-semibold text-foreground mt-1">Direct In-Browser Launch</p>
-          <p class="text-xs text-muted-foreground mt-1">Zero logins or API setup</p>
+          <p class="text-xs text-muted-foreground mt-0.5">Zero logins or API setup</p>
         </div>
 
         {/* Connector 1 */}
         <div class="hidden lg:flex flex-1 items-center justify-center px-4" aria-hidden="true">
-          <svg class="w-full h-8 text-border" viewBox="0 0 200 24" fill="none">
+          <svg class="w-full h-6 text-border" viewBox="0 0 200 24" fill="none">
             <line x1="0" y1="12" x2="190" y2="12" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" />
             <polygon points="190,8 200,12 190,16" fill="currentColor" />
           </svg>
         </div>
 
+        {/* Mobile vertical divider */}
+        <div class="lg:hidden w-px h-8 bg-border" aria-hidden="true"></div>
+
         {/* Node 2 */}
         <div class="flex flex-col items-center text-center max-w-[220px]">
-          <div class="w-14 h-14 rounded-2xl border border-brand/40 bg-brand/10 flex items-center justify-center text-brand mb-3 shadow-soft">
+          <div class="w-14 h-14 rounded-xl border border-brand/40 bg-brand/10 flex items-center justify-center text-brand mb-3 shadow-soft">
             <Icon name="cpu" class="w-6 h-6" />
           </div>
           <span class="text-xs font-mono text-brand uppercase tracking-wider">Step 2</span>
           <p class="text-sm font-semibold text-foreground mt-1">WASM & Local AI</p>
-          <p class="text-xs text-muted-foreground mt-1">100% on-device sandboxing</p>
+          <p class="text-xs text-muted-foreground mt-0.5">100% on-device sandboxing</p>
         </div>
 
         {/* Connector 2 */}
         <div class="hidden lg:flex flex-1 items-center justify-center px-4" aria-hidden="true">
-          <svg class="w-full h-8 text-border" viewBox="0 0 200 24" fill="none">
+          <svg class="w-full h-6 text-border" viewBox="0 0 200 24" fill="none">
             <line x1="0" y1="12" x2="190" y2="12" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" />
             <polygon points="190,8 200,12 190,16" fill="currentColor" />
           </svg>
         </div>
 
+        {/* Mobile vertical divider */}
+        <div class="lg:hidden w-px h-8 bg-border" aria-hidden="true"></div>
+
         {/* Node 3 */}
         <div class="flex flex-col items-center text-center max-w-[220px]">
-          <div class="w-14 h-14 rounded-2xl border border-border bg-surface-muted flex items-center justify-center text-foreground mb-3 shadow-soft">
+          <div class="w-14 h-14 rounded-xl border border-border bg-surface-muted flex items-center justify-center text-foreground mb-3 shadow-soft">
             <Icon name="check-circle" class="w-6 h-6 text-brand" />
           </div>
           <span class="text-xs font-mono text-muted-foreground uppercase tracking-wider">Step 3</span>
           <p class="text-sm font-semibold text-foreground mt-1">Instant Deployment</p>
-          <p class="text-xs text-muted-foreground mt-1">Clean code, zero paywalls</p>
+          <p class="text-xs text-muted-foreground mt-0.5">Clean code, zero paywalls</p>
         </div>
       </div>
     </div>
@@ -90,11 +97,11 @@ const steps = [
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       {
         steps.map((step) => (
-          <div class="rounded-xl border border-border bg-surface p-6 sm:p-7 flex flex-col justify-between">
+          <div class="rounded-xl border border-border bg-surface p-6 sm:p-7 flex flex-col justify-between transition-colors hover:border-brand/30">
             <div>
               <div class="flex items-center justify-between mb-4">
-                <span class="font-mono text-xs font-bold text-brand bg-brand/10 px-2 py-0.5 rounded">
-                  {step.number}
+                <span class="font-mono text-xs font-semibold text-brand bg-brand/10 px-2 py-0.5 rounded">
+                  {step.step}
                 </span>
                 <Icon name={step.icon} class="w-4 h-4 text-muted-foreground" />
               </div>
