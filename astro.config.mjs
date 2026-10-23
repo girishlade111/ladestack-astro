@@ -52,6 +52,7 @@ export default defineConfig({
     '/projects': '/apps',
     '/file-sharing-platform': '/apps',
     '/api-testing-platform': '/apps',
+    '/ai-code-viewer-ai': '/gb-coder',
     '/blog/1': '/blog/future-of-ai-in-software-development',
     '/blog/2': '/blog/building-ai-powered-code-review-systems',
     '/blog/3': '/blog/machine-learning-pipelines-for-web-developers',
