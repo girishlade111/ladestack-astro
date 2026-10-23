@@ -36,6 +36,18 @@ export default defineConfig({
   // URLs match the manifest canonicals exactly (https://ladestack.in/about).
   trailingSlash: 'never',
 
+  // ---------------------------------------------------------------------------
+  // Native Astro i18n configuration
+  // 9 supported locales: en (default, unprefixed), ja, ko, zh, ru, tr, fr, pt, es.
+  // ---------------------------------------------------------------------------
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   redirects: {
     '/projects': '/apps',
     '/file-sharing-platform': '/apps',
