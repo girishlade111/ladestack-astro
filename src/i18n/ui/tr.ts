@@ -43,7 +43,7 @@ export const tr: UIStrings = {
     'İstemci tarafında çalışan yüksek performanslı geliştirici araçları. Sunucuya dosya yükleme yok, abonelik ücreti yok, tüm araçlarda anında yüksek hız.',
   'hero.ctaPrimary': '17+ Aracı Keşfedin',
   'hero.ctaSecondary': 'Studio IDE Başlat',
-  'hero.ctaSecondaryAria': 'CodeEnhance Studio IDE uygulamasını yeni sekmede aç',
+  'hero.ctaSecondaryAria': 'GB Coder IDE uygulamasını yeni sekmede aç',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'Tarayıcı İçi Yürütme',
@@ -69,7 +69,7 @@ export const tr: UIStrings = {
   'features.title': 'Hız, gizlilik ve veri bağımsızlığı için tasarlandı',
   'features.subtitle':
     'Her araç tamamen tarayıcınızın çalışma zamanında yürütülür. Kayıt olma zorunluluğu yok, bulut telemetrisi yok ve gecikme süresi sıfır.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     'Gerçek zamanlı derleme, canlı iframe önizlemesi ve erişilebilir biçimlendirme sunan etkileşimli HTML, CSS ve modern JavaScript düzenleyicisi.',
   'features.card1Badge': 'Amiral Gemisi IDE',
@@ -126,7 +126,7 @@ export const tr: UIStrings = {
   'faq.subtitle': 'LadeStack araçları, gizlilik politikası ve mimarisi hakkında merak edilenler.',
   'faq.q1': 'LadeStack araçları tamamen ücretsiz mi?',
   'faq.a1':
-    'Evet. CodeEnhance Studio, LS PDF Araç Seti ve LS Görsel Optimize Edici dahil tüm araçlar, kişisel ve ticari projeler için sonsuza dek ücretsizdir.',
+    'Evet. GB Coder, LS PDF Araç Seti ve LS Görsel Optimize Edici dahil tüm araçlar, kişisel ve ticari projeler için sonsuza dek ücretsizdir.',
   'faq.q2': 'Kullanıcı verileri ve dosya gizliliği nasıl korunuyor?',
   'faq.a2':
     'Tüm belge ve kod işleme süreçleri tamamen tarayıcınızın yerel kum havuzu belleğinde gerçekleşir. Dosyalar hiçbir zaman uzak sunuculara yüklenmez.',

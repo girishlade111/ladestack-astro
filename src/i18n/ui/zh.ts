@@ -43,7 +43,7 @@ export const zh: UIStrings = {
     '基于客户端本地运行的高性能开发者工具套件。无需上传数据至服务器，无付费墙限制，所有工具开箱即用、疾速响应。',
   'hero.ctaPrimary': '探索 17+ 款工具',
   'hero.ctaSecondary': '启动 Studio IDE',
-  'hero.ctaSecondaryAria': '在新标签页中启动 CodeEnhance Studio IDE',
+  'hero.ctaSecondaryAria': '在新标签页中启动 GB Coder IDE',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': '浏览器端运行',
@@ -69,7 +69,7 @@ export const zh: UIStrings = {
   'features.title': '为极致性能、隐私防护与数据主权而生',
   'features.subtitle':
     '每一款工具都在您的浏览器运行时中严密执行。无需注册繁琐账户，无云端数据追踪，实现零延迟操作体验。',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     '交互式 HTML、CSS 与现代 JavaScript 编辑器，支持实时编译、iframe 独立沙箱预览以及无障碍代码规范化。',
   'features.card1Badge': '旗舰 IDE',
@@ -126,7 +126,7 @@ export const zh: UIStrings = {
   'faq.subtitle': '关于 LadeStack 工具套件、数据隐私机制与系统架构的详细解答。',
   'faq.q1': 'LadeStack 的工具是完全免费的吗？',
   'faq.a1':
-    '是的。包括 CodeEnhance Studio、LS PDF 工具箱与 LS 图片优化器在内的所有开发工具，对个人日常使用以及商业客户项目均永久免费。',
+    '是的。包括 GB Coder、LS PDF 工具箱与 LS 图片优化器在内的所有开发工具，对个人日常使用以及商业客户项目均永久免费。',
   'faq.q2': 'LadeStack 如何保障用户文件与数据的隐私安全？',
   'faq.a2':
     '所有的文档及源代码运算均严格局限在您浏览器本地的沙箱内存之中。任何文件都不会被上传至远程服务器。',

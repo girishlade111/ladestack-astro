@@ -175,8 +175,8 @@ export const en: UIStrings = {
     'High-performance developer utilities with client-side execution. Zero server uploads, zero subscription walls, and instant performance across all tools.',
   'hero.ctaPrimary': 'Explore 17+ Tools',
   'hero.ctaSecondary': 'Launch Studio IDE',
-  'hero.ctaSecondaryAria': 'Launch CodeEnhance Studio IDE in a new tab',
-  'hero.editorFileName': 'CodeStudio.tsx',
+  'hero.ctaSecondaryAria': 'Launch GB Coder IDE in a new tab',
+  'hero.editorFileName': 'GBCoder.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'In-Browser Execution',
   'hero.editorPrivacy': 'Privacy: Localhost',
@@ -201,9 +201,9 @@ export const en: UIStrings = {
   'features.title': 'Engineered for speed, privacy, and sovereignty',
   'features.subtitle':
     'Every tool executes strictly in your browser runtime. No registration hurdles, no cloud telemetry, and zero latency.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
-    'Interactive HTML, CSS, and modern JavaScript editor with real-time compilation, live iframe preview, and accessible markup formatting.',
+    'Monaco-powered development workspace with WebContainers Node.js runtime in Chromium and Firefox, universal static prototyping, and real-time live preview.',
   'features.card1Badge': 'Flagship IDE',
   'features.card2Title': 'LS PDF Toolkit',
   'features.card2Desc':
@@ -262,7 +262,7 @@ export const en: UIStrings = {
   'faq.subtitle': 'Everything you need to know about LadeStack’s tools, privacy, and architecture.',
   'faq.q1': 'Are LadeStack utilities completely free to use?',
   'faq.a1':
-    'Yes. All developer tools, including CodeEnhance Studio, LS PDF Toolkit, and LS Image Compressor, are free forever for personal and commercial client work.',
+    'Yes. All developer tools, including GB Coder, LS PDF Toolkit, and LS Image Compressor, are free forever for personal and commercial client work.',
   'faq.q2': 'How does LadeStack protect user data and file privacy?',
   'faq.a2':
     'All document and code processing occurs strictly within your browser’s local sandbox memory. Files are never uploaded to any remote server.',
