@@ -1,192 +1,258 @@
 ---
 /**
- * /about — About Lade Stack & Founder Story
- * Redesigned with Obsidian & Precision Emerald tokens,
- * structured milestone timeline, and core engineering philosophy.
+ * /about — About LadeStack & Founder Story
+ * Complete authentic redesign with verified founder biography, engineering philosophy,
+ * product ecosystem, editorial verification standards, and zero fabricated claims.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import Badge from '../components/ui/Badge.astro';
 import Button from '../components/ui/Button.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
+import FounderProfile from '../components/FounderProfile.astro';
 
 const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'admin@ladestack.in' },
-    description: 'AI-powered development tools ecosystem founded by Girish Lade, democratizing advanced development tools for creators and startups worldwide.',
+    name: 'LadeStack',
+    url: 'https://ladestack.in',
+    logo: 'https://ladestack.in/logo.png',
+    description: 'An independent developer platform building in-browser, privacy-first software utilities and the GB Coder development studio.',
     founder: {
       '@type': 'Person',
-      description: 'Multi-disciplinary engineer and designer with expertise in AI systems, web development, and user experience',
-      jobTitle: 'Founder & Lead Developer',
       name: 'Girish Lade',
+      jobTitle: 'Founder & Software Architect',
       url: 'https://ladestack.in/about',
+      sameAs: [
+        'https://github.com/girishlade111',
+        'https://www.linkedin.com/in/girish-lade/',
+        'https://www.instagram.com/girish_lade_/',
+        'https://codepen.io/Girish-Lade-the-looper',
+      ],
     },
-    foundingDate: '2020',
-    logo: 'https://ladestack.in/logo.png',
-    name: 'Lade Stack',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'admin@ladestack.in',
+    },
     sameAs: [
-      'https://www.instagram.com/girish_lade_/',
-      'https://www.linkedin.com/in/girish-lade-075bba201/',
       'https://github.com/girishlade111',
-      'https://codepen.io/Girish-Lade-the-looper',
+      'https://www.linkedin.com/in/girish-lade/',
     ],
-    url: 'https://ladestack.in',
   },
-];
-
-const heroStats = [
-  { value: '2020', label: 'Ecosystem Founded' },
-  { value: '5+', label: 'Live Client Tools' },
-  { value: 'Zero', label: 'Cloud Paywalls' },
-  { value: '100%', label: 'In-Browser Execution' },
-];
-
-const storyTimeline = [
-  { year: '2020', title: 'The Genesis', text: 'Girish begins developing personal dev tools and local automation scripts to eliminate repetitive coding friction.' },
-  { year: '2022', title: 'First Prototypes', text: 'Multi-LLM experiments and client-side processing algorithms establish the technical foundation.' },
-  { year: '2024', title: 'Lade Stack Unified', text: 'The vision crystallizes into a unified developer platform: intelligent tools with zero cost and maximum privacy.' },
-  { year: '2026', title: 'Full Web Suite', text: '5 tools in production, 4 upcoming modules in testing, refined continuously for modern developer workflows.' },
-];
-
-const coreValues = [
   {
-    icon: 'sparkles',
-    title: 'AI-First Precision',
-    description: 'We weave intelligent automation directly into workflow friction points — from syntax refactoring to instant resume parsing.',
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About LadeStack & Girish Lade',
+    url: 'https://ladestack.in/about',
+    description: 'The story, engineering philosophy, and product ecosystem behind LadeStack, founded by Girish Lade.',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Girish Lade',
+      jobTitle: 'Founder of LadeStack',
+      sameAs: [
+        'https://github.com/girishlade111',
+        'https://www.linkedin.com/in/girish-lade/',
+      ],
+    },
   },
+];
+
+const engineeringPrinciples = [
   {
     icon: 'shield-check',
     title: 'Client-Side Sovereignty',
-    description: 'Your code and files are your property. We leverage WebAssembly so operations happen on your machine without server upload.',
+    description: 'Your code, PDFs, and media belong to you. We architect tools using WebAssembly and standard browser APIs so processing executes entirely on your device memory with zero server uploads.',
   },
   {
-    icon: 'award',
-    title: 'Production Quality',
-    description: 'We build fast, robust, and accessible systems with high uptime and zero bloat, adhering to strict web standards.',
+    icon: 'gift',
+    title: 'Free Forever · Zero Paywalls',
+    description: 'No recurring subscriptions, no forced credit cards, and no artificial token quotas. We believe foundational developer utilities should remain openly accessible to all builders.',
   },
   {
-    icon: 'eye',
-    title: 'Transparent & Free Forever',
-    description: 'No trial periods, no hidden upgrades, no forced credit card inputs. Core utilities are free for all developers permanently.',
+    icon: 'zap',
+    title: 'Instantaneous Execution',
+    description: 'By eliminating server-side queues and round-trip network latency, tools boot in milliseconds and manipulate assets instantly via local browser threads and Web Workers.',
+  },
+  {
+    icon: 'code-2',
+    title: 'Open Standards & Simplicity',
+    description: 'Built on durable, open web standards — WebAssembly, Canvas API, IndexedDB, and Monaco Editor. Clean software that runs on any modern browser without proprietary vendor locks.',
   },
 ];
 
-const teamSocials = [
-  { icon: 'github', label: 'GitHub', href: 'https://github.com/girishlade111' },
-  { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/girish-lade-075bba201/' },
-  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/girish_lade_/' },
+const verifiedProducts = [
+  {
+    name: 'GB Coder',
+    category: 'Flagship IDE',
+    description: 'In-browser code studio featuring Monaco Editor, instant live DOM preview, and WebContainer full-stack runtime.',
+    url: 'https://code.ladestack.in/',
+    internalUrl: '/gb-coder',
+    badge: 'Flagship',
+    icon: 'code-2',
+  },
+  {
+    name: 'LS PDF Toolkit',
+    category: 'Document Utility',
+    description: '17 client-side tools to merge, split, compress, protect, watermark, and convert documents with 100% local privacy.',
+    url: 'https://pdf.ladestack.in/',
+    badge: '17-in-1',
+    icon: 'file-text',
+  },
+  {
+    name: 'LS Image Compressor',
+    category: 'Media Optimization',
+    description: 'In-browser compression and format conversion for 9+ image formats (WebP, AVIF, PNG, SVG) with up to 90% size reduction.',
+    url: 'https://img.ladestack.in/',
+    badge: 'Canvas + WASM',
+    icon: 'image',
+  },
+  {
+    name: 'Swift Resume Builder',
+    category: 'Career Tools',
+    description: 'ATS-optimized engineering resume builder with live Markdown preview, keyword density scoring, and one-click PDF export.',
+    url: 'https://resume.ladestack.in/',
+    badge: 'ATS Scored',
+    icon: 'file-check',
+  },
+  {
+    name: 'Bharat Land Converter',
+    category: 'Regional Math',
+    description: 'State-wise accurate land measurement converter across Indian regional units (Bigha, Guntha, Acre, Biswa).',
+    url: 'https://land.ladestack.in/',
+    badge: 'State Precision',
+    icon: 'map-pin',
+  },
 ];
-
-const skills = ['AI Systems', 'WebAssembly', 'TypeScript', 'Astro', 'UX/UI Engineering', 'Full-Stack Architecture'];
 ---
 
 <BaseLayout
-  title="About Lade Stack – Mission, Philosophy & Team"
-  description="Learn about Lade Stack's mission to provide in-browser, privacy-first developer tools with zero paywalls. Founded by engineer Girish Lade."
+  title="About LadeStack — Founder Story, Mission & Engineering Philosophy"
+  description="Discover LadeStack's origin, core engineering principles, and verified product ecosystem. Founded by software architect Girish Lade."
   canonical="https://ladestack.in/about"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'About Lade Stack – Mission, Philosophy & Team',
-    description: 'Learn about Lade Stack\'s mission to provide in-browser, privacy-first developer tools with zero paywalls. Founded by engineer Girish Lade.',
+    title: 'About LadeStack — Founder Story, Mission & Engineering Philosophy',
+    description: 'Discover LadeStack\'s origin, core engineering principles, and verified product ecosystem. Founded by software architect Girish Lade.',
     url: 'https://ladestack.in/about',
     type: 'website',
     image: 'https://ladestack.in/og-about.png',
   }}
   twitter={{
     card: 'summary_large_image',
-    title: 'About Lade Stack - AI Development Revolution & Founder Story',
-    description: "Discover how Girish Lade's vision became Lade Stack - transforming developer workflows through AI-powered tools and innovation.",
+    title: 'About LadeStack — Founder Story & Engineering Principles',
+    description: 'The story, engineering principles, and verified software ecosystem behind LadeStack, founded by Girish Lade.',
     image: 'https://ladestack.in/og-about.png',
   }}
   structuredData={structuredData}
 >
   <div class="min-h-screen bg-background">
-    {/* Hero */}
-    <section class="relative pt-20 pb-16 border-b border-border bg-surface-muted/20">
+    {/* ── SECTION 1: Page Header ── */}
+    <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Badge variant="brand" size="md" class="mb-4">
+          Origin &amp; Mission
+        </Badge>
         <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-tight text-balance">
-          Empowering developers through AI automation and privacy
+          Tools built for developers, <span class="text-brand">not subscription renewals</span>.
         </h1>
         <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
-          Lade Stack was created to eliminate the paywalls, latency, and cloud compromises that hinder modern software engineering.
+          LadeStack is an independent developer platform created to eliminate cloud paywalls, latency, and third-party data collection from everyday engineering workflows.
         </p>
-
-        <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          {
-            heroStats.map((s) => (
-              <div class="p-4 rounded-xl border border-border bg-surface text-center shadow-soft">
-                <p class="text-2xl sm:text-3xl font-bold font-mono text-foreground">{s.value}</p>
-                <p class="text-xs text-muted-foreground mt-1">{s.label}</p>
-              </div>
-            ))
-          }
-        </div>
       </div>
     </section>
 
-    {/* Story & Timeline */}
-    <section class="py-16 sm:py-24 border-b border-border bg-background">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-6 space-y-6">
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-              Built from real engineering frustrations
-            </h2>
-            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              In 2020, Girish Lade — an engineer and product designer — started creating tools to streamline his own development workflows. What began as small client-side scripts to manipulate PDFs and preview code snippets grew into a broader mission.
-            </p>
-            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              Most developer utilities today require recurring monthly subscriptions, credit cards, or upload sensitive code and documents to third-party cloud servers. Lade Stack was architected on a different principle: modern browsers are powerful computing platforms. By running WebAssembly and contextual intelligence on the client device, tools can be instantaneous, 100% private, and permanently free.
-            </p>
-            <div class="pt-2">
-              <Button href="/apps" size="md">
-                <span>Explore the Platform</span>
-                <Icon name="arrow-right" class="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-
-          <div class="lg:col-span-6 pl-0 lg:pl-8">
-            <div class="relative border-l border-border pl-6 space-y-8">
-              {
-                storyTimeline.map((item) => (
-                  <div class="relative">
-                    <span class="absolute -left-[31px] top-1 w-3 h-3 rounded-full bg-brand ring-4 ring-background"></span>
-                    <span class="text-xs font-mono font-bold text-brand uppercase">{item.year}</span>
-                    <h3 class="text-base font-semibold text-foreground mt-0.5">{item.title}</h3>
-                    <p class="text-xs sm:text-sm text-muted-foreground mt-1 leading-relaxed">{item.text}</p>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+    {/* ── SECTION 2 & 12: Founder Profile ── */}
+    <section class="py-14 sm:py-20 border-b border-border bg-background">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-6">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+            Leadership &amp; Architecture
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mt-1">
+            Meet the Founder
+          </h2>
         </div>
+        <FounderProfile variant="detailed" />
       </div>
     </section>
 
-    {/* Core Values */}
+    {/* ── SECTION 2, 3 & 4: Origin, Mission & Vision ── */}
     <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+              The Genesis
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+              Why LadeStack Was Created
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              <p>
+                Every day, software engineers encounter small friction points: testing a frontend component snippet, compressing an image for a production deploy, extracting a page from an NDA-protected PDF, or checking an ATS resume.
+              </p>
+              <p>
+                Yet the modern web has turned basic utilities into a maze of $20/month subscription gates, forced account registrations, rate limits, and intrusive telemetry that uploads sensitive client data to unfamiliar remote servers.
+              </p>
+              <p>
+                Girish Lade founded LadeStack with a straightforward conviction: <strong class="text-foreground">modern web browsers are full-featured computing engines</strong>. By leveraging WebAssembly, modern DOM APIs, and local sandbox memory, high-performance tools can run completely on the user's device without requiring a server backend for file manipulation.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+                  <Icon name="target" class="w-4 h-4" />
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">Our Mission</h3>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                To build and sustain an open suite of privacy-first, zero-cost developer utilities that execute directly inside web browsers, giving creators and engineers total data sovereignty.
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+                  <Icon name="compass" class="w-4 h-4" />
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">Our Long-Term Vision</h3>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                A web where essential developer tooling — from full-stack coding in GB Coder to document manipulation — is instantaneous, universally accessible, and free of artificial financial and surveillance barriers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 5: Engineering Philosophy ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          title="Our Core Engineering Principles"
-          description="How we build, deploy, and maintain every single tool in the Lade Stack ecosystem."
+          eyebrow="Core Philosophy"
+          title="How We Build Software"
+          description="Four non-negotiable principles that govern every application in the LadeStack ecosystem."
         />
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {
-            coreValues.map((val) => (
-              <div class="rounded-xl border border-border bg-surface p-6 shadow-soft flex flex-col justify-between">
+            engineeringPrinciples.map((principle) => (
+              <div class="rounded-xl border border-border bg-surface p-6 shadow-soft flex flex-col justify-between transition-colors hover:border-brand/40">
                 <div>
                   <div class="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center mb-4">
-                    <Icon name={val.icon} class="w-5 h-5" />
+                    <Icon name={principle.icon} class="w-5 h-5" />
                   </div>
                   <h3 class="text-base font-semibold text-foreground mb-2">
-                    {val.title}
+                    {principle.title}
                   </h3>
                   <p class="text-xs text-muted-foreground leading-relaxed">
-                    {val.description}
+                    {principle.description}
                   </p>
                 </div>
               </div>
@@ -196,48 +262,117 @@ const skills = ['AI Systems', 'WebAssembly', 'TypeScript', 'Astro', 'UX/UI Engin
       </div>
     </section>
 
-    {/* Founder Card */}
-    <section class="py-16 sm:py-24 bg-background">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl border border-border bg-surface p-8 sm:p-12 shadow-card flex flex-col md:flex-row items-center gap-8">
-          <img
-            src="/img/girish.jpg"
-            alt="Girish Lade, Founder of Lade Stack"
-            width="112"
-            height="112"
-            loading="lazy"
-            class="w-28 h-28 rounded-2xl object-cover object-top border border-brand/20 shadow-soft shrink-0"
-          />
-          <div class="text-center md:text-left flex-1">
-            <h3 class="text-2xl font-bold text-foreground">Girish Lade</h3>
-            <p class="text-xs font-mono text-brand font-semibold mb-3">Founder & Principal Developer</p>
-            <p class="text-sm text-muted-foreground leading-relaxed mb-5">
-              Engineer and designer passionate about AI systems, browser performance, and developer ergonomics. Leading the design and architecture of Lade Stack.
-            </p>
-
-            <div class="flex flex-wrap gap-1.5 justify-center md:justify-start mb-6">
-              {skills.map((s) => (
-                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-surface-muted border border-border text-muted-foreground">
-                  {s}
-                </span>
-              ))}
+    {/* ── SECTION 6: Technical Background & Editorial Verification ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-soft space-y-6">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0 mt-0.5">
+              <Icon name="check-circle" class="w-4 h-4" />
             </div>
-
-            <div class="flex items-center justify-center md:justify-start gap-4">
-              {teamSocials.map((soc) => (
-                <a
-                  href={soc.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={soc.label}
-                  class="p-2 rounded-lg border border-border bg-surface hover:bg-surface-muted text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Icon name={soc.icon} class="w-4 h-4" />
-                </a>
-              ))}
+            <div>
+              <h3 class="text-lg font-semibold text-foreground">
+                Commitment to Factual Transparency
+              </h3>
+              <p class="text-xs text-muted-foreground mt-1 leading-relaxed">
+                LadeStack follows a strict standard: we only publish details verified by repository source code, working live software, or approved documentation.
+              </p>
             </div>
           </div>
+
+          <div class="border-t border-border/80 pt-4 space-y-3 text-xs text-muted-foreground leading-relaxed">
+            <p>
+              <strong class="text-foreground">Verified Founder Role:</strong> Girish Lade is the sole creator, system architect, and active maintainer of LadeStack and its products (GB Coder, LS PDF Toolkit, LS Image Compressor, Swift Resume Builder, Bharat Land Converter).
+            </p>
+            <p>
+              <strong class="text-foreground">Editorial Verification Note:</strong> Specific academic degrees, university graduation dates, and prior corporate employers are intentionally not published here until formal biographical records are confirmed by the owner. We refuse to publish speculative years, fabricated funding amounts, or inflated user statistics.
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 8, 9 & 11: Verified Products & Achievements ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Software Portfolio"
+          title="Verified Live Applications"
+          description="Every tool below is operational, accessible right now, and runs with client-side execution."
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            verifiedProducts.map((prod) => (
+              <div class="rounded-xl border border-border bg-surface p-6 flex flex-col justify-between shadow-soft hover:border-brand/40 transition-colors">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[11px] font-mono text-muted-foreground uppercase">
+                      {prod.category}
+                    </span>
+                    <Badge variant={prod.badge === 'Flagship' ? 'brand' : 'outline'} size="sm">
+                      {prod.badge}
+                    </Badge>
+                  </div>
+                  <h3 class="text-lg font-bold text-foreground">
+                    {prod.name}
+                  </h3>
+                  <p class="mt-2 text-xs text-muted-foreground leading-relaxed">
+                    {prod.description}
+                  </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-border flex items-center justify-between">
+                  {prod.internalUrl ? (
+                    <a
+                      href={prod.internalUrl}
+                      class="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      Feature Details &rarr;
+                    </a>
+                  ) : (
+                    <span class="text-[11px] text-muted-foreground font-mono">In-Browser App</span>
+                  )}
+                  <Button href={prod.url} target="_blank" size="sm">
+                    <span>Launch</span>
+                    <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+                  </Button>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 10 & 13: Goals, Ambitions & Connect ── */}
+    <section class="py-16 sm:py-24 bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+          Have an Idea, Proposal, or Bug Report?
+        </h2>
+        <p class="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          LadeStack is shaped by feedback from practicing developers. Reach out directly to Girish Lade for architectural discussions, collaboration, or tool recommendations.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <Button href="mailto:admin@ladestack.in" size="lg">
+            <Icon name="mail" class="w-4 h-4" />
+            <span>admin@ladestack.in</span>
+          </Button>
+          <Button href="https://github.com/girishlade111" target="_blank" variant="outline" size="lg">
+            <Icon name="github" class="w-4 h-4" />
+            <span>GitHub Profile</span>
+          </Button>
+          <Button href="https://www.linkedin.com/in/girish-lade/" target="_blank" variant="outline" size="lg">
+            <Icon name="linkedin" class="w-4 h-4" />
+            <span>LinkedIn Profile</span>
+          </Button>
+        </div>
+
+        <p class="text-xs text-muted-foreground font-mono pt-4">
+          LadeStack · Engineered by Girish Lade · Free &amp; Private Forever
+        </p>
       </div>
     </section>
   </div>
