@@ -1,0 +1,138 @@
+---
+/**
+ * /[locale]/index.astro — Localized Homepage Route
+ * Statically renders localized homepages for all 8 non-default languages:
+ * ja, ko, zh, ru, tr, fr, pt, es.
+ *
+ * Adheres strictly to:
+ * - Unprefixed English default (/ remains canonical for en)
+ * - Self-referencing canonical (https://ladestack.in/{locale})
+ * - Reciprocal hreflang tags across all 9 variants + x-default
+ * - Genuine, culturally natural translations with product names preserved
+ */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import FeaturesBento from '../../components/sections/FeaturesBento.astro';
+import HowItWorks from '../../components/sections/HowItWorks.astro';
+import UseCases from '../../components/sections/UseCases.astro';
+import ProductShowcase from '../../components/sections/ProductShowcase.astro';
+import DeveloperFaq, { getFaqs } from '../../components/sections/DeveloperFaq.astro';
+import CtaBanner from '../../components/sections/CtaBanner.astro';
+import { LOCALES, DEFAULT_LOCALE, LOCALE_CONFIG, type Locale } from '../../i18n/config';
+import { getHreflangLinks, useTranslations } from '../../i18n/utils';
+
+export const getStaticPaths = (() => {
+  // Generate pages only for non-default locales; English lives at root /
+  const targetLocales = LOCALES.filter((l) => l !== DEFAULT_LOCALE);
+  return targetLocales.map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const hreflangs = getHreflangLinks('/', LOCALES);
+const canonicalUrl = `https://ladestack.in/${locale}`;
+const localizedFaqs = getFaqs(locale);
+const config = LOCALE_CONFIG[locale];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Lade Stack',
+    url: canonicalUrl,
+    logo: 'https://ladestack.in/logo.png',
+    description: t('seo.homeDescription'),
+    founder: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      availableLanguage: [config.englishName, 'English'],
+      contactType: 'customer support',
+      email: 'admin@ladestack.in',
+    },
+    sameAs: [
+      'https://github.com/girishlade111',
+      'https://www.linkedin.com/in/girish-lade-075bba201/',
+      'https://www.instagram.com/girish_lade_/',
+      'https://codepen.io/Girish-Lade-the-looper',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Lade Stack',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Web Browser',
+    url: canonicalUrl,
+    inLanguage: locale,
+    description: t('seo.ogDescription'),
+    author: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Lade Stack',
+    url: canonicalUrl,
+    inLanguage: locale,
+    description: t('seo.homeDescription'),
+    publisher: { '@type': 'Organization', name: 'Lade Stack' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: locale,
+    mainEntity: localizedFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={t('seo.homeTitle')}
+  description={t('seo.homeDescription')}
+  canonical={canonicalUrl}
+  hreflangs={hreflangs}
+  locale={locale}
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: t('seo.ogTitle'),
+    description: t('seo.ogDescription'),
+    url: canonicalUrl,
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: t('seo.ogTitle'),
+    description: t('seo.ogDescription'),
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <HeroSection locale={locale} />
+  <FeaturesBento locale={locale} />
+  <HowItWorks locale={locale} />
+  <UseCases locale={locale} />
+  <ProductShowcase locale={locale} />
+  <DeveloperFaq locale={locale} />
+  <CtaBanner locale={locale} />
+</BaseLayout>
