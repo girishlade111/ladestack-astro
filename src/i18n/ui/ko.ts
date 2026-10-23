@@ -43,7 +43,7 @@ export const ko: UIStrings = {
     '클라이언트 사이드에서 즉시 실행되는 고성능 개발자 유틸리티. 서버 업로드 없음, 유료 구독 없음, 모든 도구를 즉시 이용 가능합니다.',
   'hero.ctaPrimary': '17개 이상의 도구 탐색',
   'hero.ctaSecondary': 'Studio IDE 실행',
-  'hero.ctaSecondaryAria': '새 탭에서 CodeEnhance Studio IDE 실행',
+  'hero.ctaSecondaryAria': '새 탭에서 GB Coder IDE 실행',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': '브라우저 내 실행',
@@ -69,7 +69,7 @@ export const ko: UIStrings = {
   'features.title': '속도, 프라이버시, 데이터 주권을 위한 설계',
   'features.subtitle':
     '모든 도구는 사용자의 브라우저 런타임 내에서 엄격하게 실행됩니다. 회원가입 절차 없음, 클라우드 원격 측정 없음, 지연 시간 제로.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     '실시간 컴파일, iframe 라이브 프리뷰, 웹 접근성 마크업 자동 정렬을 지원하는 인터랙티브 HTML/CSS/JS 에디터.',
   'features.card1Badge': '플래그십 IDE',
@@ -126,7 +126,7 @@ export const ko: UIStrings = {
   'faq.subtitle': 'LadeStack의 도구, 프라이버시 정책, 아키텍처에 관한 주요 안내.',
   'faq.q1': 'LadeStack 유틸리티는 완전히 무료인가요?',
   'faq.a1':
-    '네. CodeEnhance Studio, LS PDF 툴킷, LS 이미지 최적화 도구를 포함한 모든 개발자 도구는 개인 및 상업적 프로젝트 모두 영구히 무료입니다.',
+    '네. GB Coder, LS PDF 툴킷, LS 이미지 최적화 도구를 포함한 모든 개발자 도구는 개인 및 상업적 프로젝트 모두 영구히 무료입니다.',
   'faq.q2': '사용자 데이터와 파일 보안은 어떻게 보장되나요?',
   'faq.a2':
     '모든 문서와 코드 처리는 브라우저 내부의 로컬 샌드박스 메모리 내에서만 이루어집니다. 파일이 원격 서버로 업로드되지 않습니다.',

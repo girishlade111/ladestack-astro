@@ -43,7 +43,7 @@ export const pt: UIStrings = {
     'Utilitários de desenvolvimento de alta performance executados no lado do cliente. Sem upload para servidores, sem assinaturas pagas e com velocidade instantânea.',
   'hero.ctaPrimary': 'Explorar 17+ Ferramentas',
   'hero.ctaSecondary': 'Abrir Studio IDE',
-  'hero.ctaSecondaryAria': 'Abrir CodeEnhance Studio IDE em uma nova aba',
+  'hero.ctaSecondaryAria': 'Abrir GB Coder IDE em uma nova aba',
   'hero.editorFileName': 'CodeStudio.tsx',
   'hero.editorTabName': 'PreviewSandbox.html',
   'hero.editorStatus': 'Execução no Navegador',
@@ -69,7 +69,7 @@ export const pt: UIStrings = {
   'features.title': 'Projetado para velocidade, privacidade e autonomia',
   'features.subtitle':
     'Cada utilitário é executado estritamente no runtime do seu navegador. Sem barreiras de registro, sem telemetria em nuvem e com latência zero.',
-  'features.card1Title': 'CodeEnhance Studio',
+  'features.card1Title': 'GB Coder',
   'features.card1Desc':
     'Editor interativo de HTML, CSS e JavaScript moderno com compilação em tempo real, visualização em iframe e formatação de marcação acessível.',
   'features.card1Badge': 'IDE Principal',
@@ -126,7 +126,7 @@ export const pt: UIStrings = {
   'faq.subtitle': 'Tudo o que você precisa saber sobre as ferramentas, privacidade e arquitetura do LadeStack.',
   'faq.q1': 'Os utilitários do LadeStack são totalmente gratuitos?',
   'faq.a1':
-    'Sim. Todas as ferramentas, incluindo o CodeEnhance Studio, o Kit de Ferramentas PDF e o Otimizador de Imagens, são gratuitas para sempre, tanto para uso pessoal quanto comercial.',
+    'Sim. Todas as ferramentas, incluindo o GB Coder, o Kit de Ferramentas PDF e o Otimizador de Imagens, são gratuitas para sempre, tanto para uso pessoal quanto comercial.',
   'faq.q2': 'Como o LadeStack garante a privacidade dos meus arquivos?',
   'faq.a2':
     'Todo o processamento de código e documentos acontece estritamente na memória da sandbox local do seu navegador. Nenhum arquivo é transferido para servidores remotos.',
