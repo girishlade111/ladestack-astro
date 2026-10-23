@@ -141,12 +141,26 @@ const faqs = [
                 <textarea id="message" name="message" rows="5" required placeholder="Describe your question, issue, or project inquiry..." class="w-full text-xs sm:text-sm p-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"></textarea>
               </div>
 
-              <div role="status" aria-live="polite" data-contact-status class="text-xs text-brand font-medium hidden"></div>
+              <div role="status" aria-live="polite" data-contact-status class="p-3 rounded-lg border border-brand/30 bg-brand/5 text-xs text-foreground font-medium hidden"></div>
 
-              <Button type="submit" size="md" class="w-full justify-center">
-                <span>Compose in Email Client</span>
-                <Icon name="mail" class="w-4 h-4" />
-              </Button>
+              <div class="space-y-2 pt-2">
+                <Button type="submit" size="md" class="w-full justify-center">
+                  <span>Open Local Email Client</span>
+                  <Icon name="mail" class="w-4 h-4" />
+                </Button>
+                <button
+                  type="button"
+                  data-copy-email
+                  class="w-full py-2 px-3 rounded-lg border border-border bg-surface-muted/50 hover:bg-surface text-xs font-mono text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center gap-2"
+                >
+                  <Icon name="clipboard" class="w-3.5 h-3.5" />
+                  <span>Copy Address: admin@ladestack.in</span>
+                </button>
+              </div>
+
+              <p class="text-[11px] text-muted-foreground leading-relaxed pt-1">
+                Note: This form pre-fills a draft in your system's default email client. You must click &quot;Send&quot; in your email application to complete delivery. If you use webmail, copy the address above.
+              </p>
             </form>
           </div>
 
