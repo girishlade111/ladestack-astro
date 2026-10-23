@@ -36,7 +36,17 @@ export default defineConfig({
   // URLs match the manifest canonicals exactly (https://ladestack.in/about).
   trailingSlash: 'never',
 
-  redirects: {},
+  redirects: {
+    '/projects': '/apps',
+    '/file-sharing-platform': '/apps',
+    '/api-testing-platform': '/apps',
+    '/blog/1': '/blog/future-of-ai-in-software-development',
+    '/blog/2': '/blog/building-ai-powered-code-review-systems',
+    '/blog/3': '/blog/machine-learning-pipelines-for-web-developers',
+    '/blog/4': '/blog/generative-ai-for-content-creation',
+    '/blog/5': '/blog/building-rag-applications-vector-databases',
+    '/blog/6': '/blog/fine-tuning-llms-domain-specific-tasks',
+  },
 
   integrations: [
     sitemap({

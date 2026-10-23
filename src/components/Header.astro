@@ -5,7 +5,6 @@
  * search trigger (Cmd+K), theme toggle, and accessible mobile sheet.
  */
 import Icon from './Icon.astro';
-import LanguageSwitcher from './ui/LanguageSwitcher.astro';
 import Button from './ui/Button.astro';
 
 export interface Props {
@@ -63,11 +62,11 @@ const navLinks = [
       <button
         type="button"
         data-search-open
-        aria-label="Search site (Press Command K)"
+        aria-label="Quick Jump Navigation (Press Command K)"
         class="hidden sm:inline-flex items-center gap-2 h-9 px-3 text-xs text-muted-foreground bg-surface-muted/60 border border-border rounded-lg hover:bg-surface-muted hover:text-foreground transition-colors"
       >
         <Icon name="search" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">Search...</span>
+        <span class="hidden lg:inline">Quick Jump...</span>
         <kbd class="hidden lg:inline-flex items-center gap-0.5 ml-2 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground bg-surface rounded border border-border">
           ⌘K
         </kbd>
@@ -77,13 +76,10 @@ const navLinks = [
         type="button"
         data-search-open
         class="sm:hidden p-2 text-muted-foreground hover:text-foreground rounded-lg"
-        aria-label="Search"
+        aria-label="Quick Jump Navigation"
       >
         <Icon name="search" class="w-4 h-4" />
       </button>
-
-      {/* Language Switcher */}
-      <LanguageSwitcher currentLang={currentLang} />
 
       {/* Theme Toggle */}
       <button
@@ -196,7 +192,7 @@ const navLinks = [
           <Icon name="code-2" class="w-4 h-4 text-brand" />
           <span>AI Code Studio</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/code</span>
+        <span class="text-xs text-muted-foreground font-mono">/ai-code-viewer-ai</span>
       </a>
       <a href="/blog" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
@@ -225,31 +221,81 @@ const navLinks = [
 
 <script is:inline>
   (function () {
+    var lastFocusedTrigger = null;
+
+    function trapFocus(container, e) {
+      if (e.key !== 'Tab') return;
+      var focusables = container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
     // Mobile sheet
     var sheet = document.querySelector('[data-mobile-sheet]');
     var menuOpenBtn = document.querySelector('[data-menu-open]');
-    if (menuOpenBtn && sheet) {
-      menuOpenBtn.addEventListener('click', function () {
-        sheet.classList.remove('hidden');
-        menuOpenBtn.setAttribute('aria-expanded', 'true');
-      });
-    }
-    var closeSheet = function () {
+    var openSheet = function () {
       if (sheet) {
-        sheet.classList.add('hidden');
-        if (menuOpenBtn) menuOpenBtn.setAttribute('aria-expanded', 'false');
+        lastFocusedTrigger = document.activeElement;
+        sheet.classList.remove('hidden');
+        if (menuOpenBtn) menuOpenBtn.setAttribute('aria-expanded', 'true');
+        var closeBtn = sheet.querySelector('[data-menu-close]');
+        if (closeBtn) closeBtn.focus();
       }
     };
+    var closeSheet = function () {
+      if (sheet && !sheet.classList.contains('hidden')) {
+        sheet.classList.add('hidden');
+        if (menuOpenBtn) menuOpenBtn.setAttribute('aria-expanded', 'false');
+        if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+          lastFocusedTrigger.focus();
+        }
+      }
+    };
+
+    if (menuOpenBtn) menuOpenBtn.addEventListener('click', openSheet);
     document.querySelectorAll('[data-menu-close]').forEach(function (b) {
       b.addEventListener('click', closeSheet);
     });
     var backdrop = sheet && sheet.querySelector('[data-sheet-backdrop]');
     if (backdrop) backdrop.addEventListener('click', closeSheet);
 
+    if (sheet) {
+      sheet.addEventListener('keydown', function (e) {
+        trapFocus(sheet, e);
+      });
+    }
+
     // Search overlay (+ Cmd/Ctrl+K)
     var overlay = document.querySelector('[data-search-overlay]');
-    var openSearch = function () { overlay && overlay.classList.remove('hidden'); };
-    var closeSearch = function () { overlay && overlay.classList.add('hidden'); };
+    var openSearch = function () {
+      if (overlay) {
+        lastFocusedTrigger = document.activeElement;
+        overlay.classList.remove('hidden');
+        var firstLink = overlay.querySelector('a, button');
+        if (firstLink) firstLink.focus();
+      }
+    };
+    var closeSearch = function () {
+      if (overlay && !overlay.classList.contains('hidden')) {
+        overlay.classList.add('hidden');
+        if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+          lastFocusedTrigger.focus();
+        }
+      }
+    };
+
     document.querySelectorAll('[data-search-open]').forEach(function (b) {
       b.addEventListener('click', openSearch);
     });
@@ -258,6 +304,12 @@ const navLinks = [
     });
     var sBackdrop = overlay && overlay.querySelector('[data-search-backdrop]');
     if (sBackdrop) sBackdrop.addEventListener('click', closeSearch);
+
+    if (overlay) {
+      overlay.addEventListener('keydown', function (e) {
+        trapFocus(overlay, e);
+      });
+    }
 
     document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
