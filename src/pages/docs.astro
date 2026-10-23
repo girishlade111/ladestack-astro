@@ -63,7 +63,7 @@ const docsArticles = [
     id: 'client-side-privacy', title: 'Understanding Client-Side Privacy Architecture', category: 'Security', readTime: '4 min read',
     intro: 'How Lade Stack eliminates data leakage risks through client-side WebAssembly.',
     steps: ['Browser memory sandbox allocation.', 'Local WebWorker payload processing.', 'Zero network transmission verification.', 'Clean garbage collection upon tab close.'],
-    summary: 'By keeping all data in client memory, compliance with GDPR, HIPAA, and strict internal NDAs is maintained effortlessly.',
+    summary: 'Processing data locally in browser memory helps support internal data confidentiality policies by keeping payload bytes on the client machine.',
   },
   {
     id: 'optimizing-assets', title: 'Best Practices for Web Asset Compression', category: 'Performance', readTime: '6 min read',
@@ -74,7 +74,7 @@ const docsArticles = [
 ];
 
 const changelog = [
-  { version: 'v1.0.0', date: 'October 2026', type: 'Major Release', description: 'Complete Obsidian & Precision Emerald redesign with enhanced accessibility, dark mode fidelity, and zero-JS core.' },
+  { version: 'v1.0.0', date: 'October 2026', type: 'Major Release', description: 'Complete Obsidian & Precision Emerald redesign with enhanced accessibility, dark mode fidelity, and zero external JS dependencies.' },
   { version: 'v0.9.4', date: 'August 2026', type: 'Improvement', description: 'Added 4 new client-side tools to the LS PDF suite.' },
   { version: 'v0.9.0', date: 'June 2026', type: 'Feature', description: 'Initial public launch of Code Studio real-time in-browser compilation engine.' },
 ];
@@ -117,6 +117,7 @@ const changelog = [
             type="text"
             data-docs-search
             placeholder="Search documentation, tools, guides…"
+            aria-label="Search documentation, tools, guides"
             class="w-full h-10 pl-10 pr-4 rounded-lg border border-border bg-surface text-xs sm:text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand transition"
           />
         </div>
@@ -242,7 +243,7 @@ const changelog = [
             </div>
           </div>
           <form method="dialog">
-            <button class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
+            <button type="button" class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
               <Icon name="x" class="w-4 h-4" />
             </button>
           </form>
@@ -281,7 +282,7 @@ const changelog = [
             <h3 class="text-lg font-bold mt-2">{art.title}</h3>
           </div>
           <form method="dialog">
-            <button class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
+            <button type="button" class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
               <Icon name="x" class="w-4 h-4" />
             </button>
           </form>
@@ -316,6 +317,21 @@ const changelog = [
 
   <script is:inline>
     (function () {
+      var searchInput = document.querySelector('[data-docs-search]');
+      if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+          var q = (e.target.value || '').toLowerCase().trim();
+          document.querySelectorAll('[data-docs-cat]').forEach(function (card) {
+            var text = (card.getAttribute('data-search-text') || '').toLowerCase();
+            if (!q || text.indexOf(q) !== -1) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      }
+
       document.querySelectorAll('[data-docs-cat]').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var d = document.querySelector('[data-docs-dialog="' + btn.getAttribute('data-docs-cat') + '"]');

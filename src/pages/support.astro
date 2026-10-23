@@ -17,13 +17,21 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     description: 'Support center and FAQ for Lade Stack platform.',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
     name: 'Lade Stack Support',
     url: 'https://ladestack.in/support',
   },
 ];
 
 const supportOptions = [
-  { icon: 'mail', title: 'Email Assistance', description: 'Direct contact with our engineering and support leads for all inquiries.', responseTime: 'Within 24 hours', action: 'admin@ladestack.in', href: 'mailto:admin@ladestack.in' },
+  { icon: 'mail', title: 'Email Assistance', description: 'Direct contact with our engineering and support leads for all inquiries.', responseTime: 'Direct email', action: 'admin@ladestack.in', href: 'mailto:admin@ladestack.in' },
   { icon: 'book-open', title: 'Knowledge Base', description: 'Comprehensive documentation, API specs, and client-side setup guides.', responseTime: 'Self-service', action: 'Browse Documentation', href: '/docs' },
   { icon: 'message-square', title: 'GitHub Discussions', description: 'Open community discussions, feature proposals, and bug tracker.', responseTime: 'Community driven', action: 'Join on GitHub', href: 'https://github.com/girishlade111' },
 ];
@@ -38,12 +46,12 @@ const faqs = [
 
 <BaseLayout
   title="Support Center – Help & FAQ | Lade Stack"
-  description="Get help with Lade Stack's platform. Troubleshoot issues, browse FAQs, or contact our support team. We respond within 24 hours."
+  description="Get help with Lade Stack developer tools. Browse common questions, review documentation, or contact us directly."
   canonical="https://ladestack.in/support"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
     title: 'Lade Stack Support Center',
-    description: "Get help with Lade Stack's AI developer tools. FAQs, troubleshooting, and 24-hour support.",
+    description: "Get help with Lade Stack developer tools. FAQs, troubleshooting, and direct support.",
     url: 'https://ladestack.in/support',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
@@ -51,7 +59,7 @@ const faqs = [
   twitter={{
     card: 'summary_large_image',
     title: 'Lade Stack Support Center',
-    description: "Get help with Lade Stack's AI developer tools. FAQs, troubleshooting, and 24-hour support.",
+    description: "Get help with Lade Stack developer tools. FAQs, troubleshooting, and direct support.",
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}
@@ -72,6 +80,7 @@ const faqs = [
     {/* Options */}
     <section class="py-14 sm:py-20 border-b border-border bg-background">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Support Channels</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {
             supportOptions.map((opt) => (
