@@ -72,7 +72,7 @@ const trustPills = [
                 CodeStudio.tsx
               </span>
               <span class="text-border">/</span>
-              <span>OptimizerEngine.wasm</span>
+              <span>PreviewSandbox.html</span>
             </div>
           </div>
 
@@ -94,11 +94,11 @@ const trustPills = [
             <div class="space-y-1 text-muted-foreground">
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">1</span>
-                <span><span class="text-brand font-semibold">import</span> &#123; createAIReviewer &#125; <span class="text-brand font-semibold">from</span> <span class="text-foreground/80">'@ladestack/engine'</span>;</span>
+                <span><span class="text-brand font-semibold">import</span> &#123; createPreviewSandbox &#125; <span class="text-brand font-semibold">from</span> <span class="text-foreground/80">'./studio/sandbox'</span>;</span>
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">2</span>
-                <span><span class="text-brand font-semibold">import</span> &#123; WASMCompressor &#125; <span class="text-brand font-semibold">from</span> <span class="text-foreground/80">'@ladestack/wasm-pdf'</span>;</span>
+                <span><span class="text-brand font-semibold">import type</span> &#123; EditorConfig &#125; <span class="text-brand font-semibold">from</span> <span class="text-foreground/80">'./types'</span>;</span>
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">3</span>
@@ -106,19 +106,19 @@ const trustPills = [
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">4</span>
-                <span><span class="text-muted-foreground/60">// Client execution: in-browser WASM compilation</span></span>
+                <span><span class="text-muted-foreground/60">// Client-side execution: direct in-browser rendering</span></span>
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">5</span>
-                <span><span class="text-brand font-semibold">export async function</span> <span class="text-foreground font-semibold">optimizePipeline</span>(payload: <span class="text-foreground/80">DevPayload</span>) &#123;</span>
+                <span><span class="text-brand font-semibold">export function</span> <span class="text-foreground font-semibold">renderProjectPreview</span>(config: <span class="text-foreground/80">EditorConfig</span>) &#123;</span>
               </div>
               <div class="flex gap-4 bg-brand/5 -mx-4 px-4 py-0.5 rounded">
                 <span class="text-brand select-none w-4 text-right">6</span>
-                <span>&nbsp;&nbsp;<span class="text-brand font-semibold">const</span> engine = <span class="text-brand font-semibold">await</span> createAIReviewer(&#123; privacy: <span class="text-foreground/90">'strict-local'</span> &#125;);</span>
+                <span>&nbsp;&nbsp;<span class="text-brand font-semibold">const</span> sandbox = createPreviewSandbox(&#123; target: <span class="text-foreground/90">'#preview'</span> &#125;);</span>
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">7</span>
-                <span>&nbsp;&nbsp;<span class="text-brand font-semibold">return</span> engine.analyze(payload.ast, &#123; autoFix: <span class="text-brand">true</span> &#125;);</span>
+                <span>&nbsp;&nbsp;<span class="text-brand font-semibold">return</span> sandbox.render(config.html, config.css, config.js);</span>
               </div>
               <div class="flex gap-4">
                 <span class="text-border select-none w-4 text-right">8</span>
@@ -130,7 +130,7 @@ const trustPills = [
             <div class="mt-6 p-3 rounded-lg border border-brand/30 bg-brand/5 flex items-center justify-between gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <Icon name="check-circle-2" class="w-4 h-4 text-brand" />
-                <span class="text-foreground font-medium">AST syntax analysis: verified in local browser thread</span>
+                <span class="text-foreground font-medium">Syntax validation &amp; sandbox preview: local browser thread</span>
               </div>
               <span class="font-mono text-[10px] text-brand uppercase tracking-wider">Ready to ship</span>
             </div>
@@ -152,7 +152,7 @@ const trustPills = [
                     </div>
                     <div>
                       <p class="text-xs font-semibold text-foreground">Execution Model</p>
-                      <p class="text-[11px] text-muted-foreground">Client-side WebWorker / WASM</p>
+                      <p class="text-[11px] text-muted-foreground">Client-side in-browser runtime</p>
                     </div>
                   </div>
                   <span class="font-mono text-xs font-semibold text-brand">Local</span>
@@ -165,7 +165,7 @@ const trustPills = [
                     </div>
                     <div>
                       <p class="text-xs font-semibold text-foreground">Data Privacy</p>
-                      <p class="text-[11px] text-muted-foreground">In-memory sandbox processing</p>
+                      <p class="text-[11px] text-muted-foreground">Zero server storage; client-only execution</p>
                     </div>
                   </div>
                   <span class="font-mono text-xs font-semibold text-brand">Strict</span>
