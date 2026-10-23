@@ -6,24 +6,32 @@
  */
 import Icon from '../Icon.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
+import { useTranslations, type Locale } from '../../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
 
 const steps = [
   {
-    step: '01',
-    title: 'Select your utility',
-    description: 'Jump straight into the AI Code Studio, PDF Toolkit, or Image Compressor with zero signup friction, no credit cards, and no API keys required.',
+    step: t('howItWorks.step1Num'),
+    title: t('howItWorks.step1Title'),
+    description: t('howItWorks.step1Desc'),
     icon: 'play',
   },
   {
-    step: '02',
-    title: 'Client-side processing',
-    description: 'Your browser executes local WebAssembly sandboxes and lightweight AI pipelines. Files and code remain strictly on your device.',
+    step: t('howItWorks.step2Num'),
+    title: t('howItWorks.step2Title'),
+    description: t('howItWorks.step2Desc'),
     icon: 'cpu',
   },
   {
-    step: '03',
-    title: 'Export & ship instantly',
-    description: 'Download optimized assets, validated ATS resumes, or production-ready HTML/CSS bundles with unlimited free capacity.',
+    step: t('howItWorks.step3Num'),
+    title: t('howItWorks.step3Title'),
+    description: t('howItWorks.step3Desc'),
     icon: 'rocket',
   },
 ];
@@ -32,8 +40,9 @@ const steps = [
 <section id="how-it-works" class="py-20 sm:py-28 border-t border-border bg-background">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
-      title="How Lade Stack works"
-      description="Engineered from the ground up to eliminate servers as points of failure, latency, and privacy compromise."
+      eyebrow={t('howItWorks.eyebrow')}
+      title={t('howItWorks.title')}
+      description={t('howItWorks.subtitle')}
     />
 
     {/* ── Flow Diagram (SVG + HTML) ── */}

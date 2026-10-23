@@ -5,6 +5,15 @@
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
+import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const appsHref = getLocalizedPath('/apps', locale);
 ---
 
 <section class="py-20 sm:py-28 border-t border-border bg-background relative overflow-hidden">
@@ -17,18 +26,18 @@ import Button from '../ui/Button.astro';
           Immediate Access
         </span>
         <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight text-foreground text-balance">
-          Ready to accelerate your developer workflow?
+          {t('cta.title')}
         </h2>
         <p class="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty">
-          Start coding in the AI Code Studio or optimize assets right now. No signup forms, no subscriptions, no credit card required.
+          {t('cta.subtitle')}
         </p>
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
-            <span>Launch Code Studio</span>
+            <span>{t('cta.button')}</span>
             <Icon name="arrow-right" class="w-4 h-4" />
           </Button>
-          <Button href="/apps" variant="outline" size="lg" class="w-full sm:w-auto">
+          <Button href={appsHref} variant="outline" size="lg" class="w-full sm:w-auto">
             <span>Explore All Utilities</span>
             <Icon name="layers" class="w-4 h-4 text-muted-foreground" />
           </Button>

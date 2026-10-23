@@ -12,6 +12,12 @@ import UseCases from '../components/sections/UseCases.astro';
 import ProductShowcase from '../components/sections/ProductShowcase.astro';
 import DeveloperFaq, { faqs } from '../components/sections/DeveloperFaq.astro';
 import CtaBanner from '../components/sections/CtaBanner.astro';
+import { LOCALES, type Locale } from '../i18n/config';
+import { getHreflangLinks, useTranslations } from '../i18n/utils';
+
+const locale: Locale = 'en';
+const t = useTranslations(locale);
+const hreflangs = getHreflangLinks('/', LOCALES);
 
 const structuredData = [
   {
@@ -76,32 +82,32 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title="Lade Stack – AI Developer Platform & Browser Utilities"
-  description="In-browser developer tools: code editor, 17-in-1 private PDF toolkit, high-ratio image compression, and career utilities. Free forever with client-side execution."
+  title={t('seo.homeTitle')}
+  description={t('seo.homeDescription')}
   canonical="https://ladestack.in"
+  hreflangs={hreflangs}
+  locale={locale}
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'Lade Stack – AI-Powered Developer Ecosystem',
-    description:
-      'In-browser code studio, private PDF tools, image compressor, and productivity utilities for developers. Free forever.',
+    title: t('seo.ogTitle'),
+    description: t('seo.ogDescription'),
     url: 'https://ladestack.in',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
   }}
   twitter={{
     card: 'summary_large_image',
-    title: 'Lade Stack – AI-Powered Developer Ecosystem',
-    description:
-      'In-browser code studio, private PDF tools, image compressor, and productivity utilities for developers. Free forever.',
+    title: t('seo.ogTitle'),
+    description: t('seo.ogDescription'),
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}
 >
-  <HeroSection />
-  <FeaturesBento />
-  <HowItWorks />
-  <UseCases />
-  <ProductShowcase />
-  <DeveloperFaq />
-  <CtaBanner />
+  <HeroSection locale={locale} />
+  <FeaturesBento locale={locale} />
+  <HowItWorks locale={locale} />
+  <UseCases locale={locale} />
+  <ProductShowcase locale={locale} />
+  <DeveloperFaq locale={locale} />
+  <CtaBanner locale={locale} />
 </BaseLayout>

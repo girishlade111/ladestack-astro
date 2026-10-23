@@ -8,22 +8,31 @@ import Icon from '../Icon.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 import BentoGrid from '../ui/BentoGrid.astro';
 import BentoCard from '../ui/BentoCard.astro';
+import { useTranslations, type Locale } from '../../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <section id="features" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
-      title="Purpose-built tools for every stage of development"
-      description="Nine specialized utilities engineered with one relentless standard: uncompromising client-side privacy, instantaneous WASM speed, and zero paywalls."
+      eyebrow={t('features.eyebrow')}
+      title={t('features.title')}
+      description={t('features.subtitle')}
     />
 
     <BentoGrid cols={3}>
       {/* ── Card 1: AI Code Editor (Spans 2 columns on desktop) ── */}
       <BentoCard
         colSpan="col-span-1 lg:col-span-2"
-        title="AI-Powered Code Studio & Compiler"
-        description="Write, inspect, compile, and debug HTML, CSS, and modern JavaScript in real-time. Intelligent context-aware AI fixes bugs and optimizes bundle efficiency on the fly."
-        badge="Flagship Studio"
+        title={t('features.card1Title')}
+        description={t('features.card1Desc')}
+        badge={t('features.card1Badge')}
         href="https://code.ladestack.in/"
       >
         <div slot="icon" class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
@@ -49,9 +58,9 @@ import BentoCard from '../ui/BentoCard.astro';
       {/* ── Card 2: LS PDF Toolkit 17-in-1 (1 column) ── */}
       <BentoCard
         colSpan="col-span-1"
-        title="LS PDF: 17 Client-Side Tools"
-        description="Merge, split, compress, protect, watermark, and convert documents. 100% processed in your browser with WebAssembly."
-        badge="Zero Cloud Uploads"
+        title={t('features.card2Title')}
+        description={t('features.card2Desc')}
+        badge={t('features.card2Badge')}
         href="https://pdf.ladestack.in/"
       >
         <div slot="icon" class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
@@ -74,9 +83,9 @@ import BentoCard from '../ui/BentoCard.astro';
       {/* ── Card 3: LS Image Compressor ── */}
       <BentoCard
         colSpan="col-span-1"
-        title="LS Image Compressor"
-        description="High-fidelity compression for 9+ image formats (WebP, AVIF, PNG, SVG). Reduces asset weight up to 90% without server transit."
-        badge="Canvas + WASM"
+        title={t('features.card3Title')}
+        description={t('features.card3Desc')}
+        badge={t('features.card3Badge')}
         href="https://img.ladestack.in/"
       >
         <div slot="icon" class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
@@ -101,9 +110,9 @@ import BentoCard from '../ui/BentoCard.astro';
       {/* ── Card 4: Swift Resume Builder ── */}
       <BentoCard
         colSpan="col-span-1"
-        title="Swift Resume Builder"
-        description="ATS-compliant engineering resume builder with live Markdown preview, keyword density scoring, and clean one-click PDF export."
-        badge="ATS Optimized"
+        title={t('features.card4Title')}
+        description={t('features.card4Desc')}
+        badge={t('features.card4Badge')}
         href="https://resume.ladestack.in/"
       >
         <div slot="icon" class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">

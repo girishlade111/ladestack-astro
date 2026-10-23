@@ -6,11 +6,20 @@
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
+import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const appsHref = getLocalizedPath('/apps', locale);
 
 const trustPills = [
-  { icon: 'shield-check', text: '100% In-Browser Privacy' },
-  { icon: 'zap', text: 'Instant WASM Execution' },
-  { icon: 'gift', text: 'Free Forever · Zero Paywalls' },
+  { icon: 'shield-check', text: t('hero.badge') },
+  { icon: 'zap', text: t('hero.editorStatus') },
+  { icon: 'gift', text: t('footer.status') },
 ];
 ---
 
@@ -22,22 +31,22 @@ const trustPills = [
     <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
       {/* Primary H1: No kicker/eyebrow, heading carries its own authority */}
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground text-balance leading-[1.08]">
-        Build, review, and ship software with <span class="text-brand">AI precision</span>.
+        {t('hero.titleLine1')} <span class="text-brand">{t('hero.titleLine2')}</span>
       </h1>
 
       {/* Subtitle */}
       <p class="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl text-pretty">
-        An ecosystem of intelligent developer tools — in-browser code editing, private PDF manipulation, high-ratio image compression, and AI optimization. Enterprise power, zero cost.
+        {t('hero.description')}
       </p>
 
       {/* Primary CTAs */}
       <div class="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
         <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
-          <span>Start Building Free</span>
+          <span>{t('hero.ctaPrimary')}</span>
           <Icon name="arrow-right" class="w-4 h-4" />
         </Button>
-        <Button href="/apps" variant="outline" size="lg" class="w-full sm:w-auto">
-          <span>Explore All 9 Tools</span>
+        <Button href={appsHref} variant="outline" size="lg" class="w-full sm:w-auto">
+          <span>{t('hero.ctaSecondary')}</span>
           <Icon name="layers" class="w-4 h-4 text-muted-foreground" />
         </Button>
       </div>
@@ -69,20 +78,20 @@ const trustPills = [
             <div class="hidden sm:flex items-center gap-2 ml-4 font-mono text-[11px]">
               <span class="text-foreground font-semibold flex items-center gap-1.5">
                 <Icon name="code-2" class="w-3.5 h-3.5 text-brand" />
-                CodeStudio.tsx
+                {t('hero.editorFileName')}
               </span>
               <span class="text-border">/</span>
-              <span>PreviewSandbox.html</span>
+              <span>{t('hero.editorTabName')}</span>
             </div>
           </div>
 
           <div class="flex items-center gap-3">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand/10 text-brand font-mono text-[11px]">
               <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
-              In-Browser Execution
+              {t('hero.editorStatus')}
             </span>
             <span class="hidden md:inline font-mono text-[11px] text-muted-foreground">
-              Privacy: Localhost
+              {t('hero.editorPrivacy')}
             </span>
           </div>
         </div>
@@ -130,9 +139,9 @@ const trustPills = [
             <div class="mt-6 p-3 rounded-lg border border-brand/30 bg-brand/5 flex items-center justify-between gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <Icon name="check-circle-2" class="w-4 h-4 text-brand" />
-                <span class="text-foreground font-medium">Syntax validation &amp; sandbox preview: local browser thread</span>
+                <span class="text-foreground font-medium">{t('hero.editorNotification')}</span>
               </div>
-              <span class="font-mono text-[10px] text-brand uppercase tracking-wider">Ready to ship</span>
+              <span class="font-mono text-[10px] text-brand uppercase tracking-wider">{t('hero.editorNotificationBadge')}</span>
             </div>
           </div>
 
@@ -140,8 +149,8 @@ const trustPills = [
           <div class="lg:col-span-5 p-5 sm:p-6 bg-surface/50 flex flex-col justify-between gap-6">
             <div>
               <div class="flex items-center justify-between pb-3 border-b border-border text-xs">
-                <span class="font-medium text-foreground">Architecture Specifications</span>
-                <span class="font-mono text-muted-foreground">Local Runtime</span>
+                <span class="font-medium text-foreground">{t('hero.specTitle')}</span>
+                <span class="font-mono text-muted-foreground">{t('hero.specRuntime')}</span>
               </div>
 
               <div class="mt-4 space-y-3">
@@ -151,11 +160,11 @@ const trustPills = [
                       <Icon name="zap" class="w-4 h-4" />
                     </div>
                     <div>
-                      <p class="text-xs font-semibold text-foreground">Execution Model</p>
-                      <p class="text-[11px] text-muted-foreground">Client-side in-browser runtime</p>
+                      <p class="text-xs font-semibold text-foreground">{t('hero.specExecutionModel')}</p>
+                      <p class="text-[11px] text-muted-foreground">{t('hero.specExecutionValue')}</p>
                     </div>
                   </div>
-                  <span class="font-mono text-xs font-semibold text-brand">Local</span>
+                  <span class="font-mono text-xs font-semibold text-brand">{t('hero.specExecutionBadge')}</span>
                 </div>
 
                 <div class="p-3 rounded-lg border border-border bg-surface flex items-center justify-between">
@@ -164,11 +173,11 @@ const trustPills = [
                       <Icon name="shield-check" class="w-4 h-4" />
                     </div>
                     <div>
-                      <p class="text-xs font-semibold text-foreground">Data Privacy</p>
-                      <p class="text-[11px] text-muted-foreground">Zero server storage; client-only execution</p>
+                      <p class="text-xs font-semibold text-foreground">{t('hero.specPrivacy')}</p>
+                      <p class="text-[11px] text-muted-foreground">{t('hero.specPrivacyValue')}</p>
                     </div>
                   </div>
-                  <span class="font-mono text-xs font-semibold text-brand">Strict</span>
+                  <span class="font-mono text-xs font-semibold text-brand">{t('hero.specPrivacyBadge')}</span>
                 </div>
 
                 <div class="p-3 rounded-lg border border-border bg-surface flex items-center justify-between">
@@ -177,23 +186,23 @@ const trustPills = [
                       <Icon name="layers" class="w-4 h-4" />
                     </div>
                     <div>
-                      <p class="text-xs font-semibold text-foreground">Distribution</p>
-                      <p class="text-[11px] text-muted-foreground">Static pre-rendered architecture</p>
+                      <p class="text-xs font-semibold text-foreground">{t('hero.specDistribution')}</p>
+                      <p class="text-[11px] text-muted-foreground">{t('hero.specDistributionValue')}</p>
                     </div>
                   </div>
-                  <span class="font-mono text-xs font-semibold text-brand">Static</span>
+                  <span class="font-mono text-xs font-semibold text-brand">{t('hero.specDistributionBadge')}</span>
                 </div>
               </div>
             </div>
 
             {/* Quick Action in Preview */}
             <div class="pt-4 border-t border-border flex items-center justify-between">
-              <span class="text-xs text-muted-foreground">Live across all modern browsers</span>
+              <span class="text-xs text-muted-foreground">{t('hero.browserCompatibility')}</span>
               <a
-                href="/apps"
+                href={appsHref}
                 class="text-xs font-medium text-brand hover:underline inline-flex items-center gap-1"
               >
-                <span>View All Tools</span>
+                <span>{t('hero.viewAppsLink')}</span>
                 <Icon name="arrow-right" class="w-3 h-3" />
               </a>
             </div>

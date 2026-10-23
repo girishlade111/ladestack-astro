@@ -139,7 +139,7 @@ export function getHreflangLinks(
     const fullUrl = `${siteUrl}${locPath === '/' ? '' : locPath}`;
     links.push({
       lang: loc,
-      href: fullUrl === siteUrl ? `${siteUrl}/` : fullUrl,
+      href: fullUrl,
     });
   }
 
@@ -149,7 +149,7 @@ export function getHreflangLinks(
     const defaultUrl = `${siteUrl}${defaultPath === '/' ? '' : defaultPath}`;
     links.push({
       lang: 'x-default',
-      href: defaultUrl === siteUrl ? `${siteUrl}/` : defaultUrl,
+      href: defaultUrl,
     });
   }
 

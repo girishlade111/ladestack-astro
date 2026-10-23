@@ -6,13 +6,22 @@
  */
 import Icon from '../Icon.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
+import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const appsHref = getLocalizedPath('/apps', locale);
 
 const useCases = [
   {
     id: 'frontend',
-    title: 'Frontend Developers',
-    headline: 'Zero-setup interactive web coding and real-time AI optimization',
-    description: 'Bypass cumbersome local bundlers and heavy container runtimes when testing micro-layouts, rapid prototypes, or CSS fixes. Our in-browser compiler gives you instant output and intelligent auto-refactoring.',
+    title: t('useCases.case1Title'),
+    headline: t('useCases.case1Title'),
+    description: t('useCases.case1Desc'),
     bullets: [
       'Instant HTML, CSS, JavaScript compilation',
       'AI syntax analysis and automated cleanup',
@@ -23,9 +32,9 @@ const useCases = [
   },
   {
     id: 'privacy',
-    title: 'Privacy-First Teams',
-    headline: 'Confidential document workflows with zero cloud data transit',
-    description: 'Healthcare, legal, and enterprise teams handling NDAs, financial summaries, and confidential assets can process files without risking compliance breaches or telemetry leakage.',
+    title: t('useCases.case2Title'),
+    headline: t('useCases.case2Title'),
+    description: t('useCases.case2Desc'),
     bullets: [
       '17 client-side PDF operations (merge, compress, protect)',
       'High-ratio image conversion without server uploads',
@@ -36,16 +45,16 @@ const useCases = [
   },
   {
     id: 'indie',
-    title: 'Indie Hackers & Creators',
-    headline: 'All the tools you need to build and ship, zero subscription bloat',
-    description: 'Stop paying $20–$50/month for basic utilities. Lade Stack offers an entire suite of developer and creator utilities completely free forever.',
+    title: t('useCases.case3Title'),
+    headline: t('useCases.case3Title'),
+    description: t('useCases.case3Desc'),
     bullets: [
       'Unlimited free access to all core utilities',
       'ATS resume scoring and instant live editing',
       'Accurate regional measurement converters',
     ],
     tool: 'Developer Productivity Suite',
-    href: '/apps',
+    href: appsHref,
   },
 ];
 ---
@@ -53,8 +62,9 @@ const useCases = [
 <section id="use-cases" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30" data-use-cases>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
-      title="Engineered for modern workflows"
-      description="Whether you are building enterprise web applications, processing sensitive legal documents, or shipping indie projects."
+      eyebrow={t('useCases.eyebrow')}
+      title={t('useCases.title')}
+      description={t('useCases.subtitle')}
     />
 
     {/* Accessible Tab List */}

@@ -7,41 +7,52 @@
 import SectionHeader from '../ui/SectionHeader.astro';
 import Accordion from '../ui/Accordion.astro';
 import AccordionItem from '../ui/AccordionItem.astro';
+import { useTranslations, type Locale } from '../../i18n';
 
-export const faqs = [
-  {
-    q: 'How can Lade Stack tools be 100% free with no subscription tiers?',
-    a: 'By architecting our tools to run client-side using WebAssembly and modern browser APIs, we do not incur expensive recurring cloud compute or bandwidth bills for file manipulation. The tools are maintained by Girish Lade as an open developer ecosystem supported by open-source contributions and community sponsorship.',
-  },
-  {
-    q: 'Do my files, PDFs, or source code ever get uploaded to an external server?',
-    a: 'No. When you use tools like the LS PDF Toolkit, LS Image Compressor, or Swift Resume Builder, 100% of the byte parsing, compression, and manipulation happens in a local browser sandbox in your device memory. No payloads or telemetry are exfiltrated.',
-  },
-  {
-    q: 'Can I use Lade Stack tools for commercial and client deliverables?',
-    a: 'Yes, completely. Any code compiled in the AI Code Studio, any document processed through LS PDF, or any asset compressed via LS Image is 100% yours with zero commercial restrictions or watermarks.',
-  },
-  {
-    q: 'What browser support is required for WebAssembly processing?',
-    a: 'All modern evergreen browsers (Chrome, Edge, Firefox, Safari, Arc) with standard WebAssembly and Canvas API support run Lade Stack at full performance without plugins.',
-  },
-  {
-    q: 'How do I contribute feedback or request a new tool?',
-    a: 'We welcome community input on our public GitHub repository (github.com/girishlade111) or directly via email at admin@ladestack.in. Roadmap items are prioritized based on developer utility.',
-  },
-];
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+
+export function getFaqs(loc: Locale = 'en') {
+  const trans = useTranslations(loc);
+  return [
+    {
+      q: trans('faq.q1'),
+      a: trans('faq.a1'),
+    },
+    {
+      q: trans('faq.q2'),
+      a: trans('faq.a2'),
+    },
+    {
+      q: trans('faq.q3'),
+      a: trans('faq.a3'),
+    },
+    {
+      q: trans('faq.q4'),
+      a: trans('faq.a4'),
+    },
+  ];
+}
+
+export const faqs = getFaqs('en');
+const currentFaqs = getFaqs(locale);
 ---
 
 <section id="faq" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
-      title="Frequently asked questions"
-      description="Clear, honest answers about our technology, architecture, and free-forever commitment."
+      eyebrow="FAQ"
+      title={t('faq.title')}
+      description={t('faq.subtitle')}
     />
 
     <Accordion>
       {
-        faqs.map((faq, i) => (
+        currentFaqs.map((faq, i) => (
           <AccordionItem question={faq.q} open={i === 0}>
             <p>{faq.a}</p>
           </AccordionItem>
