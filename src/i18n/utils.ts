@@ -3,7 +3,14 @@
  * Helper functions for locale resolution, route translation, and hreflang links.
  */
 
-import { DEFAULT_LOCALE, LOCALES, LOCALE_CONFIG, isValidLocale, type Locale } from './config';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  LOCALE_CONFIG,
+  ROUTE_LOCALE_REGISTRY,
+  isValidLocale,
+  type Locale,
+} from './config';
 import type { UIStrings } from './ui/en';
 import { en } from './ui/en';
 import { ja } from './ui/ja';
@@ -81,30 +88,30 @@ export function stripLocaleFromPath(pathname: string): string {
 }
 
 /**
-/**
- * Known routes that have verified localized versions.
- * In Phase 2A: only the homepage ('/') is localized into all 9 languages.
- * Future phases (2B, 3) will expand this list.
+ * Returns all verified locales available for a given route from the central registry.
  */
-export const LOCALIZED_ROUTES: readonly string[] = ['/'];
+export function getAvailableLocalesForRoute(pathname: string): readonly Locale[] {
+  const basePath = stripLocaleFromPath(pathname);
+  return ROUTE_LOCALE_REGISTRY[basePath] ?? (basePath.startsWith('/blog/') ? ['en'] : ['en']);
+}
 
 /**
- * Checks if a given route has localized versions.
+ * Checks whether a given route is available in the target locale.
  */
-export function isRouteLocalized(pathname: string): boolean {
-  const basePath = stripLocaleFromPath(pathname);
-  return LOCALIZED_ROUTES.includes(basePath);
+export function isRouteAvailableInLocale(pathname: string, targetLocale: Locale): boolean {
+  return getAvailableLocalesForRoute(pathname).includes(targetLocale);
 }
 
 /**
  * Generates the localized path for a given route and target locale.
  * Respects unprefixed default locale 'en' and trailingSlash: 'never'.
- * Only prefixes routes that have confirmed localized versions to prevent broken 404 links.
+ * Only prefixes routes that have confirmed localized versions in targetLocale
+ * to prevent broken 404 links.
  *
  * Examples:
  *   getLocalizedPath('/', 'en') => '/'
  *   getLocalizedPath('/', 'ja') => '/ja'
- *   getLocalizedPath('/apps', 'ja') => '/apps' (un-localized route falls back to canonical)
+ *   getLocalizedPath('/apps', 'ja') => '/apps' (un-localized route safely returns canonical)
  */
 export function getLocalizedPath(pathname: string, targetLocale: Locale): string {
   const basePath = stripLocaleFromPath(pathname);
@@ -113,8 +120,8 @@ export function getLocalizedPath(pathname: string, targetLocale: Locale): string
     return basePath;
   }
 
-  // If this route is not localized, return base English path to prevent 404s
-  if (!isRouteLocalized(basePath)) {
+  // If this route is not verified in targetLocale, return base English path to prevent 404s
+  if (!isRouteAvailableInLocale(basePath, targetLocale)) {
     return basePath;
   }
 
@@ -137,17 +144,19 @@ export interface HreflangLink {
  */
 export function getHreflangLinks(
   pathname: string,
-  availableLocales: readonly Locale[] = LOCALES,
+  availableLocales?: readonly Locale[],
   siteUrl: string = 'https://ladestack.in'
 ): HreflangLink[] {
+  const locales = availableLocales ?? getAvailableLocalesForRoute(pathname);
+
   // If only 1 locale exists for this route, do not emit fake self-referential hreflangs
-  if (availableLocales.length <= 1) {
+  if (locales.length <= 1) {
     return [];
   }
 
   const links: HreflangLink[] = [];
 
-  for (const loc of availableLocales) {
+  for (const loc of locales) {
     const locPath = getLocalizedPath(pathname, loc);
     const fullUrl = `${siteUrl}${locPath === '/' ? '' : locPath}`;
     links.push({
@@ -157,7 +166,7 @@ export function getHreflangLinks(
   }
 
   // If default locale 'en' is available, set x-default to the default English URL
-  if (availableLocales.includes(DEFAULT_LOCALE)) {
+  if (locales.includes(DEFAULT_LOCALE)) {
     const defaultPath = getLocalizedPath(pathname, DEFAULT_LOCALE);
     const defaultUrl = `${siteUrl}${defaultPath === '/' ? '' : defaultPath}`;
     links.push({

@@ -7,7 +7,12 @@
  */
 import Icon from './Icon.astro';
 import { LOCALES, LOCALE_CONFIG, DEFAULT_LOCALE, type Locale } from '../i18n/config';
-import { getLocalizedPath, stripLocaleFromPath } from '../i18n/utils';
+import {
+  getLocalizedPath,
+  stripLocaleFromPath,
+  isRouteAvailableInLocale,
+  useTranslations,
+} from '../i18n/utils';
 
 export interface Props {
   currentLocale?: Locale;
@@ -23,10 +28,9 @@ const {
 
 const currentConfig = LOCALE_CONFIG[currentLocale] ?? LOCALE_CONFIG[DEFAULT_LOCALE];
 const basePath = stripLocaleFromPath(currentPath);
+const t = useTranslations(currentLocale);
 
-// In Phase 2A, the Homepage ('/') is fully translated into all 9 languages.
-// Un-translated subpages safely fall back to the target locale's homepage to prevent 404s.
-const isHomepage = basePath === '/';
+const isHome = basePath === '/';
 ---
 
 <div class={`relative inline-block text-left ${className}`} data-language-switcher>
@@ -36,7 +40,7 @@ const isHomepage = basePath === '/';
     class="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-border bg-surface-muted/60 hover:bg-surface-muted text-muted-foreground hover:text-foreground text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     aria-expanded="false"
     aria-haspopup="true"
-    aria-label={`Select language. Current language: ${currentConfig.name}`}
+    aria-label={`${t('nav.languageSelect')}. Current language: ${currentConfig.name}`}
   >
     <Icon name="globe" class="w-3.5 h-3.5 text-brand" />
     <span class="font-mono text-[11px] font-semibold uppercase">{currentLocale}</span>
@@ -45,28 +49,46 @@ const isHomepage = basePath === '/';
 
   <div
     data-lang-menu
-    class="hidden absolute right-0 top-full mt-2 w-56 rounded-xl border border-border bg-surface p-1.5 shadow-elevated z-50 focus:outline-none"
+    class="hidden absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-surface p-1.5 shadow-elevated z-50 focus:outline-none"
     role="menu"
     aria-orientation="vertical"
     tabindex="-1"
   >
-    <div class="px-3 py-1.5 border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
-      Select Language (9)
+    <div class="px-3 py-1.5 border-b border-border flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+      <span>{t('nav.languageSelect')}</span>
+      <span class="text-brand font-semibold">9 Locales</span>
     </div>
+
+    {
+      !isHome && (
+        <div class="px-3 py-1.5 bg-surface-muted/40 border-b border-border/60 text-[10px] text-muted-foreground leading-tight">
+          This page is currently English-only. Non-English options navigate to the localized homepage.
+        </div>
+      )
+    }
 
     <div class="py-1 max-h-72 overflow-y-auto">
       {
         LOCALES.map((loc) => {
           const cfg = LOCALE_CONFIG[loc];
           const isCurrent = loc === currentLocale;
-          // Target path: if homepage, localized homepage; otherwise localized page if available or fallback to locale root
-          const targetUrl = isHomepage ? getLocalizedPath('/', loc) : (loc === DEFAULT_LOCALE ? basePath : getLocalizedPath('/', loc));
+          const hasDirectTranslation = isRouteAvailableInLocale(basePath, loc);
+
+          // Target URL: direct page if translation exists, otherwise target locale homepage
+          const targetUrl = hasDirectTranslation
+            ? getLocalizedPath(basePath, loc)
+            : getLocalizedPath('/', loc);
+
+          const titleAttr = !hasDirectTranslation && !isHome
+            ? `This page is English-only. Opens ${cfg.name} homepage.`
+            : undefined;
 
           return (
             <a
               href={targetUrl}
               role="menuitem"
               lang={loc}
+              title={titleAttr}
               class={`flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors group ${
                 isCurrent
                   ? 'bg-brand/10 text-brand font-semibold'
@@ -79,7 +101,14 @@ const isHomepage = basePath === '/';
                 <span class={isCurrent ? 'font-semibold' : ''}>{cfg.name}</span>
                 <span class="text-[11px] text-muted-foreground">({cfg.englishName})</span>
               </div>
-              <span class="font-mono text-[10px] text-muted-foreground uppercase">{loc}</span>
+              <div class="flex items-center gap-1.5">
+                {!hasDirectTranslation && !isHome && (
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-surface-muted text-muted-foreground">
+                    Home
+                  </span>
+                )}
+                <span class="font-mono text-[10px] text-muted-foreground uppercase">{loc}</span>
+              </div>
             </a>
           );
         })

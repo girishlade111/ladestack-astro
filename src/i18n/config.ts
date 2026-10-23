@@ -93,3 +93,24 @@ export function isValidLocale(lang: string | undefined | null): lang is Locale {
   if (!lang) return false;
   return (LOCALES as readonly string[]).includes(lang);
 }
+
+/**
+ * Central Route Availability Registry
+ * Explicitly records which locales possess real, verified translations for each route.
+ * Guarantees:
+ * - Hreflang alternates are ONLY emitted for routes with confirmed translations.
+ * - Language switcher fallback is transparent, predictable, and never generates 404 links.
+ */
+export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
+  '/': LOCALES, // Homepage exists in all 9 languages
+  '/about': ['en'],
+  '/gb-coder': ['en'],
+  '/apps': ['en'],
+  '/docs': ['en'],
+  '/blog': ['en'],
+  '/contact': ['en'],
+  '/support': ['en'],
+  '/privacy': ['en'],
+  '/terms': ['en'],
+  '/sitemap': ['en'],
+};

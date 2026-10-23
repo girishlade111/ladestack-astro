@@ -1,0 +1,112 @@
+---
+/**
+ * FounderProfile.astro — Reusable Founder Profile Component
+ * Showcases founder Girish Lade with authentic photography, verified technical
+ * focus areas, engineering philosophy, and verified social channels.
+ * Strictly adheres to verified evidence: no fabricated credentials, awards, or statistics.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  variant?: 'card' | 'detailed';
+  class?: string;
+}
+
+const { variant = 'detailed', class: className = '' } = Astro.props;
+
+const verifiedExpertise = [
+  'TypeScript & Node.js',
+  'WebAssembly & WASM Runtimes',
+  'Monaco Editor Integration',
+  'Astro & Modern Web Performance',
+  'Client-Side Sandbox Security',
+  'IndexedDB Local Persistence',
+  'Web Workers & Offscreen Processing',
+  'Responsive UI/UX Architecture',
+];
+
+const socials = [
+  { icon: 'github', label: 'GitHub', href: 'https://github.com/girishlade111' },
+  { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/girish-lade/' },
+  { icon: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/girish_lade_/' },
+  { icon: 'mail', label: 'Email', href: 'mailto:admin@ladestack.in' },
+];
+---
+
+<div class={`rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-elevated ${className}`}>
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8">
+    {/* Authentic Founder Photograph */}
+    <div class="relative shrink-0 group">
+      <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-brand/40 shadow-soft bg-surface-muted">
+        <img
+          src="/img/girish.jpg"
+          alt="Girish Lade — Founder & Architect of LadeStack"
+          width="144"
+          height="144"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+      <div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-md bg-surface border border-border shadow-soft flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-brand"></span>
+        <span class="text-[10px] font-mono font-medium text-foreground">Founder</span>
+      </div>
+    </div>
+
+    {/* Bio & Information */}
+    <div class="flex-1 text-center md:text-left space-y-4">
+      <div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-2xl font-bold tracking-tight text-foreground">Girish Lade</h3>
+            <p class="text-xs font-mono text-brand font-semibold mt-0.5">
+              Creator of GB Coder &amp; Founder of LadeStack
+            </p>
+          </div>
+          <div class="inline-flex items-center justify-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-muted border border-border text-[11px] font-mono text-muted-foreground">
+            <Icon name="shield-check" class="w-3.5 h-3.5 text-brand" />
+            <span>Independent Engineer</span>
+          </div>
+        </div>
+
+        <p class="mt-3 text-sm text-muted-foreground leading-relaxed text-pretty">
+          Software architect and product designer focused on client-side WebAssembly, in-browser developer runtimes, and local-first data privacy. Built LadeStack to eliminate recurring software subscription walls and deliver instantaneous developer utilities directly inside modern web browsers.
+        </p>
+      </div>
+
+      {
+        variant === 'detailed' && (
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+              Core Technical Focus
+            </p>
+            <div class="flex flex-wrap gap-1.5 justify-center md:justify-start">
+              {verifiedExpertise.map((skill) => (
+                <span class="px-2.5 py-0.5 rounded-md bg-surface-muted border border-border/80 text-[11px] font-mono text-foreground/90">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      {/* Verified Connect Links */}
+      <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+        {socials.map((s) => (
+          <a
+            href={s.href}
+            target={s.href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={s.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+            aria-label={`${s.label} profile for Girish Lade`}
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs font-medium text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          >
+            <Icon name={s.icon} class="w-3.5 h-3.5 text-muted-foreground" />
+            <span>{s.label}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
