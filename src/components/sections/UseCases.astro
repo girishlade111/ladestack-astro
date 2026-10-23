@@ -1,0 +1,254 @@
+---
+/**
+ * UseCases.astro
+ * Accessible tabbed use-case showcase with distinct SVG illustrations per case.
+ * Follows react-aria accessibility behavior (keyboard nav, ARIA, focus).
+ */
+import Icon from '../Icon.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+
+const useCases = [
+  {
+    id: 'frontend',
+    title: 'Frontend Developers',
+    headline: 'Zero-setup interactive web coding and real-time AI optimization',
+    description: 'Bypass cumbersome local bundlers and heavy container runtimes when testing micro-layouts, rapid prototypes, or CSS fixes. Our in-browser compiler gives you instant output and intelligent auto-refactoring.',
+    bullets: [
+      'Instant HTML, CSS, JavaScript compilation',
+      'AI syntax analysis and automated cleanup',
+      'Live responsive preview window with export',
+    ],
+    tool: 'AI Code Studio',
+    href: '/ai-code-viewer-ai',
+  },
+  {
+    id: 'privacy',
+    title: 'Privacy-First Teams',
+    headline: 'Confidential document workflows with zero cloud data transit',
+    description: 'Healthcare, legal, and enterprise teams handling NDAs, financial summaries, and confidential assets can process files without risking compliance breaches or telemetry leakage.',
+    bullets: [
+      '17 client-side PDF operations (merge, compress, protect)',
+      'High-ratio image conversion without server uploads',
+      'Full compliance with strict data sovereignty standards',
+    ],
+    tool: 'LS PDF & Image Toolkit',
+    href: 'https://pdf.ladestack.in/',
+  },
+  {
+    id: 'indie',
+    title: 'Indie Hackers & Creators',
+    headline: 'All the tools you need to build and ship, zero subscription bloat',
+    description: 'Stop paying $20–$50/month for basic utilities. Lade Stack offers an entire suite of developer and creator utilities completely free forever.',
+    bullets: [
+      'Unlimited free access to all core utilities',
+      'ATS resume scoring and instant live editing',
+      'Accurate regional measurement converters',
+    ],
+    tool: 'Developer Productivity Suite',
+    href: '/apps',
+  },
+];
+---
+
+<section id="use-cases" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30" data-use-cases>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeader
+      title="Engineered for modern workflows"
+      description="Whether you are building enterprise web applications, processing sensitive legal documents, or shipping indie projects."
+    />
+
+    {/* Accessible Tab List */}
+    <div class="flex justify-center mb-10 sm:mb-12">
+      <div
+        role="tablist"
+        aria-label="Use cases by developer role"
+        class="inline-flex p-1 rounded-xl border border-border bg-surface max-w-full overflow-x-auto"
+      >
+        {
+          useCases.map((uc, index) => (
+            <button
+              type="button"
+              role="tab"
+              id={`tab-${uc.id}`}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${uc.id}`}
+              tabindex={index === 0 ? 0 : -1}
+              data-tab-target={uc.id}
+              class={`px-4 sm:px-6 py-2.5 text-xs sm:text-sm font-medium rounded-lg transition-all duration-150 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+                index === 0
+                  ? 'bg-brand text-brand-foreground shadow-soft'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-surface-muted'
+              }`}
+            >
+              {uc.title}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Tab Panels */}
+    <div class="max-w-5xl mx-auto">
+      {
+        useCases.map((uc, index) => (
+          <div
+            id={`panel-${uc.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${uc.id}`}
+            tabindex="0"
+            class={`rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${
+              index === 0 ? 'block' : 'hidden'
+            }`}
+          >
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Text description */}
+              <div class="lg:col-span-7 space-y-4">
+                <span class="text-xs font-mono text-brand font-semibold uppercase tracking-wider">
+                  Workflow Focus
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                  {uc.headline}
+                </h3>
+                <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  {uc.description}
+                </p>
+
+                <ul class="space-y-2.5 pt-2 text-sm text-foreground">
+                  {uc.bullets.map((b) => (
+                    <li class="flex items-center gap-2.5">
+                      <Icon name="check-circle-2" class="w-4 h-4 text-brand shrink-0" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="pt-4">
+                  <a
+                    href={uc.href}
+                    target={uc.href.startsWith('http') ? '_blank' : undefined}
+                    rel={uc.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    class="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
+                  >
+                    <span>Launch {uc.tool}</span>
+                    <Icon name="arrow-right" class="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Distinct Illustration per use case */}
+              <div class="lg:col-span-5 rounded-xl border border-border bg-background p-6 flex flex-col justify-center items-center text-center">
+                {uc.id === 'frontend' && (
+                  <div class="w-full space-y-3 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-2 border-b border-border text-[11px] text-muted-foreground">
+                      <span>component.preview</span>
+                      <span class="text-brand">60 FPS</span>
+                    </div>
+                    <div class="h-24 rounded border border-border/80 bg-surface flex items-center justify-center text-muted-foreground">
+                      <div class="flex items-center gap-2">
+                        <Icon name="play" class="w-5 h-5 text-brand" />
+                        <span class="text-foreground font-semibold">Live Sandbox Active</span>
+                      </div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-muted-foreground">
+                      <span>HTML5 · CSS3 · ESNext</span>
+                      <span>Zero Dependencies</span>
+                    </div>
+                  </div>
+                )}
+
+                {uc.id === 'privacy' && (
+                  <div class="w-full space-y-3 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-2 border-b border-border text-[11px] text-muted-foreground">
+                      <span>security.audit</span>
+                      <span class="text-emerald-500 font-semibold">Zero Leaks</span>
+                    </div>
+                    <div class="h-24 rounded border border-border/80 bg-surface flex flex-col items-center justify-center p-2 text-center">
+                      <Icon name="shield-check" class="w-6 h-6 text-emerald-500 mb-1" />
+                      <span class="text-foreground text-[11px] font-semibold">Sandbox Boundary Intact</span>
+                      <span class="text-[10px] text-muted-foreground">Data never leaves RAM</span>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-muted-foreground">
+                      <span>Local WebWorker</span>
+                      <span>Client WASM</span>
+                    </div>
+                  </div>
+                )}
+
+                {uc.id === 'indie' && (
+                  <div class="w-full space-y-3 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-2 border-b border-border text-[11px] text-muted-foreground">
+                      <span>cost.comparison</span>
+                      <span class="text-brand font-semibold">100% Free</span>
+                    </div>
+                    <div class="h-24 rounded border border-border/80 bg-surface flex flex-col items-center justify-center p-2 text-center">
+                      <span class="text-2xl font-bold text-foreground font-mono">$0</span>
+                      <span class="text-[11px] text-muted-foreground">Forever · No Credit Card</span>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-muted-foreground">
+                      <span>Unlimited Tools</span>
+                      <span>Lifetime Access</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-use-cases]');
+    if (!root) return;
+    var tabs = root.querySelectorAll('[role="tab"]');
+    var panels = root.querySelectorAll('[role="tabpanel"]');
+
+    function selectTab(targetId) {
+      tabs.forEach(function (tab) {
+        var isSelected = tab.getAttribute('data-tab-target') === targetId;
+        tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+        if (isSelected) {
+          tab.classList.add('bg-brand', 'text-brand-foreground', 'shadow-soft');
+          tab.classList.remove('text-muted-foreground', 'hover:bg-surface-muted');
+        } else {
+          tab.classList.remove('bg-brand', 'text-brand-foreground', 'shadow-soft');
+          tab.classList.add('text-muted-foreground', 'hover:bg-surface-muted');
+        }
+      });
+
+      panels.forEach(function (panel) {
+        var isTarget = panel.id === 'panel-' + targetId;
+        panel.classList.toggle('hidden', !isTarget);
+        panel.classList.toggle('block', isTarget);
+      });
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () {
+        selectTab(tab.getAttribute('data-tab-target'));
+      });
+
+      tab.addEventListener('keydown', function (e) {
+        var newIndex = -1;
+        if (e.key === 'ArrowRight') {
+          newIndex = (index + 1) % tabs.length;
+        } else if (e.key === 'ArrowLeft') {
+          newIndex = (index - 1 + tabs.length) % tabs.length;
+        } else if (e.key === 'Home') {
+          newIndex = 0;
+        } else if (e.key === 'End') {
+          newIndex = tabs.length - 1;
+        }
+        if (newIndex >= 0) {
+          e.preventDefault();
+          tabs[newIndex].focus();
+          selectTab(tabs[newIndex].getAttribute('data-tab-target'));
+        }
+      });
+    });
+  })();
+</script>

@@ -1,10 +1,12 @@
 ---
 /**
- * 404 — manifest route: src/pages/NotFound.tsx → url_path "/*"
- * NON-INDEXABLE: robots index:false, follow:false. Astro serves this file as
- * the 404 page; it is excluded from the sitemap via astro.config.mjs filter.
+ * 404 — Not Found Page
+ * NON-INDEXABLE: robots index:false, follow:false.
+ * Styled with Obsidian & Precision Emerald design tokens.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import Button from '../components/ui/Button.astro';
 ---
 
 <BaseLayout
@@ -27,16 +29,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }}
   structuredData={[]}
 >
-  <div class="flex min-h-screen items-center justify-center bg-background relative overflow-hidden">
-    <div class="absolute inset-0 hidden dark:block pointer-events-none" aria-hidden="true">
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(110,143,106,0.12),_transparent_60%)]"></div>
-    </div>
-    <div class="text-center relative z-10">
-      <h1 class="mb-4 text-4xl font-bold text-foreground">404</h1>
-      <p class="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-      <a href="/" class="text-[#6E8F6A] hover:underline">
-        Return to Home
-      </a>
+  <div class="flex flex-1 items-center justify-center py-24 sm:py-32 bg-background relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 hero-glow -z-10" aria-hidden="true"></div>
+
+    <div class="text-center px-4 max-w-md mx-auto">
+      <span class="font-mono text-xs font-bold text-brand uppercase tracking-wider">
+        Error 404 · Route Not Found
+      </span>
+      <h1 class="mt-2 text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
+        Lost in cyberspace
+      </h1>
+      <p class="mt-4 text-sm text-muted-foreground leading-relaxed">
+        The route you requested does not exist or may have been consolidated.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <Button href="/" size="md" class="w-full sm:w-auto">
+          <span>Return to Homepage</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </Button>
+        <Button href="/apps" variant="outline" size="md" class="w-full sm:w-auto">
+          <span>Browse Utilities</span>
+        </Button>
+      </div>
     </div>
   </div>
 </BaseLayout>

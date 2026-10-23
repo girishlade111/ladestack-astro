@@ -1,0 +1,11 @@
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`divide-y divide-border rounded-xl border border-border bg-surface overflow-hidden ${className}`.trim()}>
+  <slot />
+</div>

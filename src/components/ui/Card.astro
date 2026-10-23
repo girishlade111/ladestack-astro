@@ -1,0 +1,39 @@
+---
+export interface Props {
+  variant?: 'default' | 'elevated' | 'interactive' | 'ghost';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+  id?: string;
+  as?: 'div' | 'article' | 'section';
+}
+
+const {
+  variant = 'default',
+  padding = 'md',
+  class: className = '',
+  id,
+  as: Component = 'div',
+} = Astro.props;
+
+const baseStyles = 'rounded-xl border transition-all duration-200';
+
+const variants = {
+  default: 'bg-surface border-border text-card-foreground shadow-soft',
+  elevated: 'bg-surface-elevated border-border text-card-foreground shadow-card',
+  interactive: 'bg-surface border-border text-card-foreground shadow-soft hover:border-brand/40 hover:shadow-card hover:-translate-y-0.5 cursor-pointer',
+  ghost: 'bg-transparent border-transparent text-foreground',
+};
+
+const paddings = {
+  none: '',
+  sm: 'p-3.5 sm:p-4',
+  md: 'p-5 sm:p-6',
+  lg: 'p-6 sm:p-8',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${paddings[padding]} ${className}`.trim();
+---
+
+<Component id={id} class={classes}>
+  <slot />
+</Component>

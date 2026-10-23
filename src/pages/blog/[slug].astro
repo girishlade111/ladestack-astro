@@ -1,17 +1,16 @@
 ---
 /**
- * /blog/:slug — full port of src/pages/BlogPost.tsx.
- * Same breadcrumb, category badge, H1, excerpt, author/date row, cover,
- * article body (same renderer, executed at build time), keywords, share row,
- * info sidebar, related articles, CTA banner. Related-post + cover-fallback
- * rules preserved; copy-link + image fallback via inline script.
+ * /blog/:slug — Single Post Layout
+ * Strictly adheres to 65-75ch readable measure, sticky Table of Contents (TOC),
+ * token-based syntax blocks, share links, and related articles.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import Badge from '../../components/ui/Badge.astro';
 import { blogPosts } from '../../data/blogPosts';
 import { blogContent } from '../../data/blogContent';
 import { categoryColors, FALLBACK_IMAGE } from '../../data/categories';
-import { renderArticle } from '../../lib/markdown';
+import { renderArticle, extractHeadings } from '../../lib/markdown';
 
 export function getStaticPaths() {
   return blogPosts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -21,8 +20,11 @@ const { post } = Astro.props;
 const canonical = `https://ladestack.in/blog/${post.slug}`;
 const title = `${post.title} | Lade Stack Blog`;
 const coverImage = `https://ladestack.in/blog-covers/${post.image}.svg`;
-const bodyHtml = renderArticle(blogContent[post.slug] ?? '');
+const rawContent = blogContent[post.slug] ?? '';
+const bodyHtml = renderArticle(rawContent);
+const headings = extractHeadings(rawContent);
 const c = categoryColors(post.category);
+
 const dateLong = new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -68,292 +70,232 @@ const structuredData = [
   structuredData={structuredData}
 >
   <div class="min-h-screen bg-background">
-    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,rgba(110,143,106,0.08),transparent_60%)]"></div>
-      <div class="absolute top-[55%] right-0 w-[400px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.05),transparent_55%)]"></div>
+    {/* Article Header & Hero */}
+    <header class="pt-12 pb-8 border-b border-border bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb */}
+        <nav class="flex items-center gap-1.5 text-xs text-muted-foreground mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-foreground transition-colors">Home</a>
+          <span>/</span>
+          <a href="/blog" class="hover:text-foreground transition-colors">Blog</a>
+          <span>/</span>
+          <span class="text-foreground font-medium truncate max-w-[200px]">{post.category}</span>
+        </nav>
+
+        <div class="flex items-center gap-2 mb-4">
+          <Badge variant="brand" size="sm">
+            {post.category}
+          </Badge>
+          <span class="text-xs font-mono text-muted-foreground">
+            {post.readTime}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-[1.15] tracking-tight mb-4 text-balance">
+          {post.title}
+        </h1>
+
+        <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 text-pretty">
+          {post.excerpt}
+        </p>
+
+        <div class="flex items-center justify-between pt-4 border-t border-border/80 text-xs text-muted-foreground">
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-full bg-brand/10 text-brand font-semibold flex items-center justify-center font-mono">
+              GL
+            </div>
+            <div>
+              <span class="font-medium text-foreground">{post.author}</span>
+              <span class="mx-1.5">·</span>
+              <span>{dateLong}</span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            data-copy-link
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-foreground transition-colors"
+          >
+            <Icon name="copy" class="w-3.5 h-3.5" />
+            <span data-copy-label>Share Link</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    {/* Cover Art Banner */}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 my-8">
+      <div class="rounded-2xl border border-border bg-surface-muted overflow-hidden aspect-[16/8] shadow-card">
+        <img
+          src={`/blog-covers/${post.image}.svg`}
+          alt={post.title}
+          data-cover-fallback
+          class="w-full h-full object-cover"
+        />
+      </div>
     </div>
 
-    <div class="pt-16">
-      {/* Article header */}
-      <section class="pt-12 pb-0">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-3xl mx-auto">
-            <nav class="flex items-center gap-1.5 text-xs text-muted-foreground mb-8" aria-label="Breadcrumb">
-              <a href="/" class="hover:text-foreground transition-colors">Home</a>
-              <span>/</span>
-              <a href="/blog" class="hover:text-foreground transition-colors">Blog</a>
-              <span>/</span>
-              <span class="text-foreground font-medium truncate max-w-[200px]">{post.title}</span>
-            </nav>
+    {/* Reading Layout (Readable Measure 65-75ch + Sticky TOC) */}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
+        {/* Main Article Body: 65–75ch measure */}
+        <article class="lg:col-span-8 max-w-[72ch] min-w-0">
+          <div class="prose-clean text-foreground" set:html={bodyHtml} />
 
-            <div class="flex flex-wrap items-center gap-2.5 mb-5">
-              <span class={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${c.bg} ${c.text} ${c.border}`}>
-                <span class={`w-1.5 h-1.5 rounded-full ${c.dot}`}></span>
-                {post.category}
-              </span>
-              <span class="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted rounded-full px-3 py-1 border border-border">
-                <Icon name="clock" class="w-3.5 h-3.5" /> {post.readTime}
-              </span>
-            </div>
+          {/* Keywords */}
+          {
+            post.keywords.length > 0 && (
+              <div class="mt-12 pt-6 border-t border-border">
+                <p class="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">
+                  Indexed Keywords
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                  {post.keywords.map((kw) => (
+                    <span class="text-xs font-mono px-2.5 py-1 rounded-md border border-border bg-surface-muted text-muted-foreground">
+                      #{kw}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
 
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground leading-tight tracking-tight mb-5">
-              {post.title}
-            </h1>
-            <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8">{post.excerpt}</p>
+          {/* Share & Back */}
+          <div class="mt-10 pt-6 border-t border-border flex items-center justify-between">
+            <button
+              type="button"
+              data-copy-link
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs font-medium text-foreground transition-colors"
+            >
+              <Icon name="copy" class="w-4 h-4" />
+              <span data-copy-label>Copy Article Link</span>
+            </button>
 
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-8 border-b border-border">
+            <a
+              href="/blog"
+              class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+            >
+              <Icon name="arrow-left" class="w-3.5 h-3.5" />
+              <span>Back to Articles</span>
+            </a>
+          </div>
+        </article>
+
+        {/* Sidebar: Table of Contents + Metadata */}
+        <aside class="hidden lg:block lg:col-span-4">
+          <div class="sticky top-24 space-y-6">
+            {/* TOC Card */}
+            {headings.length > 0 && (
+              <div class="rounded-xl border border-border bg-surface p-5">
+                <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-2">
+                  <Icon name="list" class="w-3.5 h-3.5 text-brand" />
+                  Table of Contents
+                </p>
+                <nav class="space-y-1.5 text-xs" aria-label="Table of Contents">
+                  {headings.map((h) => (
+                    <a
+                      href={`#${h.id}`}
+                      class={`block text-muted-foreground hover:text-brand transition-colors leading-snug ${
+                        h.level === 3 ? 'pl-3 text-[11px]' : 'font-medium'
+                      }`}
+                    >
+                      {h.text}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )}
+
+            {/* Author details */}
+            <div class="rounded-xl border border-border bg-surface p-5">
+              <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                Author & Engineering Team
+              </p>
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-full bg-[#6E8F6A]/15 border border-[#6E8F6A]/20 flex items-center justify-center">
-                  <Icon name="user" class="w-4 h-4 text-[#6E8F6A]" />
+                <div class="w-10 h-10 rounded-xl bg-brand/10 border border-brand/20 text-brand flex items-center justify-center font-mono font-bold">
+                  GL
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-foreground">{post.author}</p>
-                  <p class="text-xs text-muted-foreground flex items-center gap-1">
-                    <Icon name="calendar" class="w-3 h-3" />
-                    {dateLong}
-                  </p>
+                  <p class="text-xs text-muted-foreground">Founder & Lead Engineer</p>
                 </div>
               </div>
-              <button
-                type="button"
-                data-copy-link
-                class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition"
-              >
-                <Icon name="copy" class="w-4 h-4" />
-                <span data-copy-label>Copy Link</span>
-              </button>
+              <p class="mt-3 text-xs text-muted-foreground leading-relaxed">
+                Building client-side AI developer tools at Lade Stack.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
+        </aside>
+      </div>
+    </div>
 
-      {/* Cover */}
-      <section class="py-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden border border-border shadow-xl aspect-[16/7] bg-muted">
-            <img
-              src={`/blog-covers/${post.image}.svg`}
-              alt={post.title}
-              data-cover-fallback
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
+    {/* Related Articles Strip */}
+    {
+      relatedPosts.length > 0 && (
+        <section class="py-14 border-t border-border bg-surface-muted/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-xl font-bold tracking-tight text-foreground">
+                More in {post.category}
+              </h2>
+              <a href="/blog" class="text-xs font-semibold text-brand hover:underline inline-flex items-center gap-1">
+                <span>View all articles</span>
+                <Icon name="arrow-right" class="w-3.5 h-3.5" />
+              </a>
+            </div>
 
-      {/* Body + sidebar */}
-      <section class="pb-16 sm:pb-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-6xl mx-auto">
-            <div class="flex gap-12 xl:gap-16">
-              <article class="min-w-0 flex-1">
-                <div class="prose-content text-foreground leading-relaxed" set:html={bodyHtml} />
-
-                {
-                  post.keywords.length > 0 && (
-                    <div class="mt-12 pt-8 border-t border-border">
-                      <p class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Keywords</p>
-                      <div class="flex flex-wrap gap-2">
-                        {post.keywords.map((kw) => (
-                          <span class="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs text-muted-foreground">
-                            {kw}
-                          </span>
-                        ))}
-                      </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {relatedPosts.map((rp) => (
+                <a
+                  href={`/blog/${rp.slug}`}
+                  class="group rounded-xl border border-border bg-surface p-5 hover:border-brand/40 hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+                >
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-[11px] font-mono text-brand font-semibold uppercase">
+                        {rp.category}
+                      </span>
+                      <span class="text-xs text-muted-foreground font-mono">{rp.readTime}</span>
                     </div>
-                  )
-                }
-
-                <div class="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div class="flex items-center gap-3">
-                    <span class="text-sm text-muted-foreground">Share this article:</span>
-                    <button
-                      type="button"
-                      data-copy-link
-                      class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition"
-                    >
-                      <Icon name="copy" class="w-4 h-4" />
-                      <span data-copy-label>Copy Link</span>
-                    </button>
-                  </div>
-                  <a
-                    href="/blog"
-                    class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition"
-                  >
-                    <Icon name="arrow-right" class="w-4 h-4 rotate-180" /> Back to Blog
-                  </a>
-                </div>
-              </article>
-
-              <aside class="hidden lg:block w-72 xl:w-80 flex-shrink-0">
-                <div class="sticky top-24 space-y-6">
-                  <div class="rounded-2xl border border-border bg-card p-5">
-                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">Author</p>
-                    <div class="flex items-center gap-3 mb-3">
-                      <div class="w-10 h-10 rounded-full bg-[#6E8F6A]/15 border border-[#6E8F6A]/20 flex items-center justify-center flex-shrink-0">
-                        <Icon name="user" class="w-5 h-5 text-[#6E8F6A]" />
-                      </div>
-                      <div>
-                        <p class="text-sm font-semibold text-foreground">{post.author}</p>
-                        <p class="text-xs text-muted-foreground">Lade Stack Team</p>
-                      </div>
-                    </div>
-                    <p class="text-xs text-muted-foreground leading-relaxed">
-                      Building AI-powered developer tools and sharing insights on modern software engineering.
+                    <h3 class="text-sm font-semibold text-foreground line-clamp-2 mb-2 group-hover:text-brand transition-colors">
+                      {rp.title}
+                    </h3>
+                    <p class="text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                      {rp.excerpt}
                     </p>
                   </div>
-
-                  <div class="rounded-2xl border border-border bg-card p-5 space-y-3">
-                    <p class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">Article Info</p>
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-muted-foreground flex items-center gap-1.5"><Icon name="calendar" class="w-3.5 h-3.5" /> Published</span>
-                      <span class="font-medium text-foreground text-xs">{dateShort}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-muted-foreground flex items-center gap-1.5"><Icon name="clock" class="w-3.5 h-3.5" /> Read time</span>
-                      <span class="font-medium text-foreground text-xs">{post.readTime}</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                      <span class="text-muted-foreground flex items-center gap-1.5"><Icon name="book-open" class="w-3.5 h-3.5" /> Category</span>
-                      <span class={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${c.bg} ${c.text} ${c.border}`}>
-                        <span class={`w-1.5 h-1.5 rounded-full ${c.dot}`}></span>
-                        {post.category}
-                      </span>
-                    </div>
+                  <div class="mt-4 pt-3 border-t border-border/60 text-xs font-medium text-brand">
+                    Read Post →
                   </div>
-
-                  {
-                    relatedPosts.length > 0 && (
-                      <div>
-                        <p class="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Related Articles</p>
-                        <div class="space-y-3">
-                          {relatedPosts.map((rp) => {
-                            const rc = categoryColors(rp.category);
-                            return (
-                              <a
-                                href={`/blog/${rp.slug}`}
-                                class="group flex gap-4 rounded-2xl border border-border bg-card p-4 hover:border-[#6E8F6A]/40 hover:shadow-md transition-all duration-200"
-                              >
-                                <div class="w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-muted">
-                                  <img
-                                    src={`/blog-covers/${rp.image}.svg`}
-                                    alt={rp.title}
-                                    data-cover-fallback
-                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                  />
-                                </div>
-                                <div class="flex flex-col justify-center min-w-0">
-                                  <span class={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold mb-1.5 w-fit ${rc.bg} ${rc.text} ${rc.border}`}>
-                                    <span class={`w-1 h-1 rounded-full ${rc.dot}`}></span>
-                                    {rp.category}
-                                  </span>
-                                  <h4 class="text-sm font-semibold text-foreground leading-snug line-clamp-2 group-hover:text-[#6E8F6A] transition-colors">
-                                    {rp.title}
-                                  </h4>
-                                  <span class="text-xs text-muted-foreground mt-1 flex items-center gap-1">
-                                    <Icon name="clock" class="w-3 h-3" /> {rp.readTime}
-                                  </span>
-                                </div>
-                              </a>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )
-                  }
-                </div>
-              </aside>
+                </a>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Related + CTA */}
-      {
-        relatedPosts.length > 0 && (
-          <section class="py-16 border-t border-border bg-muted/20">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-              <div class="max-w-6xl mx-auto">
-                <div class="flex items-center justify-between mb-6">
-                  <h2 class="text-xl sm:text-2xl font-bold text-foreground">More in {post.category}</h2>
-                  <a href="/blog" class="inline-flex items-center gap-1.5 text-sm text-[#6E8F6A] font-medium hover:text-[#5a7856] transition-colors">
-                    View all <Icon name="arrow-right" class="w-3.5 h-3.5" />
-                  </a>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
-                  {relatedPosts.map((rp) => {
-                    const rc = categoryColors(rp.category);
-                    return (
-                      <a
-                        href={`/blog/${rp.slug}`}
-                        class="group rounded-2xl overflow-hidden border border-border bg-card hover:border-[#6E8F6A]/40 hover:shadow-lg transition-all duration-200 flex flex-col"
-                      >
-                        <div class={`h-1 w-full ${rc.dot}`}></div>
-                        <div class="aspect-[16/9] overflow-hidden bg-muted relative">
-                          <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                          <img
-                            src={`/blog-covers/${rp.image}.svg`}
-                            alt={rp.title}
-                            data-cover-fallback
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                          <div class="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                            <Icon name="calendar" class="w-3 h-3" />
-                            {new Date(rp.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                            <span class="w-1 h-1 rounded-full bg-muted-foreground/40"></span>
-                            <Icon name="clock" class="w-3 h-3" />
-                            {rp.readTime}
-                          </div>
-                          <h3 class="text-sm font-bold text-foreground leading-snug line-clamp-2 group-hover:text-[#6E8F6A] transition-colors flex-1 mb-3">
-                            {rp.title}
-                          </h3>
-                          <span class="inline-flex items-center gap-1 text-xs font-semibold text-[#6E8F6A] group-hover:gap-2 transition-all">
-                            Read Article <Icon name="arrow-right" class="w-3 h-3" />
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-                <div class="relative rounded-3xl overflow-hidden border border-[#6E8F6A]/20 bg-gradient-to-br from-[#6E8F6A]/8 via-background to-violet-500/5 p-10 text-center">
-                  <div class="absolute top-0 right-0 w-56 h-56 bg-[radial-gradient(ellipse_at_top_right,rgba(110,143,106,0.12),transparent_65%)] pointer-events-none"></div>
-                  <h3 class="text-2xl font-bold text-foreground mb-2">Explore more articles</h3>
-                  <p class="text-muted-foreground mb-6">Discover tutorials, guides, and insights across all topics.</p>
-                  <a
-                    href="/blog"
-                    class="inline-flex items-center gap-2 rounded-xl bg-[#6E8F6A] hover:bg-[#5a7856] text-white font-semibold px-6 py-2.5 text-sm transition-colors"
-                  >
-                    <Icon name="book-open" class="w-4 h-4" /> Browse All Articles
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-        )
-      }
-    </div>
+        </section>
+      )
+    }
   </div>
 
   <script is:inline define:vars={{ fallback: FALLBACK_IMAGE }}>
     (function (fallback) {
       document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
         btn.addEventListener('click', function () {
+          var label = btn.querySelector('[data-copy-label]');
+          var orig = label ? label.textContent : '';
           var done = function () {
-            btn.querySelectorAll('[data-copy-label]').forEach(function (l) {
-              l.textContent = 'Copied!';
-            });
+            if (label) label.textContent = 'Copied to Clipboard!';
             setTimeout(function () {
-              btn.querySelectorAll('[data-copy-label]').forEach(function (l) {
-                l.textContent = 'Copy Link';
-              });
+              if (label) label.textContent = orig;
             }, 2000);
           };
-          if (navigator.clipboard) navigator.clipboard.writeText(window.location.href).then(done, done);
-          else done();
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(window.location.href).then(done, done);
+          } else {
+            done();
+          }
         });
       });
+
       document.querySelectorAll('img[data-cover-fallback]').forEach(function (img) {
         img.addEventListener('error', function () {
           if (img.src !== fallback) img.src = fallback;

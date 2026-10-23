@@ -1,0 +1,68 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'button'> {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
+  href?: string;
+  target?: string;
+  rel?: string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel,
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 ease-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none select-none';
+
+const variants = {
+  primary: 'bg-brand text-brand-foreground hover:bg-brand-hover shadow-soft',
+  secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/60',
+  outline: 'bg-transparent border border-border text-foreground hover:bg-surface-muted hover:border-brand/40',
+  ghost: 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-surface-muted',
+  link: 'bg-transparent text-brand underline-offset-4 hover:underline p-0 h-auto',
+};
+
+const sizes = {
+  sm: 'text-xs h-8 px-3 gap-1.5',
+  md: 'text-sm h-10 px-4 gap-2',
+  lg: 'text-base h-12 px-6 gap-2.5',
+  icon: 'h-9 w-9 p-0',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`.trim();
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={target === '_blank' ? (rel ?? 'noopener noreferrer') : rel}
+      class={classes}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      disabled={disabled}
+      class={classes}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}

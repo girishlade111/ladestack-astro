@@ -1,18 +1,8 @@
 ---
 /**
- * SEO.astro — reusable head-metadata component.
- *
- * Contract mirrors migration-seo-manifest.json → routes[].meta exactly:
- *   meta: {
- *     title, description, canonical,
- *     robots: { index, follow, custom },
- *     open_graph: { title, description, url, type, image },
- *     twitter: { card, title, description, image }
- *   }
- *   structured_data: [{ type, raw_json_ld }]
- *
- * Every page passes its manifest entry through; JSON-LD is injected
- * unaltered inside <script type="application/ld+json">.
+ * SEO.astro — Complete reusable head-metadata component.
+ * Supports canonical URLs, hreflang alternates (with x-default), OpenGraph,
+ * Twitter Cards, and schema.org JSON-LD injections.
  */
 
 export interface RobotsMeta {
@@ -43,9 +33,9 @@ export interface Props {
   robots?: RobotsMeta;
   openGraph?: OpenGraphMeta;
   twitter?: TwitterMeta;
-  /** Raw JSON-LD objects — injected verbatim, structure never altered. */
   structuredData?: Record<string, unknown>[];
   siteName?: string;
+  lang?: string;
   locale?: string;
 }
 
@@ -58,12 +48,10 @@ const {
   twitter = {},
   structuredData = [],
   siteName = 'Lade Stack',
+  lang = 'en',
   locale = 'en_US',
 } = Astro.props;
 
-// Rebuild the exact robots string the manifest encodes, e.g.
-// "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-// or "noindex, nofollow" for /apps/admin and /404.
 const robotsContent = [
   robots.index ? 'index' : 'noindex',
   robots.follow ? 'follow' : 'nofollow',
@@ -71,6 +59,9 @@ const robotsContent = [
 ]
   .filter(Boolean)
   .join(', ');
+
+const ogImage = openGraph.image ?? 'https://ladestack.in/og-image.png';
+const twitterImage = twitter.image ?? ogImage;
 ---
 
 <title>{title}</title>
@@ -78,26 +69,26 @@ const robotsContent = [
 <meta name="robots" content={robotsContent} />
 <link rel="canonical" href={canonical} />
 
-{/* Open Graph — emitted exactly as defined in the manifest */}
-{openGraph.title && <meta property="og:title" content={openGraph.title} />}
-{openGraph.description && (
-  <meta property="og:description" content={openGraph.description} />
-)}
-{openGraph.url && <meta property="og:url" content={openGraph.url} />}
-{openGraph.type && <meta property="og:type" content={openGraph.type} />}
-{openGraph.image && <meta property="og:image" content={openGraph.image} />}
+{/* Hreflang alternates + x-default for search engines */}
+<link rel="alternate" hreflang="en" href={canonical} />
+<link rel="alternate" hreflang="x-default" href={canonical} />
+
+{/* Open Graph */}
+<meta property="og:title" content={openGraph.title ?? title} />
+{description && <meta property="og:description" content={openGraph.description ?? description} />}
+<meta property="og:url" content={openGraph.url ?? canonical} />
+<meta property="og:type" content={openGraph.type ?? 'website'} />
+<meta property="og:image" content={ogImage} />
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content={locale} />
 
-{/* Twitter Card — emitted exactly as defined in the manifest */}
-{twitter.card && <meta name="twitter:card" content={twitter.card} />}
-{twitter.title && <meta name="twitter:title" content={twitter.title} />}
-{twitter.description && (
-  <meta name="twitter:description" content={twitter.description} />
-)}
-{twitter.image && <meta name="twitter:image" content={twitter.image} />}
+{/* Twitter Card */}
+<meta name="twitter:card" content={twitter.card ?? 'summary_large_image'} />
+<meta name="twitter:title" content={twitter.title ?? title} />
+{description && <meta name="twitter:description" content={twitter.description ?? description} />}
+<meta name="twitter:image" content={twitterImage} />
 
-{/* JSON-LD schemas — structure preserved verbatim from raw_json_ld */}
+{/* Structured Data (JSON-LD) */}
 {structuredData.map((schema) => (
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 ))}

@@ -1,0 +1,101 @@
+---
+import Icon from '../Icon.astro';
+
+export interface Props {
+  currentLang?: string;
+  class?: string;
+}
+
+const { currentLang = 'en', class: className = '' } = Astro.props;
+
+const languages = [
+  { code: 'en', label: 'English', flag: 'EN' },
+  { code: 'hi', label: 'हिन्दी', flag: 'HI' },
+  { code: 'es', label: 'Español', flag: 'ES' },
+  { code: 'de', label: 'Deutsch', flag: 'DE' },
+  { code: 'fr', label: 'Français', flag: 'FR' },
+];
+
+const current = languages.find((l) => l.code === currentLang) ?? languages[0];
+---
+
+<div class={`relative inline-block text-left ${className}`} data-lang-switcher>
+  <button
+    type="button"
+    id="lang-menu-button"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label={`Select language. Current language: ${current.label}`}
+    class="inline-flex items-center gap-1.5 h-9 px-2.5 text-xs font-medium text-muted-foreground hover:text-foreground rounded-lg border border-border/80 bg-surface/60 hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+  >
+    <Icon name="globe" class="w-3.5 h-3.5" />
+    <span class="font-mono uppercase">{current.code}</span>
+    <Icon name="chevron-down" class="w-3 h-3 text-muted-foreground transition-transform duration-150" />
+  </button>
+
+  <div
+    id="lang-menu-dropdown"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="lang-menu-button"
+    tabindex="-1"
+    class="hidden absolute right-0 z-50 mt-1.5 w-36 origin-top-right rounded-lg border border-border bg-surface p-1 shadow-card focus:outline-none"
+  >
+    {
+      languages.map((lang) => (
+        <button
+          type="button"
+          role="menuitem"
+          data-lang-code={lang.code}
+          class={`flex w-full items-center justify-between px-3 py-1.5 text-xs rounded-md transition-colors ${
+            lang.code === currentLang
+              ? 'bg-brand/10 text-brand font-medium'
+              : 'text-foreground hover:bg-surface-muted'
+          }`}
+        >
+          <span>{lang.label}</span>
+          <span class="font-mono text-[10px] text-muted-foreground">{lang.code.toUpperCase()}</span>
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const root = document.querySelector('[data-lang-switcher]');
+    if (!root) return;
+    const btn = root.querySelector('#lang-menu-button');
+    const dropdown = root.querySelector('#lang-menu-dropdown');
+    if (!btn || !dropdown) return;
+
+    function toggleMenu(show) {
+      const isExpanded = show !== undefined ? show : dropdown.classList.contains('hidden');
+      if (isExpanded) {
+        dropdown.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        dropdown.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!root.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !dropdown.classList.contains('hidden')) {
+        toggleMenu(false);
+        btn.focus();
+      }
+    });
+  })();
+</script>

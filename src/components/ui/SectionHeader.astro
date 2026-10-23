@@ -1,0 +1,33 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  align?: 'center' | 'left';
+  class?: string;
+  id?: string;
+}
+
+const {
+  title,
+  description,
+  align = 'center',
+  class: className = '',
+  id,
+} = Astro.props;
+
+const alignmentClasses = align === 'center' ? 'text-center mx-auto items-center' : 'text-left items-start';
+---
+
+<div id={id} class={`flex flex-col max-w-3xl mb-12 sm:mb-16 ${alignmentClasses} ${className}`.trim()}>
+  <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-foreground text-balance">
+    {title}
+  </h2>
+  {
+    description && (
+      <p class="mt-3.5 sm:mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty max-w-2xl">
+        {description}
+      </p>
+    )
+  }
+  <slot />
+</div>

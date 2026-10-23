@@ -1,8 +1,16 @@
 /**
- * markdown.ts — server-side port of BlogPost.tsx's processInline +
- * renderContent. Same splitting rules, same Tailwind classes; returns an
- * HTML string for Astro's set:html (rendered at build time, zero client JS).
+ * markdown.ts — server-side article renderer.
+ * Formats Markdown blocks into semantic HTML with token styling,
+ * slugified heading IDs for TOC generation, and copy-ready code blocks.
  */
+
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_-]+/g, '-');
+}
 
 export function processInline(text: string): string {
   return text
@@ -10,16 +18,30 @@ export function processInline(text: string): string {
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
     .replace(
       /`([^`]+)`/g,
-      '<code class="bg-muted/80 border border-border px-1.5 py-0.5 rounded-md text-sm font-mono text-[#6E8F6A]">$1</code>',
+      '<code class="bg-surface-muted border border-border px-1.5 py-0.5 rounded text-xs font-mono text-brand">$1</code>',
     )
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-[#6E8F6A] underline underline-offset-2 hover:text-[#5a7856] transition-colors" target="_blank" rel="noopener noreferrer">$1</a>',
+      '<a href="$2" class="text-brand underline underline-offset-4 hover:text-brand-hover transition-colors" target="_blank" rel="noopener noreferrer">$1</a>',
     );
 }
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+export function extractHeadings(contentStr: string): { id: string; text: string; level: number }[] {
+  const headings: { id: string; text: string; level: number }[] = [];
+  for (const line of contentStr.split('\n')) {
+    if (line.startsWith('## ')) {
+      const raw = line.replace('## ', '').trim();
+      headings.push({ id: slugify(raw), text: raw, level: 2 });
+    } else if (line.startsWith('### ')) {
+      const raw = line.replace('### ', '').trim();
+      headings.push({ id: slugify(raw), text: raw, level: 3 });
+    }
+  }
+  return headings;
 }
 
 export function renderArticle(contentStr: string): string {
@@ -57,16 +79,16 @@ export function renderArticle(contentStr: string): string {
     .map((block) => {
       if (block.startsWith('```')) {
         const parts = block.split('\n');
-        const lang = parts[0].replace('```', '').trim();
+        const lang = parts[0].replace('```', '').trim() || 'code';
         const code = escapeHtml(parts.slice(1, -1).join('\n'));
         return (
-          `<div class="my-7 rounded-2xl overflow-hidden border border-border shadow-sm">` +
-          (lang
-            ? `<div class="flex items-center justify-between px-4 py-2 bg-muted/60 border-b border-border">` +
-              `<span class="text-xs font-mono text-muted-foreground">${escapeHtml(lang)}</span>` +
-              `<span class="w-2 h-2 rounded-full bg-[#6E8F6A]/60"></span></div>`
-            : '') +
-          `<pre class="bg-muted/40 overflow-x-auto p-5"><code class="text-sm font-mono text-foreground/80 leading-relaxed">${code}</code></pre></div>`
+          `<div class="my-7 rounded-xl overflow-hidden border border-border bg-surface shadow-soft">` +
+          `<div class="flex items-center justify-between px-4 py-2 bg-surface-muted border-b border-border text-xs font-mono text-muted-foreground select-none">` +
+          `<span>${escapeHtml(lang)}</span>` +
+          `<span class="w-2 h-2 rounded-full bg-brand"></span>` +
+          `</div>` +
+          `<pre class="bg-background overflow-x-auto p-4 sm:p-5 text-xs sm:text-sm font-mono text-foreground leading-relaxed"><code>${code}</code></pre>` +
+          `</div>`
         );
       }
 
@@ -75,7 +97,7 @@ export function renderArticle(contentStr: string): string {
           .split('\n')
           .map((l) => l.replace(/^>\s*/, ''))
           .join(' ');
-        return `<blockquote class="my-7 pl-5 border-l-4 border-[#6E8F6A] bg-[#6E8F6A]/5 rounded-r-xl py-4 pr-5 italic text-muted-foreground text-base sm:text-lg leading-relaxed">${escapeHtml(text)}</blockquote>`;
+        return `<blockquote class="my-6 p-4 sm:p-5 border border-border bg-surface-muted/50 rounded-xl text-muted-foreground text-sm sm:text-base leading-relaxed italic">${escapeHtml(text)}</blockquote>`;
       }
 
       if (block.startsWith('- ')) {
@@ -84,12 +106,12 @@ export function renderArticle(contentStr: string): string {
           .filter((l) => l.startsWith('- '))
           .map((l) => l.replace('- ', ''));
         return (
-          `<ul class="my-5 space-y-2.5 ml-1">` +
+          `<ul class="my-5 space-y-2">` +
           items
             .map(
               (item) =>
-                `<li class="flex items-start gap-2.5 text-base sm:text-lg text-muted-foreground leading-relaxed">` +
-                `<span class="mt-2 w-1.5 h-1.5 rounded-full bg-[#6E8F6A] flex-shrink-0"></span>` +
+                `<li class="flex items-start gap-2.5 text-sm sm:text-base text-muted-foreground leading-relaxed">` +
+                `<span class="mt-2 w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>` +
                 `<span>${processInline(item)}</span></li>`,
             )
             .join('') +
@@ -103,12 +125,12 @@ export function renderArticle(contentStr: string): string {
           .filter((l) => /^\d+\. /.test(l))
           .map((l) => l.replace(/^\d+\.\s*/, ''));
         return (
-          `<ol class="my-5 space-y-2.5 ml-1 counter-reset-list">` +
+          `<ol class="my-5 space-y-2.5">` +
           items
             .map(
               (item, i) =>
-                `<li class="flex items-start gap-3 text-base sm:text-lg text-muted-foreground leading-relaxed">` +
-                `<span class="flex-shrink-0 w-6 h-6 rounded-full bg-[#6E8F6A]/15 text-[#6E8F6A] text-xs font-bold flex items-center justify-center mt-0.5">${i + 1}</span>` +
+                `<li class="flex items-start gap-3 text-sm sm:text-base text-muted-foreground leading-relaxed">` +
+                `<span class="flex-shrink-0 w-5 h-5 rounded-md bg-brand/10 text-brand text-xs font-mono font-bold flex items-center justify-center mt-0.5">${i + 1}</span>` +
                 `<span>${processInline(item)}</span></li>`,
             )
             .join('') +
@@ -116,16 +138,24 @@ export function renderArticle(contentStr: string): string {
         );
       }
 
-      if (block.startsWith('# '))
-        return `<h1 class="text-3xl sm:text-4xl font-bold mt-12 mb-5 text-foreground leading-tight tracking-tight">${processInline(block.replace('# ', ''))}</h1>`;
-      if (block.startsWith('## '))
-        return `<h2 class="text-2xl sm:text-3xl font-bold mt-10 mb-4 text-foreground leading-snug tracking-tight">${processInline(block.replace('## ', ''))}</h2>`;
-      if (block.startsWith('### '))
-        return `<h3 class="text-xl sm:text-2xl font-bold mt-8 mb-3 text-foreground">${processInline(block.replace('### ', ''))}</h3>`;
-      if (block.startsWith('#### '))
-        return `<h4 class="text-lg font-semibold mt-6 mb-2 text-foreground">${processInline(block.replace('#### ', ''))}</h4>`;
+      if (block.startsWith('# ')) {
+        const text = block.replace('# ', '');
+        return `<h1 id="${slugify(text)}" class="text-2xl sm:text-3xl font-bold mt-10 mb-4 text-foreground leading-tight tracking-tight">${processInline(text)}</h1>`;
+      }
+      if (block.startsWith('## ')) {
+        const text = block.replace('## ', '');
+        return `<h2 id="${slugify(text)}" class="text-xl sm:text-2xl font-semibold mt-9 mb-3.5 text-foreground leading-snug tracking-tight">${processInline(text)}</h2>`;
+      }
+      if (block.startsWith('### ')) {
+        const text = block.replace('### ', '');
+        return `<h3 id="${slugify(text)}" class="text-lg sm:text-xl font-semibold mt-7 mb-2.5 text-foreground leading-snug">${processInline(text)}</h3>`;
+      }
+      if (block.startsWith('#### ')) {
+        const text = block.replace('#### ', '');
+        return `<h4 class="text-base font-semibold mt-5 mb-2 text-foreground">${processInline(text)}</h4>`;
+      }
 
-      return `<p class="text-base sm:text-lg text-muted-foreground leading-[1.85] my-5">${processInline(block)}</p>`;
+      return `<p class="text-sm sm:text-base text-muted-foreground leading-[1.8] my-4 text-pretty">${processInline(block)}</p>`;
     })
     .join('\n');
 }

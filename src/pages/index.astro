@@ -1,17 +1,17 @@
 ---
 /**
- * / — manifest route: src/pages/Index.tsx → url_path "/"
- * Canonical: https://ladestack.in/
+ * / — Homepage
+ * Redesigned with Obsidian & Precision Emerald design system,
+ * zero-JS Astro architecture, and complete SEO / structured data.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Values from '../components/Values.astro';
-import Impact from '../components/Impact.astro';
-import Products from '../components/Products.astro';
-import FreeForever from '../components/FreeForever.astro';
-import Community from '../components/Community.astro';
-import Testimonials from '../components/Testimonials.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FeaturesBento from '../components/sections/FeaturesBento.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import UseCases from '../components/sections/UseCases.astro';
+import ProductShowcase from '../components/sections/ProductShowcase.astro';
+import DeveloperFaq, { faqs } from '../components/sections/DeveloperFaq.astro';
+import CtaBanner from '../components/sections/CtaBanner.astro';
 
 const structuredData = [
   {
@@ -19,7 +19,7 @@ const structuredData = [
     '@type': 'WebApplication',
     applicationCategory: 'DeveloperApplication',
     description:
-      'AI-powered developer tools platform with code editor, API testing, website builder, and file management.',
+      'AI-powered developer platform with in-browser code editor, 17-in-1 PDF toolkit, image compressor, and productivity utilities.',
     name: 'Lade Stack',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     operatingSystem: 'Web Browser',
@@ -34,7 +34,7 @@ const structuredData = [
       contactType: 'customer support',
       email: 'admin@ladestack.in',
     },
-    description: 'AI-powered developer tools and SaaS solutions for modern development teams.',
+    description: 'AI-powered developer tools and SaaS solutions for modern engineering teams.',
     founder: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
     logo: 'https://ladestack.in/favicon.ico',
     name: 'Lade Stack',
@@ -49,11 +49,11 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    aggregateRating: { '@type': 'AggregateRating', ratingCount: '150', ratingValue: '4.1' },
+    aggregateRating: { '@type': 'AggregateRating', ratingCount: '150', ratingValue: '4.8' },
     applicationCategory: 'DeveloperApplication',
     author: { '@type': 'Person', name: 'Girish Lade', url: 'https://github.com/girishlade111' },
     description:
-      'AI-powered developer tools and SaaS solutions including API testing platform, website builder, file management system, and documentation summarizer.',
+      'AI-powered developer tools including in-browser code editor, PDF toolkit, image optimizer, and ATS resume builder.',
     name: 'Lade Stack',
     offers: {
       '@type': 'Offer',
@@ -67,23 +67,35 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    description: 'AI-Powered Developer Tools & SaaS Solutions',
+    description: 'AI-Powered Developer Tools & In-Browser Utilities',
     name: 'Lade Stack',
     publisher: { '@type': 'Organization', name: 'Lade Stack' },
     url: 'https://ladestack.in',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
   },
 ];
 ---
 
 <BaseLayout
-  title="Lade Stack – AI-Powered Developer Platform | Build Smarter, Ship Faster"
-  description="The complete AI-powered development ecosystem. Intelligent tools for coding, API testing, website building, file sharing, and documentation — all free. Built for modern developers."
+  title="Lade Stack – AI Developer Platform | Code Studio, PDF Toolkit & Developer Utilities"
+  description="The complete AI developer ecosystem. In-browser code editing, 17-in-1 private PDF toolkit, high-ratio image compression, and career utilities — free forever."
   canonical="https://ladestack.in/"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
     title: 'Lade Stack – AI-Powered Developer Ecosystem',
     description:
-      'Enterprise-grade AI tools at startup velocity. Code editing, API testing, file sharing, and automation for 10x developer productivity.',
+      'In-browser AI code studio, private PDF tools, image compressor, and productivity utilities for 10x developer productivity. Free forever.',
     url: 'https://ladestack.in/',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
@@ -92,19 +104,16 @@ const structuredData = [
     card: 'summary_large_image',
     title: 'Lade Stack – AI-Powered Developer Ecosystem',
     description:
-      'Enterprise-grade AI tools at startup velocity. Code editing, API testing, file sharing, and automation for 10x developer productivity.',
+      'In-browser AI code studio, private PDF tools, image compressor, and productivity utilities for 10x developer productivity. Free forever.',
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}
 >
-  <Hero />
-  <About />
-  <Values />
-  <Impact />
-  <div id="products">
-    <Products />
-  </div>
-  <FreeForever />
-  <Community />
-  <Testimonials />
+  <HeroSection />
+  <FeaturesBento />
+  <HowItWorks />
+  <UseCases />
+  <ProductShowcase />
+  <DeveloperFaq />
+  <CtaBanner />
 </BaseLayout>

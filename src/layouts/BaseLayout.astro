@@ -1,13 +1,8 @@
 ---
 /**
- * BaseLayout.astro — shared document shell for every migrated page.
- * Receives one manifest `routes[]` entry's meta + structured_data and renders
- * <SEO> into <head>, plus site-wide Header/Footer carrying the exact
- * internal-link set from `internal_links_outbound`.
- *
- * Visual system: Tailwind v3 (same config as source) + ported global.css
- * tokens + Google Fonts (Inter / DM Serif Display / JetBrains Mono) + the
- * source's localStorage theme pre-paint guard (default light).
+ * BaseLayout.astro — shared document shell.
+ * Strict token styling, accessible skip link, optimized font loading with
+ * font-display: swap, SEO meta integration, theme persistence guard.
  */
 import SEO, {
   type RobotsMeta,
@@ -27,16 +22,25 @@ export interface Props {
   twitter?: TwitterMeta;
   structuredData?: Record<string, unknown>[];
   lang?: string;
-  /** Pages with their own footer (e.g. /ai-code-viewer-ai) set this. */
+  /** Pages with their own custom footer (e.g. /ai-code-viewer-ai) set this. */
   hideFooter?: boolean;
 }
 
-const { title, description, canonical, robots, openGraph, twitter, structuredData, lang = 'en', hideFooter = false } =
-  Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  robots,
+  openGraph,
+  twitter,
+  structuredData,
+  lang = 'en',
+  hideFooter = false,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -44,14 +48,18 @@ const { title, description, canonical, robots, openGraph, twitter, structuredDat
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <script is:inline>
       (function () {
         try {
-          if (localStorage.getItem('ladestack-theme') === 'dark') {
+          const stored = localStorage.getItem('ladestack-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
             document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
           }
         } catch (e) {}
       })();
@@ -64,23 +72,35 @@ const { title, description, canonical, robots, openGraph, twitter, structuredDat
       openGraph={openGraph}
       twitter={twitter}
       structuredData={structuredData}
+      lang={lang}
     />
   </head>
-  <body>
-    <Header />
-    <main>
+  <body class="bg-background text-foreground antialiased flex flex-col min-h-screen">
+    {/* Accessible skip link */}
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand focus:text-brand-foreground focus:rounded-lg focus:shadow-elevated focus:outline-none"
+    >
+      Skip to main content
+    </a>
+
+    <Header currentLang={lang} />
+
+    <main id="main-content" class="flex-1">
       <slot />
     </main>
+
     {!hideFooter && <Footer />}
+
     <script is:inline>
       (function () {
         document.addEventListener('click', function (e) {
           var t = e.target.closest('[data-theme-toggle]');
           if (!t) return;
           var el = document.documentElement;
-          var dark = el.classList.toggle('dark');
+          var isDark = el.classList.toggle('dark');
           try {
-            localStorage.setItem('ladestack-theme', dark ? 'dark' : 'light');
+            localStorage.setItem('ladestack-theme', isDark ? 'dark' : 'light');
           } catch (err) {}
         });
       })();

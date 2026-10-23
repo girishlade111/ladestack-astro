@@ -1,0 +1,42 @@
+---
+export interface Props {
+  variant?: 'default' | 'brand' | 'outline' | 'muted' | 'success';
+  size?: 'sm' | 'md';
+  dot?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  size = 'md',
+  dot = false,
+  class: className = '',
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center font-medium rounded-full transition-colors select-none';
+
+const variants = {
+  default: 'bg-surface-muted text-foreground border border-border',
+  brand: 'bg-brand/10 text-brand border border-brand/20',
+  outline: 'bg-transparent text-muted-foreground border border-border',
+  muted: 'bg-surface-muted text-muted-foreground',
+  success: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
+};
+
+const sizes = {
+  sm: 'text-[11px] px-2 py-0.5 gap-1.5',
+  md: 'text-xs px-2.5 py-1 gap-1.5',
+};
+
+const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`.trim();
+---
+
+<span class={classes}>
+  {dot && (
+    <span class="relative flex h-1.5 w-1.5">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-current"></span>
+    </span>
+  )}
+  <slot />
+</span>
