@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "tsc --noEmit",
+    "test:i18n": "tsx scripts/validate-i18n.mjs && node scripts/audit-dist-i18n.mjs && node scripts/audit-english-routes.mjs && node scripts/check-all-links.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

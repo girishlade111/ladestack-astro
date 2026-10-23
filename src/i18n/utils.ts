@@ -3,7 +3,7 @@
  * Helper functions for locale resolution, route translation, and hreflang links.
  */
 
-import { DEFAULT_LOCALE, LOCALES, LOCALE_CONFIG, type Locale } from './config';
+import { DEFAULT_LOCALE, LOCALES, LOCALE_CONFIG, isValidLocale, type Locale } from './config';
 import type { UIStrings } from './ui/en';
 import { en } from './ui/en';
 import { ja } from './ui/ja';
@@ -41,13 +41,7 @@ export function useTranslations(locale: Locale = DEFAULT_LOCALE) {
   };
 }
 
-/**
- * Checks whether a string is a supported locale.
- */
-export function isValidLocale(lang: string | undefined | null): lang is Locale {
-  if (!lang) return false;
-  return (LOCALES as readonly string[]).includes(lang);
-}
+export { isValidLocale };
 
 /**
  * Extracts the current locale from a URL or pathname.
@@ -87,21 +81,40 @@ export function stripLocaleFromPath(pathname: string): string {
 }
 
 /**
+/**
+ * Known routes that have verified localized versions.
+ * In Phase 2A: only the homepage ('/') is localized into all 9 languages.
+ * Future phases (2B, 3) will expand this list.
+ */
+export const LOCALIZED_ROUTES: readonly string[] = ['/'];
+
+/**
+ * Checks if a given route has localized versions.
+ */
+export function isRouteLocalized(pathname: string): boolean {
+  const basePath = stripLocaleFromPath(pathname);
+  return LOCALIZED_ROUTES.includes(basePath);
+}
+
+/**
  * Generates the localized path for a given route and target locale.
  * Respects unprefixed default locale 'en' and trailingSlash: 'never'.
+ * Only prefixes routes that have confirmed localized versions to prevent broken 404 links.
  *
  * Examples:
  *   getLocalizedPath('/', 'en') => '/'
  *   getLocalizedPath('/', 'ja') => '/ja'
- *   getLocalizedPath('/about', 'en') => '/about'
- *   getLocalizedPath('/about', 'ja') => '/ja/about'
- *   getLocalizedPath('/ja', 'en') => '/'
- *   getLocalizedPath('/ja', 'ko') => '/ko'
+ *   getLocalizedPath('/apps', 'ja') => '/apps' (un-localized route falls back to canonical)
  */
 export function getLocalizedPath(pathname: string, targetLocale: Locale): string {
   const basePath = stripLocaleFromPath(pathname);
 
   if (targetLocale === DEFAULT_LOCALE) {
+    return basePath;
+  }
+
+  // If this route is not localized, return base English path to prevent 404s
+  if (!isRouteLocalized(basePath)) {
     return basePath;
   }
 

@@ -85,3 +85,11 @@ export const LOCALE_CONFIG: Record<Locale, LocaleMeta> = {
 };
 
 export const NON_DEFAULT_LOCALES = LOCALES.filter((loc) => loc !== DEFAULT_LOCALE);
+
+/**
+ * Checks whether a string is a supported locale.
+ */
+export function isValidLocale(lang: string | undefined | null): lang is Locale {
+  if (!lang) return false;
+  return (LOCALES as readonly string[]).includes(lang);
+}

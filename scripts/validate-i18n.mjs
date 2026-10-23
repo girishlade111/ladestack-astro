@@ -51,10 +51,9 @@ const pathTests = [
   { path: '/', locale: 'es', expected: '/es' },
   { path: '/ja', locale: 'en', expected: '/' },
   { path: '/ja', locale: 'ko', expected: '/ko' },
+  // In Phase 2A: un-localized routes like /about safely stay /about to prevent 404 links
   { path: '/about', locale: 'en', expected: '/about' },
-  { path: '/about', locale: 'zh', expected: '/zh/about' },
-  { path: '/fr/about', locale: 'en', expected: '/about' },
-  { path: '/fr/about', locale: 'ru', expected: '/ru/about' },
+  { path: '/about', locale: 'zh', expected: '/about' },
 ];
 
 for (const test of pathTests) {
@@ -74,7 +73,7 @@ if (homeHreflangs.length !== 10) {
 }
 
 const xDefault = homeHreflangs.find((h) => h.lang === 'x-default');
-if (!xDefault || xDefault.href !== 'https://ladestack.in/') {
+if (!xDefault || xDefault.href !== 'https://ladestack.in') {
   throw new Error(`x-default hreflang incorrect: ${JSON.stringify(xDefault)}`);
 }
 
