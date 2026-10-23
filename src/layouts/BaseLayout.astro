@@ -13,6 +13,8 @@ import SEO, {
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { DEFAULT_LOCALE, LOCALE_CONFIG, isValidLocale, type Locale } from '../i18n/config';
+import { getLangFromUrl } from '../i18n/utils';
 
 export interface Props {
   title: string;
@@ -24,6 +26,7 @@ export interface Props {
   hreflangs?: HreflangMeta[];
   structuredData?: Record<string, unknown>[];
   lang?: string;
+  locale?: Locale;
   /** Pages with their own custom footer (e.g. /ai-code-viewer-ai) set this. */
   hideFooter?: boolean;
 }
@@ -37,13 +40,18 @@ const {
   twitter,
   hreflangs,
   structuredData,
-  lang = 'en',
+  lang,
+  locale,
   hideFooter = false,
 } = Astro.props;
+
+const currentLocale: Locale =
+  locale ?? (isValidLocale(lang) ? lang : getLangFromUrl(Astro.url));
+const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth">
+<html lang={currentLocale} dir={dir} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -76,7 +84,7 @@ const {
       twitter={twitter}
       hreflangs={hreflangs}
       structuredData={structuredData}
-      lang={lang}
+      lang={currentLocale}
     />
   </head>
   <body class="bg-background text-foreground antialiased flex flex-col min-h-screen">
@@ -88,13 +96,13 @@ const {
       Skip to main content
     </a>
 
-    <Header currentLang={lang} />
+    <Header currentLang={currentLocale} locale={currentLocale} />
 
     <main id="main-content" class="flex-1">
       <slot />
     </main>
 
-    {!hideFooter && <Footer />}
+    {!hideFooter && <Footer locale={currentLocale} />}
 
     <script is:inline>
       (function () {

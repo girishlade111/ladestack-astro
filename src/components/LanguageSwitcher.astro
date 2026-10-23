@@ -1,0 +1,135 @@
+---
+/**
+ * LanguageSwitcher.astro
+ * Accessible, zero-JS compatible language switcher supporting all nine languages.
+ * Links work with standard <a> tags without requiring client-side JS.
+ * Identifies active language visually and accessibly.
+ */
+import Icon from './Icon.astro';
+import { LOCALES, LOCALE_CONFIG, DEFAULT_LOCALE, type Locale } from '../i18n/config';
+import { getLocalizedPath, stripLocaleFromPath } from '../i18n/utils';
+
+export interface Props {
+  currentLocale?: Locale;
+  currentPath?: string;
+  class?: string;
+}
+
+const {
+  currentLocale = DEFAULT_LOCALE,
+  currentPath = Astro.url.pathname,
+  class: className = '',
+} = Astro.props;
+
+const currentConfig = LOCALE_CONFIG[currentLocale] ?? LOCALE_CONFIG[DEFAULT_LOCALE];
+const basePath = stripLocaleFromPath(currentPath);
+
+// In Phase 2A, the Homepage ('/') is fully translated into all 9 languages.
+// Un-translated subpages safely fall back to the target locale's homepage to prevent 404s.
+const isHomepage = basePath === '/';
+---
+
+<div class={`relative inline-block text-left ${className}`} data-language-switcher>
+  <button
+    type="button"
+    data-lang-trigger
+    class="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-border bg-surface-muted/60 hover:bg-surface-muted text-muted-foreground hover:text-foreground text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label={`Select language. Current language: ${currentConfig.name}`}
+  >
+    <Icon name="globe" class="w-3.5 h-3.5 text-brand" />
+    <span class="font-mono text-[11px] font-semibold uppercase">{currentLocale}</span>
+    <Icon name="chevron-down" class="w-3 h-3 text-muted-foreground/70 transition-transform duration-200" data-lang-chevron />
+  </button>
+
+  <div
+    data-lang-menu
+    class="hidden absolute right-0 top-full mt-2 w-56 rounded-xl border border-border bg-surface p-1.5 shadow-elevated z-50 focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    tabindex="-1"
+  >
+    <div class="px-3 py-1.5 border-b border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground">
+      Select Language (9)
+    </div>
+
+    <div class="py-1 max-h-72 overflow-y-auto">
+      {
+        LOCALES.map((loc) => {
+          const cfg = LOCALE_CONFIG[loc];
+          const isCurrent = loc === currentLocale;
+          // Target path: if homepage, localized homepage; otherwise localized page if available or fallback to locale root
+          const targetUrl = isHomepage ? getLocalizedPath('/', loc) : (loc === DEFAULT_LOCALE ? basePath : getLocalizedPath('/', loc));
+
+          return (
+            <a
+              href={targetUrl}
+              role="menuitem"
+              lang={loc}
+              class={`flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors group ${
+                isCurrent
+                  ? 'bg-brand/10 text-brand font-semibold'
+                  : 'text-foreground hover:bg-surface-muted hover:text-foreground'
+              }`}
+              aria-current={isCurrent ? 'true' : undefined}
+            >
+              <div class="flex items-center gap-2">
+                {isCurrent && <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>}
+                <span class={isCurrent ? 'font-semibold' : ''}>{cfg.name}</span>
+                <span class="text-[11px] text-muted-foreground">({cfg.englishName})</span>
+              </div>
+              <span class="font-mono text-[10px] text-muted-foreground uppercase">{loc}</span>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('[data-language-switcher]').forEach(function (container) {
+      var trigger = container.querySelector('[data-lang-trigger]');
+      var menu = container.querySelector('[data-lang-menu]');
+      var chevron = container.querySelector('[data-lang-chevron]');
+      if (!trigger || !menu) return;
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('rotate-180');
+      }
+
+      function closeMenu() {
+        menu.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!container.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+          closeMenu();
+          trigger.focus();
+        }
+      });
+    });
+  })();
+</script>

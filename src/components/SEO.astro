@@ -6,6 +6,8 @@
  * theme-color, and schema.org JSON-LD injections.
  */
 
+import { LOCALE_CONFIG, isValidLocale, type Locale } from '../i18n/config';
+
 export interface RobotsMeta {
   index: boolean;
   follow: boolean;
@@ -63,8 +65,17 @@ const {
   structuredData = [],
   siteName = 'Lade Stack',
   lang = 'en',
-  locale = 'en_US',
+  locale,
 } = Astro.props;
+
+// Auto-resolve og:locale from i18n config if not provided explicitly
+const currentOgLocale =
+  locale ?? (isValidLocale(lang) ? LOCALE_CONFIG[lang].ogLocale : 'en_US');
+
+// Extract distinct alternate og:locales from real hreflang declarations
+const alternateOgLocales = hreflangs
+  .filter((h) => h.lang !== 'x-default' && h.lang !== lang && isValidLocale(h.lang))
+  .map((h) => LOCALE_CONFIG[h.lang as Locale].ogLocale);
 
 const robotsContent = [
   robots.index ? 'index' : 'noindex',
@@ -105,7 +116,10 @@ const ogHeight = openGraph.height ?? 630;
 <meta property="og:image:height" content={String(ogHeight)} />
 <meta property="og:image:alt" content={ogAlt} />
 <meta property="og:site_name" content={siteName} />
-<meta property="og:locale" content={locale} />
+<meta property="og:locale" content={currentOgLocale} />
+{alternateOgLocales.map((altLoc) => (
+  <meta property="og:locale:alternate" content={altLoc} />
+))}
 
 {/* Twitter Card */}
 <meta name="twitter:card" content={twitter.card ?? 'summary_large_image'} />
