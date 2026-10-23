@@ -5,36 +5,45 @@
  * accessible newsletter input, sitemap link, and social channels.
  */
 import Icon from './Icon.astro';
+import { useTranslations, getLocalizedPath, type Locale } from '../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+const homeHref = getLocalizedPath('/', locale);
 
 const navColumns = [
   {
-    heading: 'Platform',
+    heading: t('nav.platform'),
     links: [
       { label: 'AI Code Studio', href: '/ai-code-viewer-ai' },
       { label: 'LS PDF Toolkit (17-in-1)', href: 'https://pdf.ladestack.in/', external: true },
       { label: 'LS Image Compressor', href: 'https://img.ladestack.in/', external: true },
       { label: 'Swift Resume Builder', href: 'https://resume.ladestack.in/', external: true },
       { label: 'Bharat Land Converter', href: 'https://land.ladestack.in/', external: true },
-      { label: 'All Products & Tools', href: '/apps' },
+      { label: t('nav.apps'), href: '/apps' },
     ],
   },
   {
-    heading: 'Developers',
+    heading: t('footer.resources'),
     links: [
-      { label: 'Documentation', href: '/docs' },
+      { label: t('nav.docs'), href: '/docs' },
       { label: 'API Reference', href: '/docs' },
-      { label: 'Engineering Blog', href: '/blog' },
+      { label: t('nav.blog'), href: '/blog' },
       { label: 'GitHub Repository', href: 'https://github.com/girishlade111', external: true },
       { label: 'System Architecture', href: '/about' },
     ],
   },
   {
-    heading: 'Company & Legal',
+    heading: t('footer.company'),
     links: [
-      { label: 'About Lade Stack', href: '/about' },
-      { label: 'Contact Support', href: '/contact' },
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
+      { label: t('nav.about'), href: '/about' },
+      { label: t('nav.contact'), href: '/contact' },
+      { label: t('footer.privacy'), href: '/privacy' },
+      { label: t('footer.terms'), href: '/terms' },
       { label: 'Human-Readable Sitemap', href: '/sitemap' },
     ],
   },
@@ -53,18 +62,18 @@ const socials = [
       {/* Brand & Pitch column */}
       <div class="lg:col-span-2 flex flex-col justify-between">
         <div class="space-y-4">
-          <a href="/" class="flex items-center gap-2.5">
+          <a href={homeHref} class="flex items-center gap-2.5">
             <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-brand-foreground shadow-soft">
               <Icon name="code-2" class="w-4 h-4" />
             </div>
             <span class="text-lg font-semibold tracking-tight text-foreground">Lade Stack</span>
           </a>
           <p class="text-sm text-muted-foreground leading-relaxed max-w-sm">
-            High-performance developer utilities and AI tools. Engineered for client-side privacy, instant execution, and zero usage paywalls.
+            {t('footer.tagline')}
           </p>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-surface-muted text-xs text-muted-foreground font-mono">
             <span class="h-2 w-2 rounded-full bg-brand"></span>
-            In-Browser · Local Execution
+            {t('footer.status')}
           </div>
         </div>
 
@@ -74,7 +83,7 @@ const socials = [
             Engineering Dispatch
           </p>
           <p class="text-xs text-muted-foreground leading-relaxed max-w-sm mb-3">
-            For technical inquiries, bug reports, and project proposals, reach out directly via email.
+            {t('footer.emailPrompt')}
           </p>
           <a
             href="mailto:admin@ladestack.in"
@@ -117,7 +126,7 @@ const socials = [
     {/* Bottom row */}
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
       <div class="flex items-center gap-3">
-        <span>© {new Date().getFullYear()} Lade Stack. Built by Girish Lade.</span>
+        <span>© {new Date().getFullYear()} Lade Stack. Built by Girish Lade. {t('footer.rights')}</span>
         <span>·</span>
         <a href="/sitemap" class="hover:text-foreground underline underline-offset-4">Sitemap</a>
       </div>

@@ -6,19 +6,28 @@
  */
 import Icon from './Icon.astro';
 import Button from './ui/Button.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { DEFAULT_LOCALE, isValidLocale, type Locale } from '../i18n/config';
+import { useTranslations, getLocalizedPath } from '../i18n/utils';
 
 export interface Props {
   currentLang?: string;
+  locale?: Locale;
 }
 
-const { currentLang = 'en' } = Astro.props;
+const { currentLang, locale } = Astro.props;
+const activeLocale: Locale =
+  locale ?? (isValidLocale(currentLang) ? currentLang : DEFAULT_LOCALE);
+
+const t = useTranslations(activeLocale);
+const homeHref = getLocalizedPath('/', activeLocale);
 
 const navLinks = [
-  { label: 'Platform', href: '/apps' },
-  { label: 'Code Studio', href: '/ai-code-viewer-ai' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'About', href: '/about' },
+  { label: t('nav.apps'), href: '/apps' },
+  { label: t('nav.codeStudio'), href: '/ai-code-viewer-ai' },
+  { label: t('nav.docs'), href: '/docs' },
+  { label: t('nav.blog'), href: '/blog' },
+  { label: t('nav.about'), href: '/about' },
 ];
 ---
 
@@ -28,7 +37,7 @@ const navLinks = [
 >
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
     {/* ── LEFT: Logo ── */}
-    <a href="/" class="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-lg p-1">
+    <a href={homeHref} class="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-lg p-1">
       <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-brand-foreground shadow-soft transition-transform group-hover:scale-105">
         <Icon name="code-2" class="w-4 h-4" />
       </div>
@@ -62,11 +71,11 @@ const navLinks = [
       <button
         type="button"
         data-search-open
-        aria-label="Quick Jump Navigation (Press Command K)"
+        aria-label={`${t('nav.quickJump')} (Press Command K)`}
         class="hidden sm:inline-flex items-center gap-2 h-9 px-3 text-xs text-muted-foreground bg-surface-muted/60 border border-border rounded-lg hover:bg-surface-muted hover:text-foreground transition-colors"
       >
         <Icon name="search" class="w-3.5 h-3.5" />
-        <span class="hidden lg:inline">Quick Jump...</span>
+        <span class="hidden lg:inline">{t('nav.quickJump')}...</span>
         <kbd class="hidden lg:inline-flex items-center gap-0.5 ml-2 px-1.5 py-0.5 text-[10px] font-mono text-muted-foreground bg-surface rounded border border-border">
           ⌘K
         </kbd>
@@ -76,16 +85,19 @@ const navLinks = [
         type="button"
         data-search-open
         class="sm:hidden p-2 text-muted-foreground hover:text-foreground rounded-lg"
-        aria-label="Quick Jump Navigation"
+        aria-label={t('nav.quickJump')}
       >
         <Icon name="search" class="w-4 h-4" />
       </button>
+
+      {/* Language Switcher */}
+      <LanguageSwitcher currentLocale={activeLocale} />
 
       {/* Theme Toggle */}
       <button
         type="button"
         data-theme-toggle
-        aria-label="Toggle color theme"
+        aria-label={t('nav.themeToggle')}
         class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
       >
         <span class="dark:hidden"><Icon name="moon" class="w-4 h-4" /></span>
@@ -103,7 +115,7 @@ const navLinks = [
         type="button"
         data-menu-open
         class="md:hidden p-2 text-foreground hover:bg-surface-muted rounded-lg"
-        aria-label="Open mobile menu"
+        aria-label={t('nav.openMenu')}
         aria-expanded="false"
       >
         <Icon name="menu" class="w-5 h-5" />
@@ -118,7 +130,7 @@ const navLinks = [
   <div class="absolute left-0 top-0 bottom-0 w-[300px] bg-surface border-r border-border p-6 flex flex-col justify-between shadow-elevated">
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-border">
-        <a href="/" class="flex items-center gap-2">
+        <a href={homeHref} class="flex items-center gap-2">
           <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-brand-foreground">
             <Icon name="code-2" class="w-4 h-4" />
           </div>
@@ -128,7 +140,7 @@ const navLinks = [
           type="button"
           data-menu-close
           class="p-2 text-muted-foreground hover:text-foreground rounded-lg"
-          aria-label="Close menu"
+          aria-label={t('nav.closeMenu')}
         >
           <Icon name="x" class="w-5 h-5" />
         </button>
@@ -150,10 +162,18 @@ const navLinks = [
           href="/contact"
           class="flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-surface-muted rounded-lg transition-colors"
         >
-          <span>Contact</span>
+          <span>{t('nav.contact')}</span>
           <Icon name="chevron-right" class="w-4 h-4 text-border" />
         </a>
       </nav>
+
+      {/* Mobile Language Selector */}
+      <div class="mt-6 pt-6 border-t border-border">
+        <p class="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
+          {t('nav.languageSelect')}
+        </p>
+        <LanguageSwitcher currentLocale={activeLocale} class="w-full" />
+      </div>
     </div>
 
     <div class="pt-6 border-t border-border flex flex-col gap-3">
