@@ -14,7 +14,7 @@ const staticPages = {
   '/terms': 'terms',
   '/support': 'support',
   '/docs': 'docs',
-  '/ai-code-viewer-ai': 'ai-code-viewer-ai',
+  '/gb-coder': 'gb-coder',
   '/apps': 'apps/index',
   '/apps/admin': 'apps/admin',
 };
