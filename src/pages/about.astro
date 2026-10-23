@@ -39,15 +39,15 @@ const structuredData = [
 const heroStats = [
   { value: '2020', label: 'Ecosystem Founded' },
   { value: '5+', label: 'Live Client Tools' },
-  { value: '8K+', label: 'Active Developers' },
-  { value: '100%', label: 'Free & In-Browser' },
+  { value: 'Zero', label: 'Cloud Paywalls' },
+  { value: '100%', label: 'In-Browser Execution' },
 ];
 
 const storyTimeline = [
   { year: '2020', title: 'The Genesis', text: 'Girish begins developing personal dev tools and local automation scripts to eliminate repetitive coding friction.' },
   { year: '2022', title: 'First Prototypes', text: 'Multi-LLM experiments and client-side processing algorithms establish the technical foundation.' },
   { year: '2024', title: 'Lade Stack Unified', text: 'The vision crystallizes into a unified developer platform: intelligent tools with zero cost and maximum privacy.' },
-  { year: '2026', title: 'Full Web Suite', text: '5 tools in production, 4 upcoming modules in testing, and 8,000+ developers shipping faster daily.' },
+  { year: '2026', title: 'Full Web Suite', text: '5 tools in production, 4 upcoming modules in testing, refined continuously for modern developer workflows.' },
 ];
 
 const coreValues = [
@@ -83,13 +83,13 @@ const skills = ['AI Systems', 'WebAssembly', 'TypeScript', 'Astro', 'UX/UI Engin
 ---
 
 <BaseLayout
-  title="About Lade Stack - Empowering Developers Through AI Innovation & Visionary Leadership"
-  description="Discover Lade Stack's inspiring journey from a developer's vision to an AI-powered development ecosystem. Founded by Girish Lade, we democratize advanced development tools for creators worldwide."
+  title="About Lade Stack – Mission, Philosophy & Team"
+  description="Learn about Lade Stack's mission to provide in-browser, privacy-first developer tools with zero paywalls. Founded by engineer Girish Lade."
   canonical="https://ladestack.in/about"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'About Lade Stack - Visionary AI Development Tools & Founder Story',
-    description: 'Learn how Girish Lade transformed from a passionate developer to founding Lade Stack - an AI-powered ecosystem revolutionizing how creators build, test, and deploy modern applications.',
+    title: 'About Lade Stack – Mission, Philosophy & Team',
+    description: 'Learn about Lade Stack\'s mission to provide in-browser, privacy-first developer tools with zero paywalls. Founded by engineer Girish Lade.',
     url: 'https://ladestack.in/about',
     type: 'website',
     image: 'https://ladestack.in/og-about.png',
@@ -200,9 +200,14 @@ const skills = ['AI Systems', 'WebAssembly', 'TypeScript', 'Astro', 'UX/UI Engin
     <section class="py-16 sm:py-24 bg-background">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="rounded-2xl border border-border bg-surface p-8 sm:p-12 shadow-card flex flex-col md:flex-row items-center gap-8">
-          <div class="w-28 h-28 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center font-mono font-bold text-3xl text-brand shrink-0">
-            GL
-          </div>
+          <img
+            src="/img/girish.jpg"
+            alt="Girish Lade, Founder of Lade Stack"
+            width="112"
+            height="112"
+            loading="lazy"
+            class="w-28 h-28 rounded-2xl object-cover object-top border border-brand/20 shadow-soft shrink-0"
+          />
           <div class="text-center md:text-left flex-1">
             <h3 class="text-2xl font-bold text-foreground">Girish Lade</h3>
             <p class="text-xs font-mono text-brand font-semibold mb-3">Founder & Principal Developer</p>

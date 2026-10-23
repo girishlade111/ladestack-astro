@@ -14,10 +14,9 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    aggregateRating: { '@type': 'AggregateRating', ratingCount: '156', ratingValue: '4.8' },
     applicationCategory: 'DeveloperApplication',
     creator: { '@type': 'Person', email: 'admin@ladestack.in', name: 'Girish Lade', url: 'https://ladestack.in' },
-    description: 'AI-powered HTML, CSS & JS code viewer, compiler, editor, and enhancer for modern web development',
+    description: 'In-browser HTML, CSS & JS code viewer, compiler, editor, and enhancer for web development',
     name: 'CodeEnhance AI',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
     operatingSystem: 'Web Browser',
@@ -92,13 +91,13 @@ function esc(s: string) {
 ---
 
 <BaseLayout
-  title="CodeEnhance AI - AI-Powered HTML, CSS & JS Code Studio, Compiler & Enhancer"
-  description="Transform your frontend code with AI intelligence. Edit, compile, and enhance HTML, CSS & JS with real-time AI assistance. The ultimate development tool for modern web creators."
+  title="CodeEnhance AI – In-Browser Code Studio & Compiler"
+  description="Inspect, compile, and enhance HTML, CSS, and modern JavaScript in your browser with real-time feedback and privacy-first local execution."
   canonical="https://ladestack.in/ai-code-viewer-ai"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'CodeEnhance AI - AI-Powered Frontend Development Tool',
-    description: 'Transform your frontend code with AI intelligence. Edit, compile, and enhance HTML, CSS & JS with real-time AI assistance.',
+    title: 'CodeEnhance AI – In-Browser Code Studio & Compiler',
+    description: 'Inspect, compile, and enhance HTML, CSS, and modern JavaScript in your browser with real-time feedback and privacy-first local execution.',
     url: 'https://ladestack.in/ai-code-viewer-ai',
     type: 'website',
     image: 'https://ladestack.in/AIcode.png',
@@ -144,6 +143,7 @@ function esc(s: string) {
     {/* 4 Feature Columns */}
     <section class="py-16 sm:py-20 border-b border-border bg-surface">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Key Capabilities</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {
             features.map((f) => (
@@ -207,10 +207,16 @@ function esc(s: string) {
     {/* Creator Note */}
     <section class="py-16 sm:py-20 border-b border-border bg-surface-muted/20">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="sr-only">Founder Note</h2>
         <div class="rounded-2xl border border-border bg-surface p-8 sm:p-10 shadow-soft flex flex-col md:flex-row items-center gap-8">
-          <div class="w-24 h-24 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center font-mono font-bold text-2xl text-brand shrink-0">
-            GL
-          </div>
+          <img
+            src="/img/girish.jpg"
+            alt="Girish Lade, Founder of Lade Stack"
+            width="96"
+            height="96"
+            loading="lazy"
+            class="w-24 h-24 rounded-2xl object-cover object-top border border-brand/20 shadow-soft shrink-0"
+          />
           <div class="text-center md:text-left">
             <h3 class="text-xl font-bold text-foreground">Girish Lade</h3>
             <p class="text-xs font-mono text-brand mb-3">Founder & Lead Engineer, Lade Stack</p>
@@ -231,7 +237,7 @@ function esc(s: string) {
         <h3 class="text-lg font-bold">Interactive AI Enhancement Demo</h3>
       </div>
       <form method="dialog">
-        <button class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
+        <button type="button" class="p-1 text-muted-foreground hover:text-foreground rounded" aria-label="Close dialog">
           <Icon name="x" class="w-4 h-4" />
         </button>
       </form>
