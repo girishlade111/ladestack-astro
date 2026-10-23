@@ -1,376 +1,286 @@
 ---
 /**
- * /apps — Apps Gallery
- * Redesigned with Obsidian & Precision Emerald tokens,
- * interactive category filters, and zero external JS libraries.
+ * /apps — LadeStack Products & Verified Developer Utilities
+ * Minimal, professional showcase with primary visual emphasis on GB Coder.
+ * Understated presentation for verified live utilities (PDF, Image, Resume, Land).
+ * Unreleased, coming-soon, and unverified records are excluded from public display.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
 import appsData from '../../data/apps.json';
+
+// Verified live tools registry - only include tools with confirmed HTTP 200 operational status
+const verifiedSlugs = ['gb-coder', 'ls-pdf', 'ls-img', 'swift-resume', 'bharat-land'];
+const verifiedApps = appsData.filter((app) => verifiedSlugs.includes(app.slug));
+
+const flagship = verifiedApps.find((app) => app.slug === 'gb-coder') || verifiedApps[0];
+const utilities = verifiedApps.filter((app) => app.slug !== 'gb-coder');
 
 const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    description: 'A curated gallery of AI-powered developer tools built by Lade Stack.',
-    name: 'Apps Gallery – Lade Stack',
+    name: 'Products & Developer Utilities – LadeStack',
+    description: 'Explore LadeStack\'s verified in-browser developer products, featuring the GB Coder flagship IDE alongside focused, privacy-first web utilities.',
     url: 'https://ladestack.in/apps',
+    publisher: {
+      '@type': 'Organization',
+      name: 'LadeStack',
+      url: 'https://ladestack.in',
+      logo: 'https://ladestack.in/favicon.svg',
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'GB Coder',
+          description: 'In-browser IDE & Code Studio featuring Monaco Editor, WebContainer Node.js runtime, and instant live preview.',
+          url: 'https://ladestack.in/gb-coder',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'LS PDF Toolkit',
+          description: '17 client-side PDF manipulation tools with zero server uploads.',
+          url: 'https://pdf.ladestack.in/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: 'LS Image Compressor',
+          description: 'Client-side image optimizer supporting 9+ formats with local canvas processing.',
+          url: 'https://img.ladestack.in/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 4,
+          name: 'Swift Resume Builder',
+          description: 'ATS-optimized resume generator with real-time scoring and PDF export.',
+          url: 'https://resume.ladestack.in/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 5,
+          name: 'Bharat Land Converter',
+          description: 'Precision regional Indian land measurement converter with state-wise formulas.',
+          url: 'https://land.ladestack.in/',
+        },
+      ],
+    },
   },
 ];
-
-interface AppData {
-  id: string;
-  slug: string;
-  title: string;
-  tagline: string;
-  description: string;
-  icon: string;
-  category: string;
-  features: string[];
-  timeToValue: string;
-  integrations: string[];
-  lifetimeFree: boolean;
-  landingUrl: string;
-  createdAt: string;
-  popularityScore: number;
-  iconAlt: string;
-  comingSoon?: boolean;
-}
-
-const apps = appsData as AppData[];
-const categories = ['All', ...Array.from(new Set(apps.map((a) => a.category))).sort()];
-const liveCount = apps.filter((a) => !a.comingSoon).length;
-const comingCount = apps.filter((a) => a.comingSoon).length;
-const allIntegrations = [...new Set(apps.flatMap((a) => a.integrations))];
-
-const cardHref = (app: AppData) =>
-  !app.comingSoon && app.id === 'ai-code-viewer' ? 'https://code.ladestack.in/' : app.landingUrl;
-const isExternalHref = (app: AppData) =>
-  !app.comingSoon && (app.landingUrl.startsWith('http') || app.id === 'ai-code-viewer');
 ---
 
 <BaseLayout
-  title="Apps Gallery – Lade Stack AI Developer Tools"
-  description="Explore Lade Stack's suite of developer tools: code editor, 17-in-1 PDF toolkit, image compressor, and productivity utilities. All free forever."
+  title="Products & Developer Utilities – LadeStack"
+  description="Explore LadeStack's verified in-browser developer products, featuring the GB Coder flagship IDE alongside focused, privacy-first web utilities."
   canonical="https://ladestack.in/apps"
   robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
   openGraph={{
-    title: 'Apps Gallery – Lade Stack AI Developer Tools',
-    description: 'Explore and launch AI-powered developer tools built by Lade Stack.',
+    title: 'Products & Developer Utilities – LadeStack',
+    description: 'Explore LadeStack\'s verified in-browser developer products, featuring the GB Coder flagship IDE alongside focused, privacy-first web utilities.',
     url: 'https://ladestack.in/apps',
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
   }}
   twitter={{
     card: 'summary_large_image',
-    title: 'Apps Gallery – Lade Stack AI Developer Tools',
-    description: 'Explore and launch AI-powered developer tools built by Lade Stack.',
+    title: 'Products & Developer Utilities – LadeStack',
+    description: 'Explore LadeStack\'s verified in-browser developer products, featuring the GB Coder flagship IDE.',
     image: 'https://ladestack.in/og-image.png',
   }}
   structuredData={structuredData}
 >
   <div class="min-h-screen bg-background">
-    {/* HERO */}
-    <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight">
-          Developer Tools & Utilities
+    {/* Minimal Header */}
+    <section class="pt-20 pb-12 sm:pt-24 sm:pb-16 border-b border-border bg-surface-muted/20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Badge variant="brand" size="sm" class="mb-4">Verified Product Ecosystem</Badge>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          Products &amp; Utilities
         </h1>
-        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          Every tool engineered with client-side execution, instant performance, and zero usage paywalls.
+        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          High-performance developer tools engineered with client-side execution, privacy-first architecture, and zero subscription paywalls.
         </p>
       </div>
     </section>
 
-    {/* STICKY FILTER BAR */}
-    <div class="sticky top-16 z-30 bg-background/90 backdrop-blur-md border-b border-border">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-        <div class="flex items-center gap-3">
-          <div class="relative w-full max-w-xs">
-            <Icon name="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-            <input
-              type="text"
-              data-apps-search
-              placeholder="Search by name or feature…"
-              aria-label="Search tools"
-              class="w-full pl-9 pr-8 h-9 text-xs sm:text-sm rounded-lg bg-surface border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand"
-            />
-            <button
-              type="button"
-              data-apps-clear-search
-              class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-              aria-label="Clear search"
-            >
-              <Icon name="x" class="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          <div class="hidden sm:flex items-center gap-1.5" data-apps-cats>
-            {
-              categories.map((cat) => (
-                <button
-                  type="button"
-                  data-apps-cat={cat}
-                  class={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
-                    cat === 'All'
-                      ? 'bg-brand border-brand text-brand-foreground shadow-soft'
-                      : 'bg-surface border-border text-muted-foreground hover:text-foreground hover:bg-surface-muted'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))
-            }
-          </div>
-
-          <button
-            type="button"
-            data-apps-filter-toggle
-            class="sm:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface text-xs font-medium text-muted-foreground hover:text-foreground"
-          >
-            <Icon name="filter" class="w-3.5 h-3.5" />
-            Filter
-          </button>
-
-          <span class="ml-auto flex-shrink-0 text-xs font-mono text-muted-foreground" data-apps-count></span>
+    {/* FLAGSHIP HERO SPOTLIGHT: GB CODER */}
+    <section class="py-12 sm:py-16 border-b border-border">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand">
+            Flagship Product
+          </h2>
         </div>
 
-        {/* Mobile dropdown category filter */}
-        <div data-apps-mobile-filters class="sm:hidden overflow-hidden hidden pt-3">
-          <div class="flex flex-wrap gap-1.5">
-            {
-              categories.map((cat) => (
-                <button
-                  type="button"
-                  data-apps-cat-m={cat}
-                  class={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
-                    cat === 'All'
-                      ? 'bg-brand border-brand text-brand-foreground'
-                      : 'bg-surface border-border text-muted-foreground'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))
-            }
+        <div class="rounded-2xl border border-brand/30 bg-surface p-6 sm:p-10 shadow-soft relative overflow-hidden group">
+          {/* Subtle Ambient Glow */}
+          <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand/5 rounded-full blur-3xl pointer-events-none" />
+
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
+            <div class="max-w-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center p-2 text-brand">
+                  <Icon name="code-2" class="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+                    GB Coder
+                  </h3>
+                  <p class="text-xs font-mono text-muted-foreground">code.ladestack.in · In-Browser IDE &amp; Code Studio</p>
+                </div>
+              </div>
+
+              <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+                A dual-engine browser development workspace. Run real Node.js environments via WebContainers in Chromium and Firefox, or create and test HTML, CSS, and modern JavaScript universally with Monaco Editor and real-time live preview.
+              </p>
+
+              {/* Verified Architecture Bullets */}
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                <div class="flex items-start gap-2 text-xs text-foreground">
+                  <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                  <span><strong>Monaco Editor:</strong> Syntax highlighting, multi-tab workspace, formatting</span>
+                </div>
+                <div class="flex items-start gap-2 text-xs text-foreground">
+                  <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                  <span><strong>WebContainers IDE:</strong> In-browser Node.js runtime with zero cloud latency</span>
+                </div>
+                <div class="flex items-start gap-2 text-xs text-foreground">
+                  <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                  <span><strong>Static Prototyping:</strong> Universal compatibility across all modern browsers</span>
+                </div>
+                <div class="flex items-start gap-2 text-xs text-foreground">
+                  <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                  <span><strong>Local-First Storage:</strong> IndexedDB persistence and instant ZIP project export</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div class="flex flex-wrap items-center gap-3">
+                <Button href="https://code.ladestack.in/" target="_blank" size="md">
+                  <span>Launch GB Coder Studio</span>
+                  <Icon name="arrow-up-right" class="w-4 h-4" />
+                </Button>
+                <Button href="/gb-coder" variant="outline" size="md">
+                  <span>Read Architecture &amp; Features</span>
+                  <Icon name="arrow-right" class="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Quick Status Box */}
+            <div class="w-full lg:w-72 rounded-xl border border-border bg-background p-5 text-xs font-mono space-y-3 shrink-0">
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">Status</span>
+                <span class="text-emerald-500 font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  Active / 200 OK
+                </span>
+              </div>
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">License</span>
+                <span class="text-foreground">100% Free Forever</span>
+              </div>
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">Privacy</span>
+                <span class="text-foreground">Client-Side Storage</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-muted-foreground">Telemetry</span>
+                <span class="text-foreground">Zero Tracking</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    {/* APPS GRID */}
+    {/* UNDERSTATED UTILITIES SHOWCASE */}
     <section class="py-12 sm:py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="sr-only">Available Tools Catalog</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-apps-grid>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-muted-foreground"></span>
+              <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground">
+                Specialized Web Utilities
+              </h2>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground tracking-tight">
+              Focused Client-Side Tools
+            </h3>
+            <p class="text-xs sm:text-sm text-muted-foreground mt-1">
+              Purpose-built utilities designed for daily development and document workflows.
+            </p>
+          </div>
+          <span class="text-xs font-mono text-muted-foreground">
+            {utilities.length} Verified Tools
+          </span>
+        </div>
+
+        {/* Compact List / Card Presentation */}
+        <div class="space-y-3">
           {
-            apps.map((app) => {
-              const isLive = !app.comingSoon;
-              const href = cardHref(app);
-              const external = isExternalHref(app);
-              const searchText = [app.title, app.tagline, app.description, ...app.features, ...app.integrations].join(' ').toLowerCase();
-
-              const card = (
-                <div class="group relative flex flex-col h-full rounded-xl border border-border bg-surface p-6 overflow-hidden transition-all duration-200 hover:border-brand/40 hover:shadow-card hover:-translate-y-0.5">
-                  <div class="flex items-start justify-between mb-4">
-                    <div class="w-12 h-12 rounded-xl border border-border bg-surface-muted flex items-center justify-center p-2">
-                      <img src={app.icon} alt={app.iconAlt} loading="lazy" class="w-7 h-7 object-contain" />
+            utilities.map((app) => (
+              <a
+                href={app.landingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group block rounded-xl border border-border bg-surface p-5 sm:p-6 transition-all duration-200 hover:border-brand/40 hover:bg-surface-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              >
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div class="flex items-start sm:items-center gap-4">
+                    <div class="w-10 h-10 rounded-lg border border-border bg-surface-muted flex items-center justify-center p-2 text-foreground group-hover:border-brand/40 group-hover:text-brand transition-colors shrink-0">
+                      <img src={app.icon} alt={app.iconAlt} loading="lazy" class="w-6 h-6 object-contain" />
                     </div>
-
-                    <div class="flex flex-col items-end gap-1">
-                      {isLive ? (
-                        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-semibold">
-                          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <div>
+                      <div class="flex items-center gap-2 mb-1">
+                        <h4 class="text-base font-semibold text-foreground group-hover:text-brand transition-colors">
+                          {app.title}
+                        </h4>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                           Live
                         </span>
-                      ) : (
-                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-[11px] font-semibold">
-                          <Icon name="clock" class="w-3 h-3" />
-                          In Pipeline
-                        </span>
-                      )}
+                      </div>
+                      <p class="text-xs text-muted-foreground leading-relaxed line-clamp-1 sm:line-clamp-none">
+                        {app.description}
+                      </p>
                     </div>
                   </div>
 
-                  <div class="mb-2">
-                    <span class="text-[11px] font-mono text-brand font-semibold uppercase tracking-wider">
-                      {app.category}
+                  <div class="flex items-center gap-4 sm:shrink-0 self-end sm:self-center">
+                    <span class="text-xs font-mono text-muted-foreground hidden md:inline">
+                      {new URL(app.landingUrl).hostname}
                     </span>
-                  </div>
-
-                  <h3 class="text-base font-semibold text-foreground leading-snug mb-1.5 group-hover:text-brand transition-colors">
-                    {app.title}
-                  </h3>
-
-                  <p class="text-xs text-muted-foreground leading-relaxed mb-4 line-clamp-2">
-                    {app.tagline}
-                  </p>
-
-                  <div class="flex flex-wrap gap-1.5 mb-6">
-                    {app.features.slice(0, 3).map((f) => (
-                      <span class="text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded bg-surface-muted border border-border/60">
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div class="flex-1"></div>
-
-                  <div class="pt-4 border-t border-border flex items-center justify-between text-xs">
-                    <span class="text-muted-foreground font-mono">
-                      {app.timeToValue} setup
-                    </span>
-                    <span class={`font-semibold inline-flex items-center gap-1 group-hover:underline ${isLive ? 'text-brand' : 'text-muted-foreground'}`}>
-                      {isLive ? (
-                        <><span>Launch Tool</span><Icon name="arrow-up-right" class="w-3.5 h-3.5" /></>
-                      ) : (
-                        <><span>Preview</span><Icon name="arrow-right" class="w-3.5 h-3.5" /></>
-                      )}
+                    <span class="inline-flex items-center gap-1 text-xs font-semibold text-brand group-hover:underline">
+                      <span>Launch Tool</span>
+                      <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>
-              );
-
-              return (
-                <div data-app-card data-category={app.category} data-search-text={searchText} class="h-full">
-                  {external ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" class="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-xl">{card}</a>
-                  ) : (
-                    <a href={href} class="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-xl">{card}</a>
-                  )}
-                </div>
-              );
-            })
+              </a>
+            ))
           }
-        </div>
-
-        {/* Empty Search State */}
-        <div data-apps-empty class="hidden max-w-sm mx-auto py-20 text-center">
-          <div class="w-12 h-12 rounded-xl bg-surface-muted flex items-center justify-center mx-auto mb-4 border border-border text-muted-foreground">
-            <Icon name="search" class="w-5 h-5" />
-          </div>
-          <h3 class="text-base font-semibold text-foreground mb-1">No matching tools found</h3>
-          <p class="text-xs text-muted-foreground mb-4">Try clearing your search query or selecting a different category.</p>
-          <button
-            type="button"
-            data-apps-reset
-            class="px-4 py-2 rounded-lg bg-brand text-brand-foreground text-xs font-semibold hover:bg-brand-hover transition-colors"
-          >
-            Reset Filters
-          </button>
         </div>
       </div>
     </section>
 
-    {/* INTEGRATIONS STRIP */}
-    <section class="py-12 border-t border-border bg-surface-muted/20 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-        <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground">
-          Built for modern developer environments
+    {/* ENGINEERING INTEGRITY NOTE */}
+    <section class="py-12 border-t border-border bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h3 class="text-sm font-semibold text-foreground mb-2">
+          Verified Catalog Policy
+        </h3>
+        <p class="text-xs text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          LadeStack lists only operational, tested tools. Concept designs, unreleased pipelines, and third-party mockups are excluded from this catalog. If you encounter an operational issue with any utility, please notify <a href="mailto:admin@ladestack.in" class="text-brand hover:underline font-mono">admin@ladestack.in</a>.
         </p>
-      </div>
-      <div class="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto px-4">
-        {
-          allIntegrations.map((item) => (
-            <span class="px-3 py-1.5 rounded-lg border border-border bg-surface text-xs font-mono text-muted-foreground">
-              {item}
-            </span>
-          ))
-        }
       </div>
     </section>
   </div>
-
-  <script is:inline>
-    (function () {
-      var search = document.querySelector('[data-apps-search]');
-      var clearSearch = document.querySelector('[data-apps-clear-search]');
-      var count = document.querySelector('[data-apps-count]');
-      var empty = document.querySelector('[data-apps-empty]');
-      var grid = document.querySelector('[data-apps-grid]');
-      var category = 'All';
-
-      function paintCats() {
-        document.querySelectorAll('[data-apps-cat]').forEach(function (b) {
-          var on = b.getAttribute('data-apps-cat') === category;
-          if (on) {
-            b.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border bg-brand border-brand text-brand-foreground shadow-soft transition-colors';
-          } else {
-            b.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border bg-surface border-border text-muted-foreground hover:text-foreground hover:bg-surface-muted transition-colors';
-          }
-        });
-        document.querySelectorAll('[data-apps-cat-m]').forEach(function (b) {
-          var on = b.getAttribute('data-apps-cat-m') === category;
-          if (on) {
-            b.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border bg-brand border-brand text-brand-foreground transition-colors';
-          } else {
-            b.className = 'px-3 py-1.5 rounded-lg text-xs font-medium border bg-surface border-border text-muted-foreground transition-colors';
-          }
-        });
-      }
-
-      function apply() {
-        var q = ((search && search.value) || '').toLowerCase().trim();
-        var n = 0;
-        document.querySelectorAll('[data-app-card]').forEach(function (card) {
-          var okCat = category === 'All' || card.getAttribute('data-category') === category;
-          var okQ = !q || (card.getAttribute('data-search-text') || '').indexOf(q) !== -1;
-          var show = okCat && okQ;
-          card.classList.toggle('hidden', !show);
-          if (show) n++;
-        });
-        if (count) count.textContent = n + ' ' + (n === 1 ? 'tool' : 'tools');
-        if (empty) empty.classList.toggle('hidden', n > 0);
-        if (grid) grid.classList.toggle('hidden', n === 0);
-        if (clearSearch) {
-          var has = !!(search && search.value);
-          clearSearch.classList.toggle('hidden', !has);
-        }
-      }
-
-      function setCategory(c) {
-        category = c;
-        paintCats();
-        apply();
-      }
-
-      if (search) {
-        search.addEventListener('input', apply);
-        if (clearSearch) {
-          clearSearch.addEventListener('click', function () {
-            search.value = '';
-            apply();
-          });
-        }
-      }
-
-      document.querySelectorAll('[data-apps-cat]').forEach(function (b) {
-        b.addEventListener('click', function () { setCategory(b.getAttribute('data-apps-cat')); });
-      });
-
-      var mobileWrap = document.querySelector('[data-apps-mobile-filters]');
-      var toggle = document.querySelector('[data-apps-filter-toggle]');
-      if (toggle && mobileWrap) {
-        toggle.addEventListener('click', function () { mobileWrap.classList.toggle('hidden'); });
-      }
-
-      document.querySelectorAll('[data-apps-cat-m]').forEach(function (b) {
-        b.addEventListener('click', function () {
-          setCategory(b.getAttribute('data-apps-cat-m'));
-          if (mobileWrap) mobileWrap.classList.add('hidden');
-        });
-      });
-
-      var reset = document.querySelector('[data-apps-reset]');
-      if (reset) {
-        reset.addEventListener('click', function () {
-          if (search) search.value = '';
-          setCategory('All');
-        });
-      }
-
-      apply();
-    })();
-  </script>
 </BaseLayout>
