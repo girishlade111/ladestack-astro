@@ -112,5 +112,5 @@ export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
   '/support': LOCALES,
   '/privacy': LOCALES,
   '/terms': LOCALES,
-  '/sitemap': ['en'],
+  '/sitemap': LOCALES,
 };
