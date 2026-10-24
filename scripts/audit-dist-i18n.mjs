@@ -169,7 +169,7 @@ if (!fs.existsSync(sitemapPath)) {
     }
   }
   if (sitemapMissing === 0) {
-    console.log(`✅ PASS: All 90 localized URLs are verified present in dist/sitemap-0.xml.`);
+    console.log(`✅ PASS: All 99 localized core URLs are verified present in dist/sitemap-0.xml.`);
   }
 
   // Verify 404 is excluded
@@ -185,6 +185,6 @@ if (failed) {
   console.error('\n❌ QA AUDIT FAILED.');
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL 90 LOCALIZED PAGES & SITEMAP PASSED QA AUDIT PERFECTLY!');
+  console.log('\n🎉 ALL 99 LOCALIZED PAGES & SITEMAP PASSED QA AUDIT PERFECTLY!');
   process.exit(0);
 }
