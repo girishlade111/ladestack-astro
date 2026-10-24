@@ -1,7 +1,7 @@
 /**
  * scripts/audit-english-routes.mjs
- * Validates that English subpages (about, apps, docs, blog) remain functional,
- * retain their canonicals, and DO NOT emit fake hreflang tags for nonexistent languages.
+ * Validates that English subpages retain their canonicals,
+ * have appropriate hreflang alternates (10 for fully localized routes, 0 for English-only blog routes).
  */
 
 import fs from 'node:fs';
@@ -9,17 +9,26 @@ import path from 'node:path';
 
 const DIST_DIR = path.resolve('dist');
 
-const ENGLISH_SUBPAGES = [
-  { path: 'about/index.html', canonical: 'https://ladestack.in/about' },
-  { path: 'gb-coder/index.html', canonical: 'https://ladestack.in/gb-coder' },
-  { path: 'apps/index.html', canonical: 'https://ladestack.in/apps' },
-  { path: 'docs/index.html', canonical: 'https://ladestack.in/docs' },
-  { path: 'blog/index.html', canonical: 'https://ladestack.in/blog' },
+const LOCALIZED_SUBPAGES = [
+  { path: 'about/index.html', canonical: 'https://ladestack.in/about', expectedHreflangs: 10 },
+  { path: 'gb-coder/index.html', canonical: 'https://ladestack.in/gb-coder', expectedHreflangs: 10 },
+  { path: 'apps/index.html', canonical: 'https://ladestack.in/apps', expectedHreflangs: 10 },
+  { path: 'docs/index.html', canonical: 'https://ladestack.in/docs', expectedHreflangs: 10 },
+  { path: 'contact/index.html', canonical: 'https://ladestack.in/contact', expectedHreflangs: 10 },
+  { path: 'support/index.html', canonical: 'https://ladestack.in/support', expectedHreflangs: 10 },
+  { path: 'privacy/index.html', canonical: 'https://ladestack.in/privacy', expectedHreflangs: 10 },
+  { path: 'terms/index.html', canonical: 'https://ladestack.in/terms', expectedHreflangs: 10 },
+  { path: 'sitemap/index.html', canonical: 'https://ladestack.in/sitemap', expectedHreflangs: 10 },
+];
+
+const ENGLISH_ONLY_SUBPAGES = [
+  { path: 'blog/index.html', canonical: 'https://ladestack.in/blog', expectedHreflangs: 0 },
 ];
 
 let failed = false;
 
-for (const page of ENGLISH_SUBPAGES) {
+console.log('--- 1. Auditing Fully Localized Core English Routes ---');
+for (const page of LOCALIZED_SUBPAGES) {
   const filePath = path.join(DIST_DIR, page.path);
   if (!fs.existsSync(filePath)) {
     console.error(`❌ FAIL: Missing English subpage: ${page.path}`);
@@ -43,13 +52,32 @@ for (const page of ENGLISH_SUBPAGES) {
     failed = true;
   }
 
-  // Check Hreflangs (Should be 0 because subpages only exist in English in Phase 2A)
+  // Check Hreflangs
   const hreflangCount = (html.match(/rel=["']alternate["']\s+hreflang=/gi) || []).length;
-  if (hreflangCount > 0) {
+  if (hreflangCount !== page.expectedHreflangs) {
+    console.error(`❌ FAIL [${page.path}]: Expected ${page.expectedHreflangs} hreflang tags, found ${hreflangCount}`);
+    failed = true;
+  } else {
+    console.log(`✅ PASS [${page.path}]: Canonical valid (${page.canonical}), exactly ${page.expectedHreflangs} reciprocal hreflang tags.`);
+  }
+}
+
+console.log('\n--- 2. Auditing English-Only Routes (Zero False Alternates) ---');
+for (const page of ENGLISH_ONLY_SUBPAGES) {
+  const filePath = path.join(DIST_DIR, page.path);
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ FAIL: Missing English subpage: ${page.path}`);
+    failed = true;
+    continue;
+  }
+
+  const html = fs.readFileSync(filePath, 'utf-8');
+  const hreflangCount = (html.match(/rel=["']alternate["']\s+hreflang=/gi) || []).length;
+  if (hreflangCount !== 0) {
     console.error(`❌ FAIL [${page.path}]: Found ${hreflangCount} fake hreflang tags! Must NOT emit alternates for un-translated routes.`);
     failed = true;
   } else {
-    console.log(`✅ PASS [${page.path}]: Canonical valid (${page.canonical}), zero fake hreflang alternates.`);
+    console.log(`✅ PASS [${page.path}]: Canonical valid (${page.canonical}), zero fake hreflang tags.`);
   }
 }
 
