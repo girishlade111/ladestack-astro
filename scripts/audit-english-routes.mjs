@@ -27,6 +27,9 @@ const LOCALIZED_SUBPAGES = [
   // Phase 3C Modernized Multilingual Articles (all 9 languages localized)
   { path: 'blog/api-rate-limiting-throttling-strategies/index.html', canonical: 'https://ladestack.in/blog/api-rate-limiting-throttling-strategies', expectedHreflangs: 10 },
   { path: 'blog/rest-vs-graphql-choosing-right-api-paradigm/index.html', canonical: 'https://ladestack.in/blog/rest-vs-graphql-choosing-right-api-paradigm', expectedHreflangs: 10 },
+  // Phase 3D-A Modernized Multilingual Articles (all 9 languages localized)
+  { path: 'blog/machine-learning-pipelines-for-web-developers/index.html', canonical: 'https://ladestack.in/blog/machine-learning-pipelines-for-web-developers', expectedHreflangs: 10 },
+  { path: 'blog/building-rag-applications-vector-databases/index.html', canonical: 'https://ladestack.in/blog/building-rag-applications-vector-databases', expectedHreflangs: 10 },
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
@@ -34,6 +37,10 @@ const ENGLISH_ONLY_SUBPAGES = [
   { path: 'blog/zero-trust-security-web-applications/index.html', canonical: 'https://ladestack.in/blog/zero-trust-security-web-applications', expectedHreflangs: 0 },
   { path: 'blog/building-ai-powered-code-review-systems/index.html', canonical: 'https://ladestack.in/blog/building-ai-powered-code-review-systems', expectedHreflangs: 0 },
   { path: 'blog/future-of-ai-in-software-development/index.html', canonical: 'https://ladestack.in/blog/future-of-ai-in-software-development', expectedHreflangs: 0 },
+  // Phase 3D-A English-only modernized articles
+  { path: 'blog/generative-ai-for-content-creation/index.html', canonical: 'https://ladestack.in/blog/generative-ai-for-content-creation', expectedHreflangs: 0 },
+  { path: 'blog/fine-tuning-llms-domain-specific-tasks/index.html', canonical: 'https://ladestack.in/blog/fine-tuning-llms-domain-specific-tasks', expectedHreflangs: 0 },
+  { path: 'blog/multi-tenant-saas-architecture-patterns/index.html', canonical: 'https://ladestack.in/blog/multi-tenant-saas-architecture-patterns', expectedHreflangs: 0 },
 ];
 
 let failed = false;
