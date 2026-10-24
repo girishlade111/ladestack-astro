@@ -6,7 +6,7 @@ slug: "client-side-pdf-manipulation-webassembly"
 translationKey: "client-side-pdf-manipulation-webassembly"
 author: "Girish Lade"
 publishedAt: "2026-03-18"
-updatedAt: "2026-03-22"
+updatedAt: "2026-10-24"
 category: "Tools"
 tags: ["PDF", "WebAssembly", "JavaScript", "Segurança", "Privacidade", "Computação no Cliente"]
 coverImage: "/blog-covers/pdf-wasm-processing.svg"
@@ -19,9 +19,9 @@ contentType: "deep-dive"
 
 A manipulação de documentos em aplicações web sempre foi delegada a microsserviços de backend que executam binários nativos robustos como Poppler, Ghostscript ou PDFKit. Quando um usuário precisa juntar dois contratos confidenciais ou extrair páginas de um prontuário médico, o fluxo habitual exige o upload integral do arquivo bruto pela internet até um servidor em nuvem remoto.
 
-Para empresas, departamentos jurídicos e registros de saúde, esse paradigma centrado na nuvem acarreta severos obstáculos de conformidade regulatória (LGPD, GDPR, HIPAA) e riscos reais de vazamento de dados.
+Para empresas, contratos jurídicos e dados confidenciais, trafegar fluxos documentais não criptografados por infraestruturas de nuvem de terceiros amplia a superfície de ataque e torna mais complexo o cumprimento regulatório (como avaliações de transferência internacional de dados sob LGPD/GDPR).
 
-Ao desenvolver o **LS PDF** — utilitário da suíte de ferramentas LadeStack — projetamos um pipeline de processamento documental que opera estritamente no lado do cliente. Ao executar motores compilados em WebAssembly (Wasm) diretamente sobre buffers `Uint8Array` na memória RAM do navegador, todas as transformações de documentos acontecem localmente, sem transmitir um único byte para servidores externos.
+Ao desenvolver o **LS PDF** — utilitário da suíte de ferramentas LadeStack — projetamos um pipeline de processamento documental que opera estritamente no lado do cliente. Ao executar motores compilados em WebAssembly (Wasm) diretamente sobre buffers `Uint8Array` na memória RAM do navegador, todas as transformações de documentos acontecem localmente, sem transmitir o conteúdo dos documentos para servidores externos.
 
 ---
 
@@ -88,7 +88,7 @@ Operando diretamente sobre endereços de memória linear em vez de serializar ob
 
 ## Gerenciamento de Memória e Prevenção de Falhas
 
-Manipular arquivos PDF volumosos na memória do navegador exige disciplina estrita no ciclo de vida dos recursos. Diferente de softwares para desktop com memória virtual ampla, os navegadores impõem limites rígidos de consumo por aba (geralmente entre 2 GB e 4 GB). Se a memória alocada não for desalocada com precisão, operações repetidas resultarão no travamento da aba por estouro de memória (OOM).
+Manipular arquivos PDF volumosos na memória do navegador exige disciplina estrita no ciclo de vida dos recursos. O WebAssembly padrão de 32 bits (`wasm32`) opera dentro de um espaço de endereçamento linear de 32 bits, com limite arquitetural de 4 GB ($2^{32}$ bytes). Na prática, motores de navegadores (como o V8 no Chromium) historicamente aplicam tetos de alocação ainda mais rígidos por instância WebAssembly (comumente entre 1 GB e 2 GB) para proteger a estabilidade da aba, além dos limites de heap do processo. Se os buffers de memória não forem desalocados explicitamente, operações sucessivas com arquivos pesados causarão o fechamento da aba por estouro de memória (OOM).
 
 ### Desalocação Explícita de Ponteiros
 

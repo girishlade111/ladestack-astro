@@ -6,7 +6,7 @@ slug: "client-side-pdf-manipulation-webassembly"
 translationKey: "client-side-pdf-manipulation-webassembly"
 author: "Girish Lade"
 publishedAt: "2026-03-18"
-updatedAt: "2026-03-22"
+updatedAt: "2026-10-24"
 category: "Tools"
 tags: ["PDF", "WebAssembly", "JavaScript", "Güvenlik", "Gizlilik", "İstemci Bilişimi"]
 coverImage: "/blog-covers/pdf-wasm-processing.svg"
@@ -19,9 +19,9 @@ contentType: "deep-dive"
 
 Web uygulamalarında belge işleme operasyonları geleneksel olarak Poppler, Ghostscript veya PDFKit gibi yerel ikili dosyaları çalıştıran arka uç mikro servislerine emanet edilmiştir. Bir kullanıcının gizli bir sözleşmeyi birleştirmesi veya tıbbi bir rapordan belirli sayfaları ayıklaması gerektiğinde, standart web iş akışı ham dosyanın tamamının uzak bir bulut sunucusuna yüklenmesini zorunlu kılar.
 
-Kurumsal organizasyonlar, hukuki sözleşmeler ve kişisel kayıtlar söz konusu olduğunda, bu bulut odaklı yaklaşım hem yasal uyumluluk engelleri (KVKK, GDPR, HIPAA) hem de veri sızıntısı riskleri yaratır.
+Kurumsal organizasyonlar, hukuki sözleşmeler ve kişisel kayıtlar söz konusu olduğunda, şifrelenmemiş belge akışlarının üçüncü taraf bulut altyapılarına aktarılması saldırı yüzeyini genişletir ve yasal uyumluluk süreçlerini (KVKK / GDPR sınır ötesi veri aktarımı değerlendirmeleri gibi) karmaşıklaştırır.
 
-LadeStack geliştirici araç setinin bir parçası olan **LS PDF**'i geliştirirken, tamamen istemci tarafında çalışan bir belge işleme hattı kurguladık. Derlenmiş WebAssembly (Wasm) çekirdeklerini doğrudan tarayıcı belleğindeki `Uint8Array` arabellekleri üzerinde çalıştırarak, dış sunuculara tek bir bayt bile göndermeksizin tüm belge dönüşümlerini yerel RAM içerisinde tamamlıyoruz.
+LadeStack geliştirici araç setinin bir parçası olan **LS PDF**'i geliştirirken, tamamen istemci tarafında çalışan bir belge işleme hattı kurguladık. Derlenmiş WebAssembly (Wasm) çekirdeklerini doğrudan tarayıcı belleğindeki `Uint8Array` arabellekleri üzerinde çalıştırarak, dış sunuculara belge içeriği aktarmaksızın tüm belge dönüşümlerini yerel RAM içerisinde tamamlıyoruz.
 
 ---
 
@@ -36,13 +36,13 @@ GELENEKSEL BULUT PDF ARACI:
 LADESTACK LS PDF (WASM):
 [Tarayıcı Dosya Seçimi] ──► [RAM'deki ArrayBuffer] ──► [WASM Çalışma Çekirdeği] ──► [Anında Yerel İndirme]
                                    ▲
-                                   └─── Ağ Üzerinden Aktarılan Veri: 0 Bayt
+                                   └─── Ağ Üzerinden Aktarılan Belge Verisi: 0 Bayt
 ```
 
 Dosyaların istemci cihazında kalması kullanıcılara önemli avantajlar sağlar:
-- **Sıfır Ağ Gecikmesi:** 150 MB boyutundaki büyük bir belgenin işlenmesi yalnızca yerel işlemci ve RAM hızına bağlıdır; zayıf mobil bağlantı darboğazları ortadan kalkar.
-- **Doğrudan KVKK / GDPR Uyumluluğu:** Kişisel veya ticari hiçbir veri dış ortama aktarılmadığı için veri işleme sözleşmeleri (DPA) imzalanması veya pahalı şifreli bulut depolama alanları kiralanması gerekmez.
-- **Eksiksiz Çevrimdışı Çalışma Kabiliyeti:** Web uygulaması ve WASM modülü servis çalışanları (Service Worker) tarafından önbelleğe alındıktan sonra, internet bağlantısı olmasa bile tüm PDF araçları kesintisiz çalışır.
+- **Sıfır Ağ Aktarım Gecikmesi:** 150 MB boyutundaki büyük bir belgenin işlenmesi yalnızca yerel işlemci ve RAM hızına bağlıdır; zayıf mobil bağlantı darboğazları ortadan kalkar.
+- **Azaltılmış Veri Maruziyeti:** Belge içerikleri harici ağ noktalarına veya bulut depolama alanlarına aktarılmadığı için üçüncü taraf sunucu depolama riskleri ortadan kalkar (kapsamlı uyumluluk için uç nokta güvenliği ve organizasyonel denetimler yine de gereklidir).
+- **Çevrimdışı Belge İşleme Güvenilirliği:** Web uygulaması paketi ve derlenmiş WebAssembly modülleri tarayıcı önbelleğine (Service Worker veya HTTP önbelleği) alındıktan sonra, belge dönüştürme rutinleri aktif internet bağlantısına ihtiyaç duymadan yerel olarak çalışır.
 
 ---
 
@@ -88,7 +88,7 @@ Veriyi JSON veya Base64 dizgilerine dönüştürmek yerine doğrudan doğrusal b
 
 ## Bellek Yönetimi ve Çöp Toplayıcı Güvenlik Önlemleri
 
-Tarayıcı belleğinde büyük PDF belgeleriyle çalışırken yaşam döngüsünü titizlikle kontrol etmek şarttır. Masaüstü yazılımlarının aksine web tarayıcıları, sekme başına katı bellek sınırları uygular (mimariye bağlı olarak genellikle 2 GB ila 4 GB). Tahsis edilen bellek açıkça serbest bırakılmazsa, ardışık belge işlemleri tarayıcı sekmesinin çökmesine (OOM) yol açar.
+Tarayıcı belleğinde büyük PDF belgeleriyle çalışırken yaşam döngüsünü titizlikle kontrol etmek şarttır. Standart 32-bit WebAssembly (`wasm32`), 32-bitlik doğrusal adres alanında çalışarak mimari olarak 4 GB ($2^{32}$ bayt) tavan sınırına sahiptir. Uygulamada, tarayıcı motorları (örneğin Chromium içindeki V8), sekme kararlılığını korumak için WebAssembly örneği başına daha da sıkı tahsis sınırları (genellikle 1 GB ila 2 GB) ve genel işlem bellek limitleri uygular. Bellek arabellekleri açıkça serbest bırakılmazsa, çok megabaytlık belgeler üzerindeki ardışık işlemler tarayıcı sekmesinin bellek yetersizliğiyle (OOM) çökmesine neden olur.
 
 ### Belirtik İşaretçi Serbest Bırakma (Deallocation)
 
@@ -115,16 +115,16 @@ Elde edilen bayt dilimini standart bir JavaScript `Blob` nesnesine kopyalayıp W
 
 ---
 
-## Performans Karşılaştırması: Bellek İçi Çalışma ve Ağ Yükü
+## Gösterge Nitelikli Gecikme Modeli: Ağ Aktarımı ve Bellek İçi Çalışma Karşılaştırması
 
-İstemci tarafında belge işlemenin en belirgin avantajı, ağ aktarım süresinin bütünüyle ortadan kalkmasıdır. 15 Mbps hızında tipik bir mobil bağlantıda toplam 45 MB boyutundaki belgeleri birleştirme senaryosunu inceleyelim:
+İstemci tarafında belge işlemenin en belirgin avantajı, ağ aktarım süresinin ortadan kalkmasıdır. 15 Mbps hızında tipik bir mobil bağlantıda toplam 45 MB boyutundaki belgeleri birleştirme senaryosunu inceleyelim ($45 \text{ MB} = 360 \text{ Megabit}$):
 
 | Yürütme Modeli | Aktarım Süresi (15 Mbps Mobil Bağlantı) | İşlem Aşaması | Toplam Tamamlanma Süresi |
 |:---|:---:|:---:|:---:|
 | **Geleneksel Bulut Servisi** | ~24,0 sn (Yükleme) + ~6,0 sn (İndirme) | Uzak Kuyruk ve Disk G/Ç | **~30+ saniye** |
 | **LS PDF (Bellek İçi WASM)** | **0,0 sn (Yükleme gerekmez)** | Bellek İçi Doğrusal Hesaplama | **< 1,0 saniye** |
 
-İşlemler doğrudan tarayıcı RAM'inde gerçekleştirildiği için operasyonel hız ağ bant genişliğinden ve bağlantı dalgalanmalarından bağımsız hale gelir.
+*Hesaplama varsayımları:* Ağ aktarımı, 15 Mbps kararlı yükleme hızı üzerinden modellenmiştir ($360 \text{ Mb} / 15 \text{ Mbps} = 24,0\text{ sn}$ yükleme; işlenmiş belgenin 15 Mbps hızında indirilmesi ~90 Mb için 6,0 sn), uzak sunucu kuyruk gecikmeleri hariç tutulmuştur. Bellek içi WASM çalıştırması doğrudan yerel RAM adresleri üzerinde yürütülür. Gerçek dünya hızları ağ şartlarına ve cihaz donanımına göre değişiklik gösterir.
 
 ---
 

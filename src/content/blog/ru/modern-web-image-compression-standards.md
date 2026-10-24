@@ -6,7 +6,7 @@ slug: "modern-web-image-compression-standards"
 translationKey: "modern-web-image-compression-standards"
 author: "Girish Lade"
 publishedAt: "2026-03-20"
-updatedAt: "2026-03-24"
+updatedAt: "2026-10-24"
 category: "Performance"
 tags: ["Изображения", "Веб-производительность", "WebP", "AVIF", "Canvas API", "Оптимизация"]
 coverImage: "/blog-covers/image-compression.svg"

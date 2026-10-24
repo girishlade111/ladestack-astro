@@ -6,7 +6,7 @@ slug: "gb-coder-dual-engine-architecture"
 translationKey: "gb-coder-dual-engine-architecture"
 author: "Girish Lade"
 publishedAt: "2026-03-15"
-updatedAt: "2026-03-20"
+updatedAt: "2026-10-24"
 category: "Architecture"
 tags: ["GB Coder", "Arquitetura", "JavaScript", "Monaco Editor", "WebAssembly", "Web IDE"]
 coverImage: "/blog-covers/gb-coder-architecture.svg"

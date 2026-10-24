@@ -6,7 +6,7 @@ slug: "client-side-pdf-manipulation-webassembly"
 translationKey: "client-side-pdf-manipulation-webassembly"
 author: "Girish Lade"
 publishedAt: "2026-03-18"
-updatedAt: "2026-03-22"
+updatedAt: "2026-10-24"
 category: "Tools"
 tags: ["PDF", "WebAssembly", "JavaScript", "Seguridad", "Privacidad", "Cómputo en el Cliente"]
 coverImage: "/blog-covers/pdf-wasm-processing.svg"
@@ -88,7 +88,7 @@ Al manipular direcciones de memoria lineal en lugar de serializar datos en JSON 
 
 ## Gestión de Memoria y Prevención de Desbordamientos
 
-Manipular archivos PDF voluminosos en la memoria del navegador exige un control riguroso del ciclo de vida de los recursos. A diferencia de las aplicaciones de escritorio tradicionales, los navegadores imponen límites estrictos de consumo por pestaña (habitualmente de 2 GB a 4 GB). Si la memoria reservada no se libera con exactitud, las operaciones continuas provocarán el cierre inesperado de la pestaña por agotamiento de memoria (OOM).
+Manipular archivos PDF voluminosos en la memoria del navegador exige un control riguroso del ciclo de vida de los recursos. La arquitectura estándar WebAssembly de 32 bits (`wasm32`) opera en un espacio de direcciones lineales de 32 bits, con un techo arquitectónico de 4 GB ($2^{32}$ bytes). En la práctica, los motores de navegación (como V8 en Chromium) aplican techos de asignación todavía más estrictos por instancia WebAssembly (habitualmente entre 1 GB y 2 GB) para proteger la estabilidad de la pestaña, junto con los límites de memoria del proceso. Si los búferes no se liberan explícitamente, ejecutar operaciones repetitivas sobre documentos pesados provocará la caída de la pestaña por falta de memoria (OOM).
 
 ### Liberación Explícita de Punteros
 

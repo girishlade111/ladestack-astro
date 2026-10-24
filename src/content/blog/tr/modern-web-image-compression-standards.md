@@ -6,7 +6,7 @@ slug: "modern-web-image-compression-standards"
 translationKey: "modern-web-image-compression-standards"
 author: "Girish Lade"
 publishedAt: "2026-03-20"
-updatedAt: "2026-03-24"
+updatedAt: "2026-10-24"
 category: "Performance"
 tags: ["Görseller", "Web Başarımı", "WebP", "AVIF", "Canvas API", "Optimizasyon"]
 coverImage: "/blog-covers/image-compression.svg"
@@ -100,7 +100,7 @@ export async function compressToByteBudget(
 
 Alliance for Open Media (AOMedia) tarafından geliştirilen AV1 video kodekini temel alan AVIF (AV1 Image File Format), görüntü sıkıştırma teknolojisinin en ileri noktasını temsil eder. WebP'nin belirgin biçimde ötesine geçerek **JPEG'e kıyasla %50'ye varan**, **WebP'ye kıyasla ise ilave %20'lik dosya boyutu tasarrufu** sağlar; aynı zamanda yüksek frekanslı dokuları, renk geçişlerini ve keskin metin kenarlarını olağanüstü biçimde korur.
 
-Blink tabanlı tarayıcılarda `canvas.toBlob('image/avif')` desteği yaygınlaşırken, WebAssembly (Wasm) ile derlenmiş `libavif` modülleri sayesinde tüm modern tarayıcılarda güvenilir AVIF dönüşümü sağlanabilmektedir.
+Chromium tabanlı tarayıcılarda `canvas.toBlob('image/avif')` desteği yaygınlaşırken, WebAssembly (Wasm) ile derlenmiş `libavif` modülleri sayesinde tüm modern tarayıcılarda güvenilir AVIF dönüşümü sağlanabilmektedir.
 
 ---
 

@@ -6,7 +6,7 @@ slug: "modern-web-image-compression-standards"
 translationKey: "modern-web-image-compression-standards"
 author: "Girish Lade"
 publishedAt: "2026-03-20"
-updatedAt: "2026-03-24"
+updatedAt: "2026-10-24"
 category: "Performance"
 tags: ["Images", "Performance Web", "WebP", "AVIF", "Canvas API", "Optimisation"]
 coverImage: "/blog-covers/image-compression.svg"
@@ -100,7 +100,7 @@ export async function compressToByteBudget(
 
 Issu du codec vidéo AV1 conçu par l'Alliance for Open Media (AOMedia), le format AVIF (AV1 Image File Format) incarne l'état de l'art technologique. Il surpasse nettement le WebP en générant des fichiers **jusqu'à 50 % plus légers que le JPEG** et **20 % plus compacts que le WebP**, tout en conservant remarquablement les détails à haute fréquence, la finesse des dégradés et la netteté typographique.
 
-Si le support natif via `canvas.toBlob('image/avif')` se généralise progressivement sur les moteurs basés sur Chromium, des modules WebAssembly (Wasm) compilés à partir de `libavif` permettent déjà d'obtenir un encodage AVIF stable et performant dans tous les navigateurs.
+Alors que le support d'encodage natif via `canvas.toBlob('image/avif')` se déploie sur les navigateurs Chromium, des modules WebAssembly (Wasm) basés sur `libavif` permettent aux applications web de générer de l'AVIF de façon stable sur tous les navigateurs modernes.
 
 ---
 

@@ -6,7 +6,7 @@ slug: "client-side-pdf-manipulation-webassembly"
 translationKey: "client-side-pdf-manipulation-webassembly"
 author: "Girish Lade"
 publishedAt: "2026-03-18"
-updatedAt: "2026-03-22"
+updatedAt: "2026-10-24"
 category: "Tools"
 tags: ["PDF", "WebAssembly", "JavaScript", "Sécurité", "Confidentialité", "Calcul Client"]
 coverImage: "/blog-covers/pdf-wasm-processing.svg"
@@ -36,7 +36,7 @@ OUTIL PDF CLOUD TRADITIONNEL :
 LADESTACK LS PDF (WASM) :
 [Sélection de fichier] ──► [ArrayBuffer en RAM] ──► [Moteur d'exécution WASM] ──► [Téléchargement local instantané]
                                    ▲
-                                   └─── 0 octet transmis sur le réseau
+                                   └─── 0 octet de contenu documentaire transmis sur le réseau
 ```
 
 En conservant les fichiers sur la machine locale, les utilisateurs profitent d'avantages déterminants :
@@ -88,7 +88,7 @@ En manipulant directement les décalages de mémoire linéaire plutôt qu'en sé
 
 ## Gestion de la Mémoire et Barrières Anti-Saturation
 
-Traiter des fichiers volumineux dans la mémoire du navigateur exige un contrôle rigoureux du cycle de vie des ressources. Contrairement aux systèmes d'exploitation pour postes de travail, les navigateurs appliquent des limites strictes de consommation par onglet (généralement 2 à 4 Go). Si la mémoire n'est pas libérée explicitement, des manipulations successives provoqueront un crash complet de l'onglet (Out-Of-Memory).
+Traiter des fichiers volumineux dans la mémoire du navigateur exige un contrôle rigoureux du cycle de vie des ressources. Le WebAssembly standard 32 bits (`wasm32`) opère dans un espace d'adressage linéaire de 32 bits, imposant un plafond architectural de 4 Go ($2^{32}$ octets). En pratique, les moteurs de navigation (notamment V8 dans Chromium) appliquent historiquement des plafonds d'allocation encore plus stricts par instance WebAssembly (souvent entre 1 et 2 Go) pour préserver la stabilité de l'onglet, en parallèle des limites globales de processus. Si les tampons mémoire ne sont pas libérés explicitement, la manipulation séquentielle de documents volumineux déclenchera une rupture de mémoire (OOM).
 
 ### Libération Explicite des Pointeurs
 
@@ -115,16 +115,16 @@ En clonant le segment d'octets résultant dans un objet JavaScript `Blob` standa
 
 ---
 
-## Modèle de Performance : Exécution en RAM vs Latence Réseau
+## Modèle Illustratif de Latence : Transfert Réseau vs Exécution en RAM
 
-Le gain de performance déterminant du traitement côté client réside dans la suppression pure et simple des temps de transfert sur le réseau. Considérons un cas classique de fusion de plusieurs documents totalisant 45 Mo sur une connexion mobile de 15 Mbit/s :
+Le gain de performance déterminant du traitement côté client réside dans la suppression des temps de transfert sur le réseau. Considérons un cas classique de fusion de plusieurs documents totalisant 45 Mo ($45 \text{ Mo} = 360 \text{ Mégabits}$) sur une connexion mobile de 15 Mbit/s :
 
 | Modèle d'Exécution | Latence de Transfert (Mobile 15 Mbit/s) | Phase de Traitement | Temps Total d'Exécution |
 |:---|:---:|:---:|:---:|
 | **Microservice Cloud** | ~24,0 s (Téléversement) + ~6,0 s (Téléchargement) | File d'attente & I/O disque | **~30+ secondes** |
 | **LS PDF (WASM en RAM)** | **0,0 s (Aucun envoi réseau)** | Calcul linéaire en mémoire vive | **< 1,0 seconde** |
 
-L'exécution s'effectuant directement dans la mémoire vive de l'appareil de l'utilisateur, le temps de réponse est totalement découplé de la bande passante et des aléas du réseau.
+*Hypothèses de calcul du modèle :* Le transit réseau est modélisé sur un débit montant soutenu de 15 Mbit/s ($360 \text{ Mbit} / 15 \text{ Mbit/s} = 24,0\text{ s}$ d'envoi ; téléchargement du document traité d'environ 90 Mbit à 15 Mbit/s = 6,0 s), hors temps de mise en file d'attente distante. L'exécution WASM s'effectue localement sur les plages de mémoire vive. Les performances réelles varient selon les conditions réseau et le matériel utilisateur.
 
 ---
 
