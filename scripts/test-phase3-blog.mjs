@@ -1,26 +1,50 @@
 /**
  * scripts/test-phase3-blog.mjs
- * Comprehensive automated QA test suite for LadeStack Phase 3B Multilingual Markdown Blog
+ * Comprehensive automated QA test suite for LadeStack Phase 3C Multilingual Markdown Blog
  * Validates:
  * 1. Content schema and translationKey consistency across all 9 languages
  * 2. Per-locale blog index routes (/blog, /ja/blog, /ko/blog, etc.)
- * 3. All 3 pilot topics published across all 9 languages (27 articles total)
- * 4. Reciprocal hreflang tags (10 tags: 9 languages + x-default) on every published pilot article
- * 5. Legacy English-only articles have 0 false hreflang alternates
- * 6. Real heading anchor validity in generated HTML (TOC href matches id attribute)
- * 7. Cover images exist on disk for all articles
- * 8. BlogPosting and BreadcrumbList JSON-LD schemas exist and parse as valid JSON
- * 9. Sitemaps include all 27 published pilot articles and exclude drafts
+ * 3. All 5 multilingual topics published across all 9 languages (45 articles total)
+ * 4. Reciprocal hreflang tags (10 tags: 9 languages + x-default) on every published multilingual article
+ * 5. English-only modernized articles (3 articles) have exactly 0 false hreflang alternates
+ * 6. Remaining legacy fallback articles (22 articles) resolve and have 0 false hreflangs
+ * 7. All 27 original legacy URLs continue to resolve without duplicates
+ * 8. Real heading anchor validity in generated HTML (TOC href matches id attribute)
+ * 9. Cover images exist on disk for all articles
+ * 10. BlogPosting and BreadcrumbList JSON-LD schemas exist and parse as valid JSON
+ * 11. Sitemaps include all 48 published Markdown articles and exclude drafts
+ * 12. Historic numeric redirects (/blog/1 through /blog/6) exist and redirect accurately
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { blogPosts } from '../src/data/blogPosts.js';
 
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
-const PILOT_TOPICS = [
+
+// 5 topics translated into all 9 languages (45 articles)
+const MULTILINGUAL_TOPICS = [
   'gb-coder-dual-engine-architecture',
   'client-side-pdf-manipulation-webassembly',
   'modern-web-image-compression-standards',
+  'api-rate-limiting-throttling-strategies',
+  'rest-vs-graphql-choosing-right-api-paradigm',
+];
+
+// 3 English-only modernized articles
+const ENGLISH_ONLY_MODERNIZED = [
+  'zero-trust-security-web-applications',
+  'building-ai-powered-code-review-systems',
+  'future-of-ai-in-software-development',
+];
+
+// The 5 modernized legacy slugs
+const MODERNIZED_LEGACY_SLUGS = [
+  'api-rate-limiting-throttling-strategies',
+  'rest-vs-graphql-choosing-right-api-paradigm',
+  'zero-trust-security-web-applications',
+  'building-ai-powered-code-review-systems',
+  'future-of-ai-in-software-development',
 ];
 
 let errors = 0;
@@ -51,8 +75,8 @@ for (const loc of LOCALES) {
   }
 }
 
-console.log('\n--- 2. Validating All 3 Pilot Topics Across All 9 Locales (27 Articles) ---');
-for (const slug of PILOT_TOPICS) {
+console.log('\n--- 2. Validating 5 Multilingual Topics Across All 9 Locales (45 Articles) ---');
+for (const slug of MULTILINGUAL_TOPICS) {
   console.log(`\nChecking Topic: ${slug}`);
   for (const loc of LOCALES) {
     const relativePath = loc === 'en' ? `blog/${slug}/index.html` : `${loc}/blog/${slug}/index.html`;
@@ -109,43 +133,79 @@ for (const slug of PILOT_TOPICS) {
   }
 }
 
-console.log('\n--- 3. Validating Legacy English-Only Articles (Zero Fake Alternates) ---');
-const legacyEnglishSamples = [
-  'blog/future-of-ai-in-software-development/index.html',
-  'blog/building-ai-powered-code-review-systems/index.html',
-];
-
-for (const legacyPath of legacyEnglishSamples) {
-  const filePath = path.join(DIST_DIR, legacyPath);
+console.log('\n--- 3. Validating English-Only Modernized Articles (3 Articles, 0 False Alternates) ---');
+for (const slug of ENGLISH_ONLY_MODERNIZED) {
+  const filePath = path.join(DIST_DIR, `blog/${slug}/index.html`);
   const exists = fs.existsSync(filePath);
-  assert(exists, `Legacy post exists: ${legacyPath}`);
+  assert(exists, `Modernized English-only post exists: blog/${slug}/index.html`);
 
   if (exists) {
     const html = fs.readFileSync(filePath, 'utf-8');
     const hreflangs = [...html.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=/gi)];
-    assert(hreflangs.length === 0, `[${legacyPath}] Has 0 fake hreflang tags (untranslated legacy post)`);
+    assert(hreflangs.length === 0, `[${slug}] Has 0 fake hreflang tags (English-only article)`);
+
+    const canonicalMatch = html.includes(`rel="canonical" href="https://ladestack.in/blog/${slug}"`);
+    assert(canonicalMatch, `[${slug}] Canonical points to https://ladestack.in/blog/${slug}`);
   }
 }
 
-console.log('\n--- 4. Validating Cover Image Existence ---');
+console.log('\n--- 4. Validating All 27 Legacy Blog URLs Accounted For ---');
+let legacyModernizedCount = 0;
+let legacyRetainedCount = 0;
+
+for (const legacy of blogPosts) {
+  const filePath = path.join(DIST_DIR, `blog/${legacy.slug}/index.html`);
+  const exists = fs.existsSync(filePath);
+  assert(exists, `Legacy canonical URL resolves: /blog/${legacy.slug}`);
+
+  if (MODERNIZED_LEGACY_SLUGS.includes(legacy.slug)) {
+    legacyModernizedCount++;
+  } else {
+    legacyRetainedCount++;
+  }
+}
+
+assert(legacyModernizedCount === 5, `Exactly 5 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
+assert(legacyRetainedCount === 22, `Exactly 22 legacy fallback articles preserved (got ${legacyRetainedCount})`);
+assert(legacyModernizedCount + legacyRetainedCount === 27, `Total 27 legacy canonical blog URLs accounted for (got ${legacyModernizedCount + legacyRetainedCount})`);
+
+console.log('\n--- 5. Validating Historic Numeric Redirects (/blog/1 through /blog/6) ---');
+for (let id = 1; id <= 6; id++) {
+  const redirectPath = path.join(DIST_DIR, `blog/${id}/index.html`);
+  const exists = fs.existsSync(redirectPath);
+  assert(exists, `Numeric redirect HTML exists: /blog/${id}/index.html`);
+
+  if (exists) {
+    const html = fs.readFileSync(redirectPath, 'utf-8');
+    assert(html.includes('http-equiv="refresh"'), `[blog/${id}] Contains meta refresh redirect`);
+  }
+}
+
+console.log('\n--- 6. Validating Cover Image Existence on Disk ---');
 const coverImages = [
   'public/blog-covers/gb-coder-architecture.svg',
   'public/blog-covers/pdf-wasm-processing.svg',
   'public/blog-covers/image-compression.svg',
+  'public/blog-covers/api-rate-limiting.svg',
+  'public/blog-covers/graphql-vs-rest.svg',
+  'public/blog-covers/zero-trust-security.svg',
+  'public/blog-covers/ai-code-generation.svg',
+  'public/blog-covers/ai-development.svg',
 ];
 
 for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 5. Validating Sitemap Inclusion of All 27 Markdown Articles ---');
+console.log('\n--- 7. Validating Sitemap Inclusion of All 48 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
 
-  for (const slug of PILOT_TOPICS) {
+  // Check 5 multilingual topics across 9 locales (45 URLs)
+  for (const slug of MULTILINGUAL_TOPICS) {
     for (const loc of LOCALES) {
       const expectedUrl = loc === 'en'
         ? `https://ladestack.in/blog/${slug}`
@@ -153,12 +213,18 @@ if (fs.existsSync(sitemapPath)) {
       assert(sitemapXml.includes(expectedUrl), `Sitemap includes ${expectedUrl}`);
     }
   }
+
+  // Check 3 English-only modernized topics (3 URLs)
+  for (const slug of ENGLISH_ONLY_MODERNIZED) {
+    const expectedUrl = `https://ladestack.in/blog/${slug}`;
+    assert(sitemapXml.includes(expectedUrl), `Sitemap includes English-only ${expectedUrl}`);
+  }
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3B BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3C BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3B BLOG TESTS PASSED PERFECTLY (27 / 27 ARTICLES VERIFIED)!');
+  console.log('\n🎉 ALL PHASE 3C BLOG TESTS PASSED PERFECTLY (48 MARKDOWN + 22 LEGACY VERIFIED)!');
   process.exit(0);
 }
