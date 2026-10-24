@@ -1,0 +1,55 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gbBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b0f17;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#052e16;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#10b981" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#gbBg)"/>
+  
+  <!-- Editor Window Container -->
+  <rect x="40" y="45" width="320" height="185" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  
+  <!-- Window Header -->
+  <rect x="40" y="45" width="320" height="28" rx="10" fill="#0f172a"/>
+  <circle cx="58" cy="59" r="4.5" fill="#ef4444"/>
+  <circle cx="72" cy="59" r="4.5" fill="#f59e0b"/>
+  <circle cx="86" cy="59" r="4.5" fill="#10b981"/>
+  <text x="200" y="63" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">gb-coder://dual-engine.ts</text>
+
+  <!-- Left: Monaco Editor Pane -->
+  <rect x="52" y="85" width="140" height="132" rx="6" fill="#090d16" stroke="#1e293b"/>
+  <text x="64" y="105" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">const sandbox = {</text>
+  <text x="74" y="122" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#38bdf8">  runtime: 'iframe',</text>
+  <text x="74" y="138" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#e2e8f0">  monaco: true,</text>
+  <text x="74" y="154" font-family="'JetBrains Mono', monospace" font-size="8.5" fill="#f59e0b">  latency: '0ms'</text>
+  <text x="64" y="172" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">};</text>
+  <rect x="64" y="185" width="45" height="14" rx="3" fill="#10b981" opacity="0.2"/>
+  <text x="86" y="195" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="7.5" fill="#10b981">MONACO</text>
+
+  <!-- Dual Engine Divider Arrow -->
+  <path d="M 200 145 L 208 151 L 200 157 Z" fill="#10b981"/>
+
+  <!-- Right: Live Preview Engine -->
+  <rect x="216" y="85" width="132" height="132" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.2"/>
+  <rect x="226" y="97" width="112" height="24" rx="4" fill="#1e293b"/>
+  <text x="282" y="113" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="9" fill="#f8fafc">Live Sandbox</text>
+  <circle cx="236" cy="145" r="14" fill="url(#emeraldGlow)"/>
+  <path d="M 232 145 L 235 148 L 241 142" stroke="white" stroke-width="1.8" fill="none"/>
+  <text x="258" y="148" font-family="'Plus Jakarta Sans', sans-serif" font-size="8.5" font-weight="600" fill="#f8fafc">Isolated Exec</text>
+  <rect x="226" y="175" width="112" height="6" rx="3" fill="#334155"/>
+  <rect x="226" y="186" width="70" height="6" rx="3" fill="#10b981" opacity="0.8"/>
+
+  <!-- Bottom Badge / Label -->
+  <text x="200" y="265" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#f8fafc" letter-spacing="1.5">GB CODER ARCHITECTURE</text>
+  <text x="200" y="282" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981" letter-spacing="2">DUAL-ENGINE BROWSER RUNTIME</text>
+</svg>

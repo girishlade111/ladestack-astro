@@ -1,0 +1,57 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="imgBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b0f17;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#064e3b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#022c22;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#10b981" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="300" fill="url(#imgBg)"/>
+
+  <!-- Left: Raw Image (4.2 MB) -->
+  <g transform="translate(50, 45)">
+    <rect x="0" y="0" width="125" height="150" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1.5" filter="url(#shadow)"/>
+    <rect x="12" y="12" width="101" height="85" rx="4" fill="#0f172a"/>
+    <circle cx="35" cy="35" r="12" fill="#f59e0b" opacity="0.8"/>
+    <path d="M 16 85 L 50 45 L 85 85 Z" fill="#64748b"/>
+    <path d="M 60 85 L 85 55 L 110 85 Z" fill="#94a3b8"/>
+    <rect x="12" y="108" width="101" height="15" rx="3" fill="#ef4444" opacity="0.15"/>
+    <text x="62" y="119" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#ef4444">RAW: 4.2 MB</text>
+  </g>
+
+  <!-- Middle: Compression Ratio / Transformation Arrow -->
+  <g transform="translate(182, 105)">
+    <circle cx="18" cy="18" r="18" fill="#10b981"/>
+    <path d="M 12 18 L 22 18 M 18 13 L 23 18 L 18 23" stroke="#090d16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="18" y="46" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="bold" fill="#10b981">-88%</text>
+  </g>
+
+  <!-- Right: Optimized Image (480 KB) -->
+  <g transform="translate(225, 45)">
+    <rect x="0" y="0" width="125" height="150" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.8" filter="url(#shadow)"/>
+    <rect x="12" y="12" width="101" height="85" rx="4" fill="#022c22"/>
+    <circle cx="35" cy="35" r="12" fill="#10b981"/>
+    <path d="M 16 85 L 50 45 L 85 85 Z" fill="#059669"/>
+    <path d="M 60 85 L 85 55 L 110 85 Z" fill="#34d399"/>
+    <rect x="12" y="108" width="101" height="15" rx="3" fill="#10b981" opacity="0.2"/>
+    <text x="62" y="119" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="bold" fill="#10b981">AVIF: 480 KB</text>
+  </g>
+
+  <!-- Format Badges -->
+  <rect x="100" y="215" width="55" height="16" rx="4" fill="#1e293b"/>
+  <text x="127" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#94a3b8">Canvas</text>
+  
+  <rect x="172" y="215" width="55" height="16" rx="4" fill="#1e293b"/>
+  <text x="199" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" fill="#38bdf8">WebP</text>
+
+  <rect x="244" y="215" width="55" height="16" rx="4" fill="#10b981" opacity="0.2"/>
+  <text x="271" y="226" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" fill="#10b981">AVIF</text>
+
+  <!-- Title -->
+  <text x="200" y="260" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700" fill="#f8fafc" letter-spacing="1.5">IMAGE COMPRESSION MATRIX</text>
+  <text x="200" y="278" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981" letter-spacing="2">CANVAS · WEBP · AVIF PIPELINES</text>
+</svg>
