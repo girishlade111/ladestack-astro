@@ -52,7 +52,7 @@ All publicly listed LadeStack utilities were audited against their live producti
   - Differentiated local project persistence in IndexedDB from optional outbound network calls: GB Coder stores projects locally in IndexedDB; network calls to third-party AI providers occur only when the user explicitly configures an API key.
 
 ### D. Founder Factual Review
-- Verified founder credentials: B.Sc. in Information Technology (University of Mumbai, 2021–2024), Founder & Lead Developer at LadeStack.
+- Verified founder credentials: Mechanical Engineering Diploma completed in 2021, B.Tech studies in Mechanical Engineering, with professional transition toward software development, UI/UX design, SaaS architectures, and in-browser developer tooling. Founder & Lead Developer at LadeStack.
 - Removed public-facing editorial verification notes (e.g., `<!-- VERIFICATION REQUIRED -->` or draft banners) from live user-facing markup; archived editorial notes in internal project documentation.
 - Retained verified technical achievements and genuine project history without fabricated milestones.
 
