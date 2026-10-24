@@ -6,7 +6,7 @@ slug: "gb-coder-dual-engine-architecture"
 translationKey: "gb-coder-dual-engine-architecture"
 author: "Girish Lade"
 publishedAt: "2026-03-15"
-updatedAt: "2026-03-20"
+updatedAt: "2026-10-24"
 category: "Architecture"
 tags: ["GB Coder", "架构", "JavaScript", "Monaco Editor", "WebAssembly", "Web IDE"]
 coverImage: "/blog-covers/gb-coder-architecture.svg"
@@ -169,9 +169,9 @@ window.addEventListener('message', (event: MessageEvent) => {
 | 架构特性 | 传统云端IDE (Docker) | 主线程直接Eval | GB Coder 双引擎 |
 |:---|:---:|:---:|:---:|
 | **执行延迟** | 300ms ~ 1200ms (网络传输) | < 1ms (极度危险) | **< 2ms (本地内存)** |
-| **离线支持** | ❌ 必须联网 | ⚠️ 易崩溃 | **✅ 100% 离线完美运行** |
+| **离线运行** | ❌ 必须联网 | ⚠️ 易崩溃 | **✅ 核心编辑器与沙箱离线运行** |
 | **崩溃隔离** | ✅ 保护宿主 | ❌ 整个浏览器标签页卡死 | **✅ iframe隔离严密保护** |
-| **数据隐私** | ⚠️ 代码需上传云端 | ✅ 本地保留 | **✅ 100% 零代码上传** |
+| **代码数据隐私** | ⚠️ 代码需上传云端 | ✅ 本地保留 | **✅ 本地客户端计算 (无服务器代码传输)** |
 | **单用户服务器成本**| 每月 $5 ~ $25 | $0 | **$0 (利用客户端算力)** |
 
 ---
