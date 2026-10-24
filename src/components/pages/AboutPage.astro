@@ -1,0 +1,404 @@
+---
+/**
+ * src/components/pages/AboutPage.astro
+ * Reusable, fully localized About Us page component.
+ * Supports all 9 languages with native typography, full accessibility,
+ * self-referencing canonicals, and reciprocal hreflang tags.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
+import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
+import { getAboutData } from '../../i18n/pages/about';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const data = getAboutData(locale);
+const canonicalUrl = `https://ladestack.in${getLocalizedPath('/about', locale)}`;
+const hreflangs = getHreflangLinks('/about', LOCALES);
+const localeConfig = LOCALE_CONFIG[locale];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'LadeStack',
+    url: 'https://ladestack.in',
+    logo: 'https://ladestack.in/logo.png',
+    description: data.seo.description,
+    founder: {
+      '@type': 'Person',
+      name: data.founder.name,
+      jobTitle: data.founder.role,
+      url: 'https://ladestack.in/about',
+      sameAs: [
+        'https://github.com/girishlade111',
+        'https://www.linkedin.com/in/girish-lade/',
+        'https://www.instagram.com/girish_lade_/',
+        'https://codepen.io/Girish-Lade-the-looper',
+      ],
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      email: 'admin@ladestack.in',
+      availableLanguage: [localeConfig.englishName, 'English'],
+    },
+    sameAs: [
+      'https://github.com/girishlade111',
+      'https://www.linkedin.com/in/girish-lade/',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: data.seo.title,
+    url: canonicalUrl,
+    inLanguage: locale,
+    description: data.seo.description,
+    mainEntity: {
+      '@type': 'Person',
+      name: data.founder.name,
+      jobTitle: data.founder.role,
+      sameAs: [
+        'https://github.com/girishlade111',
+        'https://www.linkedin.com/in/girish-lade/',
+      ],
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={data.seo.title}
+  description={data.seo.description}
+  canonical={canonicalUrl}
+  locale={locale}
+  hreflangs={hreflangs}
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    url: canonicalUrl,
+    type: 'website',
+    image: 'https://ladestack.in/og-about.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    image: 'https://ladestack.in/og-about.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background text-foreground">
+    {/* ── SECTION 1: Page Header / Hero ── */}
+    <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Badge variant="brand" size="md" class="mb-4">
+          {data.hero.badge}
+        </Badge>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-foreground tracking-tight leading-tight text-balance">
+          {data.hero.title} <span class="text-brand">{data.hero.titleHighlight}</span>
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
+          {data.hero.description}
+        </p>
+      </div>
+    </section>
+
+    {/* ── SECTION 2: Founder Profile ── */}
+    <section class="py-14 sm:py-20 border-b border-border bg-background">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-6">
+          <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+            {data.founder.leadershipEyebrow}
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mt-1">
+            {data.founder.meetFounderTitle}
+          </h2>
+        </div>
+
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-elevated">
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-6 sm:gap-8">
+            <div class="relative shrink-0 group">
+              <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-brand/40 shadow-soft bg-surface-muted">
+                <img
+                  src="/img/girish.jpg"
+                  alt={`${data.founder.name} — ${data.founder.role}`}
+                  width="144"
+                  height="144"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <div class="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-md bg-surface border border-border shadow-soft flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-brand"></span>
+                <span class="text-[10px] font-mono font-medium text-foreground">Founder</span>
+              </div>
+            </div>
+
+            <div class="flex-1 text-center md:text-left space-y-4">
+              <div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h3 class="text-2xl font-bold tracking-tight text-foreground">{data.founder.name}</h3>
+                    <p class="text-xs font-mono text-brand font-semibold mt-0.5">
+                      {data.founder.role}
+                    </p>
+                  </div>
+                  <div class="inline-flex items-center justify-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-muted border border-border text-[11px] font-mono text-muted-foreground">
+                    <Icon name="shield-check" class="w-3.5 h-3.5 text-brand" />
+                    <span>{data.founder.badge}</span>
+                  </div>
+                </div>
+
+                <p class="mt-3 text-sm text-muted-foreground leading-relaxed text-pretty">
+                  {data.founder.bio}
+                </p>
+              </div>
+
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                  {data.founder.skillsLabel}
+                </p>
+                <div class="flex flex-wrap gap-1.5 justify-center md:justify-start">
+                  {data.founder.skills.map((skill) => (
+                    <span class="px-2.5 py-0.5 rounded-md bg-surface-muted border border-border/80 text-[11px] font-mono text-foreground/90">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+                <a
+                  href="https://github.com/girishlade111"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs font-medium text-foreground transition-colors"
+                >
+                  <Icon name="github" class="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>{data.founder.socialLabels.github}</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/girish-lade/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs font-medium text-foreground transition-colors"
+                >
+                  <Icon name="linkedin" class="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>{data.founder.socialLabels.linkedin}</span>
+                </a>
+                <a
+                  href="mailto:admin@ladestack.in"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs font-medium text-foreground transition-colors"
+                >
+                  <Icon name="mail" class="w-3.5 h-3.5 text-muted-foreground" />
+                  <span>{data.founder.socialLabels.email}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 3: Origin, Mission & Vision ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div class="lg:col-span-6 space-y-6">
+            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+              {data.genesis.eyebrow}
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+              {data.genesis.title}
+            </h2>
+            <div class="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              <p>{data.genesis.p1}</p>
+              <p>{data.genesis.p2}</p>
+              <p>{data.genesis.p3}</p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 space-y-6">
+            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+                  <Icon name="target" class="w-4 h-4" />
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">{data.genesis.missionTitle}</h3>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                {data.genesis.missionDesc}
+              </p>
+            </div>
+
+            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
+                  <Icon name="compass" class="w-4 h-4" />
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">{data.genesis.visionTitle}</h3>
+              </div>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                {data.genesis.visionDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 4: Engineering Principles ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={data.principles.eyebrow}
+          title={data.principles.title}
+          description={data.principles.description}
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {data.principles.items.map((principle) => (
+            <div class="rounded-xl border border-border bg-surface p-6 shadow-soft flex flex-col justify-between transition-colors hover:border-brand/40">
+              <div>
+                <div class="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center mb-4">
+                  <Icon name={principle.icon} class="w-5 h-5" />
+                </div>
+                <h3 class="text-base font-semibold text-foreground mb-2">
+                  {principle.title}
+                </h3>
+                <p class="text-xs text-muted-foreground leading-relaxed">
+                  {principle.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 5: Commitment to Factual Transparency ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-soft space-y-6">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0 mt-0.5">
+              <Icon name="check-circle" class="w-4 h-4" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-foreground">
+                {data.transparency.title}
+              </h3>
+              <p class="text-xs text-muted-foreground mt-1 leading-relaxed">
+                {data.transparency.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="border-t border-border/80 pt-4 space-y-3 text-xs text-muted-foreground leading-relaxed">
+            <p>
+              <strong class="text-foreground">{data.transparency.founderRoleTitle}</strong>{' '}
+              {data.transparency.founderRoleDesc}
+            </p>
+            <p>
+              <strong class="text-foreground">{data.transparency.engineeringFocusTitle}</strong>{' '}
+              {data.transparency.engineeringFocusDesc}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 6: Verified Products Portfolio ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={data.portfolio.eyebrow}
+          title={data.portfolio.title}
+          description={data.portfolio.description}
+        />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.portfolio.items.map((prod) => (
+            <div class="rounded-xl border border-border bg-surface p-6 flex flex-col justify-between shadow-soft hover:border-brand/40 transition-colors">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-[11px] font-mono text-muted-foreground uppercase">
+                    {prod.category}
+                  </span>
+                  <Badge variant={prod.badge === 'Flagship' || prod.badge === 'フラッグシップ' || prod.badge === '플래그십' || prod.badge === '旗舰产品' ? 'brand' : 'outline'} size="sm">
+                    {prod.badge}
+                  </Badge>
+                </div>
+                <h3 class="text-lg font-bold text-foreground">
+                  {prod.name}
+                </h3>
+                <p class="mt-2 text-xs text-muted-foreground leading-relaxed">
+                  {prod.description}
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-border flex items-center justify-between">
+                {prod.internalUrl ? (
+                  <a
+                    href={getLocalizedPath(prod.internalUrl, locale)}
+                    class="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {data.portfolio.featureDetailsLabel} &rarr;
+                  </a>
+                ) : (
+                  <span class="text-[11px] text-muted-foreground font-mono">{data.portfolio.inBrowserAppLabel}</span>
+                )}
+                <Button href={prod.url} target="_blank" size="sm">
+                  <span>{data.portfolio.launchLabel}</span>
+                  <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── SECTION 7: Connect & Feedback ── */}
+    <section class="py-16 sm:py-24 bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+          {data.cta.title}
+        </h2>
+        <p class="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          {data.cta.description}
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+          <Button href="mailto:admin@ladestack.in" size="lg">
+            <Icon name="mail" class="w-4 h-4" />
+            <span>{data.cta.emailButton}</span>
+          </Button>
+          <Button href="https://github.com/girishlade111" target="_blank" variant="outline" size="lg">
+            <Icon name="github" class="w-4 h-4" />
+            <span>{data.cta.githubButton}</span>
+          </Button>
+          <Button href="https://www.linkedin.com/in/girish-lade/" target="_blank" variant="outline" size="lg">
+            <Icon name="linkedin" class="w-4 h-4" />
+            <span>{data.cta.linkedinButton}</span>
+          </Button>
+        </div>
+
+        <p class="text-xs text-muted-foreground font-mono pt-4">
+          {data.cta.footerTagline}
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

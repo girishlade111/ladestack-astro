@@ -11,6 +11,7 @@ import {
   getLocalizedPath,
   stripLocaleFromPath,
   isRouteAvailableInLocale,
+  getAvailableLocalesForRoute,
   useTranslations,
 } from '../i18n/utils';
 
@@ -30,7 +31,8 @@ const currentConfig = LOCALE_CONFIG[currentLocale] ?? LOCALE_CONFIG[DEFAULT_LOCA
 const basePath = stripLocaleFromPath(currentPath);
 const t = useTranslations(currentLocale);
 
-const isHome = basePath === '/';
+const availableLocales = getAvailableLocalesForRoute(basePath);
+const isFullyTranslated = availableLocales.length === LOCALES.length;
 ---
 
 <div class={`relative inline-block text-left ${className}`} data-language-switcher>
@@ -60,9 +62,9 @@ const isHome = basePath === '/';
     </div>
 
     {
-      !isHome && (
+      !isFullyTranslated && (
         <div class="px-3 py-1.5 bg-surface-muted/40 border-b border-border/60 text-[10px] text-muted-foreground leading-tight">
-          This page is currently English-only. Non-English options navigate to the localized homepage.
+          This section is currently English-only. Non-English options navigate to the localized homepage.
         </div>
       )
     }
@@ -79,9 +81,9 @@ const isHome = basePath === '/';
             ? getLocalizedPath(basePath, loc)
             : getLocalizedPath('/', loc);
 
-          const titleAttr = !hasDirectTranslation && !isHome
-            ? `This page is English-only. Opens ${cfg.name} homepage.`
-            : undefined;
+          const titleAttr = !hasDirectTranslation
+            ? `This section is English-only. Opens ${cfg.name} homepage.`
+            : `${cfg.name} (${cfg.englishName})`;
 
           return (
             <a
@@ -102,7 +104,7 @@ const isHome = basePath === '/';
                 <span class="text-[11px] text-muted-foreground">({cfg.englishName})</span>
               </div>
               <div class="flex items-center gap-1.5">
-                {!hasDirectTranslation && !isHome && (
+                {!hasDirectTranslation && (
                   <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-surface-muted text-muted-foreground">
                     Home
                   </span>
