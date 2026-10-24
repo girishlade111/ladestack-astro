@@ -1,22 +1,27 @@
 /**
  * scripts/test-phase3-blog.mjs
- * Comprehensive automated QA test suite for LadeStack Phase 3 Multilingual Markdown Blog
+ * Comprehensive automated QA test suite for LadeStack Phase 3B Multilingual Markdown Blog
  * Validates:
  * 1. Content schema and translationKey consistency across all 9 languages
  * 2. Per-locale blog index routes (/blog, /ja/blog, /ko/blog, etc.)
- * 3. Flagship article published across all 9 languages with matching translationKey
- * 4. Reciprocal hreflang tags (10 tags: 9 languages + x-default) on the flagship article
- * 5. English-only pilot articles have 0 false hreflang alternates
+ * 3. All 3 pilot topics published across all 9 languages (27 articles total)
+ * 4. Reciprocal hreflang tags (10 tags: 9 languages + x-default) on every published pilot article
+ * 5. Legacy English-only articles have 0 false hreflang alternates
  * 6. Real heading anchor validity in generated HTML (TOC href matches id attribute)
  * 7. Cover images exist on disk for all articles
  * 8. BlogPosting and BreadcrumbList JSON-LD schemas exist and parse as valid JSON
- * 9. Sitemaps include published articles and exclude drafts
+ * 9. Sitemaps include all 27 published pilot articles and exclude drafts
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
+const PILOT_TOPICS = [
+  'gb-coder-dual-engine-architecture',
+  'client-side-pdf-manipulation-webassembly',
+  'modern-web-image-compression-standards',
+];
 
 let errors = 0;
 
@@ -46,72 +51,79 @@ for (const loc of LOCALES) {
   }
 }
 
-console.log('\n--- 2. Validating Flagship Article in All 9 Locales ---');
-const FLAGSHIP_SLUG = 'gb-coder-dual-engine-architecture';
-for (const loc of LOCALES) {
-  const relativePath = loc === 'en' ? `blog/${FLAGSHIP_SLUG}/index.html` : `${loc}/blog/${FLAGSHIP_SLUG}/index.html`;
-  const filePath = path.join(DIST_DIR, relativePath);
-  const exists = fs.existsSync(filePath);
-  assert(exists, `Flagship article generated for [${loc}]: ${relativePath}`);
+console.log('\n--- 2. Validating All 3 Pilot Topics Across All 9 Locales (27 Articles) ---');
+for (const slug of PILOT_TOPICS) {
+  console.log(`\nChecking Topic: ${slug}`);
+  for (const loc of LOCALES) {
+    const relativePath = loc === 'en' ? `blog/${slug}/index.html` : `${loc}/blog/${slug}/index.html`;
+    const filePath = path.join(DIST_DIR, relativePath);
+    const exists = fs.existsSync(filePath);
+    assert(exists, `[${slug}][${loc}] Generated: ${relativePath}`);
 
-  if (exists) {
-    const html = fs.readFileSync(filePath, 'utf-8');
+    if (exists) {
+      const html = fs.readFileSync(filePath, 'utf-8');
 
-    // 1. Check <html lang="...">
-    const langMatch = html.match(/<html\s+[^>]*lang=["']([^"']+)["']/i);
-    assert(langMatch && langMatch[1] === loc, `[${loc}] <html lang="${loc}"> matches`);
+      // 1. Check <html lang="...">
+      const langMatch = html.match(/<html\s+[^>]*lang=["']([^"']+)["']/i);
+      assert(langMatch && langMatch[1] === loc, `[${slug}][${loc}] <html lang="${loc}"> matches`);
 
-    // 2. Check 10 reciprocal hreflang tags
-    const hreflangs = [...html.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=["']([^"']+)["']\s+href=["']([^"']+)["']/gi)];
-    assert(hreflangs.length === 10, `[${loc}] Exactly 10 reciprocal hreflang tags found (got ${hreflangs.length})`);
+      // 2. Check 10 reciprocal hreflang tags (9 locales + 1 x-default)
+      const hreflangs = [...html.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=["']([^"']+)["']\s+href=["']([^"']+)["']/gi)];
+      assert(hreflangs.length === 10, `[${slug}][${loc}] Exactly 10 reciprocal hreflang tags found (got ${hreflangs.length})`);
 
-    // 3. Check JSON-LD BlogPosting
-    const jsonLdMatches = [...html.matchAll(/<script\s+type=["']application\/ld\+json["']>([^<]+)<\/script>/gi)];
-    let hasBlogPosting = false;
-    let hasBreadcrumbList = false;
+      // 3. Check JSON-LD BlogPosting & BreadcrumbList
+      const jsonLdMatches = [...html.matchAll(/<script\s+type=["']application\/ld\+json["']>([^<]+)<\/script>/gi)];
+      let hasBlogPosting = false;
+      let hasBreadcrumbList = false;
 
-    for (const match of jsonLdMatches) {
-      try {
-        const parsed = JSON.parse(match[1]);
-        if (parsed['@type'] === 'BlogPosting') hasBlogPosting = true;
-        if (parsed['@type'] === 'BreadcrumbList') hasBreadcrumbList = true;
-      } catch (e) {
-        assert(false, `[${loc}] JSON-LD failed to parse: ${e.message}`);
+      for (const match of jsonLdMatches) {
+        try {
+          const parsed = JSON.parse(match[1]);
+          if (parsed['@type'] === 'BlogPosting') {
+            hasBlogPosting = true;
+            if (parsed.inLanguage !== loc) {
+              assert(false, `[${slug}][${loc}] BlogPosting inLanguage mismatch: expected ${loc}, got ${parsed.inLanguage}`);
+            }
+          }
+          if (parsed['@type'] === 'BreadcrumbList') hasBreadcrumbList = true;
+        } catch (e) {
+          assert(false, `[${slug}][${loc}] JSON-LD failed to parse: ${e.message}`);
+        }
       }
-    }
-    assert(hasBlogPosting, `[${loc}] Valid BlogPosting structured data present`);
-    assert(hasBreadcrumbList, `[${loc}] Valid BreadcrumbList structured data present`);
+      assert(hasBlogPosting, `[${slug}][${loc}] Valid BlogPosting structured data present`);
+      assert(hasBreadcrumbList, `[${slug}][${loc}] Valid BreadcrumbList structured data present`);
 
-    // 4. Real Heading Anchor Validity (TOC link href="#id" must match an actual heading with id="id")
-    const tocHrefMatches = [...html.matchAll(/<a\s+[^>]*href=["']#([^"']+)["'][^>]*>/gi)];
-    let brokenAnchors = 0;
-    for (const tocMatch of tocHrefMatches) {
-      const anchorId = decodeURIComponent(tocMatch[1]);
-      const hasHeading = html.includes(`id="${anchorId}"`) || html.includes(`id="${tocMatch[1]}"`);
-      if (!hasHeading) {
-        console.error(`[${loc}] Heading anchor #${anchorId} not found in article headings!`);
-        brokenAnchors++;
+      // 4. Real Heading Anchor Validity (TOC link href="#id" must match an actual heading with id="id")
+      const tocHrefMatches = [...html.matchAll(/<a\s+[^>]*href=["']#([^"']+)["'][^>]*>/gi)];
+      let brokenAnchors = 0;
+      for (const tocMatch of tocHrefMatches) {
+        const anchorId = decodeURIComponent(tocMatch[1]);
+        const hasHeading = html.includes(`id="${anchorId}"`) || html.includes(`id="${tocMatch[1]}"`);
+        if (!hasHeading) {
+          console.error(`[${slug}][${loc}] Heading anchor #${anchorId} not found in article headings!`);
+          brokenAnchors++;
+        }
       }
+      assert(brokenAnchors === 0, `[${slug}][${loc}] All ${tocHrefMatches.length} TOC anchors match real heading IDs`);
     }
-    assert(brokenAnchors === 0, `[${loc}] All ${tocHrefMatches.length} TOC anchors match real heading IDs`);
   }
 }
 
-console.log('\n--- 3. Validating English-Only Pilot Articles (Zero Fake Alternates) ---');
-const englishPilots = [
-  'blog/client-side-pdf-manipulation-webassembly/index.html',
-  'blog/modern-web-image-compression-standards/index.html',
+console.log('\n--- 3. Validating Legacy English-Only Articles (Zero Fake Alternates) ---');
+const legacyEnglishSamples = [
+  'blog/future-of-ai-in-software-development/index.html',
+  'blog/building-ai-powered-code-review-systems/index.html',
 ];
 
-for (const pilotPath of englishPilots) {
-  const filePath = path.join(DIST_DIR, pilotPath);
+for (const legacyPath of legacyEnglishSamples) {
+  const filePath = path.join(DIST_DIR, legacyPath);
   const exists = fs.existsSync(filePath);
-  assert(exists, `English pilot exists: ${pilotPath}`);
+  assert(exists, `Legacy post exists: ${legacyPath}`);
 
   if (exists) {
     const html = fs.readFileSync(filePath, 'utf-8');
     const hreflangs = [...html.matchAll(/<link\s+rel=["']alternate["']\s+hreflang=/gi)];
-    assert(hreflangs.length === 0, `[${pilotPath}] Has 0 fake hreflang tags (untranslated post)`);
+    assert(hreflangs.length === 0, `[${legacyPath}] Has 0 fake hreflang tags (untranslated legacy post)`);
   }
 }
 
@@ -126,26 +138,27 @@ for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 5. Validating Sitemap Inclusion of New Markdown Articles ---');
+console.log('\n--- 5. Validating Sitemap Inclusion of All 27 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
-  for (const loc of LOCALES) {
-    if (loc === 'en') {
-      assert(sitemapXml.includes(`https://ladestack.in/blog/${FLAGSHIP_SLUG}`), `Sitemap includes English flagship article`);
-    } else {
-      assert(sitemapXml.includes(`https://ladestack.in/${loc}/blog`), `Sitemap includes /${loc}/blog`);
-      assert(sitemapXml.includes(`https://ladestack.in/${loc}/blog/${FLAGSHIP_SLUG}`), `Sitemap includes /${loc}/blog/${FLAGSHIP_SLUG}`);
+
+  for (const slug of PILOT_TOPICS) {
+    for (const loc of LOCALES) {
+      const expectedUrl = loc === 'en'
+        ? `https://ladestack.in/blog/${slug}`
+        : `https://ladestack.in/${loc}/blog/${slug}`;
+      assert(sitemapXml.includes(expectedUrl), `Sitemap includes ${expectedUrl}`);
     }
   }
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3 BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3B BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3 BLOG TESTS PASSED PERFECTLY!');
+  console.log('\n🎉 ALL PHASE 3B BLOG TESTS PASSED PERFECTLY (27 / 27 ARTICLES VERIFIED)!');
   process.exit(0);
 }

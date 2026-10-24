@@ -1,7 +1,7 @@
 /**
  * scripts/audit-english-routes.mjs
  * Validates that English subpages retain their canonicals,
- * have appropriate hreflang alternates (10 for fully localized routes, 0 for English-only blog routes).
+ * have appropriate hreflang alternates (10 for fully localized routes, 0 for English-only legacy blog routes).
  */
 
 import fs from 'node:fs';
@@ -20,15 +20,21 @@ const LOCALIZED_SUBPAGES = [
   { path: 'privacy/index.html', canonical: 'https://ladestack.in/privacy', expectedHreflangs: 10 },
   { path: 'terms/index.html', canonical: 'https://ladestack.in/terms', expectedHreflangs: 10 },
   { path: 'sitemap/index.html', canonical: 'https://ladestack.in/sitemap', expectedHreflangs: 10 },
+  // Phase 3 & 3B Pilot Articles (all 9 languages localized)
+  { path: 'blog/gb-coder-dual-engine-architecture/index.html', canonical: 'https://ladestack.in/blog/gb-coder-dual-engine-architecture', expectedHreflangs: 10 },
+  { path: 'blog/client-side-pdf-manipulation-webassembly/index.html', canonical: 'https://ladestack.in/blog/client-side-pdf-manipulation-webassembly', expectedHreflangs: 10 },
+  { path: 'blog/modern-web-image-compression-standards/index.html', canonical: 'https://ladestack.in/blog/modern-web-image-compression-standards', expectedHreflangs: 10 },
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
-  { path: 'blog/client-side-pdf-manipulation-webassembly/index.html', canonical: 'https://ladestack.in/blog/client-side-pdf-manipulation-webassembly', expectedHreflangs: 0 },
+  // Legacy blog posts that are retained as English-only without synthetic machine translations
+  { path: 'blog/clean-code-principles/index.html', canonical: 'https://ladestack.in/blog/clean-code-principles', expectedHreflangs: 0 },
+  { path: 'blog/tailwind-css-best-practices/index.html', canonical: 'https://ladestack.in/blog/tailwind-css-best-practices', expectedHreflangs: 0 },
 ];
 
 let failed = false;
 
-console.log('--- 1. Auditing Fully Localized Core English Routes ---');
+console.log('--- 1. Auditing Fully Localized Core English Routes & Articles ---');
 for (const page of LOCALIZED_SUBPAGES) {
   const filePath = path.join(DIST_DIR, page.path);
   if (!fs.existsSync(filePath)) {
@@ -63,7 +69,7 @@ for (const page of LOCALIZED_SUBPAGES) {
   }
 }
 
-console.log('\n--- 2. Auditing English-Only Routes (Zero False Alternates) ---');
+console.log('\n--- 2. Auditing English-Only Legacy Routes (Zero False Alternates) ---');
 for (const page of ENGLISH_ONLY_SUBPAGES) {
   const filePath = path.join(DIST_DIR, page.path);
   if (!fs.existsSync(filePath)) {
@@ -74,7 +80,7 @@ for (const page of ENGLISH_ONLY_SUBPAGES) {
 
   const html = fs.readFileSync(filePath, 'utf-8');
   const hreflangCount = (html.match(/rel=["']alternate["']\s+hreflang=/gi) || []).length;
-  if (hreflangCount !== 0) {
+  if (hreflangCount !== page.expectedHreflangs) {
     console.error(`❌ FAIL [${page.path}]: Found ${hreflangCount} fake hreflang tags! Must NOT emit alternates for un-translated routes.`);
     failed = true;
   } else {
