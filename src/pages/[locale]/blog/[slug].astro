@@ -1,0 +1,59 @@
+---
+/**
+ * /[locale]/blog/[slug] — Localized Article Route
+ * Sourced from Astro Content Collections ('blog')
+ * Dynamically generated for non-default locales (ja, ko, zh, ru, tr, fr, pt, es).
+ */
+import { getCollection, render } from 'astro:content';
+import BlogPostLayout from '../../../components/blog/BlogPostLayout.astro';
+import type { BlogEntry } from '../../../lib/blogUtils';
+
+export async function getStaticPaths() {
+  const allBlogEntries = await getCollection('blog', ({ data }) => !data.draft);
+  const localizedPosts = allBlogEntries.filter((p) => p.data.locale !== 'en');
+
+  return localizedPosts.map((post) => {
+    const allTranslations = allBlogEntries.filter(
+      (entry) => entry.data.translationKey === post.data.translationKey
+    );
+    const relatedPosts = allBlogEntries
+      .filter(
+        (p) =>
+          p.data.locale === post.data.locale &&
+          p.id !== post.id &&
+          (p.data.category === post.data.category || p.data.relatedProduct === post.data.relatedProduct)
+      )
+      .slice(0, 3);
+
+    return {
+      params: {
+        locale: post.data.locale,
+        slug: post.data.slug,
+      },
+      props: {
+        entry: post,
+        allTranslations,
+        relatedPosts,
+      },
+    };
+  });
+}
+
+interface Props {
+  entry: BlogEntry;
+  allTranslations: BlogEntry[];
+  relatedPosts: BlogEntry[];
+}
+
+const { entry, allTranslations, relatedPosts } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<BlogPostLayout
+  entry={entry}
+  headings={headings}
+  allTranslations={allTranslations}
+  relatedPosts={relatedPosts}
+>
+  <Content />
+</BlogPostLayout>
