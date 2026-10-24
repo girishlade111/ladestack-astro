@@ -27,6 +27,7 @@ export interface Props {
   structuredData?: Record<string, unknown>[];
   lang?: string;
   locale?: Locale;
+  alternateUrls?: Partial<Record<Locale, string>>;
   /** Pages with their own custom footer (e.g. /gb-coder) set this. */
   hideFooter?: boolean;
 }
@@ -42,6 +43,7 @@ const {
   structuredData,
   lang,
   locale,
+  alternateUrls,
   hideFooter = false,
 } = Astro.props;
 
@@ -96,7 +98,7 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
       Skip to main content
     </a>
 
-    <Header currentLang={currentLocale} locale={currentLocale} />
+    <Header currentLang={currentLocale} locale={currentLocale} alternateUrls={alternateUrls} />
 
     <main id="main-content" class="flex-1">
       <slot />
