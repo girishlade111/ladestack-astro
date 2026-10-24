@@ -115,16 +115,30 @@ Elde edilen bayt dilimini standart bir JavaScript `Blob` nesnesine kopyalayıp W
 
 ---
 
-## Gösterge Nitelikli Gecikme Modeli: Ağ Aktarımı ve Bellek İçi Çalışma Karşılaştırması
+## Ağ Aktarımı ve Yerel Yürütme: Teorik Gecikme Modeli
 
-İstemci tarafında belge işlemenin en belirgin avantajı, ağ aktarım süresinin ortadan kalkmasıdır. 15 Mbps hızında tipik bir mobil bağlantıda toplam 45 MB boyutundaki belgeleri birleştirme senaryosunu inceleyelim ($45 \text{ MB} = 360 \text{ Megabit}$):
+İstemci tarafı belge işlemenin en belirgin yapısal avantajı, ağ üzerinden veri aktarımı aşamasını tamamen ortadan kaldırmasıdır. Geleneksel bulut tabanlı yapılarda, büyük dosyaların sunucuya gönderilmesi ve geri indirilmesi kaçınılmaz bir aktarım gecikmesi yaratır.
 
-| Yürütme Modeli | Aktarım Süresi (15 Mbps Mobil Bağlantı) | İşlem Aşaması | Toplam Tamamlanma Süresi |
-|:---|:---:|:---:|:---:|
-| **Geleneksel Bulut Servisi** | ~24,0 sn (Yükleme) + ~6,0 sn (İndirme) | Uzak Kuyruk ve Disk G/Ç | **~30+ saniye** |
-| **LS PDF (Bellek İçi WASM)** | **0,0 sn (Yükleme gerekmez)** | Bellek İçi Doğrusal Hesaplama | **< 1,0 saniye** |
+### Aktarım Gecikmesi Formülü
 
-*Hesaplama varsayımları:* Ağ aktarımı, 15 Mbps kararlı yükleme hızı üzerinden modellenmiştir ($360 \text{ Mb} / 15 \text{ Mbps} = 24,0\text{ sn}$ yükleme; işlenmiş belgenin 15 Mbps hızında indirilmesi ~90 Mb için 6,0 sn), uzak sunucu kuyruk gecikmeleri hariç tutulmuştur. Bellek içi WASM çalıştırması doğrudan yerel RAM adresleri üzerinde yürütülür. Gerçek dünya hızları ağ şartlarına ve cihaz donanımına göre değişiklik gösterir.
+Ağ aktarım süresi, temel veri iletişimi prensiplerine göre modellenir:
+
+$\text{Aktarım Gecikmesi } (T) = \frac{\text{Veri Boyutu } (L)}{\text{Efektif Bant Genişliği } (R)}$
+
+45 MB (360 Megabit) boyutunda bir belge birleştirme senaryosunun 15 Mbps mobil yükleme kanalındaki hesabı:
+
+$\text{Yükleme Süresi} = \frac{360\text{ Mb}}{15\text{ Mbps}} = 24.0\text{ saniye}$
+
+İşlenmiş sonuç belgesinin ~11.25 MB (90 Megabit) olduğu varsayıldığında, indirme süresi için ek $6.0\text{ saniye}$ gerekir ve sunucu kuyruk gecikmeleri hariç **toplam 30.0 saniye kaçınılmaz ağ gecikmesi** oluşur.
+
+### Mimari Karşılaştırma
+
+| Yürütme Modeli | Ağ Aktarım Gecikmesi (15 Mbps Kanal Modeli) | Yürütme Sınırı | Temel Darboğaz |
+|:---|:---:|:---|:---|
+| **Uzak Bulut Hizmeti** | Toplam ~30.0 sn (~24.0 sn yükleme + ~6.0 sn indirme) | Uzak sunucu kuyruğu ve bulut depolama | Hücresel yükleme bant genişliği ve sunucu kuyruğu |
+| **Yerel İstemci (WASM)** | **0.0 sn (Ağ üzerinden veri aktarılmaz)** | Tarayıcı belleğindeki ArrayBuffer | İstemci CPU işlem gücü ve bellek veri yolu |
+
+*Metodolojik Açıklama:* Bulut aktarım rakamları, veri boyutu ve bant genişliği parametrelerine dayanan teorik iletim gecikmesi hesaplamasıdır ($T = L / R$). Yerel WebAssembly işleminin gerçek süresi cihazın CPU gücüne ve PDF dosyasının karmaşıklığına bağlıdır; amaç afaki hız iddiaları öne sürmek değil, ağ darboğazının tamamen ortadan kalktığını göstermektir.
 
 ---
 

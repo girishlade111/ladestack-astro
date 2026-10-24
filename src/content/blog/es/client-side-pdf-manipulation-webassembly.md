@@ -115,16 +115,30 @@ Al clonar el resultado en un objeto estándar `Blob` de JavaScript y liberar de 
 
 ---
 
-## Comparativa de Rendimiento: Memoria Local frente a la Nube
+## Tránsito de Red frente a Ejecución Local: Modelo Teórico de Latencia
 
-La principal ventaja del procesamiento en el cliente radica en la eliminación total de la latencia de transmisión por red. En un escenario habitual de unión de varios documentos que totalizan 45 MB a través de una conexión móvil de 15 Mbps:
+Al evaluar el procesamiento documental en el cliente, la ventaja estructural decisiva radica en la eliminación total del tránsito por red. En los flujos en la nube tradicionales, la subida y descarga de archivos pesados genera un retardo físico predecible e inevitable.
 
-| Modelo de Ejecución | Latencia de Transferencia (Móvil 15 Mbps) | Fase de Procesamiento | Tiempo Total de Respuesta |
-|:---|:---:|:---:|:---:|
-| **Microservicio en la Nube** | ~24,0s (Subida) + ~6,0s (Descarga) | Cola Remota y E/S en Disco | **~30+ segundos** |
-| **LS PDF (WASM en RAM)** | **0,0s (Sin subida ni descarga)** | Cálculo Lineal en Memoria RAM | **< 1,0 segundo** |
+### Formulación del Retardo de Transmisión
 
-Al ejecutarse el cómputo directamente en la memoria RAM del equipo del usuario, la velocidad de respuesta es independiente de la calidad o el ancho de banda de la red.
+La duración de la transmisión por red se rige por la fórmula clásica de comunicaciones:
+
+$\text{Retardo de Transmisión } (T) = \frac{\text{Tamaño de Carga } (L)}{\text{Ancho de Banda Efectivo } (R)}$
+
+Para una operación de combinación de 45 MB (360 Megabits) a través de un canal móvil de 15 Mbps:
+
+$\text{Retardo de Subida} = \frac{360\text{ Mb}}{15\text{ Mbps}} = 24.0\text{ segundos}$
+
+Si el documento procesado resultante ocupa ~11.25 MB (90 Megabits), la descarga requiere $6.0\text{ segundos}$ adicionales, lo que resulta en **30.0 segundos de retardo inevitable en la red**, al margen del tiempo de espera en el servidor remoto.
+
+### Comparativa Arquitectónica
+
+| Modelo de Ejecución | Retardo de Tránsito de Red (Canal 15 Mbps) | Límite de Ejecución | Cuello de Botella Dominante |
+|:---|:---:|:---|:---|
+| **Servicio Cloud Remoto** | ~30.0s total (~24.0s subida + ~6.0s descarga) | Cola del servidor remoto y almacenamiento | Ancho de banda móvil de subida y cola del servidor |
+| **Cliente Local (WASM)** | **0.0s (No se transmiten datos)** | ArrayBuffer en la memoria RAM del navegador | Rendimiento de la CPU local y bus de memoria |
+
+*Aclaración metodológica:* Las cifras de tránsito en la nube representan retardos teóricos de transmisión calculados según la fórmula $T = L / R$, no tiempos totales medidos. La ejecución local en WebAssembly depende directamente de la CPU del usuario y de la complejidad interna del PDF, eliminando la dependencia de red sin formular afirmaciones arbitrarias sobre tiempos fijos de respuesta.
 
 ---
 

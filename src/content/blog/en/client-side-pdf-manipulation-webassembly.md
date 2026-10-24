@@ -115,16 +115,30 @@ By cloning the resulting slice into a standard JavaScript `Blob` and immediately
 
 ---
 
-## Illustrative Latency Model: Network Transfer vs. In-Memory Execution
+## Network Transit vs. Local Execution: Theoretical Latency Formulation
 
-When evaluating client-side document processing, the dominant performance advantage is the total elimination of network transit latency. Consider a typical 45 MB multi-document merge operation ($45 \text{ MB} = 360 \text{ Megabits}$):
+When evaluating client-side document processing, the primary structural advantage is eliminating the network transit phase. Under traditional cloud workflows, the physical upload and download of large document payloads introduce predictable network transmission delay.
 
-| Execution Model | Transfer Latency (15 Mbps Mobile) | Processing Stage | Total Turnaround Time |
-|:---|:---:|:---:|:---:|
-| **Cloud Microservice** | ~24.0s (Upload) + ~6.0s (Download) | Remote Queue & Disk I/O | **~30+ seconds** |
-| **LS PDF (In-Memory WASM)** | **0.0s (No upload needed)** | In-Memory Linear ArrayBuffer | **< 1.0 second** |
+### Transmission Delay Formula
 
-*Calculation assumptions:* Network transit is modeled on a sustained 15 Mbps upstream throughput ($360 \text{ Mb} / 15 \text{ Mbps} = 24.0\text{s}$ upload; combined processed document download of ~90 Mb at 15 Mbps = 6.0s), excluding remote queue latency. In-memory WASM execution runs locally against RAM offsets. Real-world user throughput varies with network conditions and device hardware.
+Network transmission duration is governed by standard data communication principles:
+
+$\text{Transmission Delay } (T) = \frac{\text{Payload Size } (L)}{\text{Effective Bandwidth } (R)}$
+
+For an illustrative 45 MB document merge operation ($45\text{ MB} = 360\text{ Megabits}$) over a hypothetical 15 Mbps mobile uplink:
+
+$\text{Upload Transmission Delay} = \frac{360\text{ Mb}}{15\text{ Mbps}} = 24.0\text{ seconds}$
+
+If the compiled result is approximately 11.25 MB (90 Megabits), the downstream transit requires an additional $6.0\text{ seconds}$ ($\frac{90\text{ Mb}}{15\text{ Mbps}}$), yielding **30.0 seconds of unavoidable network transmission time**, independent of remote server queue wait times.
+
+### Architectural Latency Comparison
+
+| Execution Model | Network Transit Delay (Illustrative 15 Mbps Channel) | Execution Boundary | Dominant Bottleneck |
+|:---|:---:|:---|:---|
+| **Remote Cloud Service** | ~30.0s total (~24.0s upload + ~6.0s download) | Remote server queue & cloud storage | Upstream cellular bandwidth and server queue latency |
+| **Local Client-Side (WASM)** | **0.0s (No payload transmitted)** | In-memory ArrayBuffer in browser RAM | Client CPU speed and memory bus bandwidth |
+
+*Methodological Clarification:* The cloud transit figures represent theoretical transmission delays calculated strictly from payload size and bandwidth parameters ($T = L / R$), not measured empirical turnaround times. For local WebAssembly execution, actual processing duration depends directly on device CPU architecture, document internal object complexity (vector graphics, embedded fonts, and compression streams), and available memory—avoiding network transmission entirely without asserting an arbitrary universal execution time.
 
 ---
 

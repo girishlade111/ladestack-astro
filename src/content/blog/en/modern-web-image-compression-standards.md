@@ -107,22 +107,21 @@ While native browser encoding support for AVIF via `canvas.toBlob('image/avif')`
 
 ---
 
-## Reference Benchmark Model: Compression Ratios and Encode Durations
+## Format Capabilities & Architectural Tradeoffs
 
-To illustrate concrete tradeoffs, the figures below represent a calibrated reference evaluation utilizing a 4.2 MB test photograph (4032 × 3024 pixels, 24-bit sRGB) at an equivalent perceptual visual quality (SSIM ~ 0.94):
+Rather than relying on synthetic benchmark numbers that vary widely across hardware and image entropy, engineering evaluations should examine the architectural characteristics, algorithmic efficiency, and browser execution pipelines of each format:
 
-| Format & Method | Output File Size | Size Reduction | Encode Duration (M2 Mac) | Encode Duration (Mid-Tier Mobile) |
-|:---|:---:|:---:|:---:|:---:|
-| **Original JPEG** | 4,200 KB | 0% (baseline) | — | — |
-| **Canvas JPEG (q=0.82)** | 1,120 KB | -73.3% | 42 ms | 115 ms |
-| **Canvas WebP (q=0.80)** | 780 KB | -81.4% | 68 ms | 185 ms |
-| **WASM AVIF (Speed=6, q=65)** | **460 KB** | **-89.0%** | 380 ms | 1,240 ms |
+| Format & Encoding Method | Typical Relative Efficiency | In-Browser Execution Pipeline | Computational Overhead | Primary Engineering Fit |
+|:---|:---:|:---|:---:|:---|
+| **Standard Baseline JPEG** | Baseline (0%) | Native HTML5 Canvas 2D (`image/jpeg`) | Minimal (Hardware accelerated) | Legacy fallback for older clients |
+| **Canvas WebP (`image/webp`)** | ~25–35% reduction vs JPEG | Native HTML5 Canvas 2D engine | Low (Near-instantaneous in UI thread) | Real-time interactive uploads & bulk processing |
+| **WebAssembly AVIF (`libavif`)** | ~40–55% reduction vs JPEG | Compiled C/Rust WASM worker thread | High (CPU-intensive multi-pass) | High-compression archival & extreme bandwidth constraints |
 
-*Methodology & Environment Note:* Calibrated on an Apple M2 workstation (macOS 14, Chromium 124) and an illustrative mid-tier mobile processor (Snapdragon 778G class, Android 13). Real-world compression performance varies based on image visual complexity (entropy), color depth, device thermal throttling, and browser JavaScript engine version.
+*Engineering Performance Note:* In production environments, actual compression ratios and encode durations depend heavily on image spatial entropy, resolution, color subsampling, device thermal headroom, and browser JavaScript runtime optimizations. WebP via native Canvas delivers the most balanced tradeoff for general web applications, while AVIF encoding should strictly be offloaded to background Web Workers to prevent main-thread UI jank.
 
-### Architectural Takeaways:
-1. **For Real-Time Bulk Operations:** WebP via native Canvas is the optimal sweet spot. It delivers an 80%+ byte reduction with near-instantaneous sub-100ms encoding times.
-2. **For Maximum Bandwidth Savings:** AVIF is unmatched when bandwidth constraints are severe, though developers should run AVIF encoding inside dedicated Web Workers to prevent frame drops during the longer compute cycle.
+### Architectural Tradeoffs:
+1. **For Real-Time User Workflows:** Native Canvas WebP is the recommended default. It achieves substantial byte reductions using built-in browser rendering engines without requiring external WASM dependencies.
+2. **For Maximum Bandwidth Savings:** AVIF offers superior compression efficiency at equivalent visual fidelity, but requires dedicated Web Worker threads to manage the increased CPU encode cycle.
 
 ---
 

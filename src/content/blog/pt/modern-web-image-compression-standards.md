@@ -104,20 +104,21 @@ Enquanto o suporte nativo de codificação via `canvas.toBlob('image/avif')` ava
 
 ---
 
-## Teste Prático de Desempenho: Taxas de Compressão e Tempo de Codificação
+## Capacidades dos Formatos e Trade-offs Arquiteturais
 
-Para dimensionar os impactos práticos de cada tecnologia, realizamos um teste controlado com uma fotografia bruta de 4,2 MB (4032 × 3024 pixels, sRGB de 24 bits) sob parâmetros de qualidade comparáveis (SSIM ~ 0,94):
+Em vez de se basear em benchmarks sintéticos cujos resultados oscilam drasticamente conforme o hardware e a entropia visual, a avaliação de engenharia deve focar nas características algorítmicas e nos pipelines de execução do navegador :
 
-| Formato e Método | Tamanho Final | Redução | Duração (M2 Mac) | Duração (Smartphone Intermediário) |
-|:---|:---:|:---:|:---:|:---:|
-| **JPEG Original** | 4.200 KB | 0% (base) | — | — |
-| **Canvas JPEG (q=0.82)** | 1.120 KB | -73,3% | 42 ms | 115 ms |
-| **Canvas WebP (q=0.80)** | 780 KB | -81,4% | 68 ms | 185 ms |
-| **WASM AVIF (Speed=6, q=65)** | **460 KB** | **-89,0%** | 380 ms | 1.240 ms |
+| Formato e Método de Codificação | Eficiência Relativa Típica | Pipeline de Execução no Navegador | Sobrecarga Computacional | Principal Aplicação de Engenharia |
+|:---|:---:|:---|:---:|:---|
+| **JPEG Padrão de Linha de Base** | Linha de base (0%) | HTML5 Canvas 2D nativo (`image/jpeg`) | Mínima (aceleração por hardware) | Compatibilidade com navegadores legados |
+| **WebP via Canvas (`image/webp`)** | Redução de ~25–35% vs JPEG | Motor nativo HTML5 Canvas 2D | Baixa (quase instantâneo na thread de UI) | Uploads interativos em tempo real e lotes |
+| **AVIF via WebAssembly (`libavif`)** | Redução de ~40–55% vs JPEG | Módulo compilado C/Rust em Web Worker | Alta (intensivo em CPU, múltiplos passos) | Arquivamento de alta densidade e redes restritas |
+
+*Nota de Engenharia:* Em produção, as taxas reais de compressão e o tempo de processamento dependem diretamente da frequência espacial da imagem, resolução, subamostragem de cores e throttling térmico do dispositivo. O WebP nativo via Canvas oferece o equilíbrio ideal para aplicações web gerais, enquanto a codificação AVIF deve obrigatoriamente ser executada em Web Workers dedicados para evitar travamentos na interface.
 
 ### Diretrizes Arquiteturais:
-1. **Para Operações em Lote e Tempo Real:** O WebP nativo via Canvas é o equilíbrio ideal. Ele propicia mais de 80% de redução com tempo de resposta quase instantâneo (< 100 ms).
-2. **Para Máxima Economia de Tráfego:** O AVIF é imbatível quando a largura de banda móvel é escassa. Recomenda-se isolar sua codificação em um Web Worker para evitar travamentos na interface principal do usuário.
+1. **Para Fluxos de Usuário em Tempo Real:** O WebP nativo via Canvas é o padrão recomendado. Ele entrega reduções substanciais sem exigir o carregamento de binários WASM adicionais.
+2. **Para Máxima Economia de Tráfego:** O AVIF entrega taxas superiores de compressão para a mesma fidelidade visual, mas demanda o isolamento do processamento em Web Workers para gerenciar o custo de CPU.
 
 ---
 

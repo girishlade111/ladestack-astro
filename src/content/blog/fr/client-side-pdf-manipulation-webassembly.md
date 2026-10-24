@@ -115,16 +115,30 @@ En clonant le segment d'octets résultant dans un objet JavaScript `Blob` standa
 
 ---
 
-## Modèle Illustratif de Latence : Transfert Réseau vs Exécution en RAM
+## Transit Réseau vs Exécution Locale : Modélisation Théorique de la Latence
 
-Le gain de performance déterminant du traitement côté client réside dans la suppression des temps de transfert sur le réseau. Considérons un cas classique de fusion de plusieurs documents totalisant 45 Mo ($45 \text{ Mo} = 360 \text{ Mégabits}$) sur une connexion mobile de 15 Mbit/s :
+Lors de l'évaluation du traitement documentaire côté client, l'avantage structurel prépondérant réside dans l'élimination totale du transit réseau. Dans les flux infonuagiques traditionnels, l'envoi et la récupération de fichiers volumineux imposent un délai de transmission incompressible.
 
-| Modèle d'Exécution | Latence de Transfert (Mobile 15 Mbit/s) | Phase de Traitement | Temps Total d'Exécution |
-|:---|:---:|:---:|:---:|
-| **Microservice Cloud** | ~24,0 s (Téléversement) + ~6,0 s (Téléchargement) | File d'attente & I/O disque | **~30+ secondes** |
-| **LS PDF (WASM en RAM)** | **0,0 s (Aucun envoi réseau)** | Calcul linéaire en mémoire vive | **< 1,0 seconde** |
+### Formulation du Délai de Transmission
 
-*Hypothèses de calcul du modèle :* Le transit réseau est modélisé sur un débit montant soutenu de 15 Mbit/s ($360 \text{ Mbit} / 15 \text{ Mbit/s} = 24,0\text{ s}$ d'envoi ; téléchargement du document traité d'environ 90 Mbit à 15 Mbit/s = 6,0 s), hors temps de mise en file d'attente distante. L'exécution WASM s'effectue localement sur les plages de mémoire vive. Les performances réelles varient selon les conditions réseau et le matériel utilisateur.
+La durée de transfert réseau est définie par la formule classique des télécommunications :
+
+$\text{Délai de Transmission } (T) = \frac{\text{Taille des Données } (L)}{\text{Bande Passante Efficace } (R)}$
+
+Pour une opération de fusion de 45 Mo (360 Mégabits) sur un canal mobile montant de 15 Mbps :
+
+$\text{Délai de Téléversement} = \frac{360\text{ Mb}}{15\text{ Mbps}} = 24.0\text{ secondes}$
+
+Si le document compilé résultant pèse environ 11.25 Mo (90 Mégabits), le rapatriement descendant ajoute $6.0\text{ secondes}$, générant **30.0 secondes de délai de transit réseau pur**, indépendamment de la file d'attente sur le serveur distant.
+
+### Comparatif Architectural
+
+| Modèle d'Exécution | Délai Réseau (Modèle 15 Mbps) | Périmètre d'Exécution | Goulot d'Étranglement Principal |
+|:---|:---:|:---|:---|
+| **Service Cloud Distant** | ~30.0s au total (~24.0s téléversement + ~6.0s téléchargement) | File d'attente serveur et stockage cloud | Bande passante montante et latence de file distante |
+| **Client Local (WASM)** | **0.0s (Aucune donnée transmise)** | ArrayBuffer en mémoire vive navigateur | Puissance processeur local et bande passante mémoire |
+
+*Précision méthodologique :* Les données de transfert cloud correspondent à des délais théoriques calculés ($T = L / R$) et non à des mesures empiriques de délai total. Côté WebAssembly local, la durée de traitement dépend directement de la puissance CPU de l'appareil et de la complexité interne du PDF, sans qu'un chiffre universel arbitraire ne soit affirmé.
 
 ---
 

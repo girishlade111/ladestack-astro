@@ -115,16 +115,30 @@ Ao clonar a fatia de bytes resultante para um objeto padrão `Blob` do JavaScrip
 
 ---
 
-## Modelo de Desempenho: Execução em RAM vs Sobrecarga de Rede
+## Trânsito de Rede vs Execução Local: Modelo Teórico de Latência
 
-Ao quantificar as vantagens do processamento no cliente, o fator de maior impacto é a eliminação total do tempo de transmissão de rede. Considere uma operação de junção de vários documentos totalizando 45 MB em uma conexão móvel de 15 Mbps:
+Na avaliação do processamento de documentos no lado do cliente, a vantagem estrutural determinante é a eliminação completa do trânsito de rede. Em arquiteturas em nuvem tradicionais, o envio e recebimento de grandes arquivos introduzem atrasos de transmissão inevitáveis.
 
-| Modelo de Execução | Tempo de Transferência (Rede Móvel 15 Mbps) | Fase de Processamento | Tempo Total de Resposta |
-|:---|:---:|:---:|:---:|
-| **Microsserviço em Nuvem** | ~24,0s (Upload) + ~6,0s (Download) | Fila Remota e E/S de Disco | **~30+ segundos** |
-| **LS PDF (WASM em RAM)** | **0,0s (Sem envio de dados)** | Execução Linear Direta na RAM | **< 1,0 segundo** |
+### Formulação do Atraso de Transmissão
 
-Pelo fato de os cálculos ocorrerem na memória RAM do computador ou celular do usuário, a velocidade da operação torna-se independente da qualidade e da largura de banda da rede.
+A duração da transmissão em rede obedece à equação fundamental de telecomunicações:
+
+$\text{Atraso de Transmissão } (T) = \frac{\text{Tamanho dos Dados } (L)}{\text{Largura de Banda Efetiva } (R)}$
+
+Para uma mesclagem de documentos de 45 MB (360 Megabits) em uma conexão móvel de 15 Mbps:
+
+$\text{Atraso de Envio} = \frac{360\text{ Mb}}{15\text{ Mbps}} = 24.0\text{ segundos}$
+
+Considerando o arquivo resultante com ~11.25 MB (90 Megabits), o download exige mais $6.0\text{ segundos}$, totalizando **30.0 segundos de tempo estritamente gasto em rede**, sem computar filas no servidor.
+
+### Comparativo Arquitetural
+
+| Modelo de Execução | Atraso de Trânsito em Rede (Modelo 15 Mbps) | Limite de Execução | Principal Gargalo |
+|:---|:---:|:---|:---|
+| **Serviço Remoto em Nuvem** | ~30.0s no total (~24.0s upload + ~6.0s download) | Fila do servidor remoto e disco em nuvem | Largura de banda móvel de envio e fila de espera |
+| **Cliente Local (WASM)** | **0.0s (Nenhum dado trafega na rede)** | ArrayBuffer na memória RAM do navegador | Capacidade da CPU local e barramento de memória |
+
+*Esclarecimento Metodológico:* Os valores de transferência na nuvem representam cálculos teóricos de transmissão ($T = L / R$). A execução local em WebAssembly depende diretamente do processador do usuário e da complexidade interna do documento PDF, eliminando a dependência de rede sem fazer afirmações infundadas sobre tempos fixos universais.
 
 ---
 

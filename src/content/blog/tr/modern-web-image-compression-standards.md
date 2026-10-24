@@ -104,20 +104,21 @@ Chromium tabanlı tarayıcılarda `canvas.toBlob('image/avif')` desteği yaygın
 
 ---
 
-## Başarım Kıyaslaması: Sıkıştırma Oranları ve Kodlama Süreleri
+## Biçim Yetenekleri ve Mimari Tercihler
 
-Farklı yaklaşımların pratik sonuçlarını somutlaştırmak adına, sıkıştırılmamış 4,2 MB boyutunda bir DSLR test fotoğrafını (4032 × 3024 piksel, 24-bit sRGB) eşdeğer algısal kalitede (SSIM ~ 0,94) test ettik:
+Donanım gücüne ve görsel entropiye göre ciddi farklılıklar gösteren yapay kıyaslama rakamları yerine, mühendislik değerlendirmeleri biçimlerin yapısal özelliklerine, algoritma verimliliğine ve tarayıcı yürütme hatlarına odaklanmalıdır:
 
-| Format ve Yöntem | Çıktı Dosya Boyutu | Boyut Azalması | Kodlama Süresi (M2 Mac) | Kodlama Süresi (Orta Segment Telefon) |
-|:---|:---:|:---:|:---:|:---:|
-| **Orijinal JPEG** | 4.200 KB | %0 (referans) | — | — |
-| **Canvas JPEG (q=0.82)** | 1.120 KB | -%73,3 | 42 ms | 115 ms |
-| **Canvas WebP (q=0.80)** | 780 KB | -%81,4 | 68 ms | 185 ms |
-| **WASM AVIF (Speed=6, q=65)** | **460 KB** | **-%89,0** | 380 ms | 1.240 ms |
+| Biçim ve Kodlama Yöntemi | Göreceli Sıkıştırma Başarımı | Tarayıcı İçi Yürütme Hattı | İşlemci Yükü | Temel Mühendislik Uygunluğu |
+|:---|:---:|:---|:---:|:---|
+| **Standart Temel JPEG** | Referans (0%) | Yerel HTML5 Canvas 2D (`image/jpeg`) | Minimum (Donanım hızlandırmalı) | Eski istemciler için uyumluluk yedeği |
+| **Canvas WebP (`image/webp`)** | JPEG'e göre ~%25–35 kazanç | Yerel HTML5 Canvas 2D motoru | Düşük (Arayüz iş parçacığında anlık) | Gerçek zamanlı yüklemeler ve toplu işlem |
+| **WebAssembly AVIF (`libavif`)** | JPEG'e göre ~%40–55 kazanç | Derlenmiş C/Rust WASM çalışan iş parçacığı | Yüksek (Yoğun CPU kullanan çoklu geçiş) | Arşivleme ve kritik bant genişliği tasarrufu |
+
+*Mühendislik Notu:* Üretim ortamlarında gerçek sıkıştırma oranları ve süreler; görsel entropiye, çözünürlüğe, cihazın termal durumuna ve tarayıcı JavaScript motoruna göre değişiklik gösterir. Genel web uygulamaları için yerel Canvas WebP en dengeli çözümü sunarken, AVIF kodlaması kullanıcı arayüzünde donmaları önlemek adına kesinlikle Web Worker iş parçacıklarına devredilmelidir.
 
 ### Mimari Çıkarımlar:
-1. **Gerçek Zamanlı Toplu İşlemler İçin:** Yerel Canvas üzerinden WebP en dengeli seçenektir. 100 ms altındaki işlem hızlarıyla %80'in üzerinde tasarruf sunar.
-2. **Azami Bant Genişliği Tasarrufu İçin:** Mobil veri kısıtlarının kritik olduğu senaryolarda AVIF rakipsizdir. Arayüz donmalarını önlemek için AVIF kodlamasının arka plan Web Worker iş parçacıklarında çalıştırılması önerilir.
+1. **Gerçek Zamanlı Kullanıcı Akışları:** Yerel Canvas WebP önerilen varsayılandır. Harici WASM paketlerine ihtiyaç duymadan tarayıcının yerel grafik gücünden faydalanır.
+2. **Maksimum Bant Genişliği Tasarrufu:** AVIF benzersiz sıkıştırma verimliliği sağlar, ancak artan işlemci maliyetini yönetmek için Web Worker kullanımı şarttır.
 
 ---
 
