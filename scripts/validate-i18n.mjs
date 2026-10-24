@@ -55,6 +55,7 @@ const expectedFullyLocalizedRoutes = [
   '/gb-coder',
   '/apps',
   '/docs',
+  '/blog',
   '/contact',
   '/support',
   '/privacy',
@@ -69,10 +70,7 @@ for (const route of expectedFullyLocalizedRoutes) {
   }
 }
 
-if (ROUTE_LOCALE_REGISTRY['/blog']?.length !== 1 || ROUTE_LOCALE_REGISTRY['/blog'][0] !== 'en') {
-  throw new Error(`Route "/blog" must remain English-only until Phase 3.`);
-}
-console.log(`✓ All 10 public core routes are registered for all 9 locales. /blog remains English-only.`);
+console.log(`✓ All 11 public core routes (including /blog) are registered for all 9 locales.`);
 
 console.log('\n--- 4. Testing Route Path Helpers ---');
 const pathTests = [
@@ -81,22 +79,22 @@ const pathTests = [
   { path: '/', locale: 'es', expected: '/es' },
   { path: '/ja', locale: 'en', expected: '/' },
   { path: '/ja', locale: 'ko', expected: '/ko' },
-  // Core routes in Phase 2C are localized to their locale prefix:
+  // Core routes in Phase 3 are localized to their locale prefix:
   { path: '/about', locale: 'en', expected: '/about' },
   { path: '/about', locale: 'ja', expected: '/ja/about' },
   { path: '/about', locale: 'zh', expected: '/zh/about' },
   { path: '/gb-coder', locale: 'fr', expected: '/fr/gb-coder' },
   { path: '/apps', locale: 'pt', expected: '/pt/apps' },
   { path: '/docs', locale: 'ru', expected: '/ru/docs' },
+  { path: '/blog', locale: 'en', expected: '/blog' },
+  { path: '/blog', locale: 'ja', expected: '/ja/blog' },
+  { path: '/blog', locale: 'zh', expected: '/zh/blog' },
+  { path: '/blog', locale: 'fr', expected: '/fr/blog' },
   { path: '/contact', locale: 'tr', expected: '/tr/contact' },
   { path: '/support', locale: 'es', expected: '/es/support' },
   { path: '/privacy', locale: 'ko', expected: '/ko/privacy' },
   { path: '/terms', locale: 'ja', expected: '/ja/terms' },
   { path: '/sitemap', locale: 'zh', expected: '/zh/sitemap' },
-  // Unlocalized blog routes safely fallback to English:
-  { path: '/blog', locale: 'en', expected: '/blog' },
-  { path: '/blog', locale: 'ja', expected: '/blog' },
-  { path: '/blog/test-post', locale: 'fr', expected: '/blog/test-post' },
 ];
 
 for (const test of pathTests) {
