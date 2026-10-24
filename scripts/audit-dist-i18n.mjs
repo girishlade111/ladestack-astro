@@ -37,6 +37,7 @@ const CORE_ROUTES = [
   '/gb-coder',
   '/apps',
   '/docs',
+  '/blog',
   '/contact',
   '/support',
   '/privacy',
@@ -54,7 +55,7 @@ if (fs.existsSync(path.join(DIST_DIR, 'en'))) {
   console.log('✅ PASS: /en directory does NOT exist. English is cleanly unprefixed.');
 }
 
-console.log('\n--- 2. Validating 90 Localized HTML Pages (10 Routes × 9 Locales) ---');
+console.log('\n--- 2. Validating 99 Localized HTML Pages (11 Routes × 9 Locales) ---');
 let checkedPages = 0;
 
 for (const route of CORE_ROUTES) {
