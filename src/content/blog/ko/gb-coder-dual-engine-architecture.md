@@ -6,7 +6,7 @@ slug: "gb-coder-dual-engine-architecture"
 translationKey: "gb-coder-dual-engine-architecture"
 author: "Girish Lade"
 publishedAt: "2026-03-15"
-updatedAt: "2026-03-20"
+updatedAt: "2026-10-24"
 category: "Architecture"
 tags: ["GB Coder", "아키텍처", "JavaScript", "Monaco Editor", "WebAssembly", "Web IDE"]
 coverImage: "/blog-covers/gb-coder-architecture.svg"
@@ -169,9 +169,9 @@ window.addEventListener('message', (event: MessageEvent) => {
 | 아키텍처 특성 | 기존 클라우드 IDE (Docker) | 단순 메인 스레드 Eval | GB Coder 듀얼 엔진 |
 |:---|:---:|:---:|:---:|
 | **실행 지연 시간** | 300ms ~ 1200ms (네트워크) | < 1ms (위험) | **< 2ms (로컬 메모리)** |
-| **오프라인 지원** | ❌ 인터넷 연결 필수 | ⚠️ 불안정 | **✅ 100% 오프라인 완전 지원** |
+| **오프라인 지원** | ❌ 인터넷 연결 필수 | ⚠️ 불안정 | **✅ 코어 에디터 및 샌드박스 오프라인 동작** |
 | **충돌 격리** | ✅ 호스트 보호 | ❌ 브라우저 탭 전체 정지 | **✅ iframe 격리로 호스트 보호** |
-| **데이터 프라이버시**| ⚠️ 클라우드로 코드 전송 | ✅ 로컬 한정 | **✅ 100% 서버 전송 없음** |
+| **코드 프라이버시** | ⚠️ 클라우드로 코드 전송 | ✅ 로컬 한정 | **✅ 로컬 클라이언트 연산 (서버로 코드 전송 없음)** |
 | **사용자당 서버 비용**| 월 $5 ~ $25 | $0 | **$0 (클라이언트 연산)** |
 
 ---

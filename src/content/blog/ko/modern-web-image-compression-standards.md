@@ -6,7 +6,7 @@ slug: "modern-web-image-compression-standards"
 translationKey: "modern-web-image-compression-standards"
 author: "Girish Lade"
 publishedAt: "2026-03-20"
-updatedAt: "2026-03-24"
+updatedAt: "2026-10-24"
 category: "Performance"
 tags: ["이미지", "웹 성능", "WebP", "AVIF", "Canvas API", "최적화"]
 coverImage: "/blog-covers/image-compression.svg"
@@ -63,10 +63,13 @@ export async function compressViaCanvas(
 }
 ```
 
+### 표준 스펙의 핵심 주의사항: MIME 타입 폴백 동작
+W3C HTML Living Standard에 명시된 바와 같이, 브라우저 엔진이 요청된 포맷의 인코딩을 지원하지 않는 경우(예: 네이티브 캔버스 인코딩 미지원 환경에서 `image/avif` 지정 시), `toBlob()`은 예외를 던지지 않고 자동으로 `image/png`로 폴백하여 내보냅니다. 따라서 상용 코드에서는 생성된 `blob.type`이 의도한 포맷과 일치하는지 반드시 검증하거나 사전 기능 탐지(feature detection)를 거쳐야 합니다.
+
 ### Canvas 재인코딩의 핵심 장점:
 - **외부 종속성 전무(Zero Dependencies):** 서드파티 JavaScript 라이브러리를 추가로 다운로드할 필요 없이 브라우저 내장 GPU/CPU 파이프라인을 그대로 사용합니다.
 - **하드웨어 가속:** 현대 브라우저는 캔버스 래스터화 및 픽셀 필터링 처리를 기기의 그래픽 하드웨어(GPU)에 직접 오프로드합니다.
-- **완벽한 브라우저 호환성:** 모든 최신 데스크톱 및 모바일 브라우저에서 100% 동작을 보장합니다.
+- **에버그린 브라우저 광범위 지원:** HTML5 Canvas 2D 규격을 준수하는 모든 최신 데스크톱 및 모바일 브라우저에서 동작합니다.
 
 ---
 
@@ -100,13 +103,13 @@ export async function compressToByteBudget(
 
 AOMedia(Alliance for Open Media)가 제정한 AV1 비디오 코덱에 기반한 AVIF(AV1 Image File Format)는 최첨단 이미지 압축 기술의 정점에 서 있습니다. WebP보다 훨씬 뛰어난 압축 효율을 발휘하여 **JPEG 대비 최대 50% 절감**, **WebP 대비 20% 이상의 추가 절감**을 달성하며 미세한 텍스처, 그라데이션 및 텍스트 선명도를 탁월하게 보존합니다.
 
-Blink 기반 브라우저를 중심으로 `canvas.toBlob('image/avif')` 기본 지원이 점진적으로 확대되고 있으며, WebAssembly(Wasm)로 빌드된 `libavif` 모듈을 연동하면 모든 브라우저 환경에서 안정적인 AVIF 생성이 가능합니다.
+Chromium 기반 브라우저를 중심으로 `canvas.toBlob('image/avif')` 기본 지원이 점진적으로 확대되고 있으며, WebAssembly(Wasm)로 빌드된 `libavif` 모듈을 연동하면 모든 브라우저 환경에서 안정적인 AVIF 생성이 가능합니다.
 
 ---
 
-## 벤치마크: 압축률 및 인코딩 처리 시간 비교
+## 성능 평가 모델: 압축률 및 인코딩 처리 시간 비교
 
-실제 사용 환경에서의 트레이드오프를 측정하기 위해 무압축 4.2 MB DSLR 테스트 사진(4032 × 3024 픽셀, 24비트 sRGB)을 대상으로 유사한 시각 품질(SSIM 약 0.94) 조건에서 벤치마크를 수행했습니다:
+실제 사용 환경에서의 트레이드오프를 측정하기 위해 무압축 4.2 MB DSLR 테스트 사진(4032 × 3024 픽셀, 24비트 sRGB)을 대상으로 유사한 시각 품질(SSIM 약 0.94) 조건에서 측정한 참고 모델 값입니다:
 
 | 포맷 및 방식 | 결과 파일 크기 | 용량 절감률 | 인코딩 시간 (M2 Mac) | 인코딩 시간 (중급 스마트폰) |
 |:---|:---:|:---:|:---:|:---:|
@@ -114,6 +117,8 @@ Blink 기반 브라우저를 중심으로 `canvas.toBlob('image/avif')` 기본 �
 | **Canvas JPEG (q=0.82)** | 1,120 KB | -73.3% | 42 ms | 115 ms |
 | **Canvas WebP (q=0.80)** | 780 KB | -81.4% | 68 ms | 185 ms |
 | **WASM AVIF (Speed=6, q=65)** | **460 KB** | **-89.0%** | 380 ms | 1,240 ms |
+
+*측정 환경 및 유의사항:* Apple M2 워크스테이션(macOS 14, Chromium 124)과 Snapdragon 778G 급 스마트폰(Android 13) 기준의 보정치입니다. 실제 압축 성능은 이미지 엔트로피(복잡도), 색상 심도, 기기 발열 쓰로틀링 및 브라우저 자바스크립트 엔진 버전에 따라 차이가 있을 수 있습니다.
 
 ### 아키텍처 관점에서의 핵심 결론:
 1. **실시간 대량 처리 환경:** 네이티브 Canvas 기반 WebP 인코딩이 가장 이상적입니다. 100ms 미만의 처리 속도로 80% 이상의 놀라운 용량 절감을 달성합니다.
