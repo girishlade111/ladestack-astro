@@ -1,0 +1,232 @@
+---
+/**
+ * src/components/pages/ContactPage.astro
+ * Reusable, fully localized Contact page component.
+ * Supports all 9 languages with native typography, full accessibility,
+ * self-referencing canonicals, and reciprocal hreflang tags.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import Accordion from '../ui/Accordion.astro';
+import AccordionItem from '../ui/AccordionItem.astro';
+import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
+import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
+import { getContactData } from '../../i18n/pages/contact';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const data = getContactData(locale);
+const canonicalUrl = `https://ladestack.in${getLocalizedPath('/contact', locale)}`;
+const hreflangs = getHreflangLinks('/contact', LOCALES);
+const localeConfig = LOCALE_CONFIG[locale];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: data.seo.title,
+    description: data.seo.description,
+    url: canonicalUrl,
+    inLanguage: locale,
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'LadeStack',
+      url: 'https://ladestack.in',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'IN',
+        addressLocality: 'Mumbai',
+        addressRegion: 'Maharashtra',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: 'admin@ladestack.in',
+        availableLanguage: [localeConfig.englishName, 'English'],
+      },
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={data.seo.title}
+  description={data.seo.description}
+  canonical={canonicalUrl}
+  locale={locale}
+  hreflangs={hreflangs}
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    url: canonicalUrl,
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background text-foreground">
+    {/* Hero */}
+    <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Badge variant="brand" size="sm" class="mb-4">{data.hero.badge}</Badge>
+        <h1 class="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight">
+          {data.hero.title}
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          {data.hero.description}
+        </p>
+      </div>
+    </section>
+
+    {/* Contact Cards */}
+    <section class="py-12 border-b border-border bg-background">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {data.cards.map((card) => {
+            const inner = (
+              <div class="rounded-xl border border-border bg-surface p-6 shadow-soft h-full hover:border-brand/40 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center mb-4">
+                  <Icon name={card.icon} class="w-5 h-5" />
+                </div>
+                <p class="text-[11px] font-mono uppercase tracking-wider text-muted-foreground mb-1">{card.label}</p>
+                <p class="text-base font-semibold text-foreground mb-1">{card.title}</p>
+                <p class="text-xs text-muted-foreground">{card.sub}</p>
+              </div>
+            );
+            return card.href ? (
+              <a href={card.href} class="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-xl">
+                {inner}
+              </a>
+            ) : (
+              <div>{inner}</div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {/* Contact Form Section */}
+    <section class="py-16 sm:py-20 border-b border-border bg-surface-muted/20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-elevated">
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-foreground tracking-tight">{data.form.title}</h2>
+            <p class="mt-2 text-sm text-muted-foreground leading-relaxed">
+              {data.form.description}
+            </p>
+            <p class="mt-3 text-xs text-muted-foreground border-t border-border/80 pt-3">
+              {data.form.fallbackPrefix}{' '}
+              <a href="mailto:admin@ladestack.in" class="text-brand font-mono underline hover:text-brand/80">
+                {data.form.fallbackLinkText}
+              </a>
+            </p>
+          </div>
+
+          <form
+            id="contact-form"
+            class="space-y-5"
+            onsubmit="event.preventDefault(); var name=document.getElementById('name').value; var email=document.getElementById('email').value; var sub=document.getElementById('subject').value; var msg=document.getElementById('message').value; var mailtoUrl='mailto:admin@ladestack.in?subject=' + encodeURIComponent(sub || 'LadeStack Inquiry') + '&body=' + encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + msg); window.location.href=mailtoUrl; document.getElementById('contact-status').classList.remove('hidden');"
+          >
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                  {data.form.nameLabel} <span class="text-brand">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder={data.form.namePlaceholder}
+                  class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                  {data.form.emailLabel} <span class="text-brand">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder={data.form.emailPlaceholder}
+                  class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="subject" class="block text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                {data.form.subjectLabel} <span class="text-brand">*</span>
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                placeholder={data.form.subjectPlaceholder}
+                class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-xs font-semibold text-foreground uppercase tracking-wider mb-2">
+                {data.form.messageLabel} <span class="text-brand">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+                placeholder={data.form.messagePlaceholder}
+                class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand resize-y"
+              ></textarea>
+            </div>
+
+            <Button type="submit" size="lg" class="w-full sm:w-auto">
+              <span>{data.form.submitButton}</span>
+              <Icon name="arrow-right" class="w-4 h-4" />
+            </Button>
+
+            <div id="contact-status" class="hidden p-4 rounded-lg bg-brand/10 border border-brand/30 text-xs text-foreground font-mono">
+              {data.form.successMessage}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    {/* FAQs */}
+    <section class="py-16 sm:py-24 bg-background">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <Badge variant="outline" size="sm" class="mb-3">{data.faqs.eyebrow}</Badge>
+          <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{data.faqs.title}</h2>
+          <p class="mt-2 text-xs sm:text-sm text-muted-foreground">{data.faqs.description}</p>
+        </div>
+
+        <Accordion>
+          {data.faqs.items.map((faq, index) => (
+            <AccordionItem question={faq.q} open={index === 0}>
+              <p>{faq.a}</p>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
