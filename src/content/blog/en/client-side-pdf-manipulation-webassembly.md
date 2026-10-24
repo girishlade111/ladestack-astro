@@ -115,16 +115,16 @@ By cloning the resulting slice into a standard JavaScript `Blob` and immediately
 
 ---
 
-## Performance Benchmark: Client-Side vs Cloud API
+## Performance Model: In-Memory Execution vs. Network Overhead
 
-We evaluated the processing time required to merge three PDF documents totaling 45 MB across different connection speeds:
+When evaluating client-side document processing, the dominant performance advantage is the total elimination of network transit latency. Consider a typical 45 MB multi-document merge operation:
 
-| Environment | 100 Mbps Fiber | 15 Mbps 4G Mobile | Offline Mode |
+| Execution Model | Transfer Latency (15 Mbps Mobile) | Processing Stage | Total Turnaround Time |
 |:---|:---:|:---:|:---:|
-| **Remote Cloud Service** | 6.8 seconds | 28.4 seconds | ❌ Failed (No Net) |
-| **LS PDF (Client WASM)** | **0.9 seconds** | **0.9 seconds** | **0.9 seconds** |
+| **Cloud Microservice** | ~24.0s (Upload) + ~6.0s (Download) | Remote Queue & Disk I/O | **~30+ seconds** |
+| **LS PDF (In-Memory WASM)** | **0.0s (No upload needed)** | In-Memory Linear ArrayBuffer | **< 1.0 second** |
 
-Because client-side processing eliminates the network upload and download phases entirely, execution time is decoupled from internet bandwidth and depends solely on local device compute.
+Because client-side processing executes directly against browser RAM, execution time is decoupled from network bandwidth and mobile connection volatility.
 
 ---
 
