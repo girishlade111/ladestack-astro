@@ -107,7 +107,7 @@ const socials = [
               {col.links.map((link) => (
                 <li>
                   <a
-                    href={link.href}
+                    href={link.external ? link.href : getLocalizedPath(link.href, locale)}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
                     class="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"

@@ -23,11 +23,11 @@ const t = useTranslations(activeLocale);
 const homeHref = getLocalizedPath('/', activeLocale);
 
 const navLinks = [
-  { label: t('nav.apps'), href: '/apps' },
-  { label: 'GB Coder', href: '/gb-coder' },
-  { label: t('nav.docs'), href: '/docs' },
-  { label: t('nav.blog'), href: '/blog' },
-  { label: t('nav.about'), href: '/about' },
+  { label: t('nav.apps'), href: getLocalizedPath('/apps', activeLocale) },
+  { label: 'GB Coder', href: getLocalizedPath('/gb-coder', activeLocale) },
+  { label: t('nav.docs'), href: getLocalizedPath('/docs', activeLocale) },
+  { label: t('nav.blog'), href: getLocalizedPath('/blog', activeLocale) },
+  { label: t('nav.about'), href: getLocalizedPath('/about', activeLocale) },
 ];
 ---
 
@@ -134,7 +134,7 @@ const navLinks = [
           <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-brand-foreground">
             <Icon name="code-2" class="w-4 h-4" />
           </div>
-          <span class="text-base font-semibold text-foreground">Lade Stack</span>
+          <span class="text-base font-semibold text-foreground">LadeStack</span>
         </a>
         <button
           type="button"
@@ -159,7 +159,7 @@ const navLinks = [
           ))
         }
         <a
-          href="/contact"
+          href={getLocalizedPath('/contact', activeLocale)}
           class="flex items-center justify-between px-3.5 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-surface-muted rounded-lg transition-colors"
         >
           <span>{t('nav.contact')}</span>
