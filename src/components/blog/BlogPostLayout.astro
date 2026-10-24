@@ -1,0 +1,464 @@
+---
+/**
+ * BlogPostLayout.astro
+ * High-performance, accessible, professional article reading experience for LadeStack.
+ * Features:
+ * - Native Astro Markdown rendering with accurate AST headings
+ * - Responsive Table of Contents (TOC) for desktop and mobile
+ * - Precision Obsidian & Emerald design token styling
+ * - Multilingual translation relationship & reciprocal hreflang links
+ * - Copy code block buttons with visual feedback
+ * - BlogPosting & BreadcrumbList JSON-LD structured data
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import type { MarkdownHeading } from 'astro';
+import type { BlogEntry } from '../../lib/blogUtils';
+import { estimateReadingTime, formatBlogDate, getPostUrl, getPostPath } from '../../lib/blogUtils';
+import { LOCALES, LOCALE_CONFIG, DEFAULT_LOCALE, type Locale } from '../../i18n/config';
+import { useTranslations, getLocalizedPath } from '../../i18n/utils';
+
+export interface Props {
+  entry: BlogEntry;
+  headings: MarkdownHeading[];
+  allTranslations?: BlogEntry[];
+  relatedPosts?: BlogEntry[];
+}
+
+const { entry, headings, allTranslations = [], relatedPosts = [] } = Astro.props;
+const { data, body = '' } = entry;
+const locale = data.locale;
+const t = useTranslations(locale);
+
+const canonical = data.canonicalOverride ?? getPostUrl(data.slug, locale);
+const readingTime = estimateReadingTime(body, locale);
+const publishedDateFormatted = formatBlogDate(data.publishedAt, locale, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const updatedDateFormatted = data.updatedAt
+  ? formatBlogDate(data.updatedAt, locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  : null;
+
+// Build multilingual alternate URLs map for language switcher & hreflangs
+const alternateUrls: Partial<Record<Locale, string>> = {};
+const hreflangList: { lang: string; href: string }[] = [];
+
+// Populate from translations found in collection
+for (const translation of allTranslations) {
+  const transLoc = translation.data.locale;
+  const transUrl = getPostUrl(translation.data.slug, transLoc);
+  const transPath = getPostPath(translation.data.slug, transLoc);
+  alternateUrls[transLoc] = transPath;
+  hreflangList.push({ lang: transLoc, href: transUrl });
+}
+
+// Ensure self is in alternateUrls
+if (!alternateUrls[locale]) {
+  alternateUrls[locale] = getPostPath(data.slug, locale);
+  hreflangList.push({ lang: locale, href: canonical });
+}
+
+// Add x-default pointing to English version if available
+const englishTranslation = allTranslations.find((t) => t.data.locale === DEFAULT_LOCALE);
+if (englishTranslation) {
+  hreflangList.push({
+    lang: 'x-default',
+    href: getPostUrl(englishTranslation.data.slug, DEFAULT_LOCALE),
+  });
+} else if (locale === DEFAULT_LOCALE) {
+  hreflangList.push({
+    lang: 'x-default',
+    href: canonical,
+  });
+}
+
+// Filter TOC headings (H2 and H3 only)
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+// Breadcrumb structured data
+const breadcrumbs = [
+  { name: t('nav.home') ?? 'Home', url: `https://ladestack.in${getLocalizedPath('/', locale)}` },
+  { name: t('nav.blog') ?? 'Blog', url: `https://ladestack.in${getLocalizedPath('/blog', locale)}` },
+  { name: data.title, url: canonical },
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.title,
+    description: data.description,
+    image: data.coverImage.startsWith('http') ? data.coverImage : `https://ladestack.in${data.coverImage}`,
+    datePublished: typeof data.publishedAt === 'string' ? data.publishedAt : data.publishedAt.toISOString(),
+    dateModified: data.updatedAt
+      ? typeof data.updatedAt === 'string'
+        ? data.updatedAt
+        : data.updatedAt.toISOString()
+      : typeof data.publishedAt === 'string'
+        ? data.publishedAt
+        : data.publishedAt.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: data.author,
+      url: `https://ladestack.in${getLocalizedPath('/about', locale)}`,
+      jobTitle: 'Founder & Software Engineer',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'LadeStack',
+      url: 'https://ladestack.in',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://ladestack.in/logo.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonical,
+    },
+    keywords: data.tags.join(', '),
+    articleSection: data.category,
+    inLanguage: locale,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={`${data.title} | LadeStack Blog`}
+  description={data.description}
+  canonical={canonical}
+  locale={locale}
+  alternateUrls={alternateUrls}
+  hreflangs={hreflangList}
+  structuredData={structuredData}
+  openGraph={{
+    title: data.title,
+    description: data.description,
+    url: canonical,
+    type: 'article',
+    image: data.coverImage.startsWith('http') ? data.coverImage : `https://ladestack.in${data.coverImage}`,
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: data.title,
+    description: data.description,
+    image: data.coverImage.startsWith('http') ? data.coverImage : `https://ladestack.in${data.coverImage}`,
+  }}
+>
+  <div class="min-h-screen bg-background text-foreground">
+    {/* Article Header & Hero */}
+    <header class="pt-10 pb-8 border-b border-border bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Breadcrumb Navigation */}
+        <nav class="flex items-center gap-1.5 text-xs text-muted-foreground mb-6 overflow-x-auto py-1" aria-label="Breadcrumbs">
+          <a href={getLocalizedPath('/', locale)} class="hover:text-foreground transition-colors shrink-0">
+            {t('nav.home') ?? 'Home'}
+          </a>
+          <span class="text-border shrink-0">/</span>
+          <a href={getLocalizedPath('/blog', locale)} class="hover:text-foreground transition-colors shrink-0">
+            {t('nav.blog') ?? 'Blog'}
+          </a>
+          <span class="text-border shrink-0">/</span>
+          <span class="text-foreground font-medium truncate max-w-[240px]">
+            {data.category}
+          </span>
+        </nav>
+
+        {/* Metadata Badges */}
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+          <Badge variant="brand" size="sm">
+            {data.category}
+          </Badge>
+          <span class="text-xs font-mono text-muted-foreground flex items-center gap-1">
+            <Icon name="clock" class="w-3.5 h-3.5" />
+            {readingTime}
+          </span>
+          <span class="text-xs font-mono text-muted-foreground flex items-center gap-1">
+            <Icon name="calendar" class="w-3.5 h-3.5" />
+            {publishedDateFormatted}
+          </span>
+          {
+            updatedDateFormatted && (
+              <span class="text-xs font-mono text-emerald-500/90 hidden sm:inline-block">
+                (Updated: {updatedDateFormatted})
+              </span>
+            )
+          }
+        </div>
+
+        {/* Headline & Subtitle */}
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-[1.2] tracking-tight mb-4 text-balance">
+          {data.title}
+        </h1>
+
+        <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 text-pretty max-w-3xl">
+          {data.description}
+        </p>
+
+        {/* Author Details & Multilingual Availability */}
+        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/60">
+          <a
+            href={getLocalizedPath('/about', locale)}
+            class="flex items-center gap-3 group"
+            title="View founder biography"
+          >
+            <div class="w-10 h-10 rounded-full bg-brand/10 border border-brand/30 flex items-center justify-center text-brand font-semibold text-sm">
+              GL
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-foreground group-hover:text-brand transition-colors">
+                {data.author}
+              </p>
+              <p class="text-xs text-muted-foreground">Founder & Engineer · LadeStack</p>
+            </div>
+          </a>
+
+          {/* Social Share & Back */}
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              data-copy-share-link
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Copy link to article"
+            >
+              <Icon name="link" class="w-3.5 h-3.5" />
+              <span data-copy-label>Share Link</span>
+            </button>
+            <a
+              href={getLocalizedPath('/blog', locale)}
+              class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Icon name="arrow-left" class="w-3.5 h-3.5" />
+              <span>All Articles</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {/* Featured Cover Image */}
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+      <div class="rounded-2xl border border-border overflow-hidden bg-surface shadow-elevated">
+        <img
+          src={data.coverImage}
+          alt={data.coverAlt}
+          width="800"
+          height="450"
+          loading="eager"
+          decoding="async"
+          class="w-full h-auto max-h-[420px] object-cover object-center"
+        />
+      </div>
+    </div>
+
+    {/* Main Content Grid: TOC Sidebar + Article Body */}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Mobile Collapsible TOC */}
+        {
+          tocHeadings.length > 0 && (
+            <div class="lg:hidden col-span-1 border border-border rounded-xl bg-surface p-4 shadow-soft">
+              <details class="group">
+                <summary class="flex items-center justify-between cursor-pointer list-none text-sm font-semibold text-foreground">
+                  <span class="flex items-center gap-2">
+                    <Icon name="list" class="w-4 h-4 text-brand" />
+                    Table of Contents ({tocHeadings.length})
+                  </span>
+                  <Icon name="chevron-down" class="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" />
+                </summary>
+                <nav class="mt-4 pt-3 border-t border-border flex flex-col gap-2 text-xs">
+                  {tocHeadings.map((h) => (
+                    <a
+                      href={`#${h.slug}`}
+                      class={`hover:text-brand transition-colors text-muted-foreground ${
+                        h.depth === 3 ? 'pl-3' : 'font-medium'
+                      }`}
+                    >
+                      {h.text}
+                    </a>
+                  ))}
+                </nav>
+              </details>
+            </div>
+          )
+        }
+
+        {/* Article Body (Markdown Output) */}
+        <article class="lg:col-span-8 max-w-[75ch] prose prose-invert prose-emerald prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-headings:font-bold prose-h2:text-2xl prose-h2:border-b prose-h2:border-border/60 prose-h2:pb-2 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-code:font-mono prose-code:text-emerald-400 prose-pre:bg-slate-950 prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-pre:shadow-soft">
+          <slot />
+        </article>
+
+        {/* Desktop Sticky Sidebar: TOC + Related Tools */}
+        <aside class="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">
+          {
+            tocHeadings.length > 0 && (
+              <div class="rounded-xl border border-border bg-surface p-5 shadow-soft">
+                <p class="text-xs font-mono text-brand font-semibold uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Icon name="list" class="w-3.5 h-3.5" />
+                  Table of Contents
+                </p>
+                <nav class="flex flex-col gap-1.5 text-xs text-muted-foreground max-h-[60vh] overflow-y-auto pr-1" aria-label="Article Table of Contents">
+                  {tocHeadings.map((h) => (
+                    <a
+                      href={`#${h.slug}`}
+                      class={`py-1 rounded px-2 hover:bg-surface-muted hover:text-foreground transition-colors ${
+                        h.depth === 3 ? 'pl-4 text-[11px]' : 'font-medium text-foreground/90'
+                      }`}
+                    >
+                      {h.text}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            )
+          }
+
+          {/* Related Product Promotion Card */}
+          {
+            data.relatedProduct && (
+              <div class="rounded-xl border border-brand/30 bg-brand/5 p-5 shadow-soft">
+                <p class="text-[10px] font-mono uppercase tracking-wider text-brand font-semibold mb-1">
+                  Product Spotlight
+                </p>
+                <h3 class="text-sm font-bold text-foreground mb-1">
+                  Try {data.relatedProduct} Online
+                </h3>
+                <p class="text-xs text-muted-foreground mb-3 leading-relaxed">
+                  Experience the client-side architecture described in this article directly inside your browser.
+                </p>
+                <a
+                  href={data.relatedProduct === 'GB Coder' ? getLocalizedPath('/gb-coder', locale) : getLocalizedPath('/apps', locale)}
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+                >
+                  <span>Explore {data.relatedProduct}</span>
+                  <Icon name="arrow-right" class="w-3.5 h-3.5" />
+                </a>
+              </div>
+            )
+          }
+
+          {/* Article Tags */}
+          {
+            data.tags.length > 0 && (
+              <div class="rounded-xl border border-border bg-surface p-5 shadow-soft">
+                <p class="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
+                  Related Topics
+                </p>
+                <div class="flex flex-wrap gap-1.5">
+                  {data.tags.map((tag) => (
+                    <span class="px-2 py-0.5 rounded-md bg-surface-muted text-[11px] font-mono text-muted-foreground">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+        </aside>
+      </div>
+
+      {/* Related Articles Section */}
+      {
+        relatedPosts.length > 0 && (
+          <section class="mt-16 pt-10 border-t border-border">
+            <h2 class="text-xl font-bold text-foreground mb-6">
+              More Engineering Articles
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedPosts.map((post) => (
+                <a
+                  href={getPostPath(post.data.slug, locale)}
+                  class="group flex flex-col rounded-xl border border-border bg-surface overflow-hidden hover:border-brand/40 transition-colors shadow-soft"
+                >
+                  <img
+                    src={post.data.coverImage}
+                    alt={post.data.coverAlt}
+                    width="400"
+                    height="200"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-36 object-cover object-center group-hover:scale-102 transition-transform duration-300"
+                  />
+                  <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <span class="text-[10px] font-mono text-brand font-semibold uppercase">
+                        {post.data.category}
+                      </span>
+                      <h3 class="text-sm font-semibold text-foreground mt-1 group-hover:text-brand transition-colors line-clamp-2">
+                        {post.data.title}
+                      </h3>
+                    </div>
+                    <p class="text-xs text-muted-foreground mt-3 flex items-center gap-1 font-mono">
+                      <Icon name="clock" class="w-3 h-3" />
+                      {estimateReadingTime(post.body ?? '', locale)}
+                    </p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  // Copy link share button handler
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-copy-share-link]');
+    if (!btn) return;
+    navigator.clipboard.writeText(window.location.href).then(function () {
+      var label = btn.querySelector('[data-copy-label]');
+      if (label) {
+        var original = label.textContent;
+        label.textContent = 'Link Copied!';
+        setTimeout(function () {
+          label.textContent = original;
+        }, 2000);
+      }
+    });
+  });
+
+  // Inject Copy button to code pre blocks
+  document.querySelectorAll('article pre').forEach(function (pre) {
+    if (pre.querySelector('.copy-code-btn')) return;
+    pre.style.position = 'relative';
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-code-btn absolute top-2.5 right-2.5 px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-[10px] font-mono text-slate-300 hover:text-white transition-colors border border-slate-700';
+    btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+    btn.addEventListener('click', function () {
+      var code = pre.querySelector('code');
+      var text = code ? code.innerText : pre.innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied!';
+        setTimeout(function () {
+          btn.textContent = 'Copy';
+        }, 2000);
+      });
+    });
+
+    pre.appendChild(btn);
+  });
+</script>

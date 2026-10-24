@@ -1,0 +1,24 @@
+---
+/**
+ * /[locale]/blog — Localized Engineering Blog Index
+ * Sourced from Astro Content Collections ('blog')
+ * Dynamically generated for non-default locales (ja, ko, zh, ru, tr, fr, pt, es).
+ */
+import { getCollection } from 'astro:content';
+import { NON_DEFAULT_LOCALES, type Locale } from '../../../i18n/config';
+import BlogIndexPage from '../../../components/blog/BlogIndexPage.astro';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((loc) => ({
+    params: { locale: loc },
+  }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+
+const posts = await getCollection('blog', ({ data }) => {
+  return !data.draft && data.locale === locale;
+});
+---
+
+<BlogIndexPage locale={locale} posts={posts} />
