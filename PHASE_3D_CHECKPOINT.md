@@ -75,11 +75,38 @@
 
 ---
 
-## 5. Exact Next Action & Handoff (Phase 3D-B Preview)
+## 5. Exact Next Action & Handoff (Phase 3D-B)
 
-1. **Phase 3D-A Status:** Fully complete and verified (`PHASE_3D_A_COMPLETE`).
-2. **Phase 3D-B Preview:**
-   - Migrate next controlled batch of legacy fallback articles (e.g. Batch 2: 5 articles).
-   - Remaining legacy fallback count will transition from 17 to 12.
-   - Expand multilingual coverage for selected topics.
-3. **Safety Notice:** Do NOT push to remote, merge to master, or deploy without explicit user approval.
+1. **Sprint Initialized:** `Phase 3D-B` (Controlled Legacy Blog Migration — Batch 2)
+2. **Active Git Branch:** `feature/phase-3d-b-blog-migration`
+3. **Starting Baseline Commit:** `517fba0`
+4. **Current Status:** `IN_PROGRESS`
+5. **Current Article:** `building-subscription-billing-systems` (Article 1 of 5)
+6. **Current Task:** Authoring Article 1 in English Markdown Collections
+7. **Next Exact Action:** Create `src/content/blog/en/building-subscription-billing-systems.md`, validate schema, and verify route.
+
+---
+
+## 6. Phase 3D-B Target Article Migration Matrix
+
+| # | Slug | Original Category | Publication Date | Status | English File | Multilingual (8 Locales) |
+|:---:|:---|:---|:---:|:---:|:---|:---:|
+| **1** | `building-subscription-billing-systems` | SaaS Architecture | 2024-07-28 | `VERIFIED` | `src/content/blog/en/building-subscription-billing-systems.md` | Target Topic 1 (ja, ko, zh, ru, tr, fr, pt, es) |
+| **2** | `scaling-saas-applications-million-users` | SaaS Architecture | 2024-08-05 | `VERIFIED` | `src/content/blog/en/scaling-saas-applications-million-users.md` | None (English only in 3D-B) |
+| **3** | `baas-platforms-compared-firebase-supabase-appwrite` | Backend as a Service | 2024-08-12 | `IN_PROGRESS` | `src/content/blog/en/baas-platforms-compared-firebase-supabase-appwrite.md` | Target Topic 2 (ja, ko, zh, ru, tr, fr, pt, es) |
+| **4** | `building-serverless-backends-with-baas` | Backend as a Service | 2024-08-18 | `NOT_STARTED` | `src/content/blog/en/building-serverless-backends-with-baas.md` | None (English only in 3D-B) |
+| **5** | `real-time-data-sync-backend-services` | Backend as a Service | 2024-08-25 | `NOT_STARTED` | `src/content/blog/en/real-time-data-sync-backend-services.md` | None (English only in 3D-B) |
+
+---
+
+## 7. Phase 3D-B Inventory Tracking
+
+- **Pre-Migration Markdown Count:** 69 (Phase 3D-A baseline)
+- **Target New English Markdown:** 5 (Articles 1–5)
+- **Target New Multilingual Translations:** 16 (2 topics × 8 non-English locales)
+- **Target Total Markdown Count:** 90
+- **Pre-Migration Legacy Fallback Count:** 17
+- **Target Post-Migration Legacy Fallback Count:** 12
+- **Total Preserved Legacy Canonical URLs:** 27
+- **Target Total HTML Pages:** 214 (202 content pages + 12 redirect stubs)
+
