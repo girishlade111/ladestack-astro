@@ -3,6 +3,7 @@
  * 404 — Not Found Page
  * NON-INDEXABLE: robots index:false, follow:false.
  * Styled with Obsidian & Precision Emerald design tokens.
+ * Features client-side locale detection for intelligent multilingual error messaging.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
@@ -10,12 +11,12 @@ import Button from '../components/ui/Button.astro';
 ---
 
 <BaseLayout
-  title="404 - Page Not Found - Lade Stack"
+  title="404 – Page Not Found | LadeStack"
   description={null}
   canonical="https://ladestack.in/404"
-  robots={{ index: false, follow: false, custom: null }}
+  robots={{ index: false, follow: false, custom: 'noindex, nofollow' }}
   openGraph={{
-    title: '404 - Page Not Found - Lade Stack',
+    title: '404 – Page Not Found | LadeStack',
     description: null,
     url: 'https://ladestack.in/404',
     type: 'website',
@@ -23,7 +24,7 @@ import Button from '../components/ui/Button.astro';
   }}
   twitter={{
     card: 'summary_large_image',
-    title: '404 - Page Not Found - Lade Stack',
+    title: '404 – Page Not Found | LadeStack',
     description: null,
     image: 'https://ladestack.in/og-image.png',
   }}
@@ -32,26 +33,131 @@ import Button from '../components/ui/Button.astro';
   <div class="flex flex-1 items-center justify-center py-24 sm:py-32 bg-background relative overflow-hidden">
     <div class="pointer-events-none absolute inset-0 hero-glow -z-10" aria-hidden="true"></div>
 
-    <div class="text-center px-4 max-w-md mx-auto">
-      <span class="font-mono text-xs font-bold text-brand uppercase tracking-wider">
+    <div class="text-center px-4 max-w-lg mx-auto">
+      <span data-404-badge class="font-mono text-xs font-bold text-brand uppercase tracking-wider">
         Error 404 · Route Not Found
       </span>
-      <h1 class="mt-2 text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-        Lost in cyberspace
+      <h1 data-404-title class="mt-2 text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
+        Page Not Found
       </h1>
-      <p class="mt-4 text-sm text-muted-foreground leading-relaxed">
+      <p data-404-desc class="mt-4 text-sm text-muted-foreground leading-relaxed">
         The route you requested does not exist or may have been consolidated.
       </p>
 
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button href="/" size="md" class="w-full sm:w-auto">
-          <span>Return to Homepage</span>
+        <Button href="/" data-404-home size="md" class="w-full sm:w-auto">
+          <span data-404-home-text>Return to Homepage</span>
           <Icon name="arrow-right" class="w-4 h-4" />
         </Button>
-        <Button href="/apps" variant="outline" size="md" class="w-full sm:w-auto">
-          <span>Browse Utilities</span>
+        <Button href="/apps" data-404-apps variant="outline" size="md" class="w-full sm:w-auto">
+          <span data-404-apps-text>Browse Utilities</span>
         </Button>
       </div>
     </div>
   </div>
+
+  <script is:inline>
+    (function () {
+      var i18n = {
+        ja: {
+          badge: 'エラー 404 · ページが見つかりません',
+          title: 'ページが見つかりませんでした',
+          desc: 'リクエストされたページは存在しないか、移動した可能性があります。',
+          homeText: 'ホームに戻る',
+          appsText: '製品一覧を見る',
+          homeHref: '/ja',
+          appsHref: '/ja/apps'
+        },
+        ko: {
+          badge: '오류 404 · 페이지를 찾을 수 없음',
+          title: '페이지를 찾을 수 없습니다',
+          desc: '요청하신 페이지가 존재하지 않거나 변경되었을 수 있습니다.',
+          homeText: '홈으로 돌아가기',
+          appsText: '유틸리티 둘러보기',
+          homeHref: '/ko',
+          appsHref: '/ko/apps'
+        },
+        zh: {
+          badge: '错误 404 · 页面未找到',
+          title: '页面不存在',
+          desc: '您访问的路由不存在或已被合并迁移。',
+          homeText: '返回首页',
+          appsText: '浏览工具库',
+          homeHref: '/zh',
+          appsHref: '/zh/apps'
+        },
+        ru: {
+          badge: 'Ошибка 404 · Страница не найдена',
+          title: 'Страница не найдена',
+          desc: 'Запрошенный маршрут не существует или был перемещен.',
+          homeText: 'Вернуться на главную',
+          appsText: 'Все инструменты',
+          homeHref: '/ru',
+          appsHref: '/ru/apps'
+        },
+        tr: {
+          badge: 'Hata 404 · Sayfa Bulunamadı',
+          title: 'Sayfa Bulunamadı',
+          desc: 'İstediğiniz sayfa mevcut değil veya taşınmış olabilir.',
+          homeText: 'Ana Sayfaya Dön',
+          appsText: 'Araçları İncele',
+          homeHref: '/tr',
+          appsHref: '/tr/apps'
+        },
+        fr: {
+          badge: 'Erreur 404 · Page introuvable',
+          title: 'Page non trouvée',
+          desc: 'La page demandée n’existe pas ou a été déplacée.',
+          homeText: 'Retour à l’accueil',
+          appsText: 'Explorer les utilitaires',
+          homeHref: '/fr',
+          appsHref: '/fr/apps'
+        },
+        pt: {
+          badge: 'Erro 404 · Página Não Encontrada',
+          title: 'Página Não Encontrada',
+          desc: 'A rota solicitada não existe ou pode ter sido alterada.',
+          homeText: 'Voltar ao Início',
+          appsText: 'Explorar Utilitários',
+          homeHref: '/pt',
+          appsHref: '/pt/apps'
+        },
+        es: {
+          badge: 'Error 404 · Página No Encontrada',
+          title: 'Página No Encontrada',
+          desc: 'La ruta solicitada no existe o ha sido reubicada.',
+          homeText: 'Volver al Inicio',
+          appsText: 'Ver Utilidades',
+          homeHref: '/es',
+          appsHref: '/es/apps'
+        }
+      };
+
+      try {
+        var path = window.location.pathname || '';
+        var parts = path.split('/').filter(Boolean);
+        var lang = parts[0];
+        if (i18n[lang]) {
+          var t = i18n[lang];
+          var badge = document.querySelector('[data-404-badge]');
+          var title = document.querySelector('[data-404-title]');
+          var desc = document.querySelector('[data-404-desc]');
+          var homeBtn = document.querySelector('[data-404-home]');
+          var homeText = document.querySelector('[data-404-home-text]');
+          var appsBtn = document.querySelector('[data-404-apps]');
+          var appsText = document.querySelector('[data-404-apps-text]');
+
+          if (badge) badge.textContent = t.badge;
+          if (title) title.textContent = t.title;
+          if (desc) desc.textContent = t.desc;
+          if (homeText) homeText.textContent = t.homeText;
+          if (appsText) appsText.textContent = t.appsText;
+          if (homeBtn) homeBtn.setAttribute('href', t.homeHref);
+          if (appsBtn) appsBtn.setAttribute('href', t.appsHref);
+        }
+      } catch (err) {
+        // Fallback to English default
+      }
+    })();
+  </script>
 </BaseLayout>
