@@ -1,0 +1,25 @@
+---
+/**
+ * /[locale]/gb-coder — Localized GB Coder Page Route
+ * Statically renders localized GB Coder pages for all 8 non-default languages:
+ * ja, ko, zh, ru, tr, fr, pt, es.
+ */
+import type { GetStaticPaths } from 'astro';
+import GbCoderPage from '../../components/pages/GbCoderPage.astro';
+import { NON_DEFAULT_LOCALES, type Locale } from '../../i18n/config';
+
+export const getStaticPaths = (() => {
+  return NON_DEFAULT_LOCALES.map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<GbCoderPage locale={locale} />

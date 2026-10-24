@@ -104,7 +104,7 @@ export function isValidLocale(lang: string | undefined | null): lang is Locale {
 export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
   '/': LOCALES, // Homepage exists in all 9 languages
   '/about': LOCALES,
-  '/gb-coder': ['en'],
+  '/gb-coder': LOCALES,
   '/apps': ['en'],
   '/docs': ['en'],
   '/blog': ['en'],
