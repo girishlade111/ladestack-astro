@@ -1,13 +1,13 @@
 # LadeStack — Phase 3D Multilingual Translation Matrix
 ## Cross-Locale Content Collections Mapping & Hreflang Cluster Validation
 
-**Sprint Status:** `PHASE_3D_A_COMPLETE`  
+**Sprint Status:** `PHASE_3D_B_COMPLETE`  
 **Date:** October 24, 2026  
-**Total Multilingual Topics:** 7  
+**Total Multilingual Topics:** 9  
 **Supported Locales:** 9 (`en`, `ja`, `ko`, `zh`, `ru`, `tr`, `fr`, `pt`, `es`)  
-**Total Multilingual Documents:** 63 (7 topics × 9 locales)  
-**Total English-Only Documents:** 6  
-**Total Active Markdown Documents:** 69  
+**Total Multilingual Documents:** 81 (9 topics × 9 locales)  
+**Total English-Only Documents:** 9  
+**Total Active Markdown Documents:** 90  
 
 ---
 
@@ -17,24 +17,26 @@ Each multilingual topic consists of 9 fully synchronized Markdown documents shar
 
 | Translation Key / Slug | Locale | Localized Title | File Path | Canonical URL |
 |:---|:---:|:---|:---|:---|
-| **machine-learning-pipelines-for-web-developers** | `en` | Machine Learning Pipelines for Web Developers: A Practical Guide | `src/content/blog/en/...` | `https://ladestack.in/blog/machine-learning-pipelines-for-web-developers` |
-| *(Topic 6 — Phase 3D-A)* | `ja` | Web開発者のための機械学習パイプライン実践ガイド | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/machine-learning-pipelines-for-web-developers` |
-| | `ko` | 웹 개발자를 위한 실전 머신러닝 파이프라인 구축 가이드 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/machine-learning-pipelines-for-web-developers` |
-| | `zh` | Web开发者实用机器学习流水线构建指南 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/machine-learning-pipelines-for-web-developers` |
-| | `ru` | Пайплайны машинного обучения для веб-разработчиков: практическое руководство | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/machine-learning-pipelines-for-web-developers` |
-| | `tr` | Web Geliştiricileri İçin Makine Öğrenimi Boru Hatları: Uygulamalı Rehber | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/machine-learning-pipelines-for-web-developers` |
-| | `fr` | Pipelines de Machine Learning pour les Développeurs Web : Guide Pratique | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/machine-learning-pipelines-for-web-developers` |
-| | `pt` | Pipelines de Machine Learning para Desenvolvedores Web: Guia Prático | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/machine-learning-pipelines-for-web-developers` |
-| | `es` | Pipelines de Machine Learning para Desarrolladores Web: Guía Práctica | `src/content/blog/es/...` | `https://ladestack.in/es/blog/machine-learning-pipelines-for-web-developers` |
-| **building-rag-applications-vector-databases** | `en` | Building Production RAG Applications with Vector Databases | `src/content/blog/en/...` | `https://ladestack.in/blog/building-rag-applications-vector-databases` |
-| *(Topic 7 — Phase 3D-A)* | `ja` | ベクトルデータベースを活用した実用的なRAGアプリケーションの構築 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/building-rag-applications-vector-databases` |
-| | `ko` | 벡터 데이터베이스를 활용한 실전 RAG 애플리케이션 구축 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/building-rag-applications-vector-databases` |
-| | `zh` | 基于向量数据库构建生产级RAG应用指南 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/building-rag-applications-vector-databases` |
-| | `ru` | Создание продакшн-приложений RAG с векторными базами данных | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/building-rag-applications-vector-databases` |
-| | `tr` | Vektör Veritabanları ile Üretime Hazır RAG Uygulamaları Geliştirme | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/building-rag-applications-vector-databases` |
-| | `fr` | Développer des Applications RAG Prêtes pour la Production avec des Bases Vectorielles | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/building-rag-applications-vector-databases` |
-| | `pt` | Construindo Aplicações RAG de Produção com Bancos de Dados Vetoriais | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/building-rag-applications-vector-databases` |
-| | `es` | Construcción de Aplicaciones RAG para Producción con Bases de Datos Vectoriales | `src/content/blog/es/...` | `https://ladestack.in/es/blog/building-rag-applications-vector-databases` |
+| **building-subscription-billing-systems** | `en` | Building Robust Subscription Billing Systems: Lifecycle, Webhooks, and Idempotency | `src/content/blog/en/...` | `https://ladestack.in/blog/building-subscription-billing-systems` |
+| *(Topic 8 — Phase 3D-B)* | `ja` | 堅牢なサブスクリプション決済システムの構築：ライフサイクル、Webhook、および冪等性 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/building-subscription-billing-systems` |
+| | `ko` | 견고한 구독 결제 시스템 구축: 라이프사이클, 웹훅, 멱등성 설계 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/building-subscription-billing-systems` |
+| | `zh` | 构建健壮的订阅计费系统：生命周期、Webhooks与幂等性架构 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/building-subscription-billing-systems` |
+| | `ru` | Построение надежных систем биллинга по подписке: жизненный цикл, вебхуки и идемпотентность | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/building-subscription-billing-systems` |
+| | `tr` | Güvenilir Abonelik Faturalandırma Sistemleri Oluşturma: Yaşam Döngüsü, Webhook'lar ve Tekrarlanabilirlik (Idempotency) | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/building-subscription-billing-systems` |
+| | `fr` | Concevoir des systèmes de facturation par abonnement robustes : cycle de vie, webhooks et idempotence | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/building-subscription-billing-systems` |
+| | `pt` | Construindo Sistemas Robustos de Cobrança por Assinatura: Ciclo de Vida, Webhooks e Idempotência | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/building-subscription-billing-systems` |
+| | `es` | Construcción de sistemas robustos de facturación por suscripción: ciclo de vida, webhooks e idempotencia | `src/content/blog/es/...` | `https://ladestack.in/es/blog/building-subscription-billing-systems` |
+| **baas-platforms-compared-firebase-supabase-appwrite** | `en` | BaaS Platforms Compared: Architectural Evaluation of Firebase, Supabase, and Appwrite | `src/content/blog/en/...` | `https://ladestack.in/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| *(Topic 9 — Phase 3D-B)* | `ja` | BaaSプラットフォーム比較：Firebase、Supabase、Appwriteのアーキテクチャ評価 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `ko` | BaaS 플랫폼 심층 비교: Firebase, Supabase, Appwrite 아키텍처 분석 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `zh` | BaaS平台深度对比：Firebase、Supabase与Appwrite架构评估 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `ru` | Сравнение BaaS-платформ: архитектурный анализ Firebase, Supabase и Appwrite | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `tr` | BaaS Platformları Karşılaştırması: Firebase, Supabase ve Appwrite Mimari Analizi | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `fr` | Comparatif des plateformes BaaS : analyse architecturale de Firebase, Supabase et Appwrite | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `pt` | Comparativo de Plataformas BaaS: Avaliação Arquitetural de Firebase, Supabase e Appwrite | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| | `es` | Comparativa de plataformas BaaS: análisis arquitectónico de Firebase, Supabase y Appwrite | `src/content/blog/es/...` | `https://ladestack.in/es/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| **machine-learning-pipelines-for-web-developers** | `en`–`es` | Machine Learning Pipelines for Web Developers (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/machine-learning-pipelines-for-web-developers` |
+| **building-rag-applications-vector-databases** | `en`–`es` | Building Production RAG Applications with Vector Databases (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/building-rag-applications-vector-databases` |
 | **gb-coder-dual-engine-architecture** | `en`–`es` | Dual-Engine Web Architecture (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/gb-coder-dual-engine-architecture` |
 | **client-side-pdf-manipulation-webassembly** | `en`–`es` | Client-Side PDF with WebAssembly (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/client-side-pdf-manipulation-webassembly` |
 | **modern-web-image-compression-standards** | `en`–`es` | Modern Web Image Compression Standards (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/modern-web-image-compression-standards` |
@@ -45,43 +47,23 @@ Each multilingual topic consists of 9 fully synchronized Markdown documents shar
 
 ### 2. English-Only Modernized Articles (No Fake Alternate Hreflang Tags)
 
-These 6 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
+These 9 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
 
-1. `generative-ai-for-content-creation` (Phase 3D-A)
-2. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
-3. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
-4. `zero-trust-security-web-applications` (Phase 3C)
-5. `building-ai-powered-code-review-systems` (Phase 3C)
-6. `future-of-ai-in-software-development` (Phase 3C)
+1. `scaling-saas-applications-million-users` (Phase 3D-B)
+2. `building-serverless-backends-with-baas` (Phase 3D-B)
+3. `real-time-data-sync-backend-services` (Phase 3D-B)
+4. `generative-ai-for-content-creation` (Phase 3D-A)
+5. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
+6. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
+7. `zero-trust-security-web-applications` (Phase 3C)
+8. `building-ai-powered-code-review-systems` (Phase 3C)
+9. `future-of-ai-in-software-development` (Phase 3C)
 
 ---
 
 ### 3. Hreflang Cluster & Reciprocity Verification
 
-For every article belonging to a multilingual topic, the `<head>` contains reciprocal `hreflang` tags pointing to all 9 supported locales plus `x-default`:
-
-```html
-<!-- Example Head Markup on https://ladestack.in/blog/machine-learning-pipelines-for-web-developers -->
-<link rel="canonical" href="https://ladestack.in/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="en" href="https://ladestack.in/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="ja" href="https://ladestack.in/ja/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="ko" href="https://ladestack.in/ko/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="zh" href="https://ladestack.in/zh/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="ru" href="https://ladestack.in/ru/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="tr" href="https://ladestack.in/tr/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="fr" href="https://ladestack.in/fr/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="pt" href="https://ladestack.in/pt/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="es" href="https://ladestack.in/es/blog/machine-learning-pipelines-for-web-developers" />
-<link rel="alternate" hreflang="x-default" href="https://ladestack.in/blog/machine-learning-pipelines-for-web-developers" />
-```
-
-- **Reciprocity:** Every localized sibling links back to every other sibling and to `en` as `x-default`.
-- **Validation:** Executed and passed via `npm run test:i18n` (auditing all 99 core pages and all 63 multilingual blog article variants).
-
----
-
-### 4. Technical Editorial Integrity & Native Terminology Standards
-
-1. **Terminology Preservation:** Technical terms (e.g., `pgvector`, `HNSW`, `BM25`, `LoRA`, `ONNX Runtime Web`, `WebGPU`, `Zod`, `Cosine Similarity`) are consistently preserved in English code syntax and standard developer vernacular across Japanese, Korean, Chinese, Russian, Turkish, French, Portuguese, and Spanish.
-2. **Grammar & Flow:** Localized articles avoid machine-translation artifacts, preserving full contextual nuance, idioms, and natural sentence structures.
-3. **Structured Heading Anchors:** Heading anchors are generated cleanly, ensuring Table of Contents navigation functions smoothly across all localized versions.
+Automated tests in `scripts/test-phase3-blog.mjs` and `scripts/audit-english-routes.mjs` verify that:
+1. Every multilingual article in every locale includes exactly 10 reciprocal hreflang links (9 localized versions + 1 `x-default` pointing to the English URL).
+2. Every English-only article contains exactly 0 alternate hreflang tags, preventing search crawler confusion.
+3. Every page declares its correct self-referencing canonical URL matching its locale path.
