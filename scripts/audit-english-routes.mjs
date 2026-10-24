@@ -28,8 +28,8 @@ const LOCALIZED_SUBPAGES = [
 
 const ENGLISH_ONLY_SUBPAGES = [
   // Legacy blog posts that are retained as English-only without synthetic machine translations
-  { path: 'blog/clean-code-principles/index.html', canonical: 'https://ladestack.in/blog/clean-code-principles', expectedHreflangs: 0 },
-  { path: 'blog/tailwind-css-best-practices/index.html', canonical: 'https://ladestack.in/blog/tailwind-css-best-practices', expectedHreflangs: 0 },
+  { path: 'blog/future-of-ai-in-software-development/index.html', canonical: 'https://ladestack.in/blog/future-of-ai-in-software-development', expectedHreflangs: 0 },
+  { path: 'blog/building-ai-powered-code-review-systems/index.html', canonical: 'https://ladestack.in/blog/building-ai-powered-code-review-systems', expectedHreflangs: 0 },
 ];
 
 let failed = false;
