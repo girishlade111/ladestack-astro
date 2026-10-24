@@ -22,29 +22,39 @@ import { blogPosts } from '../src/data/blogPosts.ts';
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
 
-// 5 topics translated into all 9 languages (45 articles)
+// 7 topics translated into all 9 languages (63 articles)
 const MULTILINGUAL_TOPICS = [
   'gb-coder-dual-engine-architecture',
   'client-side-pdf-manipulation-webassembly',
   'modern-web-image-compression-standards',
   'api-rate-limiting-throttling-strategies',
   'rest-vs-graphql-choosing-right-api-paradigm',
+  'machine-learning-pipelines-for-web-developers',
+  'building-rag-applications-vector-databases',
 ];
 
-// 3 English-only modernized articles
+// 6 English-only modernized articles
 const ENGLISH_ONLY_MODERNIZED = [
   'zero-trust-security-web-applications',
   'building-ai-powered-code-review-systems',
   'future-of-ai-in-software-development',
+  'generative-ai-for-content-creation',
+  'fine-tuning-llms-domain-specific-tasks',
+  'multi-tenant-saas-architecture-patterns',
 ];
 
-// The 5 modernized legacy slugs
+// The 10 modernized legacy slugs (5 from Phase 3C + 5 from Phase 3D-A)
 const MODERNIZED_LEGACY_SLUGS = [
   'api-rate-limiting-throttling-strategies',
   'rest-vs-graphql-choosing-right-api-paradigm',
   'zero-trust-security-web-applications',
   'building-ai-powered-code-review-systems',
   'future-of-ai-in-software-development',
+  'machine-learning-pipelines-for-web-developers',
+  'generative-ai-for-content-creation',
+  'building-rag-applications-vector-databases',
+  'fine-tuning-llms-domain-specific-tasks',
+  'multi-tenant-saas-architecture-patterns',
 ];
 
 let errors = 0;
