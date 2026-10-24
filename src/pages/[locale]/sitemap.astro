@@ -1,0 +1,17 @@
+---
+/**
+ * /[locale]/sitemap — Localized Site Index (8 Non-Default Locales)
+ */
+import SitemapPage from '../../components/pages/SitemapPage.astro';
+import { NON_DEFAULT_LOCALES, type Locale } from '../../i18n/config';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+---
+
+<SitemapPage locale={locale} />
