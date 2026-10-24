@@ -175,8 +175,8 @@ for (const legacy of blogPosts) {
   }
 }
 
-assert(legacyModernizedCount === 5, `Exactly 5 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
-assert(legacyRetainedCount === 22, `Exactly 22 legacy fallback articles preserved (got ${legacyRetainedCount})`);
+assert(legacyModernizedCount === 10, `Exactly 10 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
+assert(legacyRetainedCount === 17, `Exactly 17 legacy fallback articles preserved (got ${legacyRetainedCount})`);
 assert(legacyModernizedCount + legacyRetainedCount === 27, `Total 27 legacy canonical blog URLs accounted for (got ${legacyModernizedCount + legacyRetainedCount})`);
 
 console.log('\n--- 5. Validating Historic Numeric Redirects (/blog/1 through /blog/6) ---');
@@ -201,20 +201,23 @@ const coverImages = [
   'public/blog-covers/zero-trust-security.svg',
   'public/blog-covers/ai-code-generation.svg',
   'public/blog-covers/ai-development.svg',
+  'public/blog-covers/ai-ml-engineering.svg',
+  'public/blog-covers/ai-nocode-generation.svg',
+  'public/blog-covers/api-architecture.svg',
 ];
 
 for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 7. Validating Sitemap Inclusion of All 48 Markdown Articles ---');
+console.log('\n--- 7. Validating Sitemap Inclusion of All 69 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
 
-  // Check 5 multilingual topics across 9 locales (45 URLs)
+  // Check 7 multilingual topics across 9 locales (63 URLs)
   for (const slug of MULTILINGUAL_TOPICS) {
     for (const loc of LOCALES) {
       const expectedUrl = loc === 'en'
@@ -224,7 +227,7 @@ if (fs.existsSync(sitemapPath)) {
     }
   }
 
-  // Check 3 English-only modernized topics (3 URLs)
+  // Check 6 English-only modernized topics (6 URLs)
   for (const slug of ENGLISH_ONLY_MODERNIZED) {
     const expectedUrl = `https://ladestack.in/blog/${slug}`;
     assert(sitemapXml.includes(expectedUrl), `Sitemap includes English-only ${expectedUrl}`);
@@ -232,9 +235,9 @@ if (fs.existsSync(sitemapPath)) {
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3C BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3D-A BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3C BLOG TESTS PASSED PERFECTLY (48 MARKDOWN + 22 LEGACY VERIFIED)!');
+  console.log('\n🎉 ALL PHASE 3D-A BLOG TESTS PASSED PERFECTLY (69 MARKDOWN + 17 LEGACY VERIFIED)!');
   process.exit(0);
 }
