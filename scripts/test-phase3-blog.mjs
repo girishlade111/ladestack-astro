@@ -17,7 +17,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import { blogPosts } from '../src/data/blogPosts.js';
+import { blogPosts } from '../src/data/blogPosts.ts';
 
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
