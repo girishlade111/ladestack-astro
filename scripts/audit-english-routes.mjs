@@ -14,6 +14,7 @@ const LOCALIZED_SUBPAGES = [
   { path: 'gb-coder/index.html', canonical: 'https://ladestack.in/gb-coder', expectedHreflangs: 10 },
   { path: 'apps/index.html', canonical: 'https://ladestack.in/apps', expectedHreflangs: 10 },
   { path: 'docs/index.html', canonical: 'https://ladestack.in/docs', expectedHreflangs: 10 },
+  { path: 'blog/index.html', canonical: 'https://ladestack.in/blog', expectedHreflangs: 10 },
   { path: 'contact/index.html', canonical: 'https://ladestack.in/contact', expectedHreflangs: 10 },
   { path: 'support/index.html', canonical: 'https://ladestack.in/support', expectedHreflangs: 10 },
   { path: 'privacy/index.html', canonical: 'https://ladestack.in/privacy', expectedHreflangs: 10 },
@@ -22,7 +23,7 @@ const LOCALIZED_SUBPAGES = [
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
-  { path: 'blog/index.html', canonical: 'https://ladestack.in/blog', expectedHreflangs: 0 },
+  { path: 'blog/client-side-pdf-manipulation-webassembly/index.html', canonical: 'https://ladestack.in/blog/client-side-pdf-manipulation-webassembly', expectedHreflangs: 0 },
 ];
 
 let failed = false;

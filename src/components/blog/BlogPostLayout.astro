@@ -46,37 +46,35 @@ const updatedDateFormatted = data.updatedAt
     })
   : null;
 
-// Build multilingual alternate URLs map for language switcher & hreflangs
+// Build multilingual alternate URLs map for language switcher
 const alternateUrls: Partial<Record<Locale, string>> = {};
-const hreflangList: { lang: string; href: string }[] = [];
-
-// Populate from translations found in collection
 for (const translation of allTranslations) {
   const transLoc = translation.data.locale;
-  const transUrl = getPostUrl(translation.data.slug, transLoc);
-  const transPath = getPostPath(translation.data.slug, transLoc);
-  alternateUrls[transLoc] = transPath;
-  hreflangList.push({ lang: transLoc, href: transUrl });
+  alternateUrls[transLoc] = getPostPath(translation.data.slug, transLoc);
 }
-
-// Ensure self is in alternateUrls
 if (!alternateUrls[locale]) {
   alternateUrls[locale] = getPostPath(data.slug, locale);
-  hreflangList.push({ lang: locale, href: canonical });
 }
 
-// Add x-default pointing to English version if available
-const englishTranslation = allTranslations.find((t) => t.data.locale === DEFAULT_LOCALE);
-if (englishTranslation) {
-  hreflangList.push({
-    lang: 'x-default',
-    href: getPostUrl(englishTranslation.data.slug, DEFAULT_LOCALE),
-  });
-} else if (locale === DEFAULT_LOCALE) {
-  hreflangList.push({
-    lang: 'x-default',
-    href: canonical,
-  });
+// Generate hreflangs ONLY when real multiple translations exist
+const hreflangList: { lang: string; href: string }[] = [];
+if (allTranslations.length > 1) {
+  for (const translation of allTranslations) {
+    const transLoc = translation.data.locale;
+    hreflangList.push({
+      lang: transLoc,
+      href: getPostUrl(translation.data.slug, transLoc),
+    });
+  }
+
+  // Add x-default pointing to English if available
+  const englishTranslation = allTranslations.find((t) => t.data.locale === DEFAULT_LOCALE);
+  if (englishTranslation) {
+    hreflangList.push({
+      lang: 'x-default',
+      href: getPostUrl(englishTranslation.data.slug, DEFAULT_LOCALE),
+    });
+  }
 }
 
 // Filter TOC headings (H2 and H3 only)
