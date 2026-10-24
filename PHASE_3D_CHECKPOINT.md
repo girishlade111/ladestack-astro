@@ -93,8 +93,8 @@
 |:---:|:---|:---|:---:|:---:|:---|:---:|
 | **1** | `building-subscription-billing-systems` | SaaS Architecture | 2024-07-28 | `VERIFIED` | `src/content/blog/en/building-subscription-billing-systems.md` | Target Topic 1 (ja, ko, zh, ru, tr, fr, pt, es) |
 | **2** | `scaling-saas-applications-million-users` | SaaS Architecture | 2024-08-05 | `VERIFIED` | `src/content/blog/en/scaling-saas-applications-million-users.md` | None (English only in 3D-B) |
-| **3** | `baas-platforms-compared-firebase-supabase-appwrite` | Backend as a Service | 2024-08-12 | `IN_PROGRESS` | `src/content/blog/en/baas-platforms-compared-firebase-supabase-appwrite.md` | Target Topic 2 (ja, ko, zh, ru, tr, fr, pt, es) |
-| **4** | `building-serverless-backends-with-baas` | Backend as a Service | 2024-08-18 | `NOT_STARTED` | `src/content/blog/en/building-serverless-backends-with-baas.md` | None (English only in 3D-B) |
+| **3** | `baas-platforms-compared-firebase-supabase-appwrite` | Backend as a Service | 2024-08-12 | `VERIFIED` | `src/content/blog/en/baas-platforms-compared-firebase-supabase-appwrite.md` | Target Topic 2 (ja, ko, zh, ru, tr, fr, pt, es) |
+| **4** | `building-serverless-backends-with-baas` | Backend as a Service | 2024-08-18 | `IN_PROGRESS` | `src/content/blog/en/building-serverless-backends-with-baas.md` | None (English only in 3D-B) |
 | **5** | `real-time-data-sync-backend-services` | Backend as a Service | 2024-08-25 | `NOT_STARTED` | `src/content/blog/en/real-time-data-sync-backend-services.md` | None (English only in 3D-B) |
 
 ---
