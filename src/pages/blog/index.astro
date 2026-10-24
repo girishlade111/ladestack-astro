@@ -6,10 +6,15 @@
  */
 import { getCollection } from 'astro:content';
 import BlogIndexPage from '../../components/blog/BlogIndexPage.astro';
+import { blogPosts } from '../../data/blogPosts';
 
 const posts = await getCollection('blog', ({ data }) => {
   return !data.draft && data.locale === 'en';
 });
+
+// Identify unmigrated legacy articles for visible archive discoverability
+const markdownSlugs = new Set(posts.map((p) => p.data.slug));
+const legacyFallbackPosts = blogPosts.filter((p) => !markdownSlugs.has(p.slug));
 ---
 
-<BlogIndexPage locale="en" posts={posts} />
+<BlogIndexPage locale="en" posts={posts} legacyPosts={legacyFallbackPosts} />
