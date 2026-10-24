@@ -24,12 +24,16 @@ const LOCALIZED_SUBPAGES = [
   { path: 'blog/gb-coder-dual-engine-architecture/index.html', canonical: 'https://ladestack.in/blog/gb-coder-dual-engine-architecture', expectedHreflangs: 10 },
   { path: 'blog/client-side-pdf-manipulation-webassembly/index.html', canonical: 'https://ladestack.in/blog/client-side-pdf-manipulation-webassembly', expectedHreflangs: 10 },
   { path: 'blog/modern-web-image-compression-standards/index.html', canonical: 'https://ladestack.in/blog/modern-web-image-compression-standards', expectedHreflangs: 10 },
+  // Phase 3C Modernized Multilingual Articles (all 9 languages localized)
+  { path: 'blog/api-rate-limiting-throttling-strategies/index.html', canonical: 'https://ladestack.in/blog/api-rate-limiting-throttling-strategies', expectedHreflangs: 10 },
+  { path: 'blog/rest-vs-graphql-choosing-right-api-paradigm/index.html', canonical: 'https://ladestack.in/blog/rest-vs-graphql-choosing-right-api-paradigm', expectedHreflangs: 10 },
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
-  // Legacy blog posts that are retained as English-only without synthetic machine translations
-  { path: 'blog/future-of-ai-in-software-development/index.html', canonical: 'https://ladestack.in/blog/future-of-ai-in-software-development', expectedHreflangs: 0 },
+  // English-only modernized articles without false synthetic translations
+  { path: 'blog/zero-trust-security-web-applications/index.html', canonical: 'https://ladestack.in/blog/zero-trust-security-web-applications', expectedHreflangs: 0 },
   { path: 'blog/building-ai-powered-code-review-systems/index.html', canonical: 'https://ladestack.in/blog/building-ai-powered-code-review-systems', expectedHreflangs: 0 },
+  { path: 'blog/future-of-ai-in-software-development/index.html', canonical: 'https://ladestack.in/blog/future-of-ai-in-software-development', expectedHreflangs: 0 },
 ];
 
 let failed = false;
