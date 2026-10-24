@@ -1,0 +1,25 @@
+---
+/**
+ * /[locale]/apps — Localized Products & Utilities Catalog Route
+ * Statically renders localized Products pages for all 8 non-default languages:
+ * ja, ko, zh, ru, tr, fr, pt, es.
+ */
+import type { GetStaticPaths } from 'astro';
+import AppsPage from '../../../components/pages/AppsPage.astro';
+import { NON_DEFAULT_LOCALES, type Locale } from '../../../i18n/config';
+
+export const getStaticPaths = (() => {
+  return NON_DEFAULT_LOCALES.map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<AppsPage locale={locale} />

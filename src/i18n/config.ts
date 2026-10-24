@@ -105,7 +105,7 @@ export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
   '/': LOCALES, // Homepage exists in all 9 languages
   '/about': LOCALES,
   '/gb-coder': LOCALES,
-  '/apps': ['en'],
+  '/apps': LOCALES,
   '/docs': ['en'],
   '/blog': ['en'],
   '/contact': ['en'],

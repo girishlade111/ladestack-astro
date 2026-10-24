@@ -1,0 +1,259 @@
+---
+/**
+ * src/components/pages/AppsPage.astro
+ * Reusable, fully localized Products & Utilities catalog showcase component.
+ * Supports all 9 languages with native typography, full accessibility,
+ * self-referencing canonicals, and reciprocal hreflang tags.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
+import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
+import { getAppsData } from '../../i18n/pages/apps';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const data = getAppsData(locale);
+const canonicalUrl = `https://ladestack.in${getLocalizedPath('/apps', locale)}`;
+const hreflangs = getHreflangLinks('/apps', LOCALES);
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: data.seo.title,
+    description: data.seo.description,
+    url: canonicalUrl,
+    inLanguage: locale,
+    publisher: {
+      '@type': 'Organization',
+      name: 'LadeStack',
+      url: 'https://ladestack.in',
+      logo: 'https://ladestack.in/favicon.svg',
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'GB Coder',
+          description: data.flagship.description,
+          url: `https://ladestack.in${getLocalizedPath('/gb-coder', locale)}`,
+        },
+        ...data.utilities.items.map((item, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 2,
+          name: item.title,
+          description: item.description,
+          url: item.url,
+        })),
+      ],
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={data.seo.title}
+  description={data.seo.description}
+  canonical={canonicalUrl}
+  locale={locale}
+  hreflangs={hreflangs}
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    url: canonicalUrl,
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background text-foreground">
+    {/* Minimal Header */}
+    <section class="pt-20 pb-12 sm:pt-24 sm:pb-16 border-b border-border bg-surface-muted/20">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Badge variant="brand" size="sm" class="mb-4">{data.hero.badge}</Badge>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          {data.hero.title}
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          {data.hero.description}
+        </p>
+      </div>
+    </section>
+
+    {/* FLAGSHIP HERO SPOTLIGHT: GB CODER */}
+    <section class="py-12 sm:py-16 border-b border-border">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-2 mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+          <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-brand">
+            {data.flagship.eyebrow}
+          </h2>
+        </div>
+
+        <div class="rounded-2xl border border-brand/30 bg-surface p-6 sm:p-10 shadow-soft relative overflow-hidden group">
+          <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
+            <div class="max-w-2xl">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center p-2 text-brand">
+                  <Icon name="code-2" class="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+                    {data.flagship.title}
+                  </h3>
+                  <p class="text-xs font-mono text-muted-foreground">{data.flagship.sub}</p>
+                </div>
+              </div>
+
+              <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mb-6">
+                {data.flagship.description}
+              </p>
+
+              {/* Verified Architecture Bullets */}
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+                {data.flagship.bullets.map((bullet) => (
+                  <div class="flex items-start gap-2 text-xs text-foreground">
+                    <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                    <span><strong>{bullet.title}</strong> {bullet.desc}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div class="flex flex-wrap items-center gap-3">
+                <Button href="https://code.ladestack.in/" target="_blank" size="md">
+                  <span>{data.flagship.ctaStudio}</span>
+                  <Icon name="arrow-up-right" class="w-4 h-4" />
+                </Button>
+                <Button href={getLocalizedPath('/gb-coder', locale)} variant="outline" size="md">
+                  <span>{data.flagship.ctaFeatures}</span>
+                  <Icon name="arrow-right" class="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Quick Status Box */}
+            <div class="w-full lg:w-72 rounded-xl border border-border bg-background p-5 text-xs font-mono space-y-3 shrink-0">
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">{data.flagship.statusLabels.statusKey}</span>
+                <span class="text-emerald-500 font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  {data.flagship.statusLabels.statusValue}
+                </span>
+              </div>
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">{data.flagship.statusLabels.licenseKey}</span>
+                <span class="text-foreground">{data.flagship.statusLabels.licenseValue}</span>
+              </div>
+              <div class="flex items-center justify-between pb-2 border-b border-border">
+                <span class="text-muted-foreground">{data.flagship.statusLabels.privacyKey}</span>
+                <span class="text-foreground">{data.flagship.statusLabels.privacyValue}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-muted-foreground">{data.flagship.statusLabels.telemetryKey}</span>
+                <span class="text-foreground">{data.flagship.statusLabels.telemetryValue}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* UNDERSTATED UTILITIES SHOWCASE */}
+    <section class="py-12 sm:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-muted-foreground"></span>
+              <h2 class="text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground">
+                {data.utilities.eyebrow}
+              </h2>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground tracking-tight">
+              {data.utilities.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-muted-foreground mt-1">
+              {data.utilities.description}
+            </p>
+          </div>
+          <span class="text-xs font-mono text-muted-foreground">
+            {data.utilities.countLabel}
+          </span>
+        </div>
+
+        {/* Compact List / Card Presentation */}
+        <div class="space-y-3">
+          {data.utilities.items.map((app) => (
+            <a
+              href={app.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block rounded-xl border border-border bg-surface p-5 sm:p-6 transition-all duration-200 hover:border-brand/40 hover:bg-surface-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start sm:items-center gap-4">
+                  <div class="w-10 h-10 rounded-lg border border-border bg-surface-muted flex items-center justify-center p-2 text-foreground group-hover:border-brand/40 group-hover:text-brand transition-colors shrink-0">
+                    <img src={app.icon} alt={app.iconAlt} loading="lazy" class="w-6 h-6 object-contain" />
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <h4 class="text-base font-semibold text-foreground group-hover:text-brand transition-colors">
+                        {app.title}
+                      </h4>
+                      <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                        {data.utilities.liveBadge}
+                      </span>
+                    </div>
+                    <p class="text-xs text-muted-foreground leading-relaxed line-clamp-1 sm:line-clamp-none">
+                      {app.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4 sm:shrink-0 self-end sm:self-center">
+                  <span class="text-xs font-mono text-muted-foreground hidden md:inline">
+                    {app.domain}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-semibold text-brand group-hover:underline">
+                    <span>{data.utilities.launchTool}</span>
+                    <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ENGINEERING INTEGRITY NOTE */}
+    <section class="py-12 border-t border-border bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h3 class="text-sm font-semibold text-foreground mb-2">
+          {data.policy.title}
+        </h3>
+        <p class="text-xs text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          {data.policy.description}
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
