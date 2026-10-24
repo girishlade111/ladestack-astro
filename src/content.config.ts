@@ -11,6 +11,14 @@ const blog = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/blog',
+    generateId: ({ entry, data }) => {
+      // Formats unique ID as locale/slug or file path without extension
+      const fileSlug = entry.replace(/\\/g, '/').replace(/\.[^/.]+$/, '');
+      if (data?.locale && data?.slug) {
+        return `${data.locale}/${data.slug}`;
+      }
+      return fileSlug;
+    },
   }),
   schema: z.object({
     title: z.string().min(5, 'Title must be at least 5 characters'),
