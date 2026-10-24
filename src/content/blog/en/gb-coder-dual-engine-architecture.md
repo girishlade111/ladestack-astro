@@ -6,7 +6,7 @@ slug: "gb-coder-dual-engine-architecture"
 translationKey: "gb-coder-dual-engine-architecture"
 author: "Girish Lade"
 publishedAt: "2026-03-15"
-updatedAt: "2026-03-20"
+updatedAt: "2026-10-24"
 category: "Architecture"
 tags: ["GB Coder", "Architecture", "JavaScript", "Monaco Editor", "WebAssembly", "Web IDE"]
 coverImage: "/blog-covers/gb-coder-architecture.svg"
@@ -178,9 +178,9 @@ window.addEventListener('message', (event: MessageEvent) => {
 | Architectural Property | Traditional Cloud IDE (Docker) | Naive In-Browser Eval | GB Coder Dual-Engine |
 |:---|:---:|:---:|:---:|
 | **Execution Latency** | 300ms – 1200ms (network) | < 1ms (unsafe) | **< 2ms (local memory)** |
-| **Offline Capability** | ❌ Requires internet | ⚠️ Fragile | **✅ 100% Offline Capable** |
+| **Offline Execution** | ❌ Requires internet | ⚠️ Fragile | **✅ Core Editor & Sandbox Run Offline** |
 | **Crash Protection** | ✅ Host protected | ❌ Entire browser tab freezes | **✅ Host protected by iframe** |
-| **Data Privacy** | ⚠️ Code sent to cloud VM | ✅ Local only | **✅ 100% Zero-Upload** |
+| **Code Payload Privacy** | ⚠️ Code sent to cloud VM | ✅ Local only | **✅ Local Client Compute (No server payload transit)** |
 | **Server Cost Per User** | $5 – $25 / month | $0 | **$0 (Client Compute)** |
 
 ---
