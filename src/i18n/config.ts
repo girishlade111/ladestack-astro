@@ -107,7 +107,7 @@ export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
   '/gb-coder': LOCALES,
   '/apps': LOCALES,
   '/docs': LOCALES,
-  '/blog': ['en'],
+  '/blog': LOCALES,
   '/contact': LOCALES,
   '/support': LOCALES,
   '/privacy': LOCALES,

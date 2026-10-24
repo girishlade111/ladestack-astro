@@ -13,9 +13,10 @@ import { useTranslations, getLocalizedPath } from '../i18n/utils';
 export interface Props {
   currentLang?: string;
   locale?: Locale;
+  alternateUrls?: Partial<Record<Locale, string>>;
 }
 
-const { currentLang, locale } = Astro.props;
+const { currentLang, locale, alternateUrls } = Astro.props;
 const activeLocale: Locale =
   locale ?? (isValidLocale(currentLang) ? currentLang : DEFAULT_LOCALE);
 
@@ -91,7 +92,7 @@ const navLinks = [
       </button>
 
       {/* Language Switcher */}
-      <LanguageSwitcher currentLocale={activeLocale} />
+      <LanguageSwitcher currentLocale={activeLocale} alternateUrls={alternateUrls} />
 
       {/* Theme Toggle */}
       <button
@@ -172,7 +173,7 @@ const navLinks = [
         <p class="text-xs font-mono text-muted-foreground uppercase tracking-wider mb-2">
           {t('nav.languageSelect')}
         </p>
-        <LanguageSwitcher currentLocale={activeLocale} class="w-full" />
+        <LanguageSwitcher currentLocale={activeLocale} alternateUrls={alternateUrls} class="w-full" />
       </div>
     </div>
 

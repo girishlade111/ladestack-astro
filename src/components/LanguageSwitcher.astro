@@ -18,12 +18,14 @@ import {
 export interface Props {
   currentLocale?: Locale;
   currentPath?: string;
+  alternateUrls?: Partial<Record<Locale, string>>;
   class?: string;
 }
 
 const {
   currentLocale = DEFAULT_LOCALE,
   currentPath = Astro.url.pathname,
+  alternateUrls,
   class: className = '',
 } = Astro.props;
 
@@ -31,7 +33,9 @@ const currentConfig = LOCALE_CONFIG[currentLocale] ?? LOCALE_CONFIG[DEFAULT_LOCA
 const basePath = stripLocaleFromPath(currentPath);
 const t = useTranslations(currentLocale);
 
-const availableLocales = getAvailableLocalesForRoute(basePath);
+const availableLocales = alternateUrls
+  ? (Object.keys(alternateUrls) as Locale[])
+  : getAvailableLocalesForRoute(basePath);
 const isFullyTranslated = availableLocales.length === LOCALES.length;
 ---
 
@@ -64,7 +68,9 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
     {
       !isFullyTranslated && (
         <div class="px-3 py-1.5 bg-surface-muted/40 border-b border-border/60 text-[10px] text-muted-foreground leading-tight">
-          This section is currently English-only. Non-English options navigate to the localized homepage.
+          {alternateUrls
+            ? 'Article is available in selected languages. Other options navigate to the localized blog index.'
+            : 'This section is currently available in selected languages.'}
         </div>
       )
     }
@@ -74,15 +80,31 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
         LOCALES.map((loc) => {
           const cfg = LOCALE_CONFIG[loc];
           const isCurrent = loc === currentLocale;
-          const hasDirectTranslation = isRouteAvailableInLocale(basePath, loc);
 
-          // Target URL: direct page if translation exists, otherwise target locale homepage
-          const targetUrl = hasDirectTranslation
-            ? getLocalizedPath(basePath, loc)
-            : getLocalizedPath('/', loc);
+          let targetUrl: string;
+          let hasDirectTranslation: boolean;
+          let fallbackLabel: string;
+
+          if (alternateUrls) {
+            if (alternateUrls[loc]) {
+              targetUrl = alternateUrls[loc]!;
+              hasDirectTranslation = true;
+              fallbackLabel = '';
+            } else {
+              targetUrl = getLocalizedPath('/blog', loc);
+              hasDirectTranslation = false;
+              fallbackLabel = 'Blog';
+            }
+          } else {
+            hasDirectTranslation = isRouteAvailableInLocale(basePath, loc);
+            targetUrl = hasDirectTranslation
+              ? getLocalizedPath(basePath, loc)
+              : getLocalizedPath('/', loc);
+            fallbackLabel = 'Home';
+          }
 
           const titleAttr = !hasDirectTranslation
-            ? `This section is English-only. Opens ${cfg.name} homepage.`
+            ? `${cfg.name}: Navigates to ${fallbackLabel.toLowerCase()}`
             : `${cfg.name} (${cfg.englishName})`;
 
           return (
@@ -106,7 +128,7 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
               <div class="flex items-center gap-1.5">
                 {!hasDirectTranslation && (
                   <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-surface-muted text-muted-foreground">
-                    Home
+                    {fallbackLabel}
                   </span>
                 )}
                 <span class="font-mono text-[10px] text-muted-foreground uppercase">{loc}</span>
