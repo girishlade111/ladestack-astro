@@ -22,7 +22,7 @@ import { blogPosts } from '../src/data/blogPosts.ts';
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
 
-// 7 topics translated into all 9 languages (63 articles)
+// 9 topics translated into all 9 languages (81 articles)
 const MULTILINGUAL_TOPICS = [
   'gb-coder-dual-engine-architecture',
   'client-side-pdf-manipulation-webassembly',
@@ -31,9 +31,11 @@ const MULTILINGUAL_TOPICS = [
   'rest-vs-graphql-choosing-right-api-paradigm',
   'machine-learning-pipelines-for-web-developers',
   'building-rag-applications-vector-databases',
+  'building-subscription-billing-systems',
+  'baas-platforms-compared-firebase-supabase-appwrite',
 ];
 
-// 6 English-only modernized articles
+// 9 English-only modernized articles
 const ENGLISH_ONLY_MODERNIZED = [
   'zero-trust-security-web-applications',
   'building-ai-powered-code-review-systems',
@@ -41,9 +43,12 @@ const ENGLISH_ONLY_MODERNIZED = [
   'generative-ai-for-content-creation',
   'fine-tuning-llms-domain-specific-tasks',
   'multi-tenant-saas-architecture-patterns',
+  'scaling-saas-applications-million-users',
+  'building-serverless-backends-with-baas',
+  'real-time-data-sync-backend-services',
 ];
 
-// The 10 modernized legacy slugs (5 from Phase 3C + 5 from Phase 3D-A)
+// The 15 modernized legacy slugs (5 from Phase 3C + 5 from Phase 3D-A + 5 from Phase 3D-B)
 const MODERNIZED_LEGACY_SLUGS = [
   'api-rate-limiting-throttling-strategies',
   'rest-vs-graphql-choosing-right-api-paradigm',
@@ -55,6 +60,11 @@ const MODERNIZED_LEGACY_SLUGS = [
   'building-rag-applications-vector-databases',
   'fine-tuning-llms-domain-specific-tasks',
   'multi-tenant-saas-architecture-patterns',
+  'building-subscription-billing-systems',
+  'scaling-saas-applications-million-users',
+  'baas-platforms-compared-firebase-supabase-appwrite',
+  'building-serverless-backends-with-baas',
+  'real-time-data-sync-backend-services',
 ];
 
 let errors = 0;
@@ -175,8 +185,8 @@ for (const legacy of blogPosts) {
   }
 }
 
-assert(legacyModernizedCount === 10, `Exactly 10 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
-assert(legacyRetainedCount === 17, `Exactly 17 legacy fallback articles preserved (got ${legacyRetainedCount})`);
+assert(legacyModernizedCount === 15, `Exactly 15 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
+assert(legacyRetainedCount === 12, `Exactly 12 legacy fallback articles preserved (got ${legacyRetainedCount})`);
 assert(legacyModernizedCount + legacyRetainedCount === 27, `Total 27 legacy canonical blog URLs accounted for (got ${legacyModernizedCount + legacyRetainedCount})`);
 
 console.log('\n--- 5. Validating Historic Numeric Redirects (/blog/1 through /blog/6) ---');
@@ -204,20 +214,22 @@ const coverImages = [
   'public/blog-covers/ai-ml-engineering.svg',
   'public/blog-covers/ai-nocode-generation.svg',
   'public/blog-covers/api-architecture.svg',
+  'public/blog-covers/kubernetes-scale.svg',
+  'public/blog-covers/cloud-security.svg',
 ];
 
 for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 7. Validating Sitemap Inclusion of All 69 Markdown Articles ---');
+console.log('\n--- 7. Validating Sitemap Inclusion of All 90 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
 
-  // Check 7 multilingual topics across 9 locales (63 URLs)
+  // Check 9 multilingual topics across 9 locales (81 URLs)
   for (const slug of MULTILINGUAL_TOPICS) {
     for (const loc of LOCALES) {
       const expectedUrl = loc === 'en'
@@ -227,7 +239,7 @@ if (fs.existsSync(sitemapPath)) {
     }
   }
 
-  // Check 6 English-only modernized topics (6 URLs)
+  // Check 9 English-only modernized topics (9 URLs)
   for (const slug of ENGLISH_ONLY_MODERNIZED) {
     const expectedUrl = `https://ladestack.in/blog/${slug}`;
     assert(sitemapXml.includes(expectedUrl), `Sitemap includes English-only ${expectedUrl}`);
@@ -235,9 +247,9 @@ if (fs.existsSync(sitemapPath)) {
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3D-A BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3D-B BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3D-A BLOG TESTS PASSED PERFECTLY (69 MARKDOWN + 17 LEGACY VERIFIED)!');
+  console.log('\n🎉 ALL PHASE 3D-B BLOG TESTS PASSED PERFECTLY (90 MARKDOWN + 12 LEGACY VERIFIED)!');
   process.exit(0);
 }

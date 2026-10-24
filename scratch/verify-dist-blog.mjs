@@ -32,6 +32,6 @@ if (nonEnClean) {
   console.log('All 8 non-English indexes verified clean (0 legacy cards).');
 }
 
-const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 17 && missing.length === 0 && nonEnClean;
+const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 12 && missing.length === 0 && nonEnClean;
 console.log('Legacy Archive Validation Result:', passed ? '✅ PASS' : '❌ FAIL');
 if (!passed) process.exit(1);
