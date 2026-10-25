@@ -93,18 +93,18 @@ All English articles are defined as genuine Markdown entries in `src/content/blo
 
 These 12 legacy articles remain faithfully preserved in `src/data/blogPosts.ts` and `src/data/blogContent.ts`. They resolve at their canonical `/blog/[slug]` URLs without redirect and display in the English blog index `#legacy-archive` section:
 
-1. `modern-css-layout-techniques-grid-flexbox`
-2. `micro-frontends-architecture-implementation`
-3. `web-performance-optimization-core-web-vitals`
-4. `progressive-web-apps-offline-first`
-5. `web-security-best-practices-modern-applications`
-6. `state-management-react-applications`
-7. `jamstack-architecture-modern-web-development`
-8. `docker-containers-web-developers`
-9. `ci-cd-pipelines-automated-deployment`
-10. `seo-optimization-modern-web-apps`
-11. `accessible-web-design-wcag-compliance`
-12. `monorepo-development-turborepo-nx`
+1. `building-api-gateways-microservices`
+2. `cloud-cost-optimization-strategies-startups`
+3. `multi-cloud-architecture-aws-azure-gcp`
+4. `containers-vs-vms-when-to-use-each`
+5. `optimizing-vm-performance-production-workloads`
+6. `gitops-managing-infrastructure-with-git`
+7. `building-zero-downtime-deployment-pipelines`
+8. `infrastructure-as-code-terraform-pulumi`
+9. `owasp-top-10-complete-mitigation-guide`
+10. `implementing-oauth2-openid-connect`
+11. `mlops-deploying-ml-models-production`
+12. `monitoring-ai-systems-in-production`
 
 ---
 
@@ -127,15 +127,15 @@ These 12 legacy articles remain faithfully preserved in `src/data/blogPosts.ts` 
 | `rest-vs-graphql-choosing-right-api-paradigm` | Migrated (3C) | Markdown Collections | ✅ YES |
 | `api-rate-limiting-throttling-strategies` | Migrated (3C) | Markdown Collections | ✅ YES |
 | `zero-trust-security-web-applications` | Migrated (3C) | Markdown Collections | ✅ YES |
-| `modern-css-layout-techniques-grid-flexbox` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `micro-frontends-architecture-implementation` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `web-performance-optimization-core-web-vitals` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `progressive-web-apps-offline-first` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `web-security-best-practices-modern-applications` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `state-management-react-applications` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `jamstack-architecture-modern-web-development` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `docker-containers-web-developers` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `ci-cd-pipelines-automated-deployment` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `seo-optimization-modern-web-apps` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `accessible-web-design-wcag-compliance` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
-| `monorepo-development-turborepo-nx` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `building-api-gateways-microservices` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `cloud-cost-optimization-strategies-startups` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `multi-cloud-architecture-aws-azure-gcp` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `containers-vs-vms-when-to-use-each` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `optimizing-vm-performance-production-workloads` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `gitops-managing-infrastructure-with-git` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `building-zero-downtime-deployment-pipelines` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `infrastructure-as-code-terraform-pulumi` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `owasp-top-10-complete-mitigation-guide` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `implementing-oauth2-openid-connect` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `mlops-deploying-ml-models-production` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |
+| `monitoring-ai-systems-in-production` | Retained (Fallback) | Legacy Fallback Engine | ✅ YES |

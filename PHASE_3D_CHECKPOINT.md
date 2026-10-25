@@ -83,8 +83,8 @@
    - 27 preserved canonical legacy URLs
    - 214 total HTML output files in `dist/`
 4. **Next Recommended Batch Slugs (Batch 3):**
-   - `modern-css-layout-techniques-grid-flexbox`
-   - `micro-frontends-architecture-implementation`
-   - `web-performance-optimization-core-web-vitals`
-   - `progressive-web-apps-offline-first`
-   - `web-security-best-practices-modern-applications`
+   - `building-api-gateways-microservices`
+   - `cloud-cost-optimization-strategies-startups`
+   - `multi-cloud-architecture-aws-azure-gcp`
+   - `containers-vs-vms-when-to-use-each`
+   - `optimizing-vm-performance-production-workloads`
