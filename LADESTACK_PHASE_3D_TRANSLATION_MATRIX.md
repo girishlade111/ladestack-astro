@@ -1,40 +1,42 @@
 # LadeStack — Phase 3D Multilingual Translation Matrix
 ## Cross-Locale Content Collections Mapping & Hreflang Cluster Validation
 
-**Sprint Status:** `PHASE_3D_C_COMPLETE`  
+**Sprint Status:** `PHASE_3D_D_COMPLETE`  
 **Date:** October 25, 2026  
-**Total Multilingual Topics:** 11  
+**Total Multilingual Topics:** 13  
 **Supported Locales:** 9 (`en`, `ja`, `ko`, `zh`, `ru`, `tr`, `fr`, `pt`, `es`)  
-**Total Multilingual Documents:** 99 (11 topics × 9 locales)  
-**Total English-Only Documents:** 12  
-**Total Active Markdown Documents:** 111  
+**Total Multilingual Documents:** 117 (13 topics × 9 locales)  
+**Total English-Only Documents:** 17  
+**Total Active Markdown Documents:** 134  
 
 ---
 
 ### 1. Master Multilingual Article Matrix
 
-Each multilingual topic consists of 9 fully synchronized Markdown documents sharing a common `translationKey`:
+Each of the 13 multilingual topics consists of 9 fully synchronized Markdown documents sharing a common `translationKey`:
 
 | Translation Key / Slug | Locale | Localized Title | File Path | Canonical URL |
 |:---|:---:|:---|:---|:---|
-| **building-api-gateways-microservices** | `en` | Building Production API Gateways for Microservices: Routing, Auth, Rate Limiting, and Resilience | `src/content/blog/en/...` | `https://ladestack.in/blog/building-api-gateways-microservices` |
-| *(Topic 10 — Phase 3D-C)* | `ja` | マイクロサービス向けAPIゲートウェイの構築：ルーティング、認証、レート制限、および耐障害性 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/building-api-gateways-microservices` |
-| | `ko` | 마이크로서비스를 위한 API 게이트웨이 구축: 라우팅, 인증, 속도 제한 및 복원력 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/building-api-gateways-microservices` |
-| | `zh` | 构建微服务API网关：路由、身份认证、速率限制与系统韧性 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/building-api-gateways-microservices` |
-| | `ru` | Построение API Gateway для микросервисов: Маршрутизация, Аутентификация, Rate Limiting и Отказоустойчивость | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/building-api-gateways-microservices` |
-| | `tr` | Mikroservisler İçin API Ağ Geçidi (API Gateway) Mimarisi: Yönlendirme, Kimlik Doğrulama, Hız Sınırlama ve Dayanıklılık | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/building-api-gateways-microservices` |
-| | `fr` | Concevoir une API Gateway pour Microservices : Routage, Authentification, Rate Limiting et Résilience | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/building-api-gateways-microservices` |
-| | `pt` | Construindo API Gateways para Microsserviços: Roteamento, Autenticação, Rate Limiting e Resiliência | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/building-api-gateways-microservices` |
-| | `es` | Construyendo un API Gateway para Microservicios: Enrutamiento, Autenticación, Rate Limiting y Resiliencia | `src/content/blog/es/...` | `https://ladestack.in/es/blog/building-api-gateways-microservices` |
-| **cloud-cost-optimization-strategies-startups** | `en` | Cloud Cost Optimization Strategies for Startups: Practical FinOps and Infrastructure Efficiency | `src/content/blog/en/...` | `https://ladestack.in/blog/cloud-cost-optimization-strategies-startups` |
-| *(Topic 11 — Phase 3D-C)* | `ja` | スタートアップのためのクラウドコスト最適化戦略：実践的FinOpsとインフラ効率化 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/cloud-cost-optimization-strategies-startups` |
-| | `ko` | 스타트업을 위한 클라우드 비용 최적화 전략: 실전 FinOps와 인프라 효율화 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/cloud-cost-optimization-strategies-startups` |
-| | `zh` | 初创企业云成本优化策略：实战FinOps与云基础设施效能工程 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/cloud-cost-optimization-strategies-startups` |
-| | `ru` | Стратегии оптимизации облачных расходов для стартапов: Практический FinOps и Инженерия Эффективности | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/cloud-cost-optimization-strategies-startups` |
-| | `tr` | Girişimler İçin Bulut Maliyetlerini Optimize Etme Stratejileri: Uygulamalı FinOps ve Altyapı Verimliliği | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/cloud-cost-optimization-strategies-startups` |
-| | `fr` | Stratégies d'optimisation des coûts cloud pour les startups : FinOps pratique et efficience d'infrastructure | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/cloud-cost-optimization-strategies-startups` |
-| | `pt` | Estratégias de Otimização de Custos em Nuvem para Startups: FinOps Prático e Eficiência de Infraestrutura | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/cloud-cost-optimization-strategies-startups` |
-| | `es` | Estrategias de Optimización de Costes Cloud para Startups: FinOps Práctico y Eficiencia de Infraestructura | `src/content/blog/es/...` | `https://ladestack.in/es/blog/cloud-cost-optimization-strategies-startups` |
+| **gitops-managing-infrastructure-with-git** | `en` | GitOps: Managing Infrastructure and Kubernetes with Git as Single Source of Truth | `src/content/blog/en/...` | `https://ladestack.in/blog/gitops-managing-infrastructure-with-git` |
+| *(Topic 12 — Phase 3D-D)* | `ja` | GitOps：Gitを唯一の信頼できる情報源とするインフラおよびKubernetes管理 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/gitops-managing-infrastructure-with-git` |
+| | `ko` | GitOps: Git을 단일 진실 공급원으로 활용한 인프라 및 쿠버네티스 관리 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/gitops-managing-infrastructure-with-git` |
+| | `zh` | GitOps：以 Git 为唯一可信源管理基础设施与 Kubernetes | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/gitops-managing-infrastructure-with-git` |
+| | `ru` | GitOps: Управление инфраструктурой и Kubernetes с Git как единым источником истины | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/gitops-managing-infrastructure-with-git` |
+| | `tr` | GitOps: Git'i Tek Doğruluk Kaynağı Olarak Kullanarak Altyapı ve Kubernetes Yönetimi | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/gitops-managing-infrastructure-with-git` |
+| | `fr` | GitOps : Gestion des infrastructures et de Kubernetes avec Git comme source unique de vérité | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/gitops-managing-infrastructure-with-git` |
+| | `pt` | GitOps: Gerenciamento de Infraestrutura e Kubernetes com Git como Fonte Única da Verdade | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/gitops-managing-infrastructure-with-git` |
+| | `es` | GitOps: Gestión de Infraestructura y Kubernetes con Git como Única Fuente de Verdad | `src/content/blog/es/...` | `https://ladestack.in/es/blog/gitops-managing-infrastructure-with-git` |
+| **owasp-top-10-complete-mitigation-guide** | `en` | OWASP Top 10: Complete Mitigation Guide for Modern Web Applications | `src/content/blog/en/...` | `https://ladestack.in/blog/owasp-top-10-complete-mitigation-guide` |
+| *(Topic 13 — Phase 3D-D)* | `ja` | OWASP Top 10：最新Webアプリケーション完全脆弱性対策ガイド | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/owasp-top-10-complete-mitigation-guide` |
+| | `ko` | OWASP Top 10: 최신 웹 애플리케이션 취약점 완벽 대응 가이드 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/owasp-top-10-complete-mitigation-guide` |
+| | `zh` | OWASP Top 10：现代 Web 应用程序安全深度防护全指南 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/owasp-top-10-complete-mitigation-guide` |
+| | `ru` | OWASP Top 10: Полное руководство по нейтрализации уязвимостей веб-приложений | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/owasp-top-10-complete-mitigation-guide` |
+| | `tr` | OWASP Top 10: Modern Web Uygulamaları Güvenlik Açıkları ve Eksiksiz Azaltma Kılavuzu | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/owasp-top-10-complete-mitigation-guide` |
+| | `fr` | OWASP Top 10 : Guide complet de remédiation des vulnérabilités des applications web | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/owasp-top-10-complete-mitigation-guide` |
+| | `pt` | OWASP Top 10: Guia Completo de Mitigação de Vulnerabilidades em Aplicações Web | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/owasp-top-10-complete-mitigation-guide` |
+| | `es` | OWASP Top 10: Guía Completa de Mitigación de Vulnerabilidades en Aplicaciones Web | `src/content/blog/es/...` | `https://ladestack.in/es/blog/owasp-top-10-complete-mitigation-guide` |
+| **building-api-gateways-microservices** | `en`–`es` | Building API Gateways for Microservices (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/building-api-gateways-microservices` |
+| **cloud-cost-optimization-strategies-startups** | `en`–`es` | Cloud Cost Optimization Strategies for Startups (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/cloud-cost-optimization-strategies-startups` |
 | **building-subscription-billing-systems** | `en`–`es` | Building Robust Subscription Billing Systems (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/building-subscription-billing-systems` |
 | **baas-platforms-compared-firebase-supabase-appwrite** | `en`–`es` | BaaS Platforms Compared: Architectural Evaluation (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/baas-platforms-compared-firebase-supabase-appwrite` |
 | **machine-learning-pipelines-for-web-developers** | `en`–`es` | Machine Learning Pipelines for Web Developers (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/machine-learning-pipelines-for-web-developers` |
@@ -49,26 +51,22 @@ Each multilingual topic consists of 9 fully synchronized Markdown documents shar
 
 ### 2. English-Only Modernized Articles (No Fake Alternate Hreflang Tags)
 
-These 12 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
+These 17 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
 
-1. `multi-cloud-architecture-aws-azure-gcp` (Phase 3D-C)
-2. `containers-vs-vms-when-to-use-each` (Phase 3D-C)
-3. `optimizing-vm-performance-production-workloads` (Phase 3D-C)
-4. `scaling-saas-applications-million-users` (Phase 3D-B)
-5. `building-serverless-backends-with-baas` (Phase 3D-B)
-6. `real-time-data-sync-backend-services` (Phase 3D-B)
-7. `generative-ai-for-content-creation` (Phase 3D-A)
-8. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
-9. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
-10. `zero-trust-security-web-applications` (Phase 3C)
-11. `building-ai-powered-code-review-systems` (Phase 3C)
-12. `future-of-ai-in-software-development` (Phase 3C)
-
----
-
-### 3. Hreflang Cluster & Reciprocity Verification
-
-Automated tests in `scripts/test-phase3-blog.mjs` and `scripts/audit-english-routes.mjs` verify that:
-1. Every multilingual article in every locale includes exactly 10 reciprocal hreflang links (9 localized versions + 1 `x-default` pointing to the English URL).
-2. Every English-only article contains exactly 0 alternate hreflang tags, preventing search crawler confusion.
-3. Every page declares its correct self-referencing canonical URL matching its locale path.
+1. `building-zero-downtime-deployment-pipelines` (Phase 3D-D)
+2. `infrastructure-as-code-terraform-pulumi` (Phase 3D-D)
+3. `implementing-oauth2-openid-connect` (Phase 3D-D)
+4. `mlops-deploying-ml-models-production` (Phase 3D-D)
+5. `monitoring-ai-systems-in-production` (Phase 3D-D)
+6. `multi-cloud-architecture-aws-azure-gcp` (Phase 3D-C)
+7. `containers-vs-vms-when-to-use-each` (Phase 3D-C)
+8. `optimizing-vm-performance-production-workloads` (Phase 3D-C)
+9. `scaling-saas-applications-million-users` (Phase 3D-B)
+10. `building-serverless-backends-with-baas` (Phase 3D-B)
+11. `real-time-data-sync-backend-services` (Phase 3D-B)
+12. `generative-ai-for-content-creation` (Phase 3D-A)
+13. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
+14. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
+15. `zero-trust-security-web-applications` (Phase 3C)
+16. `building-ai-powered-code-review-systems` (Phase 3C)
+17. `future-of-ai-in-software-development` (Phase 3C)

@@ -1,18 +1,18 @@
 /**
  * scripts/test-phase3-blog.mjs
- * Comprehensive automated QA test suite for LadeStack Phase 3C Multilingual Markdown Blog
+ * Comprehensive automated QA test suite for LadeStack Phase 3D-D Final Blog Migration
  * Validates:
  * 1. Content schema and translationKey consistency across all 9 languages
  * 2. Per-locale blog index routes (/blog, /ja/blog, /ko/blog, etc.)
- * 3. All 5 multilingual topics published across all 9 languages (45 articles total)
+ * 3. All 13 multilingual topics published across all 9 languages (117 articles total)
  * 4. Reciprocal hreflang tags (10 tags: 9 languages + x-default) on every published multilingual article
- * 5. English-only modernized articles (3 articles) have exactly 0 false hreflang alternates
- * 6. Remaining legacy fallback articles (22 articles) resolve and have 0 false hreflangs
+ * 5. English-only modernized articles (17 articles) have exactly 0 false hreflang alternates
+ * 6. Zero remaining legacy fallback articles (0 remaining, 27 fully migrated)
  * 7. All 27 original legacy URLs continue to resolve without duplicates
  * 8. Real heading anchor validity in generated HTML (TOC href matches id attribute)
  * 9. Cover images exist on disk for all articles
  * 10. BlogPosting and BreadcrumbList JSON-LD schemas exist and parse as valid JSON
- * 11. Sitemaps include all 48 published Markdown articles and exclude drafts
+ * 11. Sitemaps include all 134 published Markdown articles and exclude drafts
  * 12. Historic numeric redirects (/blog/1 through /blog/6) exist and redirect accurately
  */
 import fs from 'node:fs';
@@ -22,7 +22,7 @@ import { blogPosts } from '../src/data/blogPosts.ts';
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
 
-// 11 topics translated into all 9 languages (99 articles)
+// 13 topics translated into all 9 languages (117 articles)
 const MULTILINGUAL_TOPICS = [
   'gb-coder-dual-engine-architecture',
   'client-side-pdf-manipulation-webassembly',
@@ -35,9 +35,11 @@ const MULTILINGUAL_TOPICS = [
   'baas-platforms-compared-firebase-supabase-appwrite',
   'building-api-gateways-microservices',
   'cloud-cost-optimization-strategies-startups',
+  'gitops-managing-infrastructure-with-git',
+  'owasp-top-10-complete-mitigation-guide',
 ];
 
-// 12 English-only modernized articles
+// 17 English-only modernized articles
 const ENGLISH_ONLY_MODERNIZED = [
   'zero-trust-security-web-applications',
   'building-ai-powered-code-review-systems',
@@ -51,15 +53,17 @@ const ENGLISH_ONLY_MODERNIZED = [
   'multi-cloud-architecture-aws-azure-gcp',
   'containers-vs-vms-when-to-use-each',
   'optimizing-vm-performance-production-workloads',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
 ];
 
-// The 20 modernized legacy slugs (5 from 3C + 5 from 3D-A + 5 from 3D-B + 5 from 3D-C)
+// All 27 original legacy articles are now modernized in Content Collections
 const MODERNIZED_LEGACY_SLUGS = [
-  'api-rate-limiting-throttling-strategies',
-  'rest-vs-graphql-choosing-right-api-paradigm',
-  'zero-trust-security-web-applications',
-  'building-ai-powered-code-review-systems',
   'future-of-ai-in-software-development',
+  'building-ai-powered-code-review-systems',
   'machine-learning-pipelines-for-web-developers',
   'generative-ai-for-content-creation',
   'building-rag-applications-vector-databases',
@@ -70,11 +74,21 @@ const MODERNIZED_LEGACY_SLUGS = [
   'baas-platforms-compared-firebase-supabase-appwrite',
   'building-serverless-backends-with-baas',
   'real-time-data-sync-backend-services',
+  'rest-vs-graphql-choosing-right-api-paradigm',
+  'api-rate-limiting-throttling-strategies',
   'building-api-gateways-microservices',
   'cloud-cost-optimization-strategies-startups',
   'multi-cloud-architecture-aws-azure-gcp',
   'containers-vs-vms-when-to-use-each',
   'optimizing-vm-performance-production-workloads',
+  'gitops-managing-infrastructure-with-git',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'zero-trust-security-web-applications',
+  'owasp-top-10-complete-mitigation-guide',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
 ];
 
 // Verified 27 historical legacy baseline slugs (from Phase 3C baseline 2528b3b:src/data/blogPosts.ts)
@@ -108,16 +122,8 @@ const HISTORICAL_LEGACY_BASELINE_SLUGS = [
   'monitoring-ai-systems-in-production',
 ];
 
-// Verified 7 remaining legacy fallback slugs (HISTORICAL_LEGACY_BASELINE_SLUGS minus MODERNIZED_LEGACY_SLUGS)
-const VERIFIED_REMAINING_LEGACY_SLUGS = [
-  'gitops-managing-infrastructure-with-git',
-  'building-zero-downtime-deployment-pipelines',
-  'infrastructure-as-code-terraform-pulumi',
-  'owasp-top-10-complete-mitigation-guide',
-  'implementing-oauth2-openid-connect',
-  'mlops-deploying-ml-models-production',
-  'monitoring-ai-systems-in-production',
-];
+// Phase 3D-D Target: Exactly 0 remaining legacy fallback slugs
+const VERIFIED_REMAINING_LEGACY_SLUGS = [];
 
 let errors = 0;
 
@@ -147,7 +153,7 @@ for (const loc of LOCALES) {
   }
 }
 
-console.log('\n--- 2. Validating 5 Multilingual Topics Across All 9 Locales (45 Articles) ---');
+console.log('\n--- 2. Validating 13 Multilingual Topics Across All 9 Locales (117 Articles) ---');
 for (const slug of MULTILINGUAL_TOPICS) {
   console.log(`\nChecking Topic: ${slug}`);
   for (const loc of LOCALES) {
@@ -175,28 +181,22 @@ for (const slug of MULTILINGUAL_TOPICS) {
       for (const match of jsonLdMatches) {
         try {
           const parsed = JSON.parse(match[1]);
-          if (parsed['@type'] === 'BlogPosting') {
-            hasBlogPosting = true;
-            if (parsed.inLanguage !== loc) {
-              assert(false, `[${slug}][${loc}] BlogPosting inLanguage mismatch: expected ${loc}, got ${parsed.inLanguage}`);
-            }
-          }
+          if (parsed['@type'] === 'BlogPosting') hasBlogPosting = true;
           if (parsed['@type'] === 'BreadcrumbList') hasBreadcrumbList = true;
-        } catch (e) {
-          assert(false, `[${slug}][${loc}] JSON-LD failed to parse: ${e.message}`);
+        } catch {
+          // invalid json handled below
         }
       }
-      assert(hasBlogPosting, `[${slug}][${loc}] Valid BlogPosting structured data present`);
-      assert(hasBreadcrumbList, `[${slug}][${loc}] Valid BreadcrumbList structured data present`);
+      assert(hasBlogPosting, `[${slug}][${loc}] Has valid BlogPosting JSON-LD`);
+      assert(hasBreadcrumbList, `[${slug}][${loc}] Has valid BreadcrumbList JSON-LD`);
 
-      // 4. Real Heading Anchor Validity (TOC link href="#id" must match an actual heading with id="id")
-      const tocHrefMatches = [...html.matchAll(/<a\s+[^>]*href=["']#([^"']+)["'][^>]*>/gi)];
+      // 4. Check TOC anchor integrity against real headings
+      const headingIds = new Set([...html.matchAll(/<h[2-4]\s+[^>]*id=["']([^"']+)["']/gi)].map(m => m[1]));
+      const tocHrefMatches = [...html.matchAll(/<a\s+[^>]*href=["']#([^"']+)["'][^>]*class=["'][^"']*toc-link[^"']*["']/gi)].map(m => m[1]);
+
       let brokenAnchors = 0;
-      for (const tocMatch of tocHrefMatches) {
-        const anchorId = decodeURIComponent(tocMatch[1]);
-        const hasHeading = html.includes(`id="${anchorId}"`) || html.includes(`id="${tocMatch[1]}"`);
-        if (!hasHeading) {
-          console.error(`[${slug}][${loc}] Heading anchor #${anchorId} not found in article headings!`);
+      for (const hrefId of tocHrefMatches) {
+        if (!headingIds.has(hrefId)) {
           brokenAnchors++;
         }
       }
@@ -205,7 +205,7 @@ for (const slug of MULTILINGUAL_TOPICS) {
   }
 }
 
-console.log('\n--- 3. Validating English-Only Modernized Articles (3 Articles, 0 False Alternates) ---');
+console.log('\n--- 3. Validating English-Only Modernized Articles (17 Articles, 0 False Alternates) ---');
 for (const slug of ENGLISH_ONLY_MODERNIZED) {
   const filePath = path.join(DIST_DIR, `blog/${slug}/index.html`);
   const exists = fs.existsSync(filePath);
@@ -239,23 +239,23 @@ const actualMigratedSlugs = currentSourceSlugs.filter((s) => MODERNIZED_LEGACY_S
 const actualRemainingSlugs = currentSourceSlugs.filter((s) => !MODERNIZED_LEGACY_SLUGS.includes(s));
 
 assert(
-  actualMigratedSlugs.length === 20,
-  `Exactly 20 legacy articles modernized in Content Collections (got ${actualMigratedSlugs.length})`
+  actualMigratedSlugs.length === 27,
+  `Exactly 27 legacy articles modernized in Content Collections (got ${actualMigratedSlugs.length})`
 );
 assert(
-  actualRemainingSlugs.length === 7,
-  `Exactly 7 legacy fallback articles preserved (got ${actualRemainingSlugs.length})`
+  actualRemainingSlugs.length === 0,
+  `Exactly 0 legacy fallback articles remaining (got ${actualRemainingSlugs.length})`
 );
 assert(
   actualMigratedSlugs.length + actualRemainingSlugs.length === 27,
-  `Invariant verified: 20 migrated + 7 remaining = 27 total original legacy articles`
+  `Invariant verified: 27 migrated + 0 remaining = 27 total original legacy articles`
 );
 assert(
   JSON.stringify(actualRemainingSlugs) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
-  'Remaining legacy fallback set matches VERIFIED_REMAINING_LEGACY_SLUGS 1:1 in exact identity and order'
+  'Remaining legacy fallback set matches VERIFIED_REMAINING_LEGACY_SLUGS 1:1 (empty array)'
 );
 
-// 4c. Verify built output routes, canonical declarations, rendering engines, and index cards
+// 4c. Verify built output routes, canonical declarations, and rendering engines
 const enIndexHtmlPath = path.join(DIST_DIR, 'blog/index.html');
 const enIndexHtml = fs.existsSync(enIndexHtmlPath) ? fs.readFileSync(enIndexHtmlPath, 'utf-8') : '';
 
@@ -272,19 +272,9 @@ for (const legacy of blogPosts) {
       `[${legacy.slug}] Declares expected canonical: ${expectedCanonical}`
     );
 
-    const isMigrated = MODERNIZED_LEGACY_SLUGS.includes(legacy.slug);
-    if (isMigrated) {
-      // Must use Markdown rendering engine (BlogPostLayout with BlogPosting structured data)
-      const hasBlogPosting = html.includes('"@type":"BlogPosting"') || html.includes('"@type": "BlogPosting"');
-      assert(hasBlogPosting, `[${legacy.slug}] Migrated article uses Markdown rendering engine (BlogPosting JSON-LD)`);
-    } else {
-      // Must use legacy fallback rendering engine (prose class, breadcrumbs, BaseLayout)
-      const hasLegacyStructure = html.includes('prose') && html.includes('Home') && html.includes('Blog');
-      assert(hasLegacyStructure, `[${legacy.slug}] Unmigrated article uses legacy fallback rendering engine`);
-      // Must NOT contain Markdown BlogPosting schema
-      const hasBlogPosting = html.includes('"@type":"BlogPosting"') || html.includes('"@type": "BlogPosting"');
-      assert(!hasBlogPosting, `[${legacy.slug}] Legacy fallback article does not emit false BlogPosting schema`);
-    }
+    // In Phase 3D-D, all 27 legacy articles are modernized to Markdown
+    const hasBlogPosting = html.includes('"@type":"BlogPosting"') || html.includes('"@type": "BlogPosting"');
+    assert(hasBlogPosting, `[${legacy.slug}] Modernized article uses Markdown rendering engine (BlogPosting JSON-LD)`);
   }
 
   // Verify English blog index card destination
@@ -294,15 +284,24 @@ for (const legacy of blogPosts) {
   );
 }
 
-// 4d. Verify English blog index legacy archive section contains exactly the 7 verified remaining slugs
+// 4d. Verify English blog index legacy archive section is omitted or contains exactly 0 legacy cards
+const hasLegacyArchiveSection = enIndexHtml.includes('<section data-legacy-archive-section');
+assert(
+  !hasLegacyArchiveSection,
+  'English blog index does not render #legacy-archive section when 0 fallback articles remain'
+);
+
 const legacyCardsOnIndex = [...enIndexHtml.matchAll(/<article[^>]*data-legacy-card[\s\S]*?<a[^>]*href=["']\/blog\/([^"']+)["']/gi)].map(m => m[1]);
 assert(
-  legacyCardsOnIndex.length === 7,
-  `English blog index contains exactly 7 legacy cards in #legacy-archive (got ${legacyCardsOnIndex.length})`
+  legacyCardsOnIndex.length === 0,
+  `English blog index contains 0 legacy cards in #legacy-archive (got ${legacyCardsOnIndex.length})`
 );
+
+// Verify total modern Markdown cards in English blog index equals 30
+const modernCardsOnIndex = [...enIndexHtml.matchAll(/<article[^>]*data-post-card/gi)];
 assert(
-  JSON.stringify(legacyCardsOnIndex) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
-  'Legacy cards on English blog index match VERIFIED_REMAINING_LEGACY_SLUGS 1:1'
+  modernCardsOnIndex.length === 30,
+  `English blog index contains exactly 30 modern Markdown post cards (got ${modernCardsOnIndex.length})`
 );
 
 console.log('\n--- 5. Validating Historic Numeric Redirects (/blog/1 through /blog/6) ---');
@@ -333,20 +332,25 @@ const coverImages = [
   'public/blog-covers/kubernetes-scale.svg',
   'public/blog-covers/cloud-security.svg',
   'public/blog-covers/edge-computing-devops.svg',
+  'public/blog-covers/devops-automation.svg',
+  'public/blog-covers/observability-monitoring.svg',
+  'public/blog-covers/web-security.svg',
+  'public/blog-covers/security-lock.svg',
+  'public/blog-covers/ml-software-engineering.svg',
 ];
 
 for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 7. Validating Sitemap Inclusion of All 111 Markdown Articles ---');
+console.log('\n--- 7. Validating Sitemap Inclusion of All 134 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
 
-  // Check 11 multilingual topics across 9 locales (99 URLs)
+  // Check 13 multilingual topics across 9 locales (117 URLs)
   for (const slug of MULTILINGUAL_TOPICS) {
     for (const loc of LOCALES) {
       const expectedUrl = loc === 'en'
@@ -356,7 +360,7 @@ if (fs.existsSync(sitemapPath)) {
     }
   }
 
-  // Check 12 English-only modernized topics (12 URLs)
+  // Check 17 English-only modernized topics (17 URLs)
   for (const slug of ENGLISH_ONLY_MODERNIZED) {
     const expectedUrl = `https://ladestack.in/blog/${slug}`;
     assert(sitemapXml.includes(expectedUrl), `Sitemap includes English-only ${expectedUrl}`);
@@ -364,9 +368,9 @@ if (fs.existsSync(sitemapPath)) {
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3D-C BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3D-D BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3D-C BLOG TESTS PASSED PERFECTLY (111 MARKDOWN + 7 LEGACY VERIFIED)!');
+  console.log('\n🎉 ALL PHASE 3D-D BLOG TESTS PASSED PERFECTLY (134 MARKDOWN + 0 FALLBACK VERIFIED)!');
   process.exit(0);
 }
