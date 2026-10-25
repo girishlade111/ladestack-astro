@@ -1,6 +1,6 @@
 ---
-title: "OWASP Top 10: Complete Mitigation Guide for Modern Web Applications"
-description: "Comprehensive engineering guide to the OWASP Top 10: root cause analysis, detection techniques, code-level mitigations, and defense-in-depth security architectures."
+title: "OWASP Top 10: Complete Mitigation Guide for Modern Web Applications (2025 Edition)"
+description: "Authoritative engineering guide to the OWASP Top 10:2025: root cause analysis, code-level mitigations, software supply chain security, and defense-in-depth architectures."
 locale: "en"
 slug: "owasp-top-10-complete-mitigation-guide"
 translationKey: "owasp-top-10-complete-mitigation-guide"
@@ -10,17 +10,17 @@ updatedAt: "2026-10-25"
 category: "Security in Web Apps"
 tags: ["AppSec", "OWASP", "Web Security", "Cybersecurity", "Authentication", "Input Validation", "DevSecOps"]
 coverImage: "/blog-covers/web-security.svg"
-coverAlt: "OWASP Top 10 Web Application Security Architecture"
+coverAlt: "OWASP Top 10:2025 Web Application Security Architecture"
 draft: false
 featured: false
 contentType: "deep-dive"
 ---
 
-## 1. Beyond the Checklist: Application Security as System Architecture
+## 1. Beyond the Compliance Checklist: Security as System Architecture
 
-The **OWASP Top 10** represents the consensus awareness document regarding the most critical security risks facing web applications. However, engineering teams often commit a dangerous category error: treating the OWASP Top 10 as an exhaustive security standard or compliance checklist. 
+The **OWASP Top 10:2025** represents the definitive international standard identifying the most critical security risks threatening modern web applications, distributed APIs, and cloud-native systems. However, engineering teams often fall into a hazardous trap: treating the OWASP Top 10 as an exhaustive compliance checklist. 
 
-Passing an automated vulnerability scan or checking off ten items does not mean an application is secure. The Top 10 is an index of widespread architectural failure patterns. Real application security requires **defense-in-depth**, secure software development lifecycle (Secure SDLC) practices, continuous threat modeling, and proactive boundary validation.
+Passing an automated vulnerability scanner or checking off ten items does not mean an application is immune to attack. The Top 10 is an index of widespread, high-impact architectural failure patterns. Real application security requires **defense-in-depth**, secure software development lifecycle (Secure SDLC) governance, continuous threat modeling, and robust boundary validation across all tiers of the technology stack.
 
 ```
 +--------------------------------------------------------------------------+
@@ -42,28 +42,31 @@ Passing an automated vulnerability scan or checking off ten items does not mean 
 
 ---
 
-## 2. The Official OWASP Top 10 Categories & Technical Mitigations
+## 2. The Official OWASP Top 10:2025 Categories & Technical Mitigations
 
-The following sections analyze the current authoritative **OWASP Top 10** categories, examining their root causes, conceptual manifestations, and engineering mitigations.
+The following sections examine all ten official categories of **OWASP Top 10:2025** (`A01:2025` through `A10:2025`), providing root cause analysis, developer-focused code examples, and preventative engineering practices.
 
 ---
 
-### A01:2021 – Broken Access Control
+### A01:2025 – Broken Access Control
 
-Broken Access Control represents the single most prevalent vulnerability in modern web systems. It occurs when authorization enforcement is missing, client-controlled, or decentralized across disparate route handlers.
+Broken Access Control retains the #1 position in the 2025 standard. It occurs when authorization policies are absent, improperly configured, or delegated to client-side logic, allowing attackers to access unauthorized data or execute elevated administrative actions. In the 2025 standard, Server-Side Request Forgery (SSRF) is explicitly recognized under this category as an access control bypass against internal networks and cloud metadata services.
 
-* **Typical Root Cause**: Trusting client-supplied entity identifiers (e.g., `GET /api/documents/1042`) without cryptographically verifying whether the authenticated subject owns or has tenancy permissions to that record (Insecure Direct Object Reference or IDOR).
-* **Safe Conceptual Architecture**: Centralized, policy-driven authorization checks (Role-Based Access Control or Attribute-Based Access Control) enforced at the service boundary.
+* **Typical Root Causes**:
+  - Insecure Direct Object References (IDOR): Trusting client-supplied entity IDs without verifying ownership or tenancy permissions.
+  - Missing functional access control: Exposing administrative endpoints (`/admin/deleteUser`) without enforcing role requirements.
+  - SSRF-based metadata access: Fetching arbitrary user-supplied URLs without restricting outbound requests to internal IP ranges (RFC 1918) or cloud instance metadata services (IMDS).
+* **Safe Conceptual Architecture**: Centralized, policy-driven authorization checks (Role-Based Access Control or Attribute-Based Access Control) enforced at the data query layer.
 
 ```typescript
 // SECURE: Enforcing tenant ownership in the database query layer
-async function getUserInvoice(invoiceId: string, authenticatedUserId: string) {
-  // Never query by invoiceId alone; always scope by tenant/user ID
+async function getUserInvoice(invoiceId: string, authenticatedUserId: string, authenticatedTenantId: string) {
+  // Never query by invoiceId alone; always scope by tenant ID and user ID
   const invoice = await db.query(
     `SELECT id, amount, status, created_at 
      FROM invoices 
-     WHERE id = $1 AND user_id = $2`,
-    [invoiceId, authenticatedUserId]
+     WHERE id = $1 AND user_id = $2 AND tenant_id = $3`,
+    [invoiceId, authenticatedUserId, authenticatedTenantId]
   );
 
   if (!invoice.rows.length) {
@@ -76,148 +79,237 @@ async function getUserInvoice(invoiceId: string, authenticatedUserId: string) {
 
 ---
 
-### A02:2021 – Cryptographic Failures
+### A02:2025 – Security Misconfiguration
 
-Formerly known as Sensitive Data Exposure, this category addresses inadequate protection of sensitive data in transit, at rest, or during memory operations.
+Rising to #2 in the 2025 edition, Security Misconfiguration reflects the growing complexity of multi-cloud deployments, container runtimes, and microservice meshes where insecure defaults or incomplete hardening expose critical vulnerabilities.
 
-* **Typical Root Cause**: Utilizing deprecated hashing algorithms (MD5, SHA1) for passwords, using ECB mode in AES block ciphers, storing plaintext API keys in configuration files, or transmitting telemetry over plaintext HTTP.
+* **Typical Root Causes**:
+  - Default administrative credentials left unchanged in production databases or middleware.
+  - Verbose error handling displaying internal stack traces, database schema details, or environment variables to end-users.
+  - Permissive cloud storage bucket permissions, unhardened Kubernetes pods running as root, or missing security headers.
 * **Effective Mitigations**:
-  1. **Passwords**: Use memory-hard hashing algorithms with unique salts: Argon2id, scrypt, or bcrypt with an adaptive work factor.
-  2. **Data in Transit**: Enforce TLS 1.3 exclusively with HSTS (`Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`).
-  3. **Data at Rest**: Implement AES-256-GCM or ChaCha20-Poly1305 with managed envelope encryption keys rotated via cloud KMS or HashiCorp Vault.
-
----
-
-### A03:2021 – Injection
-
-Injection occurs when untrusted user data is concatenated directly into an interpreter (SQL, NoSQL, OS command shell, LDAP, XPath) without contextual separation between code and data.
-
-* **Typical Root Cause**: String interpolation in query construction (`"SELECT * FROM accounts WHERE user = '" + input + "'"`).
-* **Effective Mitigations**:
-  - Always use **parameterized queries** or Object-Relational Mappers (ORMs) that enforce prepared statements.
-  - Apply strict schema validation (e.g., Zod, JSON Schema) rejecting non-conforming inputs at the boundary.
-
-```typescript
-// SECURE: Parameterized SQL Query with Prepared Statements
-const result = await pool.query(
-  'SELECT id, email FROM users WHERE email = $1 AND active = $2',
-  [sanitizedEmail, true]
-);
-```
-
----
-
-### A04:2021 – Insecure Design
-
-Insecure Design addresses fundamental architectural flaws that cannot be fixed by a simple code patch or library update because security was omitted during requirements gathering and system design.
-
-* **Typical Root Cause**: Failing to establish threat models, assuming internal networks are inherently trustworthy, or designing business workflows lacking rate limits (e.g., credential recovery flows allowing unlimited OTP guessing).
-* **Effective Mitigations**:
-  - Integrate **STRIDE threat modeling** (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) during architecture reviews.
-  - Define explicit security acceptance criteria in user stories (e.g., account lockouts after 5 consecutive failed attempts with exponential backoff).
-
----
-
-### A05:2021 – Security Misconfiguration
-
-Security misconfigurations arise when development defaults, debugging features, or overly permissive settings leak into production environments.
-
-* **Typical Root Cause**: Default database administrative passwords, verbose stack traces exposed to end-users in HTTP 500 error responses, open cloud storage buckets, or unnecessary HTTP methods enabled.
-* **Effective Mitigations**:
-  - Enforce automated infrastructure hardening via Infrastructure as Code (Terraform/OpenTofu).
-  - Strip debugging endpoints and verbose stack traces in production builds.
-  - Implement strict HTTP security headers:
+  - Automate infrastructure hardening through repeatable Infrastructure as Code (Terraform, OpenTofu, Pulumi).
+  - Strip debugging endpoints and verbose stack traces from production builds; map unhandled errors to generic error IDs.
+  - Enforce comprehensive HTTP security response headers:
 
 ```http
 Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none';
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 Referrer-Policy: strict-origin-when-cross-origin
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 ```
 
 ---
 
-### A06:2021 – Vulnerable and Outdated Components
+### A03:2025 – Software Supply Chain Failures
 
-Modern software assemblies consist of 80–90% open-source third-party dependencies. Vulnerabilities in deeply nested packages compromise the entire hosting runtime.
+A major new category in the 2025 standard, Software Supply Chain Failures significantly broadens the previous "Vulnerable and Outdated Components" category. It addresses risks across the entire software supply chain: malicious package injection, compromised dependencies, poisoned build pipelines, dependency confusion, and lack of artifact traceability.
 
-* **Typical Root Cause**: Neglecting dependency updates, locking outdated package manifests, or lacking automated software bill of materials (SBOM) visibility.
+* **Typical Root Causes**:
+  - Importing unvetted third-party libraries or typosquatted packages from public registries (`npm`, `PyPI`).
+  - Unpinned CI/CD pipeline actions that execute code directly from mutable branch references (e.g., `uses: actions/checkout@v4` vs exact commit SHA).
+  - Absence of automated Software Bill of Materials (SBOM) generation and vulnerability tracking.
 * **Effective Mitigations**:
-  - Integrate automated software composition analysis (SCA) into CI/CD pipelines (e.g., `npm audit`, Snyk, Dependabot, Trivy).
-  - Pin package versions using cryptographically validated lockfiles (`package-lock.json`, `pnpm-lock.yaml`).
-  - Establish an automated SLA for remediating critical CVEs within 72 hours of disclosure.
+  - Mandate cryptographically validated package lockfiles (`package-lock.json`, `pnpm-lock.yaml`) and verify checksums during build.
+  - Enforce automated Software Composition Analysis (SCA) in CI/CD pipelines (e.g., Trivy, Snyk, Dependabot).
+  - Pin external CI/CD actions to full 40-character commit SHAs.
+  - Generate machine-readable SBOMs (CycloneDX or SPDX) and cryptographically sign release artifacts using Sigstore/Cosign.
+
+```yaml
+# Example hardened GitHub Actions workflow step with pinned commit SHA and image signing
+- name: Checkout Code
+  uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+- name: Run Trivy Vulnerability Scanner
+  uses: aquasecurity/trivy-action@d43c1f16c00cfd3978dde6c07f4bbcf9eb6993ca
+  with:
+    scan-type: 'fs'
+    ignore-unfixed: true
+    severity: 'CRITICAL,HIGH'
+```
 
 ---
 
-### A07:2021 – Identification and Authentication Failures
+### A04:2025 – Cryptographic Failures
 
-Failures in verifying user identity permit unauthorized sessions or account takeover attacks.
+Cryptographic Failures covers failures to protect data in transit, at rest, or in processing through appropriate cryptographic primitives and key management architectures.
 
-* **Typical Root Cause**: Permitting weak or breached passwords, vulnerable session management (predictable session tokens, missing token rotation, sessions not invalidated on logout), or lack of multi-factor authentication (MFA).
+* **Typical Root Causes**:
+  - Using deprecated or broken hashing algorithms (MD5, SHA1) for passwords or integrity verification.
+  - Employing insecure symmetric cipher modes (e.g., AES in ECB mode rather than authenticated GCM mode).
+  - Hardcoding encryption keys in source repositories or committing plaintext secrets.
 * **Effective Mitigations**:
-  - Enforce Multi-Factor Authentication (TOTP via RFC 6238 or FIDO2/WebAuthn hardware keys).
-  - Use cryptographically random, high-entropy session identifiers (at least 128 bits of entropy) stored in `HttpOnly; Secure; SameSite=Strict` cookies.
-  - Implement intelligent credential stuffing protections: rate limiting by IP and username, CAPTCHA on anomalous sign-ins, and checking passwords against HaveIBeenPwned API datasets.
+  - **Passwords**: Hash exclusively with modern memory-hard algorithms: Argon2id (preferred), scrypt, or bcrypt with an adaptive work factor.
+  - **Data in Transit**: Mandate TLS 1.3 with forward secrecy; disallow legacy cipher suites (TLS 1.0/1.1 and non-PFS ciphers).
+  - **Data at Rest**: Implement AES-256-GCM or ChaCha20-Poly1305 with envelope encryption keys managed and rotated via cloud KMS or HashiCorp Vault.
 
 ---
 
-### A08:2021 – Software and Data Integrity Failures
+### A05:2025 – Injection
 
-Integrity failures occur when code, application dependencies, or serialized state objects are accepted and executed without verifying their cryptographic origin and integrity.
+Injection occurs when untrusted user data is interpreted as commands or queries by an execution engine (SQL, NoSQL, OS command shell, LDAP, XPath, or GraphQL).
 
-* **Typical Root Cause**: Insecure deserialization of untrusted objects, unpinned CI/CD pipeline actions that execute code directly from third-party repositories, or accepting unsigned client-side JWTs with `alg: "none"`.
+* **Typical Root Causes**:
+  - String concatenation in SQL query building (`"SELECT * FROM users WHERE name = '" + input + "'"`).
+  - Passing unsanitized user input into system shell commands (`child_process.exec("ping " + host)`).
 * **Effective Mitigations**:
-  - Never deserialize raw binary objects from untrusted sources; use standard JSON with strict schema validation.
-  - Cryptographically sign container images and artifacts using Sigstore/Cosign.
-  - Pin external CI/CD actions to full cryptographic commit SHAs rather than mutable branch names.
+  - Exclusively utilize parameterized queries (Prepared Statements) or type-safe ORMs.
+  - Enforce strict boundary input validation using schema libraries (e.g., Zod, JSON Schema).
+  - Apply context-aware output encoding when rendering data into HTML, JavaScript, or CSS contexts.
+
+```typescript
+// SECURE: Parameterized SQL Query with Prepared Statements
+const result = await pool.query(
+  'SELECT id, email, role FROM users WHERE email = $1 AND active = $2',
+  [sanitizedEmail, true]
+);
+```
 
 ---
 
-### A09:2021 – Security Logging and Monitoring Failures
+### A06:2025 – Insecure Design
 
-Without comprehensive audit logging and real-time alerts, malicious breaches remain undetected for months, allowing attackers to escalate privileges and exfiltrate records undetected.
+Insecure Design addresses structural architectural and business logic flaws that cannot be solved by simple bug fixes because security was omitted during requirements gathering and system design.
 
-* **Typical Root Cause**: Failing to log security-relevant events (failed logins, privilege changes, authorization denials), or logging sensitive credentials (passwords, payment cards, session tokens) into plaintext application logs.
+* **Typical Root Causes**:
+  - Unrestricted business flows (e.g., password reset workflows permitting unlimited OTP attempts without rate limits).
+  - Assuming internal network microservices are inherently trustworthy (missing zero-trust principles).
+  - Lack of anti-automation controls on high-value transactions (gift card redemption, account registration).
 * **Effective Mitigations**:
-  - Log all security events with structured JSON formatting including timestamp, event type, subject ID, client IP, and correlation trace ID.
-  - Forward logs immediately to an append-only, tamper-resistant SIEM (Splunk, Elastic, Datadog).
-  - Configure automated alerts on high-frequency authentication anomalies and privilege escalation attempts.
+  - Perform **STRIDE threat modeling** (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) during architecture reviews.
+  - Implement secure defaults: fail-closed access policies, automated exponential backoff on sensitive endpoints, and mandatory MFA.
 
 ---
 
-### A10:2021 – Server-Side Request Forgery (SSRF)
+### A07:2025 – Authentication Failures
 
-SSRF occurs when a web application fetches a remote resource via user-supplied URL without validating the destination address, allowing attackers to coerce the server into accessing internal infrastructure.
+Renamed from "Identification and Authentication Failures", this category focuses on authentication protocol weaknesses, session hijacking, and credential validation vulnerabilities.
 
-* **Typical Root Cause**: Accepting an image URL or webhook destination from user input and executing an outbound HTTP request directly, allowing attackers to probe cloud instance metadata services (`http://169.254.169.254/`) or internal Kubernetes pods.
+* **Typical Root Causes**:
+  - Permitting weak, breached, or default passwords without complexity checks or HaveIBeenPwned validation.
+  - Insecure session management: Predictable session tokens, missing token rotation, or sessions not invalidated upon logout.
+  - Lack of Multi-Factor Authentication (MFA) on sensitive administrative accounts.
 * **Effective Mitigations**:
-  - Restrict outbound requests using a dedicated egress proxy.
-  - Validate and resolve URLs before fetching: block private IP ranges (RFC 1918), loopback (`127.0.0.1`), link-local (`169.254.0.0/16`), and IPv6 equivalents.
-  - Enforce IMDSv2 (Session-Oriented Instance Metadata Service) on cloud virtual machines to require token headers for metadata access.
+  - Enforce Multi-Factor Authentication via TOTP (RFC 6238) or FIDO2/WebAuthn hardware keys.
+  - Generate cryptographically random session tokens (minimum 128 bits of entropy) stored in `HttpOnly; Secure; SameSite=Strict` cookies.
+  - Enforce Authorization Code Flow with PKCE (`S256`) for OAuth 2.0 / OpenID Connect implementations.
 
 ---
 
-## 3. The Limits of Automated Scanners
+### A08:2025 – Software or Data Integrity Failures
 
-Automated Dynamic Application Security Testing (DAST) and Static Application Security Testing (SAST) tools are invaluable baseline scanners, but they possess fundamental architectural blind spots:
+This category focuses on assumptions made about software updates, critical data pipelines, and serialized objects without cryptographic verification of their integrity.
 
-1. **Business Logic Flaws**: A scanner cannot determine whether a user should be permitted to transfer funds between accounts or alter product prices in a shopping cart.
-2. **Access Control Context**: Scanners struggle to differentiate between public and protected object IDs without custom role configurations.
-3. **False Positives vs. False Negatives**: Heavy scanner alerts induce alert fatigue, while subtle multi-step vulnerabilities slip through undetected.
-
-True application security relies on human threat modeling, code audits by senior engineers, disciplined unit and integration security testing, and independent third-party penetration testing.
+* **Typical Root Causes**:
+  - Insecure deserialization: Accepting and instantiating raw serialized objects from untrusted network sources.
+  - Auto-update mechanisms that fetch binaries over unencrypted HTTP or fail to verify digital signatures.
+  - Unsigned JSON Web Tokens (JWTs) accepted with `alg: "none"` or vulnerable to algorithm confusion attacks (RS256 vs HS256).
+* **Effective Mitigations**:
+  - Forbid raw binary deserialization of untrusted data; use strict JSON parsing with schema validation.
+  - Validate digital signatures and hash digests on all external binaries and container images before execution.
+  - Enforce explicit cryptographic algorithm whitelists in JWT verification libraries.
 
 ---
 
-## Core Application Security Architecture Checklist
+### A09:2025 – Security Logging and Alerting Failures
 
-- [x] Centralized authorization service evaluating all data access by authenticated tenant.
-- [x] Cryptographic hashing using Argon2id or bcrypt with adaptive cost factors.
-- [x] Parameterized SQL queries enforced across all database repositories.
-- [x] Secure defaults configured: CSP, HSTS, Secure cookies, and least-privilege IAM roles.
-- [x] Software composition analysis (SCA) running on every pull request.
-- [x] MFA and brute-force protections enabled on all authentication endpoints.
-- [x] Insecure deserialization prohibited; strict schema validation applied.
-- [x] Outbound HTTP requests guarded against SSRF and internal network probing.
-- [x] Structured security logging streaming to a tamper-resistant SIEM.
-- [x] Security-focused threat modeling integrated into product engineering planning.
+Renamed in the 2025 standard to highlight that logging without **proactive, actionable alerting** fails to prevent data breaches. Breaches often go undetected for months because security events were logged into unmonitored text files.
+
+* **Typical Root Causes**:
+  - Failing to log high-risk security events (failed logins, authorization denials, privilege modifications).
+  - Logging sensitive credentials (plaintext passwords, session tokens, payment details) into application logs.
+  - Storing logs locally on web server disks where attackers can alter or erase forensic evidence.
+* **Effective Mitigations**:
+  - Record structured JSON security audit logs containing timestamp, event type, actor ID, client IP, and correlation trace ID.
+  - Stream logs in real-time to an append-only, tamper-resistant SIEM (Elasticsearch, Splunk, Datadog).
+  - Configure automated real-time alerts on anomalous behavior (e.g., > 10 failed logins within 60 seconds from an IP subnet).
+
+---
+
+### A10:2025 – Mishandling of Exceptional Conditions
+
+A vital new category introduced in the OWASP Top 10:2025 standard, replacing SSRF (which was integrated into Broken Access Control). It addresses vulnerabilities resulting from improper handling of errors, unhandled exceptions, unexpected boundary conditions, and fail-open states.
+
+* **Typical Root Causes**:
+  - **Fail-Open Security States**: When an authentication or authorization filter crashes on unexpected input (e.g., a null pointer or malformed token), the application bypasses security checks and permits the request through.
+  - **Race Conditions & State Desynchronization**: Uncoordinated concurrent requests that exploit time-of-check to time-of-use (TOCTOU) windows to duplicate funds or bypass rate limits.
+  - **Resource Exhaustion**: Lack of memory, CPU, or connection timeouts on unbounded operations, resulting in complete denial of service.
+* **Effective Mitigations**:
+  - Implement **Fail-Closed Architecture**: Ensure that any unhandled exception or filter crash results in immediate access denial (HTTP 500/403) rather than request forwarding.
+  - Use database-level row locking (`SELECT FOR UPDATE`) or distributed locks (Redis Redlock) to prevent concurrency race conditions during state transitions.
+  - Configure strict resource quotas, request body size limits, and socket timeouts on all external I/O operations.
+
+```typescript
+// SECURE: Fail-closed authorization middleware pattern
+export async function enforcePolicyMiddleware(req: Request, res: Response, next: NextFunction) {
+  let isAuthorized = false; // Default to false (Fail-Closed)
+
+  try {
+    const user = extractAuthenticatedUser(req);
+    isAuthorized = await policyEngine.evaluate(user, req.path, req.method);
+  } catch (error) {
+    // Log unexpected exception securely with correlation ID
+    logger.error('Policy evaluation crashed unexpectedly', { error, path: req.path });
+    isAuthorized = false; // Explicitly ensure access remains false on crash
+  }
+
+  if (!isAuthorized) {
+    return res.status(403).json({ error: 'Access denied: authorization policy rejected request' });
+  }
+
+  next();
+}
+```
+
+---
+
+## 3. Historical Comparison: OWASP Top 10 2021 vs. 2025
+
+| 2021 Category | 2025 Category | Key Structural Changes |
+| :--- | :--- | :--- |
+| **A01:2021 – Broken Access Control** | **A01:2025 – Broken Access Control** | Remains #1; now absorbs Server-Side Request Forgery (SSRF) as an access bypass mechanism. |
+| **A05:2021 – Security Misconfiguration** | **A02:2025 – Security Misconfiguration** | Climbs to #2 due to multi-cloud complexity, container defaults, and microservice mesh sprawl. |
+| **A06:2021 – Vulnerable and Outdated Components** | **A03:2025 – Software Supply Chain Failures** | Re-engineered and expanded to encompass full supply chain risks, CI/CD pipeline integrity, and SBOMs. |
+| **A02:2021 – Cryptographic Failures** | **A04:2025 – Cryptographic Failures** | Shifts to #4; maintains focus on sensitive data exposure, modern cipher suites, and KMS key management. |
+| **A03:2021 – Injection** | **A05:2025 – Injection** | Moves to #5; continues to require parameterized queries, strict schema validation, and context encoding. |
+| **A04:2021 – Insecure Design** | **A06:2025 – Insecure Design** | Moves to #6; emphasizes pre-coding threat modeling (STRIDE) and architectural security controls. |
+| **A07:2021 – Identification and Authentication Failures** | **A07:2025 – Authentication Failures** | Streamlined title; mandates MFA (TOTP/WebAuthn), high-entropy session IDs, and PKCE. |
+| **A08:2021 – Software and Data Integrity Failures** | **A08:2025 – Software or Data Integrity Failures** | Title updated; focuses on unsigned artifacts, untrusted deserialization, and pipeline verification. |
+| **A09:2021 – Security Logging and Monitoring Failures** | **A09:2025 – Security Logging and Alerting Failures** | Emphasizes actionable, real-time alerting to prevent persistent dwell time by adversaries. |
+| **A10:2021 – Server-Side Request Forgery (SSRF)** | **A10:2025 – Mishandling of Exceptional Conditions** | New #10 category focusing on error handling, fail-open states, and race conditions. SSRF merged into A01. |
+
+---
+
+## 4. The Limits of Automated Scanners
+
+Automated Dynamic Application Security Testing (DAST) and Static Application Security Testing (SAST) tools provide valuable baseline scanning, but they cannot secure an application in isolation:
+
+1. **Business Logic Vulnerabilities**: Scanners cannot know whether an authenticated user should be permitted to alter account balances, approve workflow stages, or transfer tenancy.
+2. **Context-Blind Authorization**: Scanners struggle to differentiate between public and tenant-restricted object IDs without extensive custom scripting.
+3. **Alert Fatigue vs. False Negatives**: Hundreds of low-severity scanner alerts distract engineers from critical architectural flaws.
+
+Comprehensive application security combines automated scanning with human threat modeling, rigorous code review by senior engineers, disciplined unit/integration security tests, and periodic independent penetration testing.
+
+---
+
+## Summary OWASP Top 10:2025 Verification Checklist
+
+- [x] **A01 Broken Access Control**: Authorization enforced at the query level by tenant; SSRF egress filtered.
+- [x] **A02 Security Misconfiguration**: IaC baselines hardened; debugging errors hidden; CSP and HSTS active.
+- [x] **A03 Software Supply Chain Failures**: Lockfiles verified; CI/CD actions pinned to commit SHAs; SBOM generated.
+- [x] **A04 Cryptographic Failures**: Argon2id/bcrypt password hashing; TLS 1.3 enforced; envelope encryption for data at rest.
+- [x] **A05 Injection**: Parameterized SQL queries mandatory; schema validation enforced; string concatenation prohibited.
+- [x] **A06 Insecure Design**: STRIDE threat modeling integrated; secure defaults implemented across business workflows.
+- [x] **A07 Authentication Failures**: MFA enforced; high-entropy session cookies (`HttpOnly; Secure; SameSite=Strict`).
+- [x] **A08 Software or Data Integrity Failures**: Raw binary deserialization banned; release artifacts signed via Cosign.
+- [x] **A09 Security Logging and Alerting Failures**: Structured JSON logging; immutable SIEM streaming; real-time alert rules.
+- [x] **A10 Mishandling of Exceptional Conditions**: Fail-closed exception handling; concurrency locks; resource quotas.
+
+---
+
+### Authoritative References (Verified October 2026)
+- **OWASP Foundation**: [OWASP Top 10:2025 Official Project](https://owasp.org/projects/top-ten/)
+- **OWASP Top 10 Documentation**: [OWASP Top 10:2025 Standard Release](https://top10.owasp.org/2025/)
+- **OWASP GitHub Repository**: [OWASP/Top10 Source Repository](https://github.com/OWASP/Top10)
+- **NIST Special Publication 800-63B**: Digital Identity Guidelines (Authentication and Lifecycle Management)
+- **IETF RFC 9700**: Best Current Practice for OAuth 2.0 Security
