@@ -98,15 +98,18 @@
 
 - **BASELINE_COMMIT:** `4896236` (*"docs: update migration report and add inventory integrity report for phase 3d-b blog articles"*)
 - **CURRENT_BRANCH:** `feature/phase-3d-c-blog-migration`
-- **CURRENT_ARTICLE:** `multi-cloud-architecture-aws-azure-gcp` (Article 3 of 5)
-- **CURRENT_TASK:** Authoring Article 3 in English Markdown Collections
+- **CURRENT_ARTICLE:** `optimizing-vm-performance-production-workloads` (Article 5 of 5)
+- **CURRENT_TASK:** Multilingual Expansion Batch 1 (`ja`, `ko` for 2 topics = 4 documents)
 - **FILES_CREATED:**
   - `src/content/blog/en/building-api-gateways-microservices.md`
   - `src/content/blog/en/cloud-cost-optimization-strategies-startups.md`
+  - `src/content/blog/en/multi-cloud-architecture-aws-azure-gcp.md`
+  - `src/content/blog/en/containers-vs-vms-when-to-use-each.md`
+  - `src/content/blog/en/optimizing-vm-performance-production-workloads.md`
 - **FILES_MODIFIED:** `PHASE_3D_CHECKPOINT.md`
-- **LAST_VERIFIED_STEP:** Article 2 (`cloud-cost-optimization-strategies-startups`) schema sync & typecheck
-- **LAST_SUCCESSFUL_TEST:** `astro sync` and `npm run check` (Exit code 0)
-- **NEXT_EXACT_ACTION:** Author and validate `src/content/blog/en/multi-cloud-architecture-aws-azure-gcp.md`
+- **LAST_VERIFIED_STEP:** English Article 5 (`optimizing-vm-performance-production-workloads`) schema sync & typecheck
+- **LAST_SUCCESSFUL_TEST:** `npx astro sync` and `npm run check` (Exit code 0)
+- **NEXT_EXACT_ACTION:** Generate Multilingual Batch 1 (`ja` and `ko` for `building-api-gateways-microservices` and `cloud-cost-optimization-strategies-startups`)
 - **KNOWN_BLOCKERS:** None
 
 | Stage / Item | Status | Verification Detail |
@@ -114,10 +117,10 @@
 | Git Preflight & Branch Safety | `VERIFIED` | On `feature/phase-3d-c-blog-migration`, clean tree, baseline `4896236` |
 | Article 1 (`building-api-gateways-microservices`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
 | Article 2 (`cloud-cost-optimization-strategies-startups`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
-| Article 3 (`multi-cloud-architecture-aws-azure-gcp`) | `IN_PROGRESS` | Authoring English Content Collections guide |
-| Article 4 (`containers-vs-vms-when-to-use-each`) | `NOT_STARTED` | Awaiting Article 3 verification |
-| Article 5 (`optimizing-vm-performance-production-workloads`) | `NOT_STARTED` | Awaiting Article 4 verification |
-| Multilingual Batch 1 (`ja`, `ko`) | `NOT_STARTED` | Awaiting 5 English migrations |
+| Article 3 (`multi-cloud-architecture-aws-azure-gcp`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 4 (`containers-vs-vms-when-to-use-each`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 5 (`optimizing-vm-performance-production-workloads`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Multilingual Batch 1 (`ja`, `ko`) | `IN_PROGRESS` | Authoring 4 translated Markdown documents |
 | Multilingual Batch 2 (`zh`, `ru`) | `NOT_STARTED` | Awaiting Batch 1 verification |
 | Multilingual Batch 3 (`tr`, `fr`) | `NOT_STARTED` | Awaiting Batch 2 verification |
 | Multilingual Batch 4 (`pt`, `es`) | `NOT_STARTED` | Awaiting Batch 3 verification |
