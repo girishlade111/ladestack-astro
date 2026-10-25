@@ -67,6 +67,53 @@ const MODERNIZED_LEGACY_SLUGS = [
   'real-time-data-sync-backend-services',
 ];
 
+// Verified 27 historical legacy baseline slugs (from Phase 3C baseline 2528b3b:src/data/blogPosts.ts)
+const HISTORICAL_LEGACY_BASELINE_SLUGS = [
+  'future-of-ai-in-software-development',
+  'building-ai-powered-code-review-systems',
+  'machine-learning-pipelines-for-web-developers',
+  'generative-ai-for-content-creation',
+  'building-rag-applications-vector-databases',
+  'fine-tuning-llms-domain-specific-tasks',
+  'multi-tenant-saas-architecture-patterns',
+  'building-subscription-billing-systems',
+  'scaling-saas-applications-million-users',
+  'baas-platforms-compared-firebase-supabase-appwrite',
+  'building-serverless-backends-with-baas',
+  'real-time-data-sync-backend-services',
+  'rest-vs-graphql-choosing-right-api-paradigm',
+  'api-rate-limiting-throttling-strategies',
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
+  'gitops-managing-infrastructure-with-git',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'zero-trust-security-web-applications',
+  'owasp-top-10-complete-mitigation-guide',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
+];
+
+// Verified 12 remaining legacy fallback slugs (HISTORICAL_LEGACY_BASELINE_SLUGS minus MODERNIZED_LEGACY_SLUGS)
+const VERIFIED_REMAINING_LEGACY_SLUGS = [
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
+  'gitops-managing-infrastructure-with-git',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'owasp-top-10-complete-mitigation-guide',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
+];
+
 let errors = 0;
 
 function assert(condition, message) {
@@ -169,25 +216,89 @@ for (const slug of ENGLISH_ONLY_MODERNIZED) {
   }
 }
 
-console.log('\n--- 4. Validating All 27 Legacy Blog URLs Accounted For ---');
-let legacyModernizedCount = 0;
-let legacyRetainedCount = 0;
+console.log('\n--- 4. Validating Historical Legacy Inventory & Identity Integrity ---');
+
+// 4a. Verify source inventory matches historical baseline exactly (length, order, slug identities)
+const currentSourceSlugs = blogPosts.map((p) => p.slug);
+assert(
+  currentSourceSlugs.length === 27,
+  `blogPosts.ts contains exactly 27 articles (got ${currentSourceSlugs.length})`
+);
+assert(
+  JSON.stringify(currentSourceSlugs) === JSON.stringify(HISTORICAL_LEGACY_BASELINE_SLUGS),
+  'Current src/data/blogPosts.ts matches HISTORICAL_LEGACY_BASELINE_SLUGS 1:1 without modification'
+);
+
+// 4b. Reconcile migrated intersection vs remaining difference
+const actualMigratedSlugs = currentSourceSlugs.filter((s) => MODERNIZED_LEGACY_SLUGS.includes(s));
+const actualRemainingSlugs = currentSourceSlugs.filter((s) => !MODERNIZED_LEGACY_SLUGS.includes(s));
+
+assert(
+  actualMigratedSlugs.length === 15,
+  `Exactly 15 legacy articles modernized in Content Collections (got ${actualMigratedSlugs.length})`
+);
+assert(
+  actualRemainingSlugs.length === 12,
+  `Exactly 12 legacy fallback articles preserved (got ${actualRemainingSlugs.length})`
+);
+assert(
+  actualMigratedSlugs.length + actualRemainingSlugs.length === 27,
+  `Invariant verified: 15 migrated + 12 remaining = 27 total original legacy articles`
+);
+assert(
+  JSON.stringify(actualRemainingSlugs) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
+  'Remaining legacy fallback set matches VERIFIED_REMAINING_LEGACY_SLUGS 1:1 in exact identity and order'
+);
+
+// 4c. Verify built output routes, canonical declarations, rendering engines, and index cards
+const enIndexHtmlPath = path.join(DIST_DIR, 'blog/index.html');
+const enIndexHtml = fs.existsSync(enIndexHtmlPath) ? fs.readFileSync(enIndexHtmlPath, 'utf-8') : '';
 
 for (const legacy of blogPosts) {
   const filePath = path.join(DIST_DIR, `blog/${legacy.slug}/index.html`);
   const exists = fs.existsSync(filePath);
   assert(exists, `Legacy canonical URL resolves: /blog/${legacy.slug}`);
 
-  if (MODERNIZED_LEGACY_SLUGS.includes(legacy.slug)) {
-    legacyModernizedCount++;
-  } else {
-    legacyRetainedCount++;
+  if (exists) {
+    const html = fs.readFileSync(filePath, 'utf-8');
+    const expectedCanonical = `https://ladestack.in/blog/${legacy.slug}`;
+    assert(
+      html.includes(`rel="canonical" href="${expectedCanonical}"`),
+      `[${legacy.slug}] Declares expected canonical: ${expectedCanonical}`
+    );
+
+    const isMigrated = MODERNIZED_LEGACY_SLUGS.includes(legacy.slug);
+    if (isMigrated) {
+      // Must use Markdown rendering engine (BlogPostLayout with BlogPosting structured data)
+      const hasBlogPosting = html.includes('"@type":"BlogPosting"') || html.includes('"@type": "BlogPosting"');
+      assert(hasBlogPosting, `[${legacy.slug}] Migrated article uses Markdown rendering engine (BlogPosting JSON-LD)`);
+    } else {
+      // Must use legacy fallback rendering engine (prose class, breadcrumbs, BaseLayout)
+      const hasLegacyStructure = html.includes('prose') && html.includes('Home') && html.includes('Blog');
+      assert(hasLegacyStructure, `[${legacy.slug}] Unmigrated article uses legacy fallback rendering engine`);
+      // Must NOT contain Markdown BlogPosting schema
+      const hasBlogPosting = html.includes('"@type":"BlogPosting"') || html.includes('"@type": "BlogPosting"');
+      assert(!hasBlogPosting, `[${legacy.slug}] Legacy fallback article does not emit false BlogPosting schema`);
+    }
   }
+
+  // Verify English blog index card destination
+  assert(
+    enIndexHtml.includes(`/blog/${legacy.slug}`),
+    `[${legacy.slug}] Visible card destination present in /blog/index.html`
+  );
 }
 
-assert(legacyModernizedCount === 15, `Exactly 15 legacy articles modernized in Content Collections (got ${legacyModernizedCount})`);
-assert(legacyRetainedCount === 12, `Exactly 12 legacy fallback articles preserved (got ${legacyRetainedCount})`);
-assert(legacyModernizedCount + legacyRetainedCount === 27, `Total 27 legacy canonical blog URLs accounted for (got ${legacyModernizedCount + legacyRetainedCount})`);
+// 4d. Verify English blog index legacy archive section contains exactly the 12 verified remaining slugs
+const legacyCardsOnIndex = [...enIndexHtml.matchAll(/<article[^>]*data-legacy-card[\s\S]*?<a[^>]*href=["']\/blog\/([^"']+)["']/gi)].map(m => m[1]);
+assert(
+  legacyCardsOnIndex.length === 12,
+  `English blog index contains exactly 12 legacy cards in #legacy-archive (got ${legacyCardsOnIndex.length})`
+);
+assert(
+  JSON.stringify(legacyCardsOnIndex) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
+  'Legacy cards on English blog index match VERIFIED_REMAINING_LEGACY_SLUGS 1:1'
+);
 
 console.log('\n--- 5. Validating Historic Numeric Redirects (/blog/1 through /blog/6) ---');
 for (let id = 1; id <= 6; id++) {
