@@ -5,11 +5,11 @@ locale: "tr"
 slug: "building-api-gateways-microservices"
 translationKey: "building-api-gateways-microservices"
 author: "Girish Lade"
-publishedAt: "2024-09-08"
+publishedAt: "2024-09-15"
 updatedAt: "2026-10-24"
 category: "Microservices"
 tags: ["API Gateway", "Microservices", "Envoy", "Redis", "Security", "Architecture", "DevOps"]
-coverImage: "/blog-covers/zero-trust-security.svg"
+coverImage: "/blog-covers/api-architecture.svg"
 coverAlt: "Mikroservisler için API Gateway Mimari Şeması"
 draft: false
 featured: false

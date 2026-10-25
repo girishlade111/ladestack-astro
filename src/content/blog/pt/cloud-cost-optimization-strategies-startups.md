@@ -5,11 +5,11 @@ locale: "pt"
 slug: "cloud-cost-optimization-strategies-startups"
 translationKey: "cloud-cost-optimization-strategies-startups"
 author: "Girish Lade"
-publishedAt: "2024-09-15"
+publishedAt: "2024-09-22"
 updatedAt: "2026-10-24"
 category: "Cloud Computing"
 tags: ["Cloud Costs", "FinOps", "AWS", "Kubernetes", "DevOps", "Startups", "Architecture"]
-coverImage: "/blog-covers/modern-web-performance.svg"
+coverImage: "/blog-covers/cloud-security.svg"
 coverAlt: "Diagrama de Otimização de Custos Cloud para Startups"
 draft: false
 featured: false
