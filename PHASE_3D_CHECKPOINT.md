@@ -76,15 +76,51 @@
 ## 5. Next Action & Future Handoff (Phase 3D-C)
 
 1. **Sprint Initialized:** `Phase 3D-C` (Controlled Legacy Blog Migration — Batch 3)
-2. **Current Branch:** `feature/phase-3d-b-blog-migration` (Ready for user review; DO NOT push or merge without authorization)
+2. **Current Branch:** `feature/phase-3d-c-blog-migration`
 3. **Verified Baseline for Phase 3D-C:**
-   - 90 Markdown articles
+   - 90 Markdown articles (18 EN + 72 non-EN)
    - 12 remaining legacy fallback articles
    - 27 preserved canonical legacy URLs
    - 214 total HTML output files in `dist/`
-4. **Next Recommended Batch Slugs (Batch 3):**
+4. **Target Batch Slugs (Batch 3):**
    - `building-api-gateways-microservices`
    - `cloud-cost-optimization-strategies-startups`
    - `multi-cloud-architecture-aws-azure-gcp`
    - `containers-vs-vms-when-to-use-each`
    - `optimizing-vm-performance-production-workloads`
+5. **Target Multilingual Expansion Topics (2 Topics × 8 Locales = 16 MD):**
+   - `building-api-gateways-microservices`
+   - `cloud-cost-optimization-strategies-startups`
+
+---
+
+## 6. Phase 3D-C Execution State
+
+- **BASELINE_COMMIT:** `4896236` (*"docs: update migration report and add inventory integrity report for phase 3d-b blog articles"*)
+- **CURRENT_BRANCH:** `feature/phase-3d-c-blog-migration`
+- **CURRENT_ARTICLE:** `multi-cloud-architecture-aws-azure-gcp` (Article 3 of 5)
+- **CURRENT_TASK:** Authoring Article 3 in English Markdown Collections
+- **FILES_CREATED:**
+  - `src/content/blog/en/building-api-gateways-microservices.md`
+  - `src/content/blog/en/cloud-cost-optimization-strategies-startups.md`
+- **FILES_MODIFIED:** `PHASE_3D_CHECKPOINT.md`
+- **LAST_VERIFIED_STEP:** Article 2 (`cloud-cost-optimization-strategies-startups`) schema sync & typecheck
+- **LAST_SUCCESSFUL_TEST:** `astro sync` and `npm run check` (Exit code 0)
+- **NEXT_EXACT_ACTION:** Author and validate `src/content/blog/en/multi-cloud-architecture-aws-azure-gcp.md`
+- **KNOWN_BLOCKERS:** None
+
+| Stage / Item | Status | Verification Detail |
+|:---|:---:|:---|
+| Git Preflight & Branch Safety | `VERIFIED` | On `feature/phase-3d-c-blog-migration`, clean tree, baseline `4896236` |
+| Article 1 (`building-api-gateways-microservices`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 2 (`cloud-cost-optimization-strategies-startups`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 3 (`multi-cloud-architecture-aws-azure-gcp`) | `IN_PROGRESS` | Authoring English Content Collections guide |
+| Article 4 (`containers-vs-vms-when-to-use-each`) | `NOT_STARTED` | Awaiting Article 3 verification |
+| Article 5 (`optimizing-vm-performance-production-workloads`) | `NOT_STARTED` | Awaiting Article 4 verification |
+| Multilingual Batch 1 (`ja`, `ko`) | `NOT_STARTED` | Awaiting 5 English migrations |
+| Multilingual Batch 2 (`zh`, `ru`) | `NOT_STARTED` | Awaiting Batch 1 verification |
+| Multilingual Batch 3 (`tr`, `fr`) | `NOT_STARTED` | Awaiting Batch 2 verification |
+| Multilingual Batch 4 (`pt`, `es`) | `NOT_STARTED` | Awaiting Batch 3 verification |
+| Test Hardening & SSG Build | `NOT_STARTED` | Awaiting all 21 Markdown files |
+| Browser Subagent QA | `NOT_STARTED` | Awaiting build and local server |
+| Reports & Checkpoint Finalization | `NOT_STARTED` | Awaiting test pass |
