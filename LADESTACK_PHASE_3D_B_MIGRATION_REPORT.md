@@ -106,8 +106,40 @@ Exactly two topics were selected for full multilingual expansion across all 8 su
 ## 4. Preservation of Legacy Canonical Routes
 
 The original 27 legacy blog articles from `src/data/blogPosts.ts` are 100% accounted for:
-- **15 Modernized Articles:** Rendered via Astro Content Collections with rich layouts, code blocks, and valid metadata.
-- **12 Retained Legacy Fallback Articles:** Rendered via dynamic fallback logic (`src/pages/blog/[slug].astro`), displaying at their exact historical URLs with zero 404 errors.
+
+### 15 Modernized Articles (Content Collections):
+Rendered via Astro Content Collections with rich layouts, code blocks, and valid metadata:
+1. `future-of-ai-in-software-development` (Phase 3C)
+2. `building-ai-powered-code-review-systems` (Phase 3C)
+3. `machine-learning-pipelines-for-web-developers` (Phase 3D-A)
+4. `generative-ai-for-content-creation` (Phase 3D-A)
+5. `building-rag-applications-vector-databases` (Phase 3D-A)
+6. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
+7. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
+8. `building-subscription-billing-systems` (Phase 3D-B)
+9. `scaling-saas-applications-million-users` (Phase 3D-B)
+10. `baas-platforms-compared-firebase-supabase-appwrite` (Phase 3D-B)
+11. `building-serverless-backends-with-baas` (Phase 3D-B)
+12. `real-time-data-sync-backend-services` (Phase 3D-B)
+13. `rest-vs-graphql-choosing-right-api-paradigm` (Phase 3C)
+14. `api-rate-limiting-throttling-strategies` (Phase 3C)
+15. `zero-trust-security-web-applications` (Phase 3C)
+
+### 12 Retained Legacy Fallback Articles:
+Rendered via dynamic fallback logic (`src/pages/blog/[slug].astro`), displaying at their exact historical URLs with zero 404 errors and linked in the English blog index `#legacy-archive` section:
+1. `building-api-gateways-microservices`
+2. `cloud-cost-optimization-strategies-startups`
+3. `multi-cloud-architecture-aws-azure-gcp`
+4. `containers-vs-vms-when-to-use-each`
+5. `optimizing-vm-performance-production-workloads`
+6. `gitops-managing-infrastructure-with-git`
+7. `building-zero-downtime-deployment-pipelines`
+8. `infrastructure-as-code-terraform-pulumi`
+9. `owasp-top-10-complete-mitigation-guide`
+10. `implementing-oauth2-openid-connect`
+11. `mlops-deploying-ml-models-production`
+12. `monitoring-ai-systems-in-production`
+
 - **Blog Index Integration:** English `/blog` shows 18 Markdown cards + 12 legacy cards in `#legacy-archive` (total 30 cards). Non-English blog indexes display only genuine translated articles (0 legacy cards).
 
 ---
