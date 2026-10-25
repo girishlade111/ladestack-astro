@@ -1,13 +1,13 @@
 # LadeStack — Phase 3D Multilingual Translation Matrix
 ## Cross-Locale Content Collections Mapping & Hreflang Cluster Validation
 
-**Sprint Status:** `PHASE_3D_B_COMPLETE`  
-**Date:** October 24, 2026  
-**Total Multilingual Topics:** 9  
+**Sprint Status:** `PHASE_3D_C_COMPLETE`  
+**Date:** October 25, 2026  
+**Total Multilingual Topics:** 11  
 **Supported Locales:** 9 (`en`, `ja`, `ko`, `zh`, `ru`, `tr`, `fr`, `pt`, `es`)  
-**Total Multilingual Documents:** 81 (9 topics × 9 locales)  
-**Total English-Only Documents:** 9  
-**Total Active Markdown Documents:** 90  
+**Total Multilingual Documents:** 99 (11 topics × 9 locales)  
+**Total English-Only Documents:** 12  
+**Total Active Markdown Documents:** 111  
 
 ---
 
@@ -17,24 +17,26 @@ Each multilingual topic consists of 9 fully synchronized Markdown documents shar
 
 | Translation Key / Slug | Locale | Localized Title | File Path | Canonical URL |
 |:---|:---:|:---|:---|:---|
-| **building-subscription-billing-systems** | `en` | Building Robust Subscription Billing Systems: Lifecycle, Webhooks, and Idempotency | `src/content/blog/en/...` | `https://ladestack.in/blog/building-subscription-billing-systems` |
-| *(Topic 8 — Phase 3D-B)* | `ja` | 堅牢なサブスクリプション決済システムの構築：ライフサイクル、Webhook、および冪等性 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/building-subscription-billing-systems` |
-| | `ko` | 견고한 구독 결제 시스템 구축: 라이프사이클, 웹훅, 멱등성 설계 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/building-subscription-billing-systems` |
-| | `zh` | 构建健壮的订阅计费系统：生命周期、Webhooks与幂等性架构 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/building-subscription-billing-systems` |
-| | `ru` | Построение надежных систем биллинга по подписке: жизненный цикл, вебхуки и идемпотентность | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/building-subscription-billing-systems` |
-| | `tr` | Güvenilir Abonelik Faturalandırma Sistemleri Oluşturma: Yaşam Döngüsü, Webhook'lar ve Tekrarlanabilirlik (Idempotency) | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/building-subscription-billing-systems` |
-| | `fr` | Concevoir des systèmes de facturation par abonnement robustes : cycle de vie, webhooks et idempotence | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/building-subscription-billing-systems` |
-| | `pt` | Construindo Sistemas Robustos de Cobrança por Assinatura: Ciclo de Vida, Webhooks e Idempotência | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/building-subscription-billing-systems` |
-| | `es` | Construcción de sistemas robustos de facturación por suscripción: ciclo de vida, webhooks e idempotencia | `src/content/blog/es/...` | `https://ladestack.in/es/blog/building-subscription-billing-systems` |
-| **baas-platforms-compared-firebase-supabase-appwrite** | `en` | BaaS Platforms Compared: Architectural Evaluation of Firebase, Supabase, and Appwrite | `src/content/blog/en/...` | `https://ladestack.in/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| *(Topic 9 — Phase 3D-B)* | `ja` | BaaSプラットフォーム比較：Firebase、Supabase、Appwriteのアーキテクチャ評価 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `ko` | BaaS 플랫폼 심층 비교: Firebase, Supabase, Appwrite 아키텍처 분석 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `zh` | BaaS平台深度对比：Firebase、Supabase与Appwrite架构评估 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `ru` | Сравнение BaaS-платформ: архитектурный анализ Firebase, Supabase и Appwrite | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `tr` | BaaS Platformları Karşılaştırması: Firebase, Supabase ve Appwrite Mimari Analizi | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `fr` | Comparatif des plateformes BaaS : analyse architecturale de Firebase, Supabase et Appwrite | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `pt` | Comparativo de Plataformas BaaS: Avaliação Arquitetural de Firebase, Supabase e Appwrite | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/baas-platforms-compared-firebase-supabase-appwrite` |
-| | `es` | Comparativa de plataformas BaaS: análisis arquitectónico de Firebase, Supabase y Appwrite | `src/content/blog/es/...` | `https://ladestack.in/es/blog/baas-platforms-compared-firebase-supabase-appwrite` |
+| **building-api-gateways-microservices** | `en` | Building Production API Gateways for Microservices: Routing, Auth, Rate Limiting, and Resilience | `src/content/blog/en/...` | `https://ladestack.in/blog/building-api-gateways-microservices` |
+| *(Topic 10 — Phase 3D-C)* | `ja` | マイクロサービス向けAPIゲートウェイの構築：ルーティング、認証、レート制限、および耐障害性 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/building-api-gateways-microservices` |
+| | `ko` | 마이크로서비스를 위한 API 게이트웨이 구축: 라우팅, 인증, 속도 제한 및 복원력 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/building-api-gateways-microservices` |
+| | `zh` | 构建微服务API网关：路由、身份认证、速率限制与系统韧性 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/building-api-gateways-microservices` |
+| | `ru` | Построение API Gateway для микросервисов: Маршрутизация, Аутентификация, Rate Limiting и Отказоустойчивость | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/building-api-gateways-microservices` |
+| | `tr` | Mikroservisler İçin API Ağ Geçidi (API Gateway) Mimarisi: Yönlendirme, Kimlik Doğrulama, Hız Sınırlama ve Dayanıklılık | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/building-api-gateways-microservices` |
+| | `fr` | Concevoir une API Gateway pour Microservices : Routage, Authentification, Rate Limiting et Résilience | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/building-api-gateways-microservices` |
+| | `pt` | Construindo API Gateways para Microsserviços: Roteamento, Autenticação, Rate Limiting e Resiliência | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/building-api-gateways-microservices` |
+| | `es` | Construyendo un API Gateway para Microservicios: Enrutamiento, Autenticación, Rate Limiting y Resiliencia | `src/content/blog/es/...` | `https://ladestack.in/es/blog/building-api-gateways-microservices` |
+| **cloud-cost-optimization-strategies-startups** | `en` | Cloud Cost Optimization Strategies for Startups: Practical FinOps and Infrastructure Efficiency | `src/content/blog/en/...` | `https://ladestack.in/blog/cloud-cost-optimization-strategies-startups` |
+| *(Topic 11 — Phase 3D-C)* | `ja` | スタートアップのためのクラウドコスト最適化戦略：実践的FinOpsとインフラ効率化 | `src/content/blog/ja/...` | `https://ladestack.in/ja/blog/cloud-cost-optimization-strategies-startups` |
+| | `ko` | 스타트업을 위한 클라우드 비용 최적화 전략: 실전 FinOps와 인프라 효율화 | `src/content/blog/ko/...` | `https://ladestack.in/ko/blog/cloud-cost-optimization-strategies-startups` |
+| | `zh` | 初创企业云成本优化策略：实战FinOps与云基础设施效能工程 | `src/content/blog/zh/...` | `https://ladestack.in/zh/blog/cloud-cost-optimization-strategies-startups` |
+| | `ru` | Стратегии оптимизации облачных расходов для стартапов: Практический FinOps и Инженерия Эффективности | `src/content/blog/ru/...` | `https://ladestack.in/ru/blog/cloud-cost-optimization-strategies-startups` |
+| | `tr` | Girişimler İçin Bulut Maliyetlerini Optimize Etme Stratejileri: Uygulamalı FinOps ve Altyapı Verimliliği | `src/content/blog/tr/...` | `https://ladestack.in/tr/blog/cloud-cost-optimization-strategies-startups` |
+| | `fr` | Stratégies d'optimisation des coûts cloud pour les startups : FinOps pratique et efficience d'infrastructure | `src/content/blog/fr/...` | `https://ladestack.in/fr/blog/cloud-cost-optimization-strategies-startups` |
+| | `pt` | Estratégias de Otimização de Custos em Nuvem para Startups: FinOps Prático e Eficiência de Infraestrutura | `src/content/blog/pt/...` | `https://ladestack.in/pt/blog/cloud-cost-optimization-strategies-startups` |
+| | `es` | Estrategias de Optimización de Costes Cloud para Startups: FinOps Práctico y Eficiencia de Infraestructura | `src/content/blog/es/...` | `https://ladestack.in/es/blog/cloud-cost-optimization-strategies-startups` |
+| **building-subscription-billing-systems** | `en`–`es` | Building Robust Subscription Billing Systems (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/building-subscription-billing-systems` |
+| **baas-platforms-compared-firebase-supabase-appwrite** | `en`–`es` | BaaS Platforms Compared: Architectural Evaluation (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/baas-platforms-compared-firebase-supabase-appwrite` |
 | **machine-learning-pipelines-for-web-developers** | `en`–`es` | Machine Learning Pipelines for Web Developers (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/machine-learning-pipelines-for-web-developers` |
 | **building-rag-applications-vector-databases** | `en`–`es` | Building Production RAG Applications with Vector Databases (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/building-rag-applications-vector-databases` |
 | **gb-coder-dual-engine-architecture** | `en`–`es` | Dual-Engine Web Architecture (9 languages) | `src/content/blog/{locale}/...` | `https://ladestack.in/[{locale}/]blog/gb-coder-dual-engine-architecture` |
@@ -47,17 +49,20 @@ Each multilingual topic consists of 9 fully synchronized Markdown documents shar
 
 ### 2. English-Only Modernized Articles (No Fake Alternate Hreflang Tags)
 
-These 9 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
+These 12 articles are published exclusively in English. International SEO audits verify that they emit self-canonicals and **zero** false multilingual alternates:
 
-1. `scaling-saas-applications-million-users` (Phase 3D-B)
-2. `building-serverless-backends-with-baas` (Phase 3D-B)
-3. `real-time-data-sync-backend-services` (Phase 3D-B)
-4. `generative-ai-for-content-creation` (Phase 3D-A)
-5. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
-6. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
-7. `zero-trust-security-web-applications` (Phase 3C)
-8. `building-ai-powered-code-review-systems` (Phase 3C)
-9. `future-of-ai-in-software-development` (Phase 3C)
+1. `multi-cloud-architecture-aws-azure-gcp` (Phase 3D-C)
+2. `containers-vs-vms-when-to-use-each` (Phase 3D-C)
+3. `optimizing-vm-performance-production-workloads` (Phase 3D-C)
+4. `scaling-saas-applications-million-users` (Phase 3D-B)
+5. `building-serverless-backends-with-baas` (Phase 3D-B)
+6. `real-time-data-sync-backend-services` (Phase 3D-B)
+7. `generative-ai-for-content-creation` (Phase 3D-A)
+8. `fine-tuning-llms-domain-specific-tasks` (Phase 3D-A)
+9. `multi-tenant-saas-architecture-patterns` (Phase 3D-A)
+10. `zero-trust-security-web-applications` (Phase 3C)
+11. `building-ai-powered-code-review-systems` (Phase 3C)
+12. `future-of-ai-in-software-development` (Phase 3C)
 
 ---
 
