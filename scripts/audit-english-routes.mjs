@@ -87,7 +87,7 @@ for (const page of LOCALIZED_SUBPAGES) {
   }
 }
 
-console.log('\n--- 2. Auditing English-Only Legacy Routes (Zero False Alternates) ---');
+console.log('\n--- 2. Auditing English-Only Modernized Routes (Zero False Alternates) ---');
 for (const page of ENGLISH_ONLY_SUBPAGES) {
   const filePath = path.join(DIST_DIR, page.path);
   if (!fs.existsSync(filePath)) {
@@ -106,9 +106,63 @@ for (const page of ENGLISH_ONLY_SUBPAGES) {
   }
 }
 
+console.log('\n--- 3. Auditing 12 Verified Remaining Legacy Fallback Routes (Zero False Alternates) ---');
+const LEGACY_FALLBACK_SUBPAGES = [
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
+  'gitops-managing-infrastructure-with-git',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'owasp-top-10-complete-mitigation-guide',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
+].map((slug) => ({
+  path: `blog/${slug}/index.html`,
+  canonical: `https://ladestack.in/blog/${slug}`,
+  expectedHreflangs: 0,
+}));
+
+for (const page of LEGACY_FALLBACK_SUBPAGES) {
+  const filePath = path.join(DIST_DIR, page.path);
+  if (!fs.existsSync(filePath)) {
+    console.error(`❌ FAIL: Missing Legacy fallback subpage: ${page.path}`);
+    failed = true;
+    continue;
+  }
+
+  const html = fs.readFileSync(filePath, 'utf-8');
+
+  // Check <html lang="en">
+  const langMatch = html.match(/<html\s+[^>]*lang=["']([^"']+)["']/i);
+  if (!langMatch || langMatch[1] !== 'en') {
+    console.error(`❌ FAIL [${page.path}]: Expected <html lang="en">, got "${langMatch ? langMatch[1] : 'NONE'}"`);
+    failed = true;
+  }
+
+  // Check Canonical
+  const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
+  if (!canonicalMatch || canonicalMatch[1] !== page.canonical) {
+    console.error(`❌ FAIL [${page.path}]: Canonical mismatch: ${canonicalMatch ? canonicalMatch[1] : 'NONE'}`);
+    failed = true;
+  }
+
+  // Check Hreflangs
+  const hreflangCount = (html.match(/rel=["']alternate["']\s+hreflang=/gi) || []).length;
+  if (hreflangCount !== page.expectedHreflangs) {
+    console.error(`❌ FAIL [${page.path}]: Found ${hreflangCount} fake hreflang tags! Legacy fallback must have 0 alternates.`);
+    failed = true;
+  } else {
+    console.log(`✅ PASS [${page.path}]: Canonical valid (${page.canonical}), exactly 0 fake hreflangs.`);
+  }
+}
+
 if (failed) {
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY!');
+  console.log('\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY (19 LOCALIZED + 9 ENGLISH-ONLY + 12 LEGACY FALLBACK)!');
   process.exit(0);
 }

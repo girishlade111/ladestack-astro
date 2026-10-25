@@ -1,6 +1,21 @@
 import fs from 'node:fs';
 import { blogPosts } from '../src/data/blogPosts.ts';
 
+const VERIFIED_REMAINING_LEGACY_SLUGS = [
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
+  'gitops-managing-infrastructure-with-git',
+  'building-zero-downtime-deployment-pipelines',
+  'infrastructure-as-code-terraform-pulumi',
+  'owasp-top-10-complete-mitigation-guide',
+  'implementing-oauth2-openid-connect',
+  'mlops-deploying-ml-models-production',
+  'monitoring-ai-systems-in-production',
+];
+
 const html = fs.readFileSync('dist/blog/index.html', 'utf8');
 const hasLegacySection = html.includes('data-legacy-archive-section');
 const legacyMatches = html.match(/<article[^>]*data-legacy-card/g) || [];
@@ -11,11 +26,16 @@ console.log('Legacy Card Count in dist/blog/index.html:', legacyMatches.length);
 
 const enFiles = new Set(fs.readdirSync('src/content/blog/en').map(f => f.replace('.md', '')));
 const unmigrated = blogPosts.filter(p => !enFiles.has(p.slug));
+const unmigratedSlugs = unmigrated.map(p => p.slug);
 
 console.log('Unmigrated legacy articles expected:', unmigrated.length);
 
 const missing = unmigrated.filter(p => !html.includes(`/blog/${p.slug}`));
 console.log('Missing legacy slugs in dist/blog/index.html:', missing.map(p => p.slug));
+
+// Check exact match of unmigrated against VERIFIED_REMAINING_LEGACY_SLUGS
+const exactMatch = JSON.stringify(unmigratedSlugs) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS);
+console.log('Exact identity match with verified remaining slugs:', exactMatch ? '✅ MATCH' : '❌ MISMATCH');
 
 // Check that non-English blog indexes do NOT have the legacy archive
 const nonEn = ['ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
@@ -32,6 +52,6 @@ if (nonEnClean) {
   console.log('All 8 non-English indexes verified clean (0 legacy cards).');
 }
 
-const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 12 && missing.length === 0 && nonEnClean;
+const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 12 && missing.length === 0 && nonEnClean && exactMatch;
 console.log('Legacy Archive Validation Result:', passed ? '✅ PASS' : '❌ FAIL');
 if (!passed) process.exit(1);
