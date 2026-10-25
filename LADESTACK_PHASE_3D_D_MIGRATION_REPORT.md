@@ -205,7 +205,7 @@ All 27 original historical URLs resolve at `https://ladestack.in/blog/{slug}` us
 
 ---
 
-### 11. Final Acceptance Declaration
+### 11. Final Acceptance Declaration & Post-Migration Remediation
 
 All acceptance criteria set forth in the Phase 3D-D specification have been verified.
 - Local verified Phase 3D-C baseline `4023087` used as starting point.
@@ -217,4 +217,8 @@ All acceptance criteria set forth in the Phase 3D-D specification have been veri
 - Exactly 246 HTML files generated in `dist/`.
 - All test suites passing with exit code 0.
 
-**STATUS: `PHASE_3D_D_COMPLETE`**
+#### Post-Migration Editorial Remediation Note:
+Subsequent editorial review identified that `owasp-top-10-complete-mitigation-guide` used superseded OWASP Top 10:2021 classifications. In Phase 3D-D Final Editorial Remediation, all 9 language editions (`en`, `ja`, `ko`, `zh`, `ru`, `tr`, `fr`, `pt`, `es`) were systematically updated to the official **OWASP Top 10:2025** standard (`A01:2025` through `A10:2025`), incorporating Software Supply Chain Failures (A03:2025), Mishandling of Exceptional Conditions (A10:2025), and SSRF integration into Broken Access Control (A01:2025). Automated regression test `scripts/test-owasp-2025.mjs` was introduced to enforce this standard.
+
+**STATUS: `PHASE_3D_D_COMPLETE` (Remediated to OWASP 2025 Standard)**
+

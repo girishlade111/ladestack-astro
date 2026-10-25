@@ -13,7 +13,7 @@
 
 This audit assesses the technical accuracy, architectural integrity, and international SEO validity of the migrated LadeStack blog repository following the completion of Phase 3D-D.
 
-All 27 original legacy articles originally authored in early 2024 and maintained as fallbacks have now been rewritten into professional, publication-grade Markdown documents under Astro Content Collections (`src/content/blog/`). Each article has been updated to reflect contemporary cloud-native standards (Kubernetes 1.30+, OAuth 2.1 BCP, OWASP Top 10:2021, OpenTelemetry GenAI Semantic Conventions, Terraform/OpenTofu, and modern MLOps tooling).
+All 27 original legacy articles originally authored in early 2024 and maintained as fallbacks have now been rewritten into professional, publication-grade Markdown documents under Astro Content Collections (`src/content/blog/`). Each article has been updated to reflect contemporary cloud-native standards (Kubernetes 1.30+, OAuth 2.1 BCP, OWASP Top 10:2025 [remediated from 2021], OpenTelemetry GenAI Semantic Conventions, Terraform/OpenTofu, and modern MLOps tooling).
 
 ---
 
@@ -24,7 +24,7 @@ All 27 original legacy articles originally authored in early 2024 and maintained
 | **GitOps Architecture** | CNCF OpenGitOps Working Group (Principles 1–4) | Contrasts reconciliation loops with push CI/CD; documents break-glass procedures | `VERIFIED` |
 | **Zero-Downtime Deployments** | Kubernetes SIG-Network / AWS Architecture | Detailed pod shutdown lifecycle (`preStop`, `SIGTERM`), expand-contract database migrations | `VERIFIED` |
 | **Terraform & Pulumi** | HashiCorp HCL / OpenTofu / Pulumi SDK Docs | Strict state locking, KMS CMK secrets handling, CrossGuard / OPA policy enforcement | `VERIFIED` |
-| **OWASP Top 10** | OWASP Foundation Top 10:2021 Standard | Covers all 10 official categories (A01:2021 to A10:2021); defense-in-depth model | `VERIFIED` |
+| **OWASP Top 10:2025** | OWASP Foundation Top 10:2025 Standard | Covers all 10 official categories (A01:2025 to A10:2025); defense-in-depth model, Software Supply Chain Failures (A03) and Mishandling of Exceptional Conditions (A10) | `VERIFIED` |
 | **OAuth 2.0 & OIDC** | IETF RFC 6749, RFC 7636 (PKCE), RFC 9700 (Security BCP) | Deprecates Implicit Flow; mandates Authorization Code with PKCE and BFF architecture | `VERIFIED` |
 | **Production MLOps** | Google "Hidden Technical Debt in ML Systems" / MLflow | Model lineage, dynamic batching, statistical drift detection (PSI, KS-test) | `VERIFIED` |
 | **AI System Monitoring** | OpenTelemetry GenAI Semantic Conventions | Streaming metrics (TTFT, ITL), RAG Triad (relevance, faithfulness), PII redaction | `VERIFIED` |
