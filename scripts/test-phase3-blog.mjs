@@ -239,16 +239,16 @@ const actualMigratedSlugs = currentSourceSlugs.filter((s) => MODERNIZED_LEGACY_S
 const actualRemainingSlugs = currentSourceSlugs.filter((s) => !MODERNIZED_LEGACY_SLUGS.includes(s));
 
 assert(
-  actualMigratedSlugs.length === 15,
-  `Exactly 15 legacy articles modernized in Content Collections (got ${actualMigratedSlugs.length})`
+  actualMigratedSlugs.length === 20,
+  `Exactly 20 legacy articles modernized in Content Collections (got ${actualMigratedSlugs.length})`
 );
 assert(
-  actualRemainingSlugs.length === 12,
-  `Exactly 12 legacy fallback articles preserved (got ${actualRemainingSlugs.length})`
+  actualRemainingSlugs.length === 7,
+  `Exactly 7 legacy fallback articles preserved (got ${actualRemainingSlugs.length})`
 );
 assert(
   actualMigratedSlugs.length + actualRemainingSlugs.length === 27,
-  `Invariant verified: 15 migrated + 12 remaining = 27 total original legacy articles`
+  `Invariant verified: 20 migrated + 7 remaining = 27 total original legacy articles`
 );
 assert(
   JSON.stringify(actualRemainingSlugs) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
@@ -294,11 +294,11 @@ for (const legacy of blogPosts) {
   );
 }
 
-// 4d. Verify English blog index legacy archive section contains exactly the 12 verified remaining slugs
+// 4d. Verify English blog index legacy archive section contains exactly the 7 verified remaining slugs
 const legacyCardsOnIndex = [...enIndexHtml.matchAll(/<article[^>]*data-legacy-card[\s\S]*?<a[^>]*href=["']\/blog\/([^"']+)["']/gi)].map(m => m[1]);
 assert(
-  legacyCardsOnIndex.length === 12,
-  `English blog index contains exactly 12 legacy cards in #legacy-archive (got ${legacyCardsOnIndex.length})`
+  legacyCardsOnIndex.length === 7,
+  `English blog index contains exactly 7 legacy cards in #legacy-archive (got ${legacyCardsOnIndex.length})`
 );
 assert(
   JSON.stringify(legacyCardsOnIndex) === JSON.stringify(VERIFIED_REMAINING_LEGACY_SLUGS),
@@ -332,20 +332,22 @@ const coverImages = [
   'public/blog-covers/api-architecture.svg',
   'public/blog-covers/kubernetes-scale.svg',
   'public/blog-covers/cloud-security.svg',
+  'public/blog-covers/modern-web-performance.svg',
+  'public/blog-covers/edge-computing-devops.svg',
 ];
 
 for (const cover of coverImages) {
   assert(fs.existsSync(path.resolve(cover)), `Cover image exists on disk: ${cover}`);
 }
 
-console.log('\n--- 7. Validating Sitemap Inclusion of All 90 Markdown Articles ---');
+console.log('\n--- 7. Validating Sitemap Inclusion of All 111 Markdown Articles ---');
 const sitemapPath = path.join(DIST_DIR, 'sitemap-0.xml');
 assert(fs.existsSync(sitemapPath), 'sitemap-0.xml exists');
 if (fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf-8');
   assert(sitemapXml.includes('https://ladestack.in/blog'), 'Sitemap includes /blog');
 
-  // Check 9 multilingual topics across 9 locales (81 URLs)
+  // Check 11 multilingual topics across 9 locales (99 URLs)
   for (const slug of MULTILINGUAL_TOPICS) {
     for (const loc of LOCALES) {
       const expectedUrl = loc === 'en'
@@ -355,7 +357,7 @@ if (fs.existsSync(sitemapPath)) {
     }
   }
 
-  // Check 9 English-only modernized topics (9 URLs)
+  // Check 12 English-only modernized topics (12 URLs)
   for (const slug of ENGLISH_ONLY_MODERNIZED) {
     const expectedUrl = `https://ladestack.in/blog/${slug}`;
     assert(sitemapXml.includes(expectedUrl), `Sitemap includes English-only ${expectedUrl}`);
@@ -363,9 +365,9 @@ if (fs.existsSync(sitemapPath)) {
 }
 
 if (errors > 0) {
-  console.error(`\n❌ PHASE 3D-B BLOG TEST SUITE FAILED with ${errors} errors.`);
+  console.error(`\n❌ PHASE 3D-C BLOG TEST SUITE FAILED with ${errors} errors.`);
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL PHASE 3D-B BLOG TESTS PASSED PERFECTLY (90 MARKDOWN + 12 LEGACY VERIFIED)!');
+  console.log('\n🎉 ALL PHASE 3D-C BLOG TESTS PASSED PERFECTLY (111 MARKDOWN + 7 LEGACY VERIFIED)!');
   process.exit(0);
 }
