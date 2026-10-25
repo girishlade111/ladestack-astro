@@ -332,7 +332,6 @@ const coverImages = [
   'public/blog-covers/api-architecture.svg',
   'public/blog-covers/kubernetes-scale.svg',
   'public/blog-covers/cloud-security.svg',
-  'public/blog-covers/modern-web-performance.svg',
   'public/blog-covers/edge-computing-devops.svg',
 ];
 
