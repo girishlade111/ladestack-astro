@@ -22,7 +22,7 @@ import { blogPosts } from '../src/data/blogPosts.ts';
 const DIST_DIR = path.resolve('dist');
 const LOCALES = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
 
-// 9 topics translated into all 9 languages (81 articles)
+// 11 topics translated into all 9 languages (99 articles)
 const MULTILINGUAL_TOPICS = [
   'gb-coder-dual-engine-architecture',
   'client-side-pdf-manipulation-webassembly',
@@ -33,9 +33,11 @@ const MULTILINGUAL_TOPICS = [
   'building-rag-applications-vector-databases',
   'building-subscription-billing-systems',
   'baas-platforms-compared-firebase-supabase-appwrite',
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
 ];
 
-// 9 English-only modernized articles
+// 12 English-only modernized articles
 const ENGLISH_ONLY_MODERNIZED = [
   'zero-trust-security-web-applications',
   'building-ai-powered-code-review-systems',
@@ -46,9 +48,12 @@ const ENGLISH_ONLY_MODERNIZED = [
   'scaling-saas-applications-million-users',
   'building-serverless-backends-with-baas',
   'real-time-data-sync-backend-services',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
 ];
 
-// The 15 modernized legacy slugs (5 from Phase 3C + 5 from Phase 3D-A + 5 from Phase 3D-B)
+// The 20 modernized legacy slugs (5 from 3C + 5 from 3D-A + 5 from 3D-B + 5 from 3D-C)
 const MODERNIZED_LEGACY_SLUGS = [
   'api-rate-limiting-throttling-strategies',
   'rest-vs-graphql-choosing-right-api-paradigm',
@@ -65,6 +70,11 @@ const MODERNIZED_LEGACY_SLUGS = [
   'baas-platforms-compared-firebase-supabase-appwrite',
   'building-serverless-backends-with-baas',
   'real-time-data-sync-backend-services',
+  'building-api-gateways-microservices',
+  'cloud-cost-optimization-strategies-startups',
+  'multi-cloud-architecture-aws-azure-gcp',
+  'containers-vs-vms-when-to-use-each',
+  'optimizing-vm-performance-production-workloads',
 ];
 
 // Verified 27 historical legacy baseline slugs (from Phase 3C baseline 2528b3b:src/data/blogPosts.ts)
@@ -98,13 +108,8 @@ const HISTORICAL_LEGACY_BASELINE_SLUGS = [
   'monitoring-ai-systems-in-production',
 ];
 
-// Verified 12 remaining legacy fallback slugs (HISTORICAL_LEGACY_BASELINE_SLUGS minus MODERNIZED_LEGACY_SLUGS)
+// Verified 7 remaining legacy fallback slugs (HISTORICAL_LEGACY_BASELINE_SLUGS minus MODERNIZED_LEGACY_SLUGS)
 const VERIFIED_REMAINING_LEGACY_SLUGS = [
-  'building-api-gateways-microservices',
-  'cloud-cost-optimization-strategies-startups',
-  'multi-cloud-architecture-aws-azure-gcp',
-  'containers-vs-vms-when-to-use-each',
-  'optimizing-vm-performance-production-workloads',
   'gitops-managing-infrastructure-with-git',
   'building-zero-downtime-deployment-pipelines',
   'infrastructure-as-code-terraform-pulumi',
