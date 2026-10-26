@@ -50,7 +50,7 @@ export const tr: AppsPageData = {
         description: 'Tarayıcı belleğinde PDF birleştirme, bölme, sıkıştırma, şifreleme ve dönüştürme sağlayan istemci tarafı araçlar.',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'LS PDF İkonu',
       },
       {
@@ -59,7 +59,7 @@ export const tr: AppsPageData = {
         description: 'Yerel Canvas işleme ile modern formatlarda (WebP, AVIF, PNG, JPEG) tarayıcı içi görsel sıkıştırma ve dönüştürme.',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'LS Image İkonu',
       },
       {
@@ -68,7 +68,7 @@ export const tr: AppsPageData = {
         description: 'Canlı önizleme, anahtar kelime puanlaması ve tek tıkla PDF dışa aktarma özellikli ATS uyumlu özgeçmiş hazırlayıcı.',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Swift Resume İkonu',
       },
       {
@@ -77,7 +77,7 @@ export const tr: AppsPageData = {
         description: 'Hindistan bölgesel arazi ölçüm birimleri (Bigha, Guntha, Acre, Hectare) arasında eyalet bazlı hassas dönüştürücü.',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Bharat Land İkonu',
       },
     ],
