@@ -49,3 +49,35 @@ KNOWN_BLOCKERS: NONE (Tailwind v4 upgrade tracked as BLOCKED_NEEDS_SEPARATE_MIGR
 - Broken Internal Images: 0
 - Duplicate Primary H1s: 0
 - Remote Operations: 0 pushed, 0 merged, 0 deployed
+
+---
+
+## PHASE 4B-3 FINAL SECURITY CLOSURE & PRE-RELEASE QA
+ACTIVE_BRANCH: feature/phase-4b-3-security-closure
+STARTING_HEAD: d06b609cb4419efa4a83ca4275e30f1758e6a915
+CURRENT_HEAD: feature/phase-4b-3-security-closure (local)
+CURRENT_TASK: PHASE_4B_3_COMPLETE_LOCAL
+LAST_VERIFIED_STEP: FULL_14_SUITE_REGRESSION_AND_BROWSER_QA_PASS
+LAST_SUCCESSFUL_TEST: All 14 sequential test suites (including scratch/test-phase4b3.mjs) passed exit code 0
+DEPENDENCY_PATCH_STATUS: PATCHED_VERIFIED (postcss-selector-parser@6.1.5 applied via npm overrides; 0 copies of 6.0.10 remain)
+REMAINING_ADVISORIES: 1 Unique Advisory (GHSA-rj75-hqrm-r3gf) - physical package copies patched; scanner metadata delay classified as SCANNER_ADVISORY_STILL_REPORTED
+CSP_REPORTING_STATUS: CSP_REPORT_ONLY_PREPARED_NO_TELEMETRY
+PERFORMANCE_EVIDENCE_STATUS: LAB_MEASURED (5 routes audited via Lighthouse CLI; field metrics classified as FIELD_DATA_NOT_AVAILABLE)
+FILES_CREATED:
+  - LADESTACK_PHASE_4B_3_SECURITY_CLOSURE_REPORT.md
+  - LADESTACK_PHASE_4B_3_DEPENDENCY_VERIFICATION.md
+  - LADESTACK_PHASE_4B_3_CSP_READINESS_REPORT.md
+  - LADESTACK_PHASE_4B_3_FINAL_RELEASE_RISK_REGISTER.md
+  - scratch/test-phase4b3.mjs
+  - scratch/run-all-regression.mjs
+  - scratch/parse-lighthouse.mjs
+FILES_MODIFIED:
+  - package.json
+  - package-lock.json
+  - astro.config.mjs
+  - PHASE_4B_CHECKPOINT.md
+  - LADESTACK_PHASE_4B_2_DEPENDENCY_AUDIT.md
+  - LADESTACK_PHASE_4B_2_SECURITY_PERFORMANCE_REPORT.md
+KNOWN_BLOCKERS: NONE
+NEXT_EXACT_ACTION: Phase 4C Edge Deployment Gate (Awaiting Operator Trigger)
+

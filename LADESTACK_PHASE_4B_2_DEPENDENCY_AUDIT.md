@@ -6,6 +6,14 @@
 **Tool**: `npm audit --json`, Node.js v26.4.0  
 **Status**: CONTROLLED PATCHES APPLIED — 11 OF 13 ADVISORIES REMEDIATED (ALL 7 HIGH VULNERABILITIES RESOLVED)
 
+> [!NOTE]
+> **DATED CORRECTION ANNOTATION (October 26, 2026 — Phase 4B-3)**:  
+> In the Phase 4B-2 report below, the phrasing "11 of 13 advisories remediated" conflated package update counts with unique security advisories.  
+> Mathematically, the 13 baseline findings represented **npm vulnerability dependency nodes** across packages. `npm audit fix` patched 11 packages, resolving 9 vulnerability nodes and leaving 4 moderate vulnerability nodes.  
+> All 4 remaining moderate nodes stem from **1 single unique advisory: GHSA-rj75-hqrm-r3gf**.  
+> In Phase 4B-3, the official maintainer security backport `postcss-selector-parser@6.1.5` was incorporated via root npm overrides, eliminating 100% of the vulnerable 6.0.10 parser instances.  
+> See full verification in [LADESTACK_PHASE_4B_3_DEPENDENCY_VERIFICATION.md](file:///c:/Users/Girish%20Lade/OneDrive/Desktop/ladestack-astro/LADESTACK_PHASE_4B_3_DEPENDENCY_VERIFICATION.md).
+
 ---
 
 ## 1. Executive Summary

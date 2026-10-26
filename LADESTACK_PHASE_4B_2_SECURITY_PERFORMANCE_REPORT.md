@@ -6,6 +6,13 @@
 **Branch**: `feature/phase-4b-p2-security-performance`  
 **Sprint Status**: **PHASE_4B_2_COMPLETE_LOCAL** (All scoped defects verified with automated tests and live browser QA)
 
+> [!NOTE]
+> **DATED CORRECTION ANNOTATION (October 26, 2026 — Phase 4B-3)**:  
+> 1. **Dependency Count Reconciliation**: The phrasing "11 of 13 advisories remediated" conflated package updates with advisory identifiers. 13 npm dependency nodes were reduced to 4 moderate nodes, all originating from a single advisory (GHSA-rj75-hqrm-r3gf). In Phase 4B-3, this was fully resolved at the code level via the official `postcss-selector-parser@6.1.5` security backport.  
+> 2. **CSP Telemetry Status**: The configured CSP in `vercel.json` operates in Report-Only mode without a remote reporting endpoint and is officially classified as `CSP_REPORT_ONLY_PREPARED_NO_TELEMETRY`.  
+> 3. **Performance Claims Classification**: The statement that "98% of visitor traffic uses modern image formats" is an `ESTIMATE` based on global browser engine support (CanIUse), not measured site analytics (`FIELD_DATA_NOT_AVAILABLE`).  
+> See complete analysis in [LADESTACK_PHASE_4B_3_SECURITY_CLOSURE_REPORT.md](file:///c:/Users/Girish%20Lade/OneDrive/Desktop/ladestack-astro/LADESTACK_PHASE_4B_3_SECURITY_CLOSURE_REPORT.md).
+
 ---
 
 ## 1. Executive Summary & Defect Remediation Scorecard
