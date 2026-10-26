@@ -1,0 +1,65 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/projects",
+      "destination": "/apps",
+      "statusCode": 301
+    },
+    {
+      "source": "/file-sharing-platform",
+      "destination": "/apps",
+      "statusCode": 301
+    },
+    {
+      "source": "/api-testing-platform",
+      "destination": "/apps",
+      "statusCode": 301
+    },
+    {
+      "source": "/ai-code-viewer-ai",
+      "destination": "/gb-coder",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/1",
+      "destination": "/blog/future-of-ai-in-software-development",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/2",
+      "destination": "/blog/building-ai-powered-code-review-systems",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/3",
+      "destination": "/blog/machine-learning-pipelines-for-web-developers",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/4",
+      "destination": "/blog/generative-ai-for-content-creation",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/5",
+      "destination": "/blog/building-rag-applications-vector-databases",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/6",
+      "destination": "/blog/fine-tuning-llms-domain-specific-tasks",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap-pages.xml",
+      "destination": "/sitemap-index.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap-blog.xml",
+      "destination": "/sitemap-index.xml",
+      "statusCode": 301
+    }
+  ]
+}
