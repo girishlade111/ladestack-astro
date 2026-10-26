@@ -18,6 +18,7 @@ import type { BlogPost } from '../../data/blogPosts';
 import { estimateReadingTime, formatBlogDate, getPostPath, getPostUrl } from '../../lib/blogUtils';
 import { LOCALES, type Locale } from '../../i18n/config';
 import { useTranslations, getLocalizedPath, getHreflangLinks } from '../../i18n/utils';
+import { getBlogData } from '../../i18n/pages/blog';
 
 export interface Props {
   locale: Locale;
@@ -27,6 +28,7 @@ export interface Props {
 
 const { locale, posts, legacyPosts = [] } = Astro.props;
 const t = useTranslations(locale);
+const blogData = getBlogData(locale);
 
 // Sort posts: featured first, then newest publishedAt
 const sortedPosts = [...posts].sort((a, b) => {
@@ -54,8 +56,8 @@ const structuredData = [
   {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'LadeStack Engineering Blog',
-    description: 'Technical deep-dives into client-side architecture, WebAssembly, browser IDEs, and performance engineering.',
+    name: blogData.seo.ogTitle,
+    description: blogData.seo.ogDescription,
     url: canonical,
     inLanguage: locale,
     publisher: {
@@ -72,23 +74,23 @@ const structuredData = [
 ---
 
 <BaseLayout
-  title={`Blog – Engineering Insights & Technical Guides | LadeStack`}
-  description="Explore technical architecture deep-dives, WebAssembly benchmarks, client-side security guides, and developer tooling insights from the LadeStack team."
+  title={blogData.seo.title}
+  description={blogData.seo.description}
   canonical={canonical}
   locale={locale}
   hreflangs={hreflangs}
   structuredData={structuredData}
   openGraph={{
-    title: 'LadeStack Engineering Blog',
-    description: 'Technical architecture deep-dives, WebAssembly benchmarks, client-side security guides, and developer tooling insights.',
+    title: blogData.seo.ogTitle,
+    description: blogData.seo.ogDescription,
     url: canonical,
     type: 'website',
     image: 'https://ladestack.in/og-image.png',
   }}
   twitter={{
     card: 'summary_large_image',
-    title: 'LadeStack Engineering Blog',
-    description: 'Technical architecture deep-dives, WebAssembly benchmarks, client-side security guides, and developer tooling insights.',
+    title: blogData.seo.ogTitle,
+    description: blogData.seo.ogDescription,
     image: 'https://ladestack.in/og-image.png',
   }}
 >
@@ -98,15 +100,15 @@ const structuredData = [
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand/30 bg-brand/10 text-brand text-xs font-mono font-medium mb-4">
           <span class="w-1.5 h-1.5 rounded-full bg-brand animate-pulse"></span>
-          <span>LadeStack Technical Editorial</span>
+          <span>{blogData.hero?.badge ?? 'LadeStack Technical Editorial'}</span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight max-w-3xl mx-auto">
-          Engineering Insights & Architecture
+          {blogData.hero?.title ?? 'Engineering Insights & Architecture'}
         </h1>
 
         <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Deep-dives into in-browser code execution, WebAssembly data processing, client-side security, and high-performance developer utilities.
+          {blogData.hero?.description ?? 'Deep-dives into in-browser code execution, WebAssembly data processing, client-side security, and high-performance developer utilities.'}
         </p>
 
         {/* Live Search Input */}
