@@ -150,3 +150,18 @@ The complete audit findings, evidence, and remediation plans are organized in th
 
 **AUDIT VERDICT: PHASE_4A_AUDIT_COMPLETE**  
 **RELEASE VERDICT: RELEASE_GATE_CONDITIONAL** (Requires Phase 4B remediation of P1 findings before public traffic cutover).
+
+---
+
+## 8. Post-Audit Remediation Addendum (Phase 4B-1)
+
+On branch `feature/phase-4b-p1-remediation`, the four Phase 4A P1 defects and the verified inventory documentation discrepancy were remediated and verified:
+
+1. **Historical Inventory Documentation Correction**: Verified the 27 historical legacy baseline slugs against `2528b3b:src/data/blogPosts.ts`. Corrected the accidental transposition in `LADESTACK_PHASE_4A_SEO_AUDIT.md` (replaced `client-side-pdf-manipulation-webassembly` with `api-rate-limiting-throttling-strategies`).
+2. **DEFECT-UI-001 Resolved**: Fixed 36 broken app-card icon references across 9 locales (`en`, `ja`, `ko`, `zh`, `ru`, `tr`, `fr`, `pt`, `es`) in `src/i18n/pages/apps/` by mapping them to real SVG assets (`ls-pdf-project.svg`, `ls-img-project.svg`, `swift-resume-project.svg`, `bharat-land-project.svg`). Broken images count reduced from 36 to 0.
+3. **DEFECT-SEO-001 Resolved**: Removed duplicate `# Title` markdown headings from all 19 affected blog post files. Pages with multiple H1s reduced from 19 to 0.
+4. **DEFECT-I18N-001 Resolved**: Created `src/i18n/pages/blog/` architecture providing authentic localized metadata (`title`, `description`, `ogTitle`, `ogDescription`) across all 9 locales. Duplicate titles and duplicate descriptions reduced from 1 set (9 pages) to 0 sets.
+5. **DEFECT-HOST-001 Edge Redirect Config Prepared**: Configured root `vercel.json` with explicit `"statusCode": 301` redirects for all 12 legacy paths without forbidden `"permanent": true`. Status declared: `EDGE_REDIRECT_CONFIG_PREPARED`.
+
+Refer to `LADESTACK_PHASE_4B_1_P1_REMEDIATION_REPORT.md` for complete remediation evidence and regression results.
+

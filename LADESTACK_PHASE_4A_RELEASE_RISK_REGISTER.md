@@ -68,6 +68,7 @@
 - **Recommended Fix**: Update dictionary files `src/i18n/pages/apps/*.ts` to reference existing `public/*.svg` files or render inline Lucide icons.
 - **Regression Test Needed**: Automated image existence check validating all `<img src>` paths in `dist/`.
 - **Estimated Complexity**: Low (15 minutes).
+- **Phase 4B-1 Remediation**: **RESOLVED**. Mapped all 4 icons to existing SVG assets in `public/`. Broken image count in `dist/` reduced from 36 to 0.
 
 ---
 
@@ -97,6 +98,7 @@
 - **Recommended Fix**: Delete the redundant `# Heading` line from the top of the 19 Markdown files.
 - **Regression Test Needed**: Automated check ensuring `h1Matches.length === 1` for all 234 content pages.
 - **Estimated Complexity**: Low (15 minutes).
+- **Phase 4B-1 Remediation**: **RESOLVED**. Surgically removed duplicate `# Heading` line from all 19 files. Pages with multiple H1s reduced from 19 to 0.
 
 ---
 
@@ -120,6 +122,7 @@
 - **Recommended Fix**: Update `BlogIndexPage.astro` to call `useTranslations(locale)` for title and description.
 - **Regression Test Needed**: Extend `npm run test:i18n` to assert localized titles across all 9 blog index pages.
 - **Estimated Complexity**: Low (15 minutes).
+- **Phase 4B-1 Remediation**: **RESOLVED**. Localized metadata implemented via `src/i18n/pages/blog/` for all 9 locales. Verified by `scratch/verify-blog-i18n.mjs`.
 
 ---
 
@@ -144,6 +147,7 @@
 - **Recommended Fix**: Add `vercel.json` with an explicit `redirects` array matching `astro.config.mjs`.
 - **Regression Test Needed**: Edge deployment redirect test asserting HTTP 301 status on all 12 routes.
 - **Estimated Complexity**: Low (20 minutes).
+- **Phase 4B-1 Remediation**: **EDGE_REDIRECT_CONFIG_PREPARED**. Prepared root `vercel.json` with explicit `"statusCode": 301` for all 12 paths without `"permanent": true`. Verified by `scratch/verify-redirects.mjs`.
 
 ---
 

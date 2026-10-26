@@ -69,6 +69,7 @@ This roadmap defines the precise, dependency-ordered engineering tasks required 
   - `icon: '/icons/resume.svg'` → `icon: '/swift-resume-project.svg'`
   - `icon: '/icons/land.svg'` → `icon: '/bharat-land-project.svg'`
 - **Verification**: Run `node scratch/run-full-audit.mjs` and confirm `results.images.brokenImages.length === 0`.
+- **Phase 4B-1 Status**: **RESOLVED**. Mapped to `public/*.svg`. Broken images: 0.
 
 #### Task 1.2: Remove Duplicate `<h1>` Headings in 19 Markdown Articles (DEFECT-SEO-001)
 - **Target Files**:
@@ -93,6 +94,7 @@ This roadmap defines the precise, dependency-ordered engineering tasks required 
   - `src/content/blog/en/multi-tenant-saas-architecture-patterns.md`
 - **Action**: Delete the initial redundant `# Title` line from each file's markdown body.
 - **Verification**: Rebuild site and assert `results.seo.multipleH1.length === 0`.
+- **Phase 4B-1 Status**: **RESOLVED**. Duplicate `# Heading` lines removed. Multiple H1 count: 0.
 
 #### Task 1.3: Localize Blog Index Headings & Metadata (DEFECT-I18N-001)
 - **Target Files**:
@@ -100,29 +102,31 @@ This roadmap defines the precise, dependency-ordered engineering tasks required 
   - `src/i18n/pages/blog/{locale}.ts` (or dictionary entries)
 - **Action**: Replace hardcoded English title and description in `BlogIndexPage.astro` lines 75–76 with localized dictionary calls `t('blog.metaTitle')` and `t('blog.metaDescription')`.
 - **Verification**: Run `node scratch/run-full-audit.mjs` and confirm `results.seo.duplicateTitles` contains zero multi-locale sets.
+- **Phase 4B-1 Status**: **RESOLVED**. Created `src/i18n/pages/blog/` architecture for all 9 locales. Verified by `scratch/verify-blog-i18n.mjs`.
 
 #### Task 1.4: Configure Edge HTTP 301 Redirects (DEFECT-HOST-001)
 - **Target Files**: `vercel.json` (and `public/_redirects`)
-- **Action**: Author `vercel.json` with an explicit `redirects` array matching `astro.config.mjs`:
+- **Action**: Author `vercel.json` with an explicit `redirects` array matching `astro.config.mjs` using `"statusCode": 301` (avoiding HTTP 308 from `"permanent": true`):
   ```json
   {
     "redirects": [
-      { "source": "/projects", "destination": "/apps", "permanent": true },
-      { "source": "/file-sharing-platform", "destination": "/apps", "permanent": true },
-      { "source": "/api-testing-platform", "destination": "/apps", "permanent": true },
-      { "source": "/ai-code-viewer-ai", "destination": "/gb-coder", "permanent": true },
-      { "source": "/blog/1", "destination": "/blog/future-of-ai-in-software-development", "permanent": true },
-      { "source": "/blog/2", "destination": "/blog/building-ai-powered-code-review-systems", "permanent": true },
-      { "source": "/blog/3", "destination": "/blog/machine-learning-pipelines-for-web-developers", "permanent": true },
-      { "source": "/blog/4", "destination": "/blog/generative-ai-for-content-creation", "permanent": true },
-      { "source": "/blog/5", "destination": "/blog/building-rag-applications-vector-databases", "permanent": true },
-      { "source": "/blog/6", "destination": "/blog/fine-tuning-llms-domain-specific-tasks", "permanent": true },
-      { "source": "/sitemap-pages.xml", "destination": "/sitemap-index.xml", "permanent": true },
-      { "source": "/sitemap-blog.xml", "destination": "/sitemap-index.xml", "permanent": true }
+      { "source": "/projects", "destination": "/apps", "statusCode": 301 },
+      { "source": "/file-sharing-platform", "destination": "/apps", "statusCode": 301 },
+      { "source": "/api-testing-platform", "destination": "/apps", "statusCode": 301 },
+      { "source": "/ai-code-viewer-ai", "destination": "/gb-coder", "statusCode": 301 },
+      { "source": "/blog/1", "destination": "/blog/future-of-ai-in-software-development", "statusCode": 301 },
+      { "source": "/blog/2", "destination": "/blog/building-ai-powered-code-review-systems", "statusCode": 301 },
+      { "source": "/blog/3", "destination": "/blog/machine-learning-pipelines-for-web-developers", "statusCode": 301 },
+      { "source": "/blog/4", "destination": "/blog/generative-ai-for-content-creation", "statusCode": 301 },
+      { "source": "/blog/5", "destination": "/blog/building-rag-applications-vector-databases", "statusCode": 301 },
+      { "source": "/blog/6", "destination": "/blog/fine-tuning-llms-domain-specific-tasks", "statusCode": 301 },
+      { "source": "/sitemap-pages.xml", "destination": "/sitemap-index.xml", "statusCode": 301 },
+      { "source": "/sitemap-blog.xml", "destination": "/sitemap-index.xml", "statusCode": 301 }
     ]
   }
   ```
 - **Verification**: Validate JSON syntax and test local preview/edge routing behavior.
+- **Phase 4B-1 Status**: **EDGE_REDIRECT_CONFIG_PREPARED**. Root `vercel.json` generated and verified via `scratch/verify-redirects.mjs`.
 
 ---
 
