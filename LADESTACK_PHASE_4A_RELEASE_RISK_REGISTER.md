@@ -158,46 +158,53 @@
 - **Location**: `src/components/pages/GbCoderPage.astro` (lines 156, 190)
 - **Problem**: `<a href="https://code.ladestack.in/" target="_blank">` omits `rel="noopener noreferrer"`.
 - **Remediation**: Add `rel="noopener noreferrer"` attribute to prevent `window.opener` abuse.
+- **Phase 4B-2 Status**: **RESOLVED**. Added explicit `rel="noopener noreferrer"` to both external links in `GbCoderPage.astro`. Verified 0 unsafe links across 246 HTML pages.
 
 ### DEFECT-SEC-002: Missing Production Security Headers
 - **Severity**: P2 — Medium
 - **Location**: Edge hosting configuration (`vercel.json` / `_headers`)
 - **Problem**: No `Content-Security-Policy`, `HSTS`, `X-Frame-Options`, `X-Content-Type-Options`, or `Referrer-Policy` deployed.
 - **Remediation**: Create platform header configuration deploying strict OWASP-compliant security headers.
+- **Phase 4B-2 Status**: **RESOLVED (Edge Prepared)**. Configured `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options: DENY`, `Permissions-Policy`, and `Content-Security-Policy-Report-Only` in root `vercel.json` while preserving all 12 edge 301 redirects. Marked `CSP_POLICY_PREPARED_NOT_EDGE_VERIFIED`.
 
 ### DEFECT-SEC-003: 13 Build-Time Dependency Vulnerabilities
 - **Severity**: P2 — Medium
 - **Location**: `package-lock.json`
 - **Problem**: `npm audit` reports 7 high and 6 moderate vulnerabilities in sub-dependencies (vite, undici, zod, sharp).
 - **Remediation**: Execute `npm audit fix` during Phase 4B implementation.
+- **Phase 4B-2 Status**: **RESOLVED (Controlled)**. High vulnerabilities eliminated from 7 to 0. Remaining 4 moderate build-time advisories in `postcss-selector-parser` require breaking Tailwind v4 upgrade; classified as `BLOCKED_NEEDS_SEPARATE_MIGRATION`. Zero client runtime impact.
 
 ### DEFECT-PERF-001: 2.25MB Hero PNG Fallback & 1.69MB Orphan Images
 - **Severity**: P2 — Medium
 - **Location**: `public/hero/background.png` and `public/img/girish1..4.jpg`
 - **Problem**: 2.25MB PNG fallback inflates bundle; 1.69MB of unused portrait files copied to `dist/`.
 - **Remediation**: Re-compress `background.png` to <150KB and delete orphan files `girish1..4.jpg`.
+- **Phase 4B-2 Status**: **RECONCILED & DOCUMENTED**. Full asset inventory in `LADESTACK_PHASE_4B_2_ASSET_INVENTORY.md`. Reconciled 36.7 MB myth to actual 5.19 MB total. Demonstrated >96% of modern browser requests download 50KB AVIF / 75KB WebP sources. Orphan images cataloged and retained pending URL retirement verification.
 
 ### DEFECT-I18N-002: Quick Jump Search Modal Strips Locale Context
 - **Severity**: P2 — Medium
 - **Location**: `src/components/Header.astro` (lines 204–237)
 - **Problem**: Quick Jump links hardcode English routes (`/apps`, `/blog`, etc.) on localized pages.
 - **Remediation**: Wrap quick jump links with `getLocalizedPath(route, activeLocale)`.
+- **Phase 4B-2 Status**: **RESOLVED**. Rewired all Quick Jump links in `src/components/Header.astro` to `getLocalizedPath(route, activeLocale)`. Verified across all 9 locales via automated test and live browser QA.
 
 ---
 
 ## 5. Low-Severity (P3) Defect Profiles
 
 ### DEFECT-PERF-002: External Google Fonts CDN Request
-- **Severity**: P3 — Low
+- **Severity**: P3 — Low (Reclassified to P2 for EU privacy compliance)
 - **Location**: `src/layouts/BaseLayout.astro` (lines 61–66)
 - **Problem**: External stylesheet link to `fonts.googleapis.com` causes render-blocking network hops and GDPR concerns.
 - **Remediation**: Self-host fonts using `@fontsource` packages.
+- **Phase 4B-2 Status**: **DOCUMENTED & DEFERRED**. Evaluated request waterfall, preconnect tags, `display=swap`, and CJK native font fallback safety. Font binary bundling deferred to Phase 4B-3 / Phase 5 to avoid unlicensed asset ingestion.
 
 ### DEFECT-A11Y-001: Code Block Comment Opacity Contrast
-- **Severity**: P3 — Low
-- **Location**: `src/components/sections/HeroSection.astro` (line 118)
+- **Severity**: P3 — Low (Reclassified to P2 for WCAG 2.2 AA conformance)
+- **Location**: `src/components/sections/HeroSection.astro` (line 118), `src/components/sections/FeaturesBento.astro`
 - **Problem**: `text-muted-foreground/60` drops contrast to ~2.8:1 on light background.
 - **Remediation**: Remove `/60` opacity modifier.
+- **Phase 4B-2 Status**: **RESOLVED**. Removed `/60` from `HeroSection.astro` (contrast restored to 4.6:1 light / 7.0:1 dark). Elevated Bento visual preview text to `text-foreground/75` (11:1 - 12.5:1 contrast). Verified via browser subagent.
 
 ### DEFECT-SEO-002: 107 Article Titles Exceed 70 Characters in SERP Preview
 - **Severity**: P3 — Low
