@@ -20,13 +20,15 @@ This Final Pre-Release Risk Register tracks all operational, security, performan
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **RISK-SEC-001** | Dependencies | Stale scanner advisory metadata for PostCSS backport (GHSA-rj75-hqrm-r3gf) | Moderate | Medium | Low | **MITIGATED (6.1.5 Applied)** |
 | **RISK-SEC-002** | Security | Script injection & XSS risk via unhardened external links | Moderate | Medium | Negligible | **RESOLVED (`noopener noreferrer`)** |
-| **RISK-SEC-003** | CSP | Premature enforcement of CSP breaking inline theme scripts & Google Fonts | High | High | Low | **MITIGATED (Report-Only Prepared)** |
+| **RISK-SEC-003** | CSP | Premature enforcement of CSP breaking inline theme scripts & Google Fonts | High | High | Low | **CSP_REPORT_ONLY_PREPARED_NO_TELEMETRY** |
 | **RISK-OPS-001** | Hosting | Premature HSTS `preload` or `includeSubDomains` breaking ecosystem subdomains | High | High | Negligible | **CONTROLLED (Platform TLS Only)** |
-| **RISK-OPS-002** | Edge Routing | Legacy 404 traffic from historical URLs and sitemap links | High | High | Negligible | **RESOLVED (12 Edge 301 Rules)** |
-| **RISK-PERF-001**| Performance | Unsubstantiated performance claims and reliance on unmeasured analytics | Low | Medium | Negligible | **RESOLVED (Lab-Measured Truth)** |
-| **RISK-PERF-002**| Assets | Layout shifts or font rendering failures from unverified font binaries | Medium | Medium | Low | **DEFERRED (Google CDN + Swap)** |
+| **RISK-OPS-002** | Edge Routing | Legacy 404 traffic from historical URLs and sitemap links | High | High | Negligible | **EDGE_301_VERIFICATION_PENDING (12 Rules Configured)** |
+| **RISK-OPS-003** | Hosting Headers | Security headers configured in vercel.json awaiting edge deployment check | Moderate | Medium | Low | **SECURITY_HEADERS_EDGE_VERIFICATION_PENDING** |
+| **RISK-PERF-001**| Performance | Unsubstantiated performance claims and reliance on unmeasured analytics | Low | Medium | Negligible | **FIELD_DATA_NOT_AVAILABLE (Lab Measured Truth)** |
+| **RISK-PERF-002**| Assets / CLS | Font swap layout shift (0.166) & cover image shift (0.212) | High | High | Negligible | **RESOLVED (`display=optional`, CLS = 0.000)** |
+| **RISK-PERF-003**| Performance | Japanese blog index main-thread layout bottleneck (3,041ms TBT) | High | High | Negligible | **RESOLVED (TBT = 0ms, Score +20-38pts)** |
 | **RISK-SEO-001** | SEO / I18n | Canonical URL drift or loss of historical slug search equity | Critical | Critical | Negligible | **RESOLVED (27 Historical Slugs 100% Intact)** |
-| **RISK-UX-001**  | UX / A11y | Low-contrast text in code blocks and bento cards failing WCAG AA | Moderate | Medium | Negligible | **RESOLVED (Contrast 4.6:1–12.5:1)** |
+| **RISK-UX-001**  | UX / A11y | WCAG violations in language trigger, share button, checkboxes, Shiki comments | High | High | Negligible | **RESOLVED (All Routes A11y 100, 0 Violations)** |
 | **RISK-GIT-001**  | Git Safety | Premature push to GitHub or merge into production master branch | Critical | Critical | Negligible | **ENFORCED (Strict Local Boundary)** |
 
 ---
