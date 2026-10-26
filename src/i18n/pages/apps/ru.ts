@@ -50,7 +50,7 @@ export const ru: AppsPageData = {
         description: 'Клиентский набор инструментов для объединения, разделения, сжатия, защиты, поворота и конвертации PDF в памяти браузера.',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'Иконка LS PDF',
       },
       {
@@ -59,7 +59,7 @@ export const ru: AppsPageData = {
         description: 'Оптимизатор изображений с локальной обработкой Canvas, поддерживающий современные форматы (WebP, AVIF, PNG, JPEG).',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'Иконка LS Image',
       },
       {
@@ -68,7 +68,7 @@ export const ru: AppsPageData = {
         description: 'Конструктор резюме под ATS с оценкой ключевых слов, предпросмотром в реальном времени и экспортом в PDF.',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Иконка Swift Resume',
       },
       {
@@ -77,7 +77,7 @@ export const ru: AppsPageData = {
         description: 'Конвертер индийских региональных единиц измерения земли (Bigha, Guntha, Acre, Hectare) по формулам штатов.',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Иконка Bharat Land',
       },
     ],
