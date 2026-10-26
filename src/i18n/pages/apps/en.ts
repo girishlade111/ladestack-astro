@@ -50,7 +50,7 @@ export const en: AppsPageData = {
         description: 'Client-side PDF suite to merge, split, compress, protect, rotate, and convert documents in browser memory.',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'LS PDF Icon',
       },
       {
@@ -59,7 +59,7 @@ export const en: AppsPageData = {
         description: 'Client-side image optimizer supporting modern formats (WebP, AVIF, PNG, JPEG) with local canvas processing.',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'LS Image Icon',
       },
       {
@@ -68,7 +68,7 @@ export const en: AppsPageData = {
         description: 'ATS-optimized resume generator with real-time scoring, live preview, and PDF export.',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Swift Resume Icon',
       },
       {
@@ -77,7 +77,7 @@ export const en: AppsPageData = {
         description: 'Regional Indian land measurement converter with state-wise formulas across Bigha, Guntha, Acre, and Hectare.',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Bharat Land Icon',
       },
     ],

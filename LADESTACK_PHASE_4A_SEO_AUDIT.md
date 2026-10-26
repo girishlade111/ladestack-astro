@@ -218,28 +218,30 @@ Audit verified that **233 content pages** contain valid, parseable JSON-LD schem
 5. `building-rag-applications-vector-databases`
 6. `fine-tuning-llms-domain-specific-tasks`
 7. `multi-tenant-saas-architecture-patterns`
-8. `scaling-saas-applications-million-users`
-9. `building-serverless-backends-with-baas`
+8. `building-subscription-billing-systems`
+9. `scaling-saas-applications-million-users`
 10. `baas-platforms-compared-firebase-supabase-appwrite`
-11. `real-time-data-sync-backend-services`
-12. `building-subscription-billing-systems`
-13. `building-api-gateways-microservices`
-14. `rest-vs-graphql-choosing-right-api-paradigm`
-15. `cloud-cost-optimization-strategies-startups`
-16. `multi-cloud-architecture-aws-azure-gcp`
-17. `containers-vs-vms-when-to-use-each`
-18. `optimizing-vm-performance-production-workloads`
-19. `gitops-managing-infrastructure-with-git`
-20. `building-zero-downtime-deployment-pipelines`
-21. `infrastructure-as-code-terraform-pulumi`
-22. `zero-trust-security-web-applications`
-23. `owasp-top-10-complete-mitigation-guide`
-24. `implementing-oauth2-openid-connect`
-25. `mlops-deploying-ml-models-production`
-26. `monitoring-ai-systems-in-production`
-27. `client-side-pdf-manipulation-webassembly`
+11. `building-serverless-backends-with-baas`
+12. `real-time-data-sync-backend-services`
+13. `rest-vs-graphql-choosing-right-api-paradigm`
+14. `api-rate-limiting-throttling-strategies`
+15. `building-api-gateways-microservices`
+16. `cloud-cost-optimization-strategies-startups`
+17. `multi-cloud-architecture-aws-azure-gcp`
+18. `containers-vs-vms-when-to-use-each`
+19. `optimizing-vm-performance-production-workloads`
+20. `gitops-managing-infrastructure-with-git`
+21. `building-zero-downtime-deployment-pipelines`
+22. `infrastructure-as-code-terraform-pulumi`
+23. `zero-trust-security-web-applications`
+24. `owasp-top-10-complete-mitigation-guide`
+25. `implementing-oauth2-openid-connect`
+26. `mlops-deploying-ml-models-production`
+27. `monitoring-ai-systems-in-production`
 
-Every single one of these 27 slugs resolves to an active, native Astro Markdown article at `dist/blog/{slug}/index.html`.
+*(Note: `client-side-pdf-manipulation-webassembly`, `gb-coder-dual-engine-architecture`, and `modern-web-image-compression-standards` are new flagship technical topics introduced in Phase 3, not historical legacy migrations).*
+
+Every single one of these 27 original historical slugs resolves to an active, native Astro Markdown article at `dist/blog/{slug}/index.html`.
 
 ### 12 Historical Redirect Definitions (DEFECT-HOST-001)
 
