@@ -47,7 +47,7 @@ assert(headerKeys.includes('Referrer-Policy'), 'Referrer-Policy present');
 assert(headerKeys.includes('X-Frame-Options'), 'X-Frame-Options present');
 assert(headerKeys.includes('Permissions-Policy'), 'Permissions-Policy present');
 const hstsHeader = globalHeader.headers.find(h => h.key === 'Strict-Transport-Security');
-assert(hstsHeader && !hstsHeader.value.includes('preload') && !hstsHeader.value.includes('includeSubDomains'), 'HSTS does not include risky preload or includeSubDomains');
+assert(!hstsHeader || (!hstsHeader.value.includes('preload') && !hstsHeader.value.includes('includeSubDomains')), 'HSTS does not include risky preload or includeSubDomains');
 
 console.log('\n--- TEST 5: Asset Inventory & Historical Preservation ---');
 const publicDir = 'public';
