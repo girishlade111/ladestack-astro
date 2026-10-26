@@ -50,7 +50,7 @@ export const es: AppsPageData = {
         description: 'Herramientas locales para unir, separar, comprimir, proteger, girar y convertir archivos PDF en la memoria del navegador.',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'Icono LS PDF',
       },
       {
@@ -59,7 +59,7 @@ export const es: AppsPageData = {
         description: 'Optimizador de imágenes en el cliente compatible con formatos modernos (WebP, AVIF, PNG, JPEG) mediante Canvas local.',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'Icono LS Image',
       },
       {
@@ -68,7 +68,7 @@ export const es: AppsPageData = {
         description: 'Generador de currículums optimizado para ATS con evaluación en tiempo real, vista previa Markdown y exportación a PDF.',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Icono Swift Resume',
       },
       {
@@ -77,7 +77,7 @@ export const es: AppsPageData = {
         description: 'Conversor de alta precisión para unidades agrarias de la India (Bigha, Guntha, Acre, Hectare) por estado.',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Icono Bharat Land',
       },
     ],
