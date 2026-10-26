@@ -308,7 +308,6 @@ const structuredData = [
             for (var i = 0; i < inputs.length; i++) {
               var input = inputs[i];
               var label = input.parentElement ? input.parentElement.textContent.trim() : 'Checklist item';
-              input.setAttribute('role', 'presentation');
               input.setAttribute('aria-label', label || 'Checklist item');
             }
           })();
