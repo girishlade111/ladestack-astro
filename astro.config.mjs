@@ -50,7 +50,7 @@ export default defineConfig({
 
   integrations: [
     sitemap({
-      // Every path in manifest sitemap.included_paths must be generated and
+      // Every path in verified in-repo sitemap specification must be generated and
       // accessible. @astrojs/sitemap crawls the static build output, so the
       // 10 static routes + 27 getStaticPaths() blog slugs are picked up
       // automatically. Exclude non-indexable output:
@@ -61,7 +61,7 @@ export default defineConfig({
         !page.endsWith('/apps/admin/') &&
         !page.endsWith('/404') &&
         !page.endsWith('/404/'),
-      // Keep sitemap priorities aligned with the manifest defaults
+      // Keep sitemap priorities aligned with in-repo baseline defaults
       // (changefreq "weekly", priority "0.8"; homepage 1.0).
       serialize: (item) => {
         if (item.url === `${SITE}/`) {
