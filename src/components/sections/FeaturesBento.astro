@@ -40,14 +40,14 @@ const t = useTranslations(locale);
         </div>
 
         <div slot="visual" class="space-y-2 font-mono text-xs">
-          <div class="flex items-center justify-between pb-2 border-b border-border/60 text-[11px] text-muted-foreground">
+          <div class="flex items-center justify-between pb-2 border-b border-border/60 text-[11px] text-foreground/75">
             <span class="flex items-center gap-1.5 text-foreground font-medium">
               <span class="w-2 h-2 rounded-full bg-brand"></span>
               realtime-compiler.ts
             </span>
             <span class="text-brand">Optimization 99.4%</span>
           </div>
-          <div class="space-y-1 text-muted-foreground text-[11px]">
+          <div class="space-y-1 text-foreground/75 text-[11px]">
             <div><span class="text-brand font-semibold">const</span> ast = parseCode(source);</div>
             <div><span class="text-brand font-semibold">const</span> optimized = <span class="text-foreground">aiEnhancer.refactor</span>(ast);</div>
             <div class="text-brand font-semibold">// Clean output: 0 dependencies added</div>
