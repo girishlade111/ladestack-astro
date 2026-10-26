@@ -1,0 +1,462 @@
+{
+  "byType": {
+    ".html": {
+      "count": 246,
+      "totalBytes": 22383670
+    },
+    ".svg": {
+      "count": 37,
+      "totalBytes": 119785
+    },
+    ".png": {
+      "count": 5,
+      "totalBytes": 2646064
+    },
+    ".ico": {
+      "count": 1,
+      "totalBytes": 15406
+    },
+    ".avif": {
+      "count": 1,
+      "totalBytes": 50651
+    },
+    ".webp": {
+      "count": 1,
+      "totalBytes": 75096
+    },
+    ".jpg": {
+      "count": 7,
+      "totalBytes": 2534315
+    },
+    ".txt": {
+      "count": 1,
+      "totalBytes": 215
+    },
+    ".webmanifest": {
+      "count": 1,
+      "totalBytes": 779
+    },
+    ".xml": {
+      "count": 2,
+      "totalBytes": 30479
+    },
+    ".css": {
+      "count": 1,
+      "totalBytes": 82537
+    },
+    "": {
+      "count": 1,
+      "totalBytes": 1143
+    }
+  },
+  "totalSize": 27940140,
+  "largestFiles": [
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\hero\\background.png",
+      "relPath": "hero/background.png",
+      "size": 2310748,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish.jpg",
+      "relPath": "img/girish.jpg",
+      "size": 588282,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish2.jpg",
+      "relPath": "img/girish2.jpg",
+      "size": 527847,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish3.jpg",
+      "relPath": "img/girish3.jpg",
+      "size": 446540,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish1.jpg",
+      "relPath": "img/girish1.jpg",
+      "size": 414809,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish4.jpg",
+      "relPath": "img/girish4.jpg",
+      "size": 340954,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog\\building-rag-applications-vector-databases\\index.html",
+      "relPath": "blog/building-rag-applications-vector-databases/index.html",
+      "size": 148596,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog\\index.html",
+      "relPath": "blog/index.html",
+      "size": 145329,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ru\\blog\\building-rag-applications-vector-databases\\index.html",
+      "relPath": "ru/blog/building-rag-applications-vector-databases/index.html",
+      "size": 142242,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ru\\index.html",
+      "relPath": "ru/index.html",
+      "size": 137650,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ja\\blog\\building-rag-applications-vector-databases\\index.html",
+      "relPath": "ja/blog/building-rag-applications-vector-databases/index.html",
+      "size": 136570,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ja\\index.html",
+      "relPath": "ja/index.html",
+      "size": 134780,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ko\\blog\\building-rag-applications-vector-databases\\index.html",
+      "relPath": "ko/blog/building-rag-applications-vector-databases/index.html",
+      "size": 134196,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\fr\\blog\\building-rag-applications-vector-databases\\index.html",
+      "relPath": "fr/blog/building-rag-applications-vector-databases/index.html",
+      "size": 134027,
+      "ext": ".html"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ko\\index.html",
+      "relPath": "ko/index.html",
+      "size": 133661,
+      "ext": ".html"
+    }
+  ],
+  "cssFiles": [
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\_astro\\BaseLayout.CJbaL-bE.css",
+      "relPath": "_astro/BaseLayout.CJbaL-bE.css",
+      "size": 82537,
+      "ext": ".css"
+    }
+  ],
+  "jsFiles": [],
+  "imageFiles": [
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\hero\\background.png",
+      "relPath": "hero/background.png",
+      "size": 2310748,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish.jpg",
+      "relPath": "img/girish.jpg",
+      "size": 588282,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish2.jpg",
+      "relPath": "img/girish2.jpg",
+      "size": 527847,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish3.jpg",
+      "relPath": "img/girish3.jpg",
+      "size": 446540,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish1.jpg",
+      "relPath": "img/girish1.jpg",
+      "size": 414809,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\girish4.jpg",
+      "relPath": "img/girish4.jpg",
+      "size": 340954,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\hero-bg.jpg",
+      "relPath": "img/hero-bg.jpg",
+      "size": 132612,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\og-image.png",
+      "relPath": "og-image.png",
+      "size": 113571,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\AIcode.png",
+      "relPath": "AIcode.png",
+      "size": 89321,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\og-about.png",
+      "relPath": "og-about.png",
+      "size": 88766,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\img\\hero-bg-clean.jpg",
+      "relPath": "img/hero-bg-clean.jpg",
+      "size": 83271,
+      "ext": ".jpg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\hero\\background.webp",
+      "relPath": "hero/background.webp",
+      "size": 75096,
+      "ext": ".webp"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\logo.png",
+      "relPath": "logo.png",
+      "size": 43658,
+      "ext": ".png"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\favicon.ico",
+      "relPath": "favicon.ico",
+      "size": 15406,
+      "ext": ".ico"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ai-code-viewer-project.svg",
+      "relPath": "ai-code-viewer-project.svg",
+      "size": 8567,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\documentation-ai-project.svg",
+      "relPath": "documentation-ai-project.svg",
+      "size": 6615,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\file-management-project.svg",
+      "relPath": "file-management-project.svg",
+      "size": 6116,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\website-builder-project.svg",
+      "relPath": "website-builder-project.svg",
+      "size": 5481,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\hybrid-nocode-procode.svg",
+      "relPath": "blog-covers/hybrid-nocode-procode.svg",
+      "size": 4133,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\api-testing-project.svg",
+      "relPath": "api-testing-project.svg",
+      "size": 4091,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\gb-coder-architecture.svg",
+      "relPath": "blog-covers/gb-coder-architecture.svg",
+      "size": 3702,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\image-compression.svg",
+      "relPath": "blog-covers/image-compression.svg",
+      "size": 3569,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\edge-computing-devops.svg",
+      "relPath": "blog-covers/edge-computing-devops.svg",
+      "size": 3547,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\pdf-wasm-processing.svg",
+      "relPath": "blog-covers/pdf-wasm-processing.svg",
+      "size": 3518,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\ai-nocode-generation.svg",
+      "relPath": "blog-covers/ai-nocode-generation.svg",
+      "size": 3352,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\devops-automation.svg",
+      "relPath": "blog-covers/devops-automation.svg",
+      "size": 3351,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\graphql-vs-rest.svg",
+      "relPath": "blog-covers/graphql-vs-rest.svg",
+      "size": 3343,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\observability-monitoring.svg",
+      "relPath": "blog-covers/observability-monitoring.svg",
+      "size": 3338,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\api-architecture.svg",
+      "relPath": "blog-covers/api-architecture.svg",
+      "size": 3329,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\placeholder.svg",
+      "relPath": "placeholder.svg",
+      "size": 3253,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\computer-vision-web.svg",
+      "relPath": "blog-covers/computer-vision-web.svg",
+      "size": 3136,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\nocode-automation.svg",
+      "relPath": "blog-covers/nocode-automation.svg",
+      "size": 3134,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\api-rate-limiting.svg",
+      "relPath": "blog-covers/api-rate-limiting.svg",
+      "size": 3046,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\ml-software-engineering.svg",
+      "relPath": "blog-covers/ml-software-engineering.svg",
+      "size": 2992,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\developer-wellness.svg",
+      "relPath": "blog-covers/developer-wellness.svg",
+      "size": 2971,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\productivity-boost.svg",
+      "relPath": "blog-covers/productivity-boost.svg",
+      "size": 2967,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\kubernetes-scale.svg",
+      "relPath": "blog-covers/kubernetes-scale.svg",
+      "size": 2863,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\ai-ml-engineering.svg",
+      "relPath": "blog-covers/ai-ml-engineering.svg",
+      "size": 2848,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\remote-productivity.svg",
+      "relPath": "blog-covers/remote-productivity.svg",
+      "size": 2811,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\zero-trust-security.svg",
+      "relPath": "blog-covers/zero-trust-security.svg",
+      "size": 2766,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\ai-code-generation.svg",
+      "relPath": "blog-covers/ai-code-generation.svg",
+      "size": 2727,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\ai-development.svg",
+      "relPath": "blog-covers/ai-development.svg",
+      "size": 2611,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\security-lock.svg",
+      "relPath": "blog-covers/security-lock.svg",
+      "size": 2584,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\cloud-security.svg",
+      "relPath": "blog-covers/cloud-security.svg",
+      "size": 2415,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\no-code-development.svg",
+      "relPath": "blog-covers/no-code-development.svg",
+      "size": 2153,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\web-security.svg",
+      "relPath": "blog-covers/web-security.svg",
+      "size": 2089,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\blog-covers\\developer-productivity.svg",
+      "relPath": "blog-covers/developer-productivity.svg",
+      "size": 1965,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\swift-resume-project.svg",
+      "relPath": "swift-resume-project.svg",
+      "size": 1547,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\bharat-land-project.svg",
+      "relPath": "bharat-land-project.svg",
+      "size": 1009,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ls-pdf-project.svg",
+      "relPath": "ls-pdf-project.svg",
+      "size": 961,
+      "ext": ".svg"
+    },
+    {
+      "path": "C:\\Users\\Girish Lade\\OneDrive\\Desktop\\ladestack-astro\\dist\\ls-img-project.svg",
+      "relPath": "ls-img-project.svg",
+      "size": 885,
+      "ext": ".svg"
+    }
+  ]
+}

@@ -1,0 +1,2863 @@
+{
+  "totalFiles": 246,
+  "redirectStubs": [
+    "ai-code-viewer-ai/index.html",
+    "api-testing-platform/index.html",
+    "blog/1/index.html",
+    "blog/2/index.html",
+    "blog/3/index.html",
+    "blog/4/index.html",
+    "blog/5/index.html",
+    "blog/6/index.html",
+    "file-sharing-platform/index.html",
+    "projects/index.html",
+    "sitemap-blog.xml/index.html",
+    "sitemap-pages.xml/index.html"
+  ],
+  "contentPages": [
+    "404.html",
+    "about/index.html",
+    "apps/index.html",
+    "blog/api-rate-limiting-throttling-strategies/index.html",
+    "blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "blog/building-ai-powered-code-review-systems/index.html",
+    "blog/building-api-gateways-microservices/index.html",
+    "blog/building-rag-applications-vector-databases/index.html",
+    "blog/building-serverless-backends-with-baas/index.html",
+    "blog/building-subscription-billing-systems/index.html",
+    "blog/building-zero-downtime-deployment-pipelines/index.html",
+    "blog/client-side-pdf-manipulation-webassembly/index.html",
+    "blog/cloud-cost-optimization-strategies-startups/index.html",
+    "blog/containers-vs-vms-when-to-use-each/index.html",
+    "blog/fine-tuning-llms-domain-specific-tasks/index.html",
+    "blog/future-of-ai-in-software-development/index.html",
+    "blog/gb-coder-dual-engine-architecture/index.html",
+    "blog/generative-ai-for-content-creation/index.html",
+    "blog/gitops-managing-infrastructure-with-git/index.html",
+    "blog/implementing-oauth2-openid-connect/index.html",
+    "blog/index.html",
+    "blog/infrastructure-as-code-terraform-pulumi/index.html",
+    "blog/machine-learning-pipelines-for-web-developers/index.html",
+    "blog/mlops-deploying-ml-models-production/index.html",
+    "blog/modern-web-image-compression-standards/index.html",
+    "blog/monitoring-ai-systems-in-production/index.html",
+    "blog/multi-cloud-architecture-aws-azure-gcp/index.html",
+    "blog/multi-tenant-saas-architecture-patterns/index.html",
+    "blog/optimizing-vm-performance-production-workloads/index.html",
+    "blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "blog/real-time-data-sync-backend-services/index.html",
+    "blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "blog/scaling-saas-applications-million-users/index.html",
+    "blog/zero-trust-security-web-applications/index.html",
+    "contact/index.html",
+    "docs/index.html",
+    "es/about/index.html",
+    "es/apps/index.html",
+    "es/blog/api-rate-limiting-throttling-strategies/index.html",
+    "es/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "es/blog/building-api-gateways-microservices/index.html",
+    "es/blog/building-rag-applications-vector-databases/index.html",
+    "es/blog/building-subscription-billing-systems/index.html",
+    "es/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "es/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "es/blog/gb-coder-dual-engine-architecture/index.html",
+    "es/blog/gitops-managing-infrastructure-with-git/index.html",
+    "es/blog/index.html",
+    "es/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "es/blog/modern-web-image-compression-standards/index.html",
+    "es/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "es/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "es/contact/index.html",
+    "es/docs/index.html",
+    "es/gb-coder/index.html",
+    "es/index.html",
+    "es/privacy/index.html",
+    "es/sitemap/index.html",
+    "es/support/index.html",
+    "es/terms/index.html",
+    "fr/about/index.html",
+    "fr/apps/index.html",
+    "fr/blog/api-rate-limiting-throttling-strategies/index.html",
+    "fr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "fr/blog/building-api-gateways-microservices/index.html",
+    "fr/blog/building-rag-applications-vector-databases/index.html",
+    "fr/blog/building-subscription-billing-systems/index.html",
+    "fr/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "fr/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "fr/blog/gb-coder-dual-engine-architecture/index.html",
+    "fr/blog/gitops-managing-infrastructure-with-git/index.html",
+    "fr/blog/index.html",
+    "fr/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "fr/blog/modern-web-image-compression-standards/index.html",
+    "fr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "fr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "fr/contact/index.html",
+    "fr/docs/index.html",
+    "fr/gb-coder/index.html",
+    "fr/index.html",
+    "fr/privacy/index.html",
+    "fr/sitemap/index.html",
+    "fr/support/index.html",
+    "fr/terms/index.html",
+    "gb-coder/index.html",
+    "index.html",
+    "ja/about/index.html",
+    "ja/apps/index.html",
+    "ja/blog/api-rate-limiting-throttling-strategies/index.html",
+    "ja/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "ja/blog/building-api-gateways-microservices/index.html",
+    "ja/blog/building-rag-applications-vector-databases/index.html",
+    "ja/blog/building-subscription-billing-systems/index.html",
+    "ja/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "ja/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "ja/blog/gb-coder-dual-engine-architecture/index.html",
+    "ja/blog/gitops-managing-infrastructure-with-git/index.html",
+    "ja/blog/index.html",
+    "ja/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "ja/blog/modern-web-image-compression-standards/index.html",
+    "ja/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "ja/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "ja/contact/index.html",
+    "ja/docs/index.html",
+    "ja/gb-coder/index.html",
+    "ja/index.html",
+    "ja/privacy/index.html",
+    "ja/sitemap/index.html",
+    "ja/support/index.html",
+    "ja/terms/index.html",
+    "ko/about/index.html",
+    "ko/apps/index.html",
+    "ko/blog/api-rate-limiting-throttling-strategies/index.html",
+    "ko/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "ko/blog/building-api-gateways-microservices/index.html",
+    "ko/blog/building-rag-applications-vector-databases/index.html",
+    "ko/blog/building-subscription-billing-systems/index.html",
+    "ko/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "ko/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "ko/blog/gb-coder-dual-engine-architecture/index.html",
+    "ko/blog/gitops-managing-infrastructure-with-git/index.html",
+    "ko/blog/index.html",
+    "ko/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "ko/blog/modern-web-image-compression-standards/index.html",
+    "ko/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "ko/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "ko/contact/index.html",
+    "ko/docs/index.html",
+    "ko/gb-coder/index.html",
+    "ko/index.html",
+    "ko/privacy/index.html",
+    "ko/sitemap/index.html",
+    "ko/support/index.html",
+    "ko/terms/index.html",
+    "privacy/index.html",
+    "pt/about/index.html",
+    "pt/apps/index.html",
+    "pt/blog/api-rate-limiting-throttling-strategies/index.html",
+    "pt/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "pt/blog/building-api-gateways-microservices/index.html",
+    "pt/blog/building-rag-applications-vector-databases/index.html",
+    "pt/blog/building-subscription-billing-systems/index.html",
+    "pt/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "pt/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "pt/blog/gb-coder-dual-engine-architecture/index.html",
+    "pt/blog/gitops-managing-infrastructure-with-git/index.html",
+    "pt/blog/index.html",
+    "pt/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "pt/blog/modern-web-image-compression-standards/index.html",
+    "pt/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "pt/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "pt/contact/index.html",
+    "pt/docs/index.html",
+    "pt/gb-coder/index.html",
+    "pt/index.html",
+    "pt/privacy/index.html",
+    "pt/sitemap/index.html",
+    "pt/support/index.html",
+    "pt/terms/index.html",
+    "ru/about/index.html",
+    "ru/apps/index.html",
+    "ru/blog/api-rate-limiting-throttling-strategies/index.html",
+    "ru/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "ru/blog/building-api-gateways-microservices/index.html",
+    "ru/blog/building-rag-applications-vector-databases/index.html",
+    "ru/blog/building-subscription-billing-systems/index.html",
+    "ru/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "ru/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "ru/blog/gb-coder-dual-engine-architecture/index.html",
+    "ru/blog/gitops-managing-infrastructure-with-git/index.html",
+    "ru/blog/index.html",
+    "ru/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "ru/blog/modern-web-image-compression-standards/index.html",
+    "ru/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "ru/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "ru/contact/index.html",
+    "ru/docs/index.html",
+    "ru/gb-coder/index.html",
+    "ru/index.html",
+    "ru/privacy/index.html",
+    "ru/sitemap/index.html",
+    "ru/support/index.html",
+    "ru/terms/index.html",
+    "sitemap/index.html",
+    "support/index.html",
+    "terms/index.html",
+    "tr/about/index.html",
+    "tr/apps/index.html",
+    "tr/blog/api-rate-limiting-throttling-strategies/index.html",
+    "tr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "tr/blog/building-api-gateways-microservices/index.html",
+    "tr/blog/building-rag-applications-vector-databases/index.html",
+    "tr/blog/building-subscription-billing-systems/index.html",
+    "tr/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "tr/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "tr/blog/gb-coder-dual-engine-architecture/index.html",
+    "tr/blog/gitops-managing-infrastructure-with-git/index.html",
+    "tr/blog/index.html",
+    "tr/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "tr/blog/modern-web-image-compression-standards/index.html",
+    "tr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "tr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "tr/contact/index.html",
+    "tr/docs/index.html",
+    "tr/gb-coder/index.html",
+    "tr/index.html",
+    "tr/privacy/index.html",
+    "tr/sitemap/index.html",
+    "tr/support/index.html",
+    "tr/terms/index.html",
+    "zh/about/index.html",
+    "zh/apps/index.html",
+    "zh/blog/api-rate-limiting-throttling-strategies/index.html",
+    "zh/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+    "zh/blog/building-api-gateways-microservices/index.html",
+    "zh/blog/building-rag-applications-vector-databases/index.html",
+    "zh/blog/building-subscription-billing-systems/index.html",
+    "zh/blog/client-side-pdf-manipulation-webassembly/index.html",
+    "zh/blog/cloud-cost-optimization-strategies-startups/index.html",
+    "zh/blog/gb-coder-dual-engine-architecture/index.html",
+    "zh/blog/gitops-managing-infrastructure-with-git/index.html",
+    "zh/blog/index.html",
+    "zh/blog/machine-learning-pipelines-for-web-developers/index.html",
+    "zh/blog/modern-web-image-compression-standards/index.html",
+    "zh/blog/owasp-top-10-complete-mitigation-guide/index.html",
+    "zh/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+    "zh/contact/index.html",
+    "zh/docs/index.html",
+    "zh/gb-coder/index.html",
+    "zh/index.html",
+    "zh/privacy/index.html",
+    "zh/sitemap/index.html",
+    "zh/support/index.html",
+    "zh/terms/index.html"
+  ],
+  "seo": {
+    "missingTitle": [],
+    "duplicateTitles": {
+      "404 – Page Not Found | LadeStack": [
+        "404.html"
+      ],
+      "About LadeStack — Founder Story, Mission &amp; Engineering Philosophy": [
+        "about/index.html"
+      ],
+      "Products &amp; Developer Utilities – LadeStack": [
+        "apps/index.html"
+      ],
+      "API Rate Limiting and Throttling Strategies: Production Architecture Guide | LadeStack Blog": [
+        "blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "BaaS Platforms Compared: Architectural Evaluation of Firebase, Supabase, and Appwrite | LadeStack Blog": [
+        "blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Building AI-Powered Code Review Systems: Architecture and Automation | LadeStack Blog": [
+        "blog/building-ai-powered-code-review-systems/index.html"
+      ],
+      "Building API Gateways for Microservices: Routing, Resiliency, and Security | LadeStack Blog": [
+        "blog/building-api-gateways-microservices/index.html"
+      ],
+      "Building RAG Applications with Vector Databases: Ingestion, Chunking, and Retrieval Architecture | LadeStack Blog": [
+        "blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Building Serverless Backends with BaaS: Architecture, Edge Functions, and Event Pipelines | LadeStack Blog": [
+        "blog/building-serverless-backends-with-baas/index.html"
+      ],
+      "Building Robust Subscription Billing Systems: Lifecycle, Webhooks, and Idempotency | LadeStack Blog": [
+        "blog/building-subscription-billing-systems/index.html"
+      ],
+      "Building Zero-Downtime Deployment Pipelines: Blue-Green, Canary, and Database Migrations | LadeStack Blog": [
+        "blog/building-zero-downtime-deployment-pipelines/index.html"
+      ],
+      "Client-Side PDF Processing: In-Memory Manipulation with WebAssembly | LadeStack Blog": [
+        "blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Cloud Cost Optimization Strategies for Startups: Practical FinOps &amp; Architecture | LadeStack Blog": [
+        "blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Containers vs. Virtual Machines: Architecture, Security Boundaries, and Selection Criteria | LadeStack Blog": [
+        "blog/containers-vs-vms-when-to-use-each/index.html"
+      ],
+      "Fine-Tuning LLMs for Domain-Specific Tasks: LoRA, QLoRA, and Dataset Engineering | LadeStack Blog": [
+        "blog/fine-tuning-llms-domain-specific-tasks/index.html"
+      ],
+      "The Future of AI in Software Development: From Autocomplete to Agentic Systems | LadeStack Blog": [
+        "blog/future-of-ai-in-software-development/index.html"
+      ],
+      "Inside GB Coder: Dual-Engine Architecture for Browser-Based Development | LadeStack Blog": [
+        "blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "Generative AI for Content Creation: Architecture, Structured Output, and Editorial Safety | LadeStack Blog": [
+        "blog/generative-ai-for-content-creation/index.html"
+      ],
+      "GitOps: Managing Infrastructure and Kubernetes with Git as Single Source of Truth | LadeStack Blog": [
+        "blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Implementing OAuth 2.0 and OpenID Connect: Modern Architecture and Security Best Practices | LadeStack Blog": [
+        "blog/implementing-oauth2-openid-connect/index.html"
+      ],
+      "Blog – Engineering Insights &amp; Technical Guides | LadeStack": [
+        "blog/index.html",
+        "es/blog/index.html",
+        "fr/blog/index.html",
+        "ja/blog/index.html",
+        "ko/blog/index.html",
+        "pt/blog/index.html",
+        "ru/blog/index.html",
+        "tr/blog/index.html",
+        "zh/blog/index.html"
+      ],
+      "Infrastructure as Code: Comparing Terraform, OpenTofu, and Pulumi in Modern Cloud Environments | LadeStack Blog": [
+        "blog/infrastructure-as-code-terraform-pulumi/index.html"
+      ],
+      "Machine Learning Pipelines for Web Developers: Architecture, Training, and Production Serving | LadeStack Blog": [
+        "blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "MLOps: Architecture and Engineering for Production Machine Learning Systems | LadeStack Blog": [
+        "blog/mlops-deploying-ml-models-production/index.html"
+      ],
+      "Modern Web Image Compression: Comparing Canvas, WebP, and AVIF in the Browser | LadeStack Blog": [
+        "blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Monitoring AI Systems in Production: Observability, Drift, and LLM Telemetry | LadeStack Blog": [
+        "blog/monitoring-ai-systems-in-production/index.html"
+      ],
+      "Multi-Cloud Architecture: Engineering Pragmatism Across AWS, Azure, and GCP | LadeStack Blog": [
+        "blog/multi-cloud-architecture-aws-azure-gcp/index.html"
+      ],
+      "Multi-Tenant SaaS Architecture Patterns: Database Isolation, Row-Level Security, and Scaling | LadeStack Blog": [
+        "blog/multi-tenant-saas-architecture-patterns/index.html"
+      ],
+      "Optimizing VM Performance for Production Workloads: A Sysadmin&#39;s Guide to Hypervisor Tuning | LadeStack Blog": [
+        "blog/optimizing-vm-performance-production-workloads/index.html"
+      ],
+      "OWASP Top 10: Complete Mitigation Guide for Modern Web Applications (2025 Edition) | LadeStack Blog": [
+        "blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "Real-Time Data Synchronization with Modern Backend Services: WebSockets, Change Streams, and CRDTs | LadeStack Blog": [
+        "blog/real-time-data-sync-backend-services/index.html"
+      ],
+      "REST vs GraphQL: Choosing the Right API Paradigm for Production Systems | LadeStack Blog": [
+        "blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Scaling SaaS Applications to One Million Users: Practical System Architecture | LadeStack Blog": [
+        "blog/scaling-saas-applications-million-users/index.html"
+      ],
+      "Implementing Zero Trust Security in Web Applications: Complete Architecture | LadeStack Blog": [
+        "blog/zero-trust-security-web-applications/index.html"
+      ],
+      "Contact LadeStack – Direct Developer Support": [
+        "contact/index.html"
+      ],
+      "Documentation – Architecture, Guides &amp; API Reference | LadeStack": [
+        "docs/index.html"
+      ],
+      "Acerca de LadeStack — Historia del Fundador, Misión y Filosofía de Ingeniería": [
+        "es/about/index.html"
+      ],
+      "Productos y Utilidades para Desarrolladores – LadeStack": [
+        "es/apps/index.html"
+      ],
+      "Estrategias de Rate Limiting y Throttling de API: Guía de Arquitectura de Producción | LadeStack Blog": [
+        "es/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Comparativa de plataformas BaaS: análisis arquitectónico de Firebase, Supabase y Appwrite | LadeStack Blog": [
+        "es/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Construyendo un API Gateway para Microservicios: Enrutamiento, Autenticación, Rate Limiting y Resiliencia | LadeStack Blog": [
+        "es/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Construcción de Aplicaciones RAG con Bases de Datos Vectoriales: Ingesta, Chunking y Arquitectura de Búsqueda | LadeStack Blog": [
+        "es/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Construcción de sistemas robustos de facturación por suscripción: ciclo de vida, webhooks e idempotencia | LadeStack Blog": [
+        "es/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Procesamiento de PDF en el Lado del Cliente: Manipulación en Memoria con WebAssembly | LadeStack Blog": [
+        "es/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Estrategias de Optimización de Costes Cloud para Startups: FinOps Práctico y Eficiencia de Infraestructura | LadeStack Blog": [
+        "es/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Dentro de GB Coder: Arquitectura de Doble Motor para Desarrollo en el Navegador | LadeStack Blog": [
+        "es/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps: Gestión de Infraestructura y Kubernetes con Git como Única Fuente de Verdad | LadeStack Blog": [
+        "es/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Pipelines de Machine Learning para Desarrolladores Web: de la Ingesta a la Inferencia en Navegador y Servidor | LadeStack Blog": [
+        "es/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Estándares Modernos de Compresión de Imágenes Web: Comparativa Canvas, WebP y AVIF | LadeStack Blog": [
+        "es/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10: Guía Completa de Mitigación para Aplicaciones Web Modernas (Edición 2025) | LadeStack Blog": [
+        "es/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST vs GraphQL: Selección del Paradigma Óptimo de API para Sistemas en Producción | LadeStack Blog": [
+        "es/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Contacto – Soporte Directo para Desarrolladores LadeStack": [
+        "es/contact/index.html"
+      ],
+      "Documentación – Arquitectura, Guías y Referencia de API | LadeStack": [
+        "es/docs/index.html"
+      ],
+      "GB Coder — IDE y Estudio de Desarrollo en el Navegador | LadeStack": [
+        "es/gb-coder/index.html"
+      ],
+      "LadeStack – Plataforma y Utilidades de Desarrollo en el Navegador": [
+        "es/index.html"
+      ],
+      "Política de Privacidad – Protección de Datos y Arquitectura | LadeStack": [
+        "es/privacy/index.html"
+      ],
+      "Mapa del Sitio y Directorio | LadeStack": [
+        "es/sitemap/index.html"
+      ],
+      "Centro de Soporte – Ayuda, Documentación y Preguntas Frecuentes | LadeStack": [
+        "es/support/index.html"
+      ],
+      "Términos de Servicio – Uso de la Plataforma y Licencias | LadeStack": [
+        "es/terms/index.html"
+      ],
+      "À propos de LadeStack — Histoire du fondateur, mission et philosophie d’ingénierie": [
+        "fr/about/index.html"
+      ],
+      "Produits et Utilitaires pour Développeurs – LadeStack": [
+        "fr/apps/index.html"
+      ],
+      "Stratégies de Limitation de Débit et de Régulation d&#39;API : Guide d&#39;Architecture de Production | LadeStack Blog": [
+        "fr/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Comparatif des plateformes BaaS : analyse architecturale de Firebase, Supabase et Appwrite | LadeStack Blog": [
+        "fr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Concevoir une API Gateway pour Microservices : Routage, Authentification, Rate Limiting et Résilience | LadeStack Blog": [
+        "fr/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Créer des applications RAG avec des bases de données vectorielles : ingestion, découpage et architecture de recherche | LadeStack Blog": [
+        "fr/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Concevoir des systèmes de facturation par abonnement robustes : cycle de vie, webhooks et idempotence | LadeStack Blog": [
+        "fr/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Traitement PDF Côté Client : Manipulation en Mémoire Vive avec WebAssembly | LadeStack Blog": [
+        "fr/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Stratégies d&#39;optimisation des coûts cloud pour les startups : FinOps pratique et efficience d&#39;infrastructure | LadeStack Blog": [
+        "fr/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Dans les coulisses de GB Coder : Architecture à double moteur pour le développement web | LadeStack Blog": [
+        "fr/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps : Gestion des infrastructures et de Kubernetes avec Git comme source unique de vérité | LadeStack Blog": [
+        "fr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Pipelines de Machine Learning pour développeurs Web : de l&#39;ingestion à l&#39;inférence navigateur et serveur | LadeStack Blog": [
+        "fr/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Standards Modernes de Compression d&#39;Images Web : Comparatif Canvas, WebP et AVIF | LadeStack Blog": [
+        "fr/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10 : Guide complet de remédiation pour les applications web modernes (Édition 2025) | LadeStack Blog": [
+        "fr/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST vs GraphQL : Choisir le Bon Paradigme d&#39;API pour les Systèmes en Production | LadeStack Blog": [
+        "fr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Contact – Support Développeur Direct LadeStack": [
+        "fr/contact/index.html"
+      ],
+      "Documentation – Architecture, guides et référence API | LadeStack": [
+        "fr/docs/index.html"
+      ],
+      "GB Coder — IDE et studio de développement dans le navigateur | LadeStack": [
+        "fr/gb-coder/index.html"
+      ],
+      "LadeStack – Plateforme de développement et utilitaires dans le navigateur": [
+        "fr/index.html"
+      ],
+      "Politique de confidentialité – Protection des données et architecture | LadeStack": [
+        "fr/privacy/index.html"
+      ],
+      "Plan du site et répertoire | LadeStack": [
+        "fr/sitemap/index.html"
+      ],
+      "Centre d’assistance – Aide, documentation et FAQ | LadeStack": [
+        "fr/support/index.html"
+      ],
+      "Conditions d’utilisation – Utilisation de la plateforme et licences | LadeStack": [
+        "fr/terms/index.html"
+      ],
+      "GB Coder — In-Browser IDE &amp; Development Studio | LadeStack": [
+        "gb-coder/index.html"
+      ],
+      "LadeStack – In-Browser Developer Platform &amp; Utilities": [
+        "index.html"
+      ],
+      "LadeStackについて — 創設者の歩み、理念、エンジニアリング哲学": [
+        "ja/about/index.html"
+      ],
+      "製品 &amp; 開発者ユーティリティ – LadeStack": [
+        "ja/apps/index.html"
+      ],
+      "APIレート制限とスロットリング戦略：本番アーキテクチャ完全ガイド | LadeStack Blog": [
+        "ja/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "BaaSプラットフォームの徹底比較：Firebase、Supabase、Appwriteのアーキテクチャ評価 | LadeStack Blog": [
+        "ja/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "マイクロサービス向けAPIゲートウェイの構築：ルーティング、認証、レート制限、および耐障害性 | LadeStack Blog": [
+        "ja/blog/building-api-gateways-microservices/index.html"
+      ],
+      "ベクトルデータベースを活用したRAGアプリケーション構築：データ取り込み、チャンク分割、検索アーキテクチャ | LadeStack Blog": [
+        "ja/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "堅牢なサブスクリプション決済システムの構築：ライフサイクル、Webhook、および冪等性 | LadeStack Blog": [
+        "ja/blog/building-subscription-billing-systems/index.html"
+      ],
+      "クライアントサイドPDF処理：WebAssemblyによるメモリ内データ操作 | LadeStack Blog": [
+        "ja/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "スタートアップのためのクラウドコスト最適化戦略：実践的FinOpsとインフラ効率化 | LadeStack Blog": [
+        "ja/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "GB Coderの内部構造：ブラウザ完結型開発のためのデュアルエンジンアーキテクチャ | LadeStack Blog": [
+        "ja/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps：Gitを唯一の信頼できる情報源とするインフラおよびKubernetes管理 | LadeStack Blog": [
+        "ja/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Web開発者のための機械学習パイプライン：データ取り込みからブラウザ＆サーバー推論まで | LadeStack Blog": [
+        "ja/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "モダンWeb画像圧縮の標準：ブラウザ内Canvas・WebP・AVIFの徹底比較 | LadeStack Blog": [
+        "ja/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10：最新Webアプリケーション完全脆弱性対策ガイド（2025年版） | LadeStack Blog": [
+        "ja/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "RESTとGraphQLの比較：本番システムにおける最適なAPIパラダイムの選定 | LadeStack Blog": [
+        "ja/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "お問い合わせ – LadeStack 開発者サポート": [
+        "ja/contact/index.html"
+      ],
+      "ドキュメント – アーキテクチャ、ガイド＆APIリファレンス | LadeStack": [
+        "ja/docs/index.html"
+      ],
+      "GB Coder — ブラウザ内IDE・開発スタジオ | LadeStack": [
+        "ja/gb-coder/index.html"
+      ],
+      "LadeStack – ブラウザ完結型開発者プラットフォーム＆ユーティリティ": [
+        "ja/index.html"
+      ],
+      "プライバシーポリシー – データ保護とアーキテクチャ | LadeStack": [
+        "ja/privacy/index.html"
+      ],
+      "サイトマップ＆サイト目次 | LadeStack": [
+        "ja/sitemap/index.html"
+      ],
+      "サポートセンター – ヘルプ・ドキュメント・FAQ | LadeStack": [
+        "ja/support/index.html"
+      ],
+      "利用規約 – プラットフォームの利用とライセンス | LadeStack": [
+        "ja/terms/index.html"
+      ],
+      "LadeStack 소개 — 창립자 스토리, 미션 및 엔지니어링 철학": [
+        "ko/about/index.html"
+      ],
+      "제품 및 개발자 유틸리티 – LadeStack": [
+        "ko/apps/index.html"
+      ],
+      "API 속도 제한 및 스로틀링 전략: 프로덕션 아키텍처 실무 가이드 | LadeStack Blog": [
+        "ko/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "BaaS 플랫폼 심층 비교 분석: Firebase vs Supabase vs Appwrite | LadeStack Blog": [
+        "ko/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "마이크로서비스를 위한 API 게이트웨이 구축: 라우팅, 인증, 속도 제한 및 복원력 | LadeStack Blog": [
+        "ko/blog/building-api-gateways-microservices/index.html"
+      ],
+      "벡터 데이터베이스를 활용한 RAG 애플리케이션 구축: 수집, 청킹 및 검색 아키텍처 | LadeStack Blog": [
+        "ko/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "견고한 구독 결제 시스템 구축 가이드: 라이프사이클, 웹훅 및 멱등성 설계 | LadeStack Blog": [
+        "ko/blog/building-subscription-billing-systems/index.html"
+      ],
+      "클라이언트 사이드 PDF 처리: WebAssembly를 활용한 인메모리 문서 제어 | LadeStack Blog": [
+        "ko/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "스타트업을 위한 클라우드 비용 최적화 전략: 실전 FinOps와 인프라 효율화 | LadeStack Blog": [
+        "ko/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "GB Coder 내부 구조: 브라우저 기반 개발을 위한 듀얼 엔진 아키텍처 | LadeStack Blog": [
+        "ko/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps: Git을 단일 진실 공급원으로 활용한 인프라 및 쿠버네티스 관리 | LadeStack Blog": [
+        "ko/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "웹 개발자를 위한 머신러닝 파이프라인: 데이터 수집부터 브라우저 및 서버 추론까지 | LadeStack Blog": [
+        "ko/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "최신 웹 이미지 압축 표준: 브라우저 내 Canvas, WebP, AVIF 기술 비교 | LadeStack Blog": [
+        "ko/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10: 현대 웹 애플리케이션 보안 취약점 완벽 대응 가이드 (2025년 개정판) | LadeStack Blog": [
+        "ko/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST 대 GraphQL: 프로덕션 환경에 최적화된 API 패러다임 선택 | LadeStack Blog": [
+        "ko/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "문의하기 – LadeStack 개발자 지원": [
+        "ko/contact/index.html"
+      ],
+      "기술 문서 – 아키텍처, 가이드 및 API 레퍼런스 | LadeStack": [
+        "ko/docs/index.html"
+      ],
+      "GB Coder — 브라우저 기반 IDE 및 개발 스튜디오 | LadeStack": [
+        "ko/gb-coder/index.html"
+      ],
+      "LadeStack – 브라우저 기반 개발자 플랫폼 &amp; 생산성 유틸리티": [
+        "ko/index.html"
+      ],
+      "개인정보 처리방침 – 데이터 보호 및 아키텍처 | LadeStack": [
+        "ko/privacy/index.html"
+      ],
+      "사이트맵 및 디렉터리 | LadeStack": [
+        "ko/sitemap/index.html"
+      ],
+      "고객 지원 센터 – 도움말, 문서 및 자주 묻는 질문 | LadeStack": [
+        "ko/support/index.html"
+      ],
+      "이용약관 – 플랫폼 이용 규정 및 라이선스 | LadeStack": [
+        "ko/terms/index.html"
+      ],
+      "Privacy Policy – Data Protection &amp; Architecture | LadeStack": [
+        "privacy/index.html"
+      ],
+      "Sobre a LadeStack — História do Fundador, Missão e Filosofia de Engenharia": [
+        "pt/about/index.html"
+      ],
+      "Produtos e Utilitários para Desenvolvedores – LadeStack": [
+        "pt/apps/index.html"
+      ],
+      "Estratégias de Rate Limiting e Throttling de API: Guia de Arquitetura para Produção | LadeStack Blog": [
+        "pt/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Comparativo de Plataformas BaaS: Avaliação Arquitetural de Firebase, Supabase e Appwrite | LadeStack Blog": [
+        "pt/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Construindo API Gateways para Microsserviços: Roteamento, Autenticação, Rate Limiting e Resiliência | LadeStack Blog": [
+        "pt/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Construindo Aplicações RAG com Bancos de Dados Vetoriais: Ingestão, Chunking e Arquitetura de Busca | LadeStack Blog": [
+        "pt/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Construindo Sistemas Robustos de Cobrança por Assinatura: Ciclo de Vida, Webhooks e Idempotência | LadeStack Blog": [
+        "pt/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Processamento de PDF no Lado do Cliente: Manipulação em Memória com WebAssembly | LadeStack Blog": [
+        "pt/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Estratégias de Otimização de Custos em Nuvem para Startups: FinOps Prático e Eficiência de Infraestrutura | LadeStack Blog": [
+        "pt/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Por Dentro do GB Coder: Arquitetura de Motor Duplo para Desenvolvimento no Navegador | LadeStack Blog": [
+        "pt/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps: Gerenciamento de Infraestrutura e Kubernetes com Git como Fonte Única da Verdade | LadeStack Blog": [
+        "pt/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Pipelines de Machine Learning para Desenvolvedores Web: da Ingestão à Inferência no Navegador e Servidor | LadeStack Blog": [
+        "pt/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Padrões Modernos de Compressão de Imagens na Web: Comparativo Canvas, WebP e AVIF | LadeStack Blog": [
+        "pt/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10: Guia Completo de Mitigação para Aplicações Web Modernas (Edição 2025) | LadeStack Blog": [
+        "pt/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST vs GraphQL: Escolhendo o Modelo Ideal de API para Ambientes de Produção | LadeStack Blog": [
+        "pt/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Contato – Suporte Direto ao Desenvolvedor LadeStack": [
+        "pt/contact/index.html"
+      ],
+      "Documentação – Arquitetura, Guias e Referência de API | LadeStack": [
+        "pt/docs/index.html"
+      ],
+      "GB Coder — IDE e Estúdio de Desenvolvimento no Navegador | LadeStack": [
+        "pt/gb-coder/index.html"
+      ],
+      "LadeStack – Plataforma de Desenvolvimento e Utilitários no Navegador": [
+        "pt/index.html"
+      ],
+      "Política de Privacidade – Proteção de Dados e Arquitetura | LadeStack": [
+        "pt/privacy/index.html"
+      ],
+      "Mapa do Site e Diretório | LadeStack": [
+        "pt/sitemap/index.html"
+      ],
+      "Central de Suporte – Ajuda, Documentação e FAQ | LadeStack": [
+        "pt/support/index.html"
+      ],
+      "Termos de Serviço – Uso da Plataforma e Licenciamento | LadeStack": [
+        "pt/terms/index.html"
+      ],
+      "О LadeStack — История основателя, миссия и философия инженерии": [
+        "ru/about/index.html"
+      ],
+      "Продукты и утилиты разработчика – LadeStack": [
+        "ru/apps/index.html"
+      ],
+      "Стратегии ограничения скорости и троттлинга API: архитектурное руководство | LadeStack Blog": [
+        "ru/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Сравнение BaaS-платформ: архитектурный анализ Firebase, Supabase и Appwrite | LadeStack Blog": [
+        "ru/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Построение API Gateway для микросервисов: Маршрутизация, Аутентификация, Rate Limiting и Отказоустойчивость | LadeStack Blog": [
+        "ru/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Создание RAG-приложений с векторными базами данных: сбор данных, чанкинг и архитектура поиска | LadeStack Blog": [
+        "ru/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Архитектура надежных систем подписочного биллинга: жизненный цикл, вебхуки и идемпотентность | LadeStack Blog": [
+        "ru/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Обработка PDF на стороне клиента: манипуляции в оперативной памяти с WebAssembly | LadeStack Blog": [
+        "ru/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Стратегии оптимизации облачных расходов для стартапов: Практический FinOps и Инженерия Эффективности | LadeStack Blog": [
+        "ru/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Архитектура GB Coder: двухдвижковая среда веб-разработки в браузере | LadeStack Blog": [
+        "ru/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps: Управление инфраструктурой и Kubernetes с Git как единым источником истины | LadeStack Blog": [
+        "ru/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Пайплайны машинного обучения для веб-разработчиков: от сбора данных до инференса в браузере и на сервере | LadeStack Blog": [
+        "ru/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Современные стандарты сжатия изображений: Canvas, WebP и AVIF в браузере | LadeStack Blog": [
+        "ru/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10: Полное руководство по нейтрализации уязвимостей веб-приложений (Редакция 2025) | LadeStack Blog": [
+        "ru/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST против GraphQL: выбор оптимальной архитектуры API для production-систем | LadeStack Blog": [
+        "ru/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Контакты – Прямая поддержка инженеров LadeStack": [
+        "ru/contact/index.html"
+      ],
+      "Документация – Архитектура, руководства и справочник API | LadeStack": [
+        "ru/docs/index.html"
+      ],
+      "GB Coder — Браузерная IDE и студия разработки | LadeStack": [
+        "ru/gb-coder/index.html"
+      ],
+      "LadeStack – Браузерная платформа и утилиты для разработчиков": [
+        "ru/index.html"
+      ],
+      "Политика конфиденциальности – Защита данных и архитектура | LadeStack": [
+        "ru/privacy/index.html"
+      ],
+      "Карта сайта и каталог разделов | LadeStack": [
+        "ru/sitemap/index.html"
+      ],
+      "Центр поддержки – Документация, помощь и FAQ | LadeStack": [
+        "ru/support/index.html"
+      ],
+      "Условия обслуживания – Использование платформы и лицензирование | LadeStack": [
+        "ru/terms/index.html"
+      ],
+      "Sitemap &amp; Site Directory | LadeStack": [
+        "sitemap/index.html"
+      ],
+      "Support Center – Help, Documentation &amp; FAQs | LadeStack": [
+        "support/index.html"
+      ],
+      "Terms of Service – Platform Usage &amp; Licensing | LadeStack": [
+        "terms/index.html"
+      ],
+      "LadeStack Hakkında — Kurucu Hikayesi, Misyon ve Mühendislik Felsefesi": [
+        "tr/about/index.html"
+      ],
+      "Ürünler ve Geliştirici Araçları – LadeStack": [
+        "tr/apps/index.html"
+      ],
+      "API İstek Sınırlama ve Kısma Stratejileri: Üretim Seviyesi Mimari Rehberi | LadeStack Blog": [
+        "tr/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "BaaS Platformları Karşılaştırması: Firebase, Supabase ve Appwrite Mimari Analizi | LadeStack Blog": [
+        "tr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Mikroservisler İçin API Ağ Geçidi (API Gateway) Mimarisi: Yönlendirme, Kimlik Doğrulama, Hız Sınırlama ve Dayanıklılık | LadeStack Blog": [
+        "tr/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Vektör Veritabanları ile RAG Uygulamaları Geliştirme: Veri Alımı, Parçalama ve Arama Mimarisi | LadeStack Blog": [
+        "tr/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Güvenilir Abonelik Faturalandırma Sistemleri Oluşturma: Yaşam Döngüsü, Webhook&#39;lar ve Tekrarlanabilirlik (Idempotency) | LadeStack Blog": [
+        "tr/blog/building-subscription-billing-systems/index.html"
+      ],
+      "İstemci Tarafında PDF İşleme: WebAssembly ile Bellek İçi Belge Yönetimi | LadeStack Blog": [
+        "tr/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Girişimler İçin Bulut Maliyetlerini Optimize Etme Stratejileri: Uygulamalı FinOps ve Altyapı Verimliliği | LadeStack Blog": [
+        "tr/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "GB Coder&#39;ın Derinlikleri: Tarayıcı Tabanlı Geliştirme İçin Çift Motorlu Mimari | LadeStack Blog": [
+        "tr/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps: Git&#39;i Tek Doğruluk Kaynağı Olarak Kullanarak Altyapı ve Kubernetes Yönetimi | LadeStack Blog": [
+        "tr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Web Geliştiricileri İçin Makine Öğrenimi Boru Hatları: Veri Toplamadan Tarayıcı ve Sunucu Çıkarımına | LadeStack Blog": [
+        "tr/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Modern Web Görüntü Sıkıştırma Standartları: Tarayıcıda Canvas, WebP ve AVIF Karşılaştırması | LadeStack Blog": [
+        "tr/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10: Modern Web Uygulamaları Güvenlik Açıkları ve Eksiksiz Azaltma Kılavuzu (2025 Sürümü) | LadeStack Blog": [
+        "tr/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST ve GraphQL Karşılaştırması: Üretim Sistemleri İçin En Doğru API Modelini Seçmek | LadeStack Blog": [
+        "tr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "İletişim – LadeStack Doğrudan Geliştirici Desteği": [
+        "tr/contact/index.html"
+      ],
+      "Belgeler – Mimari, Kılavuzlar ve API Referansı | LadeStack": [
+        "tr/docs/index.html"
+      ],
+      "GB Coder — Tarayıcı İçi IDE ve Geliştirme Stüdyosu | LadeStack": [
+        "tr/gb-coder/index.html"
+      ],
+      "LadeStack – Tarayıcı Tabanlı Geliştirici Platformu ve Araçları": [
+        "tr/index.html"
+      ],
+      "Gizlilik Politikası – Veri Koruma ve Mimari | LadeStack": [
+        "tr/privacy/index.html"
+      ],
+      "Site Haritası ve Dizin | LadeStack": [
+        "tr/sitemap/index.html"
+      ],
+      "Destek Merkezi – Yardım, Belgeler ve SSS | LadeStack": [
+        "tr/support/index.html"
+      ],
+      "Kullanım Koşulları – Platform Kullanımı ve Lisanslama | LadeStack": [
+        "tr/terms/index.html"
+      ],
+      "关于 LadeStack — 创始人历程、使命与工程哲学": [
+        "zh/about/index.html"
+      ],
+      "产品矩阵与开发者实用工具 – LadeStack": [
+        "zh/apps/index.html"
+      ],
+      "API 限流与节流策略：高并发生产架构完全指南 | LadeStack Blog": [
+        "zh/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "BaaS 平台深度对比：Firebase、Supabase 与 Appwrite 架构评测 | LadeStack Blog": [
+        "zh/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "构建微服务API网关：路由、身份认证、速率限制与系统韧性 | LadeStack Blog": [
+        "zh/blog/building-api-gateways-microservices/index.html"
+      ],
+      "构建基于向量数据库的 RAG 检索增强系统：数据摄取、分块策略与检索架构 | LadeStack Blog": [
+        "zh/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "构建高可用订阅计费系统：生命周期、Webhook 与幂等性设计 | LadeStack Blog": [
+        "zh/blog/building-subscription-billing-systems/index.html"
+      ],
+      "客户端PDF处理：基于WebAssembly的内存文档操作 | LadeStack Blog": [
+        "zh/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "初创企业云成本优化策略：实战FinOps与云基础设施效能工程 | LadeStack Blog": [
+        "zh/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "深入GB Coder：面向纯浏览器开发的双引擎架构解析 | LadeStack Blog": [
+        "zh/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps：以 Git 为唯一可信源管理基础设施与 Kubernetes | LadeStack Blog": [
+        "zh/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Web 开发者机器学习全流程：从数据采集到浏览器与服务端推理 | LadeStack Blog": [
+        "zh/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "现代Web图像压缩标准：浏览器内Canvas、WebP与AVIF技术全面解析 | LadeStack Blog": [
+        "zh/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "OWASP Top 10：现代 Web 应用安全漏洞与完整防御指南（2025 正式版） | LadeStack Blog": [
+        "zh/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST 与 GraphQL 深度对比：生产级系统如何选型最优 API 范式 | LadeStack Blog": [
+        "zh/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "联系我们 – LadeStack 开发者直接支持": [
+        "zh/contact/index.html"
+      ],
+      "技术文档 – 系统架构、使用指南与 API 参考 | LadeStack": [
+        "zh/docs/index.html"
+      ],
+      "GB Coder — 浏览器内全栈 IDE 与开发工作室 | LadeStack": [
+        "zh/gb-coder/index.html"
+      ],
+      "LadeStack – 浏览器端开发者平台与实用工具套件": [
+        "zh/index.html"
+      ],
+      "隐私权政策 – 数据保护与系统架构 | LadeStack": [
+        "zh/privacy/index.html"
+      ],
+      "网站地图与全站索引 | LadeStack": [
+        "zh/sitemap/index.html"
+      ],
+      "支持中心 – 帮助、技术文档与常见问题 | LadeStack": [
+        "zh/support/index.html"
+      ],
+      "服务条款 – 平台使用与知识产权授权 | LadeStack": [
+        "zh/terms/index.html"
+      ]
+    },
+    "shortTitles": [],
+    "longTitles": [
+      {
+        "relPath": "blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "API Rate Limiting and Throttling Strategies: Production Architecture Guide | LadeStack Blog",
+        "len": 91
+      },
+      {
+        "relPath": "blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "BaaS Platforms Compared: Architectural Evaluation of Firebase, Supabase, and Appwrite | LadeStack Blog",
+        "len": 102
+      },
+      {
+        "relPath": "blog/building-ai-powered-code-review-systems/index.html",
+        "title": "Building AI-Powered Code Review Systems: Architecture and Automation | LadeStack Blog",
+        "len": 85
+      },
+      {
+        "relPath": "blog/building-api-gateways-microservices/index.html",
+        "title": "Building API Gateways for Microservices: Routing, Resiliency, and Security | LadeStack Blog",
+        "len": 91
+      },
+      {
+        "relPath": "blog/building-rag-applications-vector-databases/index.html",
+        "title": "Building RAG Applications with Vector Databases: Ingestion, Chunking, and Retrieval Architecture | LadeStack Blog",
+        "len": 113
+      },
+      {
+        "relPath": "blog/building-serverless-backends-with-baas/index.html",
+        "title": "Building Serverless Backends with BaaS: Architecture, Edge Functions, and Event Pipelines | LadeStack Blog",
+        "len": 106
+      },
+      {
+        "relPath": "blog/building-subscription-billing-systems/index.html",
+        "title": "Building Robust Subscription Billing Systems: Lifecycle, Webhooks, and Idempotency | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "blog/building-zero-downtime-deployment-pipelines/index.html",
+        "title": "Building Zero-Downtime Deployment Pipelines: Blue-Green, Canary, and Database Migrations | LadeStack Blog",
+        "len": 105
+      },
+      {
+        "relPath": "blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "Client-Side PDF Processing: In-Memory Manipulation with WebAssembly | LadeStack Blog",
+        "len": 84
+      },
+      {
+        "relPath": "blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Cloud Cost Optimization Strategies for Startups: Practical FinOps &amp; Architecture | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "blog/containers-vs-vms-when-to-use-each/index.html",
+        "title": "Containers vs. Virtual Machines: Architecture, Security Boundaries, and Selection Criteria | LadeStack Blog",
+        "len": 107
+      },
+      {
+        "relPath": "blog/fine-tuning-llms-domain-specific-tasks/index.html",
+        "title": "Fine-Tuning LLMs for Domain-Specific Tasks: LoRA, QLoRA, and Dataset Engineering | LadeStack Blog",
+        "len": 97
+      },
+      {
+        "relPath": "blog/future-of-ai-in-software-development/index.html",
+        "title": "The Future of AI in Software Development: From Autocomplete to Agentic Systems | LadeStack Blog",
+        "len": 95
+      },
+      {
+        "relPath": "blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "Inside GB Coder: Dual-Engine Architecture for Browser-Based Development | LadeStack Blog",
+        "len": 88
+      },
+      {
+        "relPath": "blog/generative-ai-for-content-creation/index.html",
+        "title": "Generative AI for Content Creation: Architecture, Structured Output, and Editorial Safety | LadeStack Blog",
+        "len": 106
+      },
+      {
+        "relPath": "blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps: Managing Infrastructure and Kubernetes with Git as Single Source of Truth | LadeStack Blog",
+        "len": 98
+      },
+      {
+        "relPath": "blog/implementing-oauth2-openid-connect/index.html",
+        "title": "Implementing OAuth 2.0 and OpenID Connect: Modern Architecture and Security Best Practices | LadeStack Blog",
+        "len": 107
+      },
+      {
+        "relPath": "blog/infrastructure-as-code-terraform-pulumi/index.html",
+        "title": "Infrastructure as Code: Comparing Terraform, OpenTofu, and Pulumi in Modern Cloud Environments | LadeStack Blog",
+        "len": 111
+      },
+      {
+        "relPath": "blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Machine Learning Pipelines for Web Developers: Architecture, Training, and Production Serving | LadeStack Blog",
+        "len": 110
+      },
+      {
+        "relPath": "blog/mlops-deploying-ml-models-production/index.html",
+        "title": "MLOps: Architecture and Engineering for Production Machine Learning Systems | LadeStack Blog",
+        "len": 92
+      },
+      {
+        "relPath": "blog/modern-web-image-compression-standards/index.html",
+        "title": "Modern Web Image Compression: Comparing Canvas, WebP, and AVIF in the Browser | LadeStack Blog",
+        "len": 94
+      },
+      {
+        "relPath": "blog/monitoring-ai-systems-in-production/index.html",
+        "title": "Monitoring AI Systems in Production: Observability, Drift, and LLM Telemetry | LadeStack Blog",
+        "len": 93
+      },
+      {
+        "relPath": "blog/multi-cloud-architecture-aws-azure-gcp/index.html",
+        "title": "Multi-Cloud Architecture: Engineering Pragmatism Across AWS, Azure, and GCP | LadeStack Blog",
+        "len": 92
+      },
+      {
+        "relPath": "blog/multi-tenant-saas-architecture-patterns/index.html",
+        "title": "Multi-Tenant SaaS Architecture Patterns: Database Isolation, Row-Level Security, and Scaling | LadeStack Blog",
+        "len": 109
+      },
+      {
+        "relPath": "blog/optimizing-vm-performance-production-workloads/index.html",
+        "title": "Optimizing VM Performance for Production Workloads: A Sysadmin&#39;s Guide to Hypervisor Tuning | LadeStack Blog",
+        "len": 112
+      },
+      {
+        "relPath": "blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: Complete Mitigation Guide for Modern Web Applications (2025 Edition) | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "blog/real-time-data-sync-backend-services/index.html",
+        "title": "Real-Time Data Synchronization with Modern Backend Services: WebSockets, Change Streams, and CRDTs | LadeStack Blog",
+        "len": 115
+      },
+      {
+        "relPath": "blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST vs GraphQL: Choosing the Right API Paradigm for Production Systems | LadeStack Blog",
+        "len": 88
+      },
+      {
+        "relPath": "blog/scaling-saas-applications-million-users/index.html",
+        "title": "Scaling SaaS Applications to One Million Users: Practical System Architecture | LadeStack Blog",
+        "len": 94
+      },
+      {
+        "relPath": "blog/zero-trust-security-web-applications/index.html",
+        "title": "Implementing Zero Trust Security in Web Applications: Complete Architecture | LadeStack Blog",
+        "len": 92
+      },
+      {
+        "relPath": "es/about/index.html",
+        "title": "Acerca de LadeStack — Historia del Fundador, Misión y Filosofía de Ingeniería",
+        "len": 77
+      },
+      {
+        "relPath": "es/blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "Estrategias de Rate Limiting y Throttling de API: Guía de Arquitectura de Producción | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "es/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "Comparativa de plataformas BaaS: análisis arquitectónico de Firebase, Supabase y Appwrite | LadeStack Blog",
+        "len": 106
+      },
+      {
+        "relPath": "es/blog/building-api-gateways-microservices/index.html",
+        "title": "Construyendo un API Gateway para Microservicios: Enrutamiento, Autenticación, Rate Limiting y Resiliencia | LadeStack Blog",
+        "len": 122
+      },
+      {
+        "relPath": "es/blog/building-rag-applications-vector-databases/index.html",
+        "title": "Construcción de Aplicaciones RAG con Bases de Datos Vectoriales: Ingesta, Chunking y Arquitectura de Búsqueda | LadeStack Blog",
+        "len": 126
+      },
+      {
+        "relPath": "es/blog/building-subscription-billing-systems/index.html",
+        "title": "Construcción de sistemas robustos de facturación por suscripción: ciclo de vida, webhooks e idempotencia | LadeStack Blog",
+        "len": 121
+      },
+      {
+        "relPath": "es/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "Procesamiento de PDF en el Lado del Cliente: Manipulación en Memoria con WebAssembly | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "es/blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Estrategias de Optimización de Costes Cloud para Startups: FinOps Práctico y Eficiencia de Infraestructura | LadeStack Blog",
+        "len": 123
+      },
+      {
+        "relPath": "es/blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "Dentro de GB Coder: Arquitectura de Doble Motor para Desarrollo en el Navegador | LadeStack Blog",
+        "len": 96
+      },
+      {
+        "relPath": "es/blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps: Gestión de Infraestructura y Kubernetes con Git como Única Fuente de Verdad | LadeStack Blog",
+        "len": 100
+      },
+      {
+        "relPath": "es/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Pipelines de Machine Learning para Desarrolladores Web: de la Ingesta a la Inferencia en Navegador y Servidor | LadeStack Blog",
+        "len": 126
+      },
+      {
+        "relPath": "es/blog/modern-web-image-compression-standards/index.html",
+        "title": "Estándares Modernos de Compresión de Imágenes Web: Comparativa Canvas, WebP y AVIF | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "es/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: Guía Completa de Mitigación para Aplicaciones Web Modernas (Edición 2025) | LadeStack Blog",
+        "len": 104
+      },
+      {
+        "relPath": "es/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST vs GraphQL: Selección del Paradigma Óptimo de API para Sistemas en Producción | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "es/privacy/index.html",
+        "title": "Política de Privacidad – Protección de Datos y Arquitectura | LadeStack",
+        "len": 71
+      },
+      {
+        "relPath": "es/support/index.html",
+        "title": "Centro de Soporte – Ayuda, Documentación y Preguntas Frecuentes | LadeStack",
+        "len": 75
+      },
+      {
+        "relPath": "fr/about/index.html",
+        "title": "À propos de LadeStack — Histoire du fondateur, mission et philosophie d’ingénierie",
+        "len": 82
+      },
+      {
+        "relPath": "fr/blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "Stratégies de Limitation de Débit et de Régulation d&#39;API : Guide d&#39;Architecture de Production | LadeStack Blog",
+        "len": 118
+      },
+      {
+        "relPath": "fr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "Comparatif des plateformes BaaS : analyse architecturale de Firebase, Supabase et Appwrite | LadeStack Blog",
+        "len": 107
+      },
+      {
+        "relPath": "fr/blog/building-api-gateways-microservices/index.html",
+        "title": "Concevoir une API Gateway pour Microservices : Routage, Authentification, Rate Limiting et Résilience | LadeStack Blog",
+        "len": 118
+      },
+      {
+        "relPath": "fr/blog/building-rag-applications-vector-databases/index.html",
+        "title": "Créer des applications RAG avec des bases de données vectorielles : ingestion, découpage et architecture de recherche | LadeStack Blog",
+        "len": 134
+      },
+      {
+        "relPath": "fr/blog/building-subscription-billing-systems/index.html",
+        "title": "Concevoir des systèmes de facturation par abonnement robustes : cycle de vie, webhooks et idempotence | LadeStack Blog",
+        "len": 118
+      },
+      {
+        "relPath": "fr/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "Traitement PDF Côté Client : Manipulation en Mémoire Vive avec WebAssembly | LadeStack Blog",
+        "len": 91
+      },
+      {
+        "relPath": "fr/blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Stratégies d&#39;optimisation des coûts cloud pour les startups : FinOps pratique et efficience d&#39;infrastructure | LadeStack Blog",
+        "len": 133
+      },
+      {
+        "relPath": "fr/blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "Dans les coulisses de GB Coder : Architecture à double moteur pour le développement web | LadeStack Blog",
+        "len": 104
+      },
+      {
+        "relPath": "fr/blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps : Gestion des infrastructures et de Kubernetes avec Git comme source unique de vérité | LadeStack Blog",
+        "len": 109
+      },
+      {
+        "relPath": "fr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Pipelines de Machine Learning pour développeurs Web : de l&#39;ingestion à l&#39;inférence navigateur et serveur | LadeStack Blog",
+        "len": 129
+      },
+      {
+        "relPath": "fr/blog/modern-web-image-compression-standards/index.html",
+        "title": "Standards Modernes de Compression d&#39;Images Web : Comparatif Canvas, WebP et AVIF | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "fr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10 : Guide complet de remédiation pour les applications web modernes (Édition 2025) | LadeStack Blog",
+        "len": 110
+      },
+      {
+        "relPath": "fr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST vs GraphQL : Choisir le Bon Paradigme d&#39;API pour les Systèmes en Production | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "fr/gb-coder/index.html",
+        "title": "GB Coder — IDE et studio de développement dans le navigateur | LadeStack",
+        "len": 72
+      },
+      {
+        "relPath": "fr/index.html",
+        "title": "LadeStack – Plateforme de développement et utilitaires dans le navigateur",
+        "len": 73
+      },
+      {
+        "relPath": "fr/privacy/index.html",
+        "title": "Politique de confidentialité – Protection des données et architecture | LadeStack",
+        "len": 81
+      },
+      {
+        "relPath": "fr/terms/index.html",
+        "title": "Conditions d’utilisation – Utilisation de la plateforme et licences | LadeStack",
+        "len": 79
+      },
+      {
+        "relPath": "ja/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "BaaSプラットフォームの徹底比較：Firebase、Supabase、Appwriteのアーキテクチャ評価 | LadeStack Blog",
+        "len": 71
+      },
+      {
+        "relPath": "ko/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: 현대 웹 애플리케이션 보안 취약점 완벽 대응 가이드 (2025년 개정판) | LadeStack Blog",
+        "len": 71
+      },
+      {
+        "relPath": "pt/about/index.html",
+        "title": "Sobre a LadeStack — História do Fundador, Missão e Filosofia de Engenharia",
+        "len": 74
+      },
+      {
+        "relPath": "pt/blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "Estratégias de Rate Limiting e Throttling de API: Guia de Arquitetura para Produção | LadeStack Blog",
+        "len": 100
+      },
+      {
+        "relPath": "pt/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "Comparativo de Plataformas BaaS: Avaliação Arquitetural de Firebase, Supabase e Appwrite | LadeStack Blog",
+        "len": 105
+      },
+      {
+        "relPath": "pt/blog/building-api-gateways-microservices/index.html",
+        "title": "Construindo API Gateways para Microsserviços: Roteamento, Autenticação, Rate Limiting e Resiliência | LadeStack Blog",
+        "len": 116
+      },
+      {
+        "relPath": "pt/blog/building-rag-applications-vector-databases/index.html",
+        "title": "Construindo Aplicações RAG com Bancos de Dados Vetoriais: Ingestão, Chunking e Arquitetura de Busca | LadeStack Blog",
+        "len": 116
+      },
+      {
+        "relPath": "pt/blog/building-subscription-billing-systems/index.html",
+        "title": "Construindo Sistemas Robustos de Cobrança por Assinatura: Ciclo de Vida, Webhooks e Idempotência | LadeStack Blog",
+        "len": 113
+      },
+      {
+        "relPath": "pt/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "Processamento de PDF no Lado do Cliente: Manipulação em Memória com WebAssembly | LadeStack Blog",
+        "len": 96
+      },
+      {
+        "relPath": "pt/blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Estratégias de Otimização de Custos em Nuvem para Startups: FinOps Prático e Eficiência de Infraestrutura | LadeStack Blog",
+        "len": 122
+      },
+      {
+        "relPath": "pt/blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "Por Dentro do GB Coder: Arquitetura de Motor Duplo para Desenvolvimento no Navegador | LadeStack Blog",
+        "len": 101
+      },
+      {
+        "relPath": "pt/blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps: Gerenciamento de Infraestrutura e Kubernetes com Git como Fonte Única da Verdade | LadeStack Blog",
+        "len": 105
+      },
+      {
+        "relPath": "pt/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Pipelines de Machine Learning para Desenvolvedores Web: da Ingestão à Inferência no Navegador e Servidor | LadeStack Blog",
+        "len": 121
+      },
+      {
+        "relPath": "pt/blog/modern-web-image-compression-standards/index.html",
+        "title": "Padrões Modernos de Compressão de Imagens na Web: Comparativo Canvas, WebP e AVIF | LadeStack Blog",
+        "len": 98
+      },
+      {
+        "relPath": "pt/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: Guia Completo de Mitigação para Aplicações Web Modernas (Edição 2025) | LadeStack Blog",
+        "len": 100
+      },
+      {
+        "relPath": "pt/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST vs GraphQL: Escolhendo o Modelo Ideal de API para Ambientes de Produção | LadeStack Blog",
+        "len": 93
+      },
+      {
+        "relPath": "ru/blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "Стратегии ограничения скорости и троттлинга API: архитектурное руководство | LadeStack Blog",
+        "len": 91
+      },
+      {
+        "relPath": "ru/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "Сравнение BaaS-платформ: архитектурный анализ Firebase, Supabase и Appwrite | LadeStack Blog",
+        "len": 92
+      },
+      {
+        "relPath": "ru/blog/building-api-gateways-microservices/index.html",
+        "title": "Построение API Gateway для микросервисов: Маршрутизация, Аутентификация, Rate Limiting и Отказоустойчивость | LadeStack Blog",
+        "len": 124
+      },
+      {
+        "relPath": "ru/blog/building-rag-applications-vector-databases/index.html",
+        "title": "Создание RAG-приложений с векторными базами данных: сбор данных, чанкинг и архитектура поиска | LadeStack Blog",
+        "len": 110
+      },
+      {
+        "relPath": "ru/blog/building-subscription-billing-systems/index.html",
+        "title": "Архитектура надежных систем подписочного биллинга: жизненный цикл, вебхуки и идемпотентность | LadeStack Blog",
+        "len": 109
+      },
+      {
+        "relPath": "ru/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "Обработка PDF на стороне клиента: манипуляции в оперативной памяти с WebAssembly | LadeStack Blog",
+        "len": 97
+      },
+      {
+        "relPath": "ru/blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Стратегии оптимизации облачных расходов для стартапов: Практический FinOps и Инженерия Эффективности | LadeStack Blog",
+        "len": 117
+      },
+      {
+        "relPath": "ru/blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "Архитектура GB Coder: двухдвижковая среда веб-разработки в браузере | LadeStack Blog",
+        "len": 84
+      },
+      {
+        "relPath": "ru/blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps: Управление инфраструктурой и Kubernetes с Git как единым источником истины | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "ru/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Пайплайны машинного обучения для веб-разработчиков: от сбора данных до инференса в браузере и на сервере | LadeStack Blog",
+        "len": 121
+      },
+      {
+        "relPath": "ru/blog/modern-web-image-compression-standards/index.html",
+        "title": "Современные стандарты сжатия изображений: Canvas, WebP и AVIF в браузере | LadeStack Blog",
+        "len": 89
+      },
+      {
+        "relPath": "ru/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: Полное руководство по нейтрализации уязвимостей веб-приложений (Редакция 2025) | LadeStack Blog",
+        "len": 109
+      },
+      {
+        "relPath": "ru/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST против GraphQL: выбор оптимальной архитектуры API для production-систем | LadeStack Blog",
+        "len": 93
+      },
+      {
+        "relPath": "ru/terms/index.html",
+        "title": "Условия обслуживания – Использование платформы и лицензирование | LadeStack",
+        "len": 75
+      },
+      {
+        "relPath": "tr/blog/api-rate-limiting-throttling-strategies/index.html",
+        "title": "API İstek Sınırlama ve Kısma Stratejileri: Üretim Seviyesi Mimari Rehberi | LadeStack Blog",
+        "len": 90
+      },
+      {
+        "relPath": "tr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "title": "BaaS Platformları Karşılaştırması: Firebase, Supabase ve Appwrite Mimari Analizi | LadeStack Blog",
+        "len": 97
+      },
+      {
+        "relPath": "tr/blog/building-api-gateways-microservices/index.html",
+        "title": "Mikroservisler İçin API Ağ Geçidi (API Gateway) Mimarisi: Yönlendirme, Kimlik Doğrulama, Hız Sınırlama ve Dayanıklılık | LadeStack Blog",
+        "len": 135
+      },
+      {
+        "relPath": "tr/blog/building-rag-applications-vector-databases/index.html",
+        "title": "Vektör Veritabanları ile RAG Uygulamaları Geliştirme: Veri Alımı, Parçalama ve Arama Mimarisi | LadeStack Blog",
+        "len": 110
+      },
+      {
+        "relPath": "tr/blog/building-subscription-billing-systems/index.html",
+        "title": "Güvenilir Abonelik Faturalandırma Sistemleri Oluşturma: Yaşam Döngüsü, Webhook&#39;lar ve Tekrarlanabilirlik (Idempotency) | LadeStack Blog",
+        "len": 139
+      },
+      {
+        "relPath": "tr/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "title": "İstemci Tarafında PDF İşleme: WebAssembly ile Bellek İçi Belge Yönetimi | LadeStack Blog",
+        "len": 88
+      },
+      {
+        "relPath": "tr/blog/cloud-cost-optimization-strategies-startups/index.html",
+        "title": "Girişimler İçin Bulut Maliyetlerini Optimize Etme Stratejileri: Uygulamalı FinOps ve Altyapı Verimliliği | LadeStack Blog",
+        "len": 121
+      },
+      {
+        "relPath": "tr/blog/gb-coder-dual-engine-architecture/index.html",
+        "title": "GB Coder&#39;ın Derinlikleri: Tarayıcı Tabanlı Geliştirme İçin Çift Motorlu Mimari | LadeStack Blog",
+        "len": 99
+      },
+      {
+        "relPath": "tr/blog/gitops-managing-infrastructure-with-git/index.html",
+        "title": "GitOps: Git&#39;i Tek Doğruluk Kaynağı Olarak Kullanarak Altyapı ve Kubernetes Yönetimi | LadeStack Blog",
+        "len": 104
+      },
+      {
+        "relPath": "tr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "title": "Web Geliştiricileri İçin Makine Öğrenimi Boru Hatları: Veri Toplamadan Tarayıcı ve Sunucu Çıkarımına | LadeStack Blog",
+        "len": 117
+      },
+      {
+        "relPath": "tr/blog/modern-web-image-compression-standards/index.html",
+        "title": "Modern Web Görüntü Sıkıştırma Standartları: Tarayıcıda Canvas, WebP ve AVIF Karşılaştırması | LadeStack Blog",
+        "len": 108
+      },
+      {
+        "relPath": "tr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "title": "OWASP Top 10: Modern Web Uygulamaları Güvenlik Açıkları ve Eksiksiz Azaltma Kılavuzu (2025 Sürümü) | LadeStack Blog",
+        "len": 115
+      },
+      {
+        "relPath": "tr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html",
+        "title": "REST ve GraphQL Karşılaştırması: Üretim Sistemleri İçin En Doğru API Modelini Seçmek | LadeStack Blog",
+        "len": 101
+      }
+    ],
+    "missingDescription": [
+      "404.html"
+    ],
+    "duplicateDescriptions": {
+      "Discover LadeStack's origin, core engineering principles, and verified product ecosystem. Founded by software architect Girish Lade.": [
+        "about/index.html"
+      ],
+      "Explore LadeStack's verified in-browser developer products, featuring the GB Coder flagship IDE alongside focused, privacy-first web utilities.": [
+        "apps/index.html"
+      ],
+      "A comprehensive engineering guide to API rate limiting and throttling algorithms, featuring Token Bucket Redis implementations, sliding window counters, and standard HTTP headers.": [
+        "blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "An objective, in-depth architectural comparison of Firebase, Supabase, and Appwrite covering data models, security paradigms, real-time protocols, edge functions, self-hosting viability, and vendor lock-in tradeoffs.": [
+        "blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "A production engineering guide to building automated, AST-aware AI code review pipelines that combine static analysis, pull request diff parsing, and structured LLM evaluations.": [
+        "blog/building-ai-powered-code-review-systems/index.html"
+      ],
+      "Architectural blueprint for engineering high-throughput API gateways: reverse proxy routing, JWT validation, token-bucket throttling, Envoy configurations, and defense-in-depth.": [
+        "blog/building-api-gateways-microservices/index.html"
+      ],
+      "A comprehensive guide to architecting production Retrieval-Augmented Generation (RAG) systems using vector databases, hybrid search, reranking, and citation verification.": [
+        "blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "An architectural guide to engineering production-grade serverless backends with BaaS, covering event-driven triggers, lightweight edge functions, cold-start mitigation, and secure token verification.": [
+        "blog/building-serverless-backends-with-baas/index.html"
+      ],
+      "A comprehensive engineering guide to designing production-ready subscription billing architectures with Stripe, robust webhook verification, idempotent state machines, and multi-tenant entitlement syncing.": [
+        "blog/building-subscription-billing-systems/index.html"
+      ],
+      "Engineering zero-downtime deployment pipelines: blue-green and canary rollouts, traffic shifting, graceful shutdown, health probes, and expand-contract database migrations.": [
+        "blog/building-zero-downtime-deployment-pipelines/index.html"
+      ],
+      "How LadeStack's PDF utilities process, merge, and optimize documents directly within browser RAM using WebAssembly and Uint8Array buffers without server uploads.": [
+        "blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "A comprehensive engineering guide to slashing cloud spend: compute rightsizing, spot orchestration, storage lifecycle policies, egress mitigation, and FinOps unit economics.": [
+        "blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "A deep technical comparison of hypervisors vs. Linux namespaces, cgroups, kernel sharing, security isolation boundaries, and production workload placement.": [
+        "blog/containers-vs-vms-when-to-use-each/index.html"
+      ],
+      "A practical guide to domain-specific LLM fine-tuning using LoRA, QLoRA, instruction dataset curation, and parameter-efficient adaptation strategies.": [
+        "blog/fine-tuning-llms-domain-specific-tasks/index.html"
+      ],
+      "An architectural analysis of how AI is transforming software engineering, examining the shift from code completion to agentic workflows, deterministic execution loops, and sandboxed developer runtimes.": [
+        "blog/future-of-ai-in-software-development/index.html"
+      ],
+      "A technical architectural deep-dive into GB Coder's dual-engine runtime, balancing Monaco Editor syntax checking with zero-latency sandboxed execution.": [
+        "blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "A production engineering guide to building Generative AI content workflows: structured JSON output, hallucination mitigation, token cost optimization, and human-in-the-loop validation.": [
+        "blog/generative-ai-for-content-creation/index.html"
+      ],
+      "Deep-dive architectural guide to GitOps: declarative desired state, reconciliation loops, pull vs push workflows, Argo CD, Flux CD, secret management, drift detection, and policy-as-code.": [
+        "blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Engineering guide to modern identity and authorization: OAuth 2.0 vs OIDC, Authorization Code with PKCE, JWT validation, token rotation, and BFF architectures.": [
+        "blog/implementing-oauth2-openid-connect/index.html"
+      ],
+      "Explore technical architecture deep-dives, WebAssembly benchmarks, client-side security guides, and developer tooling insights from the LadeStack team.": [
+        "blog/index.html",
+        "es/blog/index.html",
+        "fr/blog/index.html",
+        "ja/blog/index.html",
+        "ko/blog/index.html",
+        "pt/blog/index.html",
+        "ru/blog/index.html",
+        "tr/blog/index.html",
+        "zh/blog/index.html"
+      ],
+      "Architectural comparison of Infrastructure as Code: declarative HCL vs general-purpose programming with Pulumi, state management, concurrency locking, drift detection, and policy-as-code.": [
+        "blog/infrastructure-as-code-terraform-pulumi/index.html"
+      ],
+      "A comprehensive guide for web engineers on architecting end-to-end ML pipelines: data ingestion, model serving, browser inference with ONNX Runtime Web, and operational monitoring.": [
+        "blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Architectural blueprint for MLOps: model registries, automated CI/CD training pipelines, low-latency containerized inference serving, data drift detection, and canary rollouts.": [
+        "blog/mlops-deploying-ml-models-production/index.html"
+      ],
+      "A technical comparison of in-browser image optimization pipelines, evaluating HTML5 Canvas, WebP encoding, and AVIF compression ratios for performance-focused web apps.": [
+        "blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Production guide to monitoring AI systems: OpenTelemetry GenAI semantic conventions, token cost attribution, TTFT latency, RAG groundedness metrics, and drift detection.": [
+        "blog/monitoring-ai-systems-in-production/index.html"
+      ],
+      "A deep technical evaluation of multi-cloud architectures: federated identity, cross-cloud networking, data gravity, disaster recovery, and operational complexity.": [
+        "blog/multi-cloud-architecture-aws-azure-gcp/index.html"
+      ],
+      "An architectural guide to multi-tenant database patterns, comparing shared-schema RLS, schema-per-tenant, and database-per-tenant models with transaction-safe connection pooling.": [
+        "blog/multi-tenant-saas-architecture-patterns/index.html"
+      ],
+      "Master vCPU scheduling, NUMA pinning, CPU steal time diagnosis, virtio multiqueue I/O, hugepages, and guest Linux kernel tuning for virtual instances.": [
+        "blog/optimizing-vm-performance-production-workloads/index.html"
+      ],
+      "Authoritative engineering guide to the OWASP Top 10:2025: root cause analysis, code-level mitigations, software supply chain security, and defense-in-depth architectures.": [
+        "blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "An authoritative engineering guide to real-time data sync across distributed web applications, covering WebSockets, Server-Sent Events, database change data capture (CDC), optimistic UI updates, and conflict resolution.": [
+        "blog/real-time-data-sync-backend-services/index.html"
+      ],
+      "An architectural evaluation of REST and GraphQL, comparing HTTP caching, payload optimization, schema evolution, query complexity, and DataLoader patterns.": [
+        "blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "An in-depth engineering blueprint for scaling multi-tenant SaaS platforms from early traction to high concurrency, covering database read replicas, connection pooling, caching strategies, and resilient asynchronous worker queues.": [
+        "blog/scaling-saas-applications-million-users/index.html"
+      ],
+      "A production guide to implementing Zero Trust web application architecture, covering cryptographic identity verification, Content Security Policy Level 3, and iframe isolation.": [
+        "blog/zero-trust-security-web-applications/index.html"
+      ],
+      "Contact LadeStack for developer tool inquiries, feedback, and technical support. Direct assistance at admin@ladestack.in.": [
+        "contact/index.html"
+      ],
+      "Comprehensive documentation for LadeStack developer tools. Architecture guides, client-side WebAssembly workflows, and platform changelog.": [
+        "docs/index.html"
+      ],
+      "Descubra el origen de LadeStack, nuestros principios de ingeniería y el ecosistema de herramientas verificadas. Fundado por el arquitecto de software Girish Lade.": [
+        "es/about/index.html"
+      ],
+      "Explore las herramientas web verificadas de LadeStack, con el IDE insignia GB Coder y una suite de utilidades enfocadas en la privacidad local.": [
+        "es/apps/index.html"
+      ],
+      "Guía técnica de ingeniería sobre algoritmos de limitación de tasa (Rate Limiting) y regulación de flujo (Throttling). Implementación atómica de Token Bucket en Redis con scripts Lua y cabeceras HTTP estándar.": [
+        "es/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Comparación técnica objetiva y en profundidad de Firebase, Supabase y Appwrite: modelos de datos, seguridad y RLS, protocolos en tiempo real, funciones edge, autoalojamiento y riesgos de dependencia de proveedor.": [
+        "es/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Guía integral de arquitectura para producción: proxy inverso, autenticación distribuida, rate limiting con token bucket en Redis, circuit breakers y Envoy.": [
+        "es/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Guía arquitectónica completa para diseñar sistemas de Generación Aumentada por Recuperación (RAG) en producción con bases vectoriales, búsqueda híbrida y reranking.": [
+        "es/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Guía completa de ingeniería para diseñar arquitecturas de facturación por suscripción listas para producción con Stripe, verificación de webhooks, máquinas de estado idempotentes y sincronización de derechos multiinquilino.": [
+        "es/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Cómo las herramientas de PDF de LadeStack unen, extraen y optimizan documentos directamente en la memoria RAM del navegador mediante WebAssembly y buffers Uint8Array sin enviar archivos al servidor.": [
+        "es/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Ajuste de dimensionamiento (rightsizing), instancias Spot, ciclo de vida en S3, pooling de bases de datos y unit economics con FinOps.": [
+        "es/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Un análisis arquitectónico profundo del entorno de desarrollo GB Coder, uniendo la potencia de Monaco Editor con ejecución aislada en sandbox de latencia cero.": [
+        "es/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "Guía arquitectónica exhaustiva sobre GitOps: estado declarativo, bucles de reconciliación continua, comparación Push vs Pull, Argo CD, Flux CD, gestión de secretos y Policy-as-Code.": [
+        "es/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Guía completa de MLOps para ingenieros web: ingesta de datos, prevención de data leakage, inferencia en navegador con ONNX Runtime Web, microservicios FastAPI y monitorización de drift.": [
+        "es/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Análisis técnico de los canales de optimización de imágenes en el navegador, evaluando HTML5 Canvas, codificación WebP y ratios de compresión AVIF para aplicaciones web de alto rendimiento.": [
+        "es/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Análisis técnico exhaustivo de las categorías oficiales de OWASP Top 10:2025: causas raíz, mitigaciones a nivel de código, seguridad de la cadena de suministro y arquitectura de defensa en profundidad.": [
+        "es/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "Evaluación arquitectónica rigurosa entre REST y GraphQL. Caché HTTP en redes CDN, optimización del payload, resolución del problema N+1 y el patrón DataLoader.": [
+        "es/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Contacte a LadeStack para consultas sobre herramientas, comentarios y asistencia técnica. Atención directa en admin@ladestack.in.": [
+        "es/contact/index.html"
+      ],
+      "Documentación técnica completa para desarrolladores de LadeStack. Guías de arquitectura, flujos WebAssembly en el cliente y registro de cambios.": [
+        "es/docs/index.html"
+      ],
+      "Cree, ejecute y previsualice código web al instante con GB Coder. Monaco Editor, vista previa en tiempo real del DOM, ejecución Node.js con WebContainer y privacidad local. Gratis.": [
+        "es/gb-coder/index.html"
+      ],
+      "Herramientas de alto rendimiento en el navegador: editor de código, suite PDF 17 en 1, compresión de imágenes. Gratis, ejecución local.": [
+        "es/index.html"
+      ],
+      "Conozca cómo LadeStack protege sus datos mediante ejecución WebAssembly en el cliente, persistencia local con IndexedDB y prácticas transparentes.": [
+        "es/privacy/index.html"
+      ],
+      "Explore el directorio completo de LadeStack: herramientas de desarrollo, documentación técnica, guías de arquitectura y publicaciones.": [
+        "es/sitemap/index.html"
+      ],
+      "Obtenga asistencia técnica sobre las herramientas de desarrollo de LadeStack. Consulte la documentación, resuelva dudas o contacte directamente con nuestro equipo de ingeniería.": [
+        "es/support/index.html"
+      ],
+      "Consulte los Términos de Servicio de las herramientas de LadeStack, titularidad de propiedad intelectual, ejecución en el cliente y limitaciones de responsabilidad.": [
+        "es/terms/index.html"
+      ],
+      "Découvrez l’origine de LadeStack, ses principes d’ingénierie fondamentaux et son écosystème d’outils vérifiés. Fondé par l’architecte logiciel Girish Lade.": [
+        "fr/about/index.html"
+      ],
+      "Découvrez les outils de développement vérifiés de LadeStack, dont l’IDE phare GB Coder et une suite d’utilitaires web respectueux de la vie privée.": [
+        "fr/apps/index.html"
+      ],
+      "Guide technique d'ingénierie sur les algorithmes de rate limiting et de throttling. Implémentation atomique de Token Bucket avec Redis et scripts Lua, compteurs glissants et en-têtes HTTP standard.": [
+        "fr/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Une comparaison architecturale objective de Firebase, Supabase et Appwrite : modèles de données, sécurité et RLS, protocoles temps réel, fonctions edge, auto-hébergement et risques de verrouillage fournisseur.": [
+        "fr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Guide complet d'architecture API Gateway en production : reverse proxy, authentification distribuée, token bucket Redis, circuit breakers et configuration Envoy.": [
+        "fr/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Guide architectural complet pour concevoir des systèmes de génération augmentée de récupération (RAG) en production avec bases vectorielles, recherche hybride et réévaluation.": [
+        "fr/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Un guide d'ingénierie complet pour concevoir des architectures de facturation par abonnement prêtes pour la production avec Stripe, la vérification des webhooks, des machines à états idempotentes et la synchronisation des droits multi-locataires.": [
+        "fr/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Découvrez comment les outils PDF de LadeStack fusionnent et optimisent les documents directement dans la RAM du navigateur grâce à WebAssembly et aux tampons Uint8Array sans aucun envoi vers un serveur.": [
+        "fr/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Dimensionnement compute, instances Spot, cycle de vie S3, pooling de bases de données et unit economics FinOps pour maîtriser ses dépenses cloud.": [
+        "fr/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Plongée architecturale dans le moteur double de GB Coder, alliant la puissance de Monaco Editor à une exécution sandboxée sans latence.": [
+        "fr/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "Guide architectural complet sur GitOps : déclaratif, boucles de réconciliation, comparaison Push vs Pull, Argo CD, Flux CD, gestion des secrets, détection de dérive et Policy-as-Code.": [
+        "fr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Guide complet de MLOps pour les ingénieurs Web : collecte de données, prévention du data leakage, inférence navigateur via ONNX Runtime Web, microservices FastAPI et surveillance du drift.": [
+        "fr/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Comparaison technique des pipelines d'optimisation d'images dans le navigateur. Évaluation de Canvas HTML5, de l'encodage WebP et d'AVIF pour des applications web haute performance.": [
+        "fr/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Analyse technique approfondie des catégories officielles de l'OWASP Top 10:2025 : causes racines, remédiations au niveau du code, sécurité de la chaîne d'approvisionnement et défense en profondeur.": [
+        "fr/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "Évaluation architecturale approfondie entre REST et GraphQL. Mise en cache HTTP sur les réseaux CDN, optimisation de la charge utile, problème N+1 et patron DataLoader.": [
+        "fr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Contactez LadeStack pour vos questions sur nos outils, vos retours et une assistance technique. E-mail direct : admin@ladestack.in.": [
+        "fr/contact/index.html"
+      ],
+      "Documentation technique complète des outils LadeStack. Guides d’architecture, flux WebAssembly côté client et historique des versions.": [
+        "fr/docs/index.html"
+      ],
+      "Créez, exécutez et prévisualisez du code web instantanément avec GB Coder. Monaco Editor, prévisualisation DOM en direct, runtime Node.js WebContainer et confidentialité locale. Gratuit.": [
+        "fr/gb-coder/index.html"
+      ],
+      "Outils de développement haute performance dans le navigateur : éditeur de code, boîte à outils PDF 17-en-1, compression d’images. Gratuit, exécution locale.": [
+        "fr/index.html"
+      ],
+      "Découvrez comment LadeStack protège vos données grâce à l’exécution WebAssembly côté client, la persistance IndexedDB locale et des pratiques transparentes.": [
+        "fr/privacy/index.html"
+      ],
+      "Explorez le répertoire complet de LadeStack : outils pour développeurs, documentation, guides d’architecture et ressources.": [
+        "fr/sitemap/index.html"
+      ],
+      "Obtenez de l’aide sur les outils pour développeurs LadeStack. Consultez la documentation technique, trouvez des réponses ou contactez directement notre équipe.": [
+        "fr/support/index.html"
+      ],
+      "Consultez les Conditions d’utilisation des outils pour développeurs LadeStack, la propriété intellectuelle, l’exécution côté client et les exclusions de responsabilité.": [
+        "fr/terms/index.html"
+      ],
+      "Build, run, and preview web code instantly with GB Coder. Monaco Editor, live DOM preview, WebContainer Node.js execution, and local-first privacy. Free to use.": [
+        "gb-coder/index.html"
+      ],
+      "High-performance in-browser developer tools: code editor, private 17-in-1 PDF toolkit, image compression, and career utilities. Free forever with client-side execution.": [
+        "index.html"
+      ],
+      "LadeStackの誕生背景、基本原則、検証済み製品エコシステムをご紹介します。ソフトウェアアーキテクトGirish Ladeによって設立されました。": [
+        "ja/about/index.html"
+      ],
+      "LadeStackの検証済みブラウザ開発ツールをご覧ください。主力IDEのGB Coderをはじめ、プライバシー優先の特化型Webユーティリティを提供します。": [
+        "ja/apps/index.html"
+      ],
+      "分散システムにおけるAPIレート制限およびスロットリングアルゴリズムの解説。Token Bucket、Sliding Window、Redis Luaスクリプトによるアトミック実装、標準HTTPヘッダーの活用。": [
+        "ja/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "データモデル、セキュリティ設計、リアルタイム機能、エッジ関数、セルフホスティングの実現可能性、ベンダーロックインの観点からFirebase、Supabase、Appwriteを客観的に比較。": [
+        "ja/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "リバースプロキシ、分散認証、Redisレート制限、サーキットブレーカー、Envoy構成、サービスメッシュ比較を網羅した本番環境向けAPIゲートウェイ設計の完全ガイド。": [
+        "ja/blog/building-api-gateways-microservices/index.html"
+      ],
+      "ベクトルデータベース、ハイブリッド検索、リランキング、引用検証を組み合わせた本番対応の検索拡張生成（RAG）システムの完全設計ガイド。": [
+        "ja/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Stripe連携、暗号化Webhook検証、冪等な状態遷移マシン、マルチテナントエンタイトルメント同期を含む、実用的なSaaSサブスクリプション決済アーキテクチャの解説ガイド。": [
+        "ja/blog/building-subscription-billing-systems/index.html"
+      ],
+      "サーバーへのファイル送信を一切行わず、ブラウザのRAM上でWebAssemblyとUint8Arrayバッファを用いてPDFの結合・分割・最適化を完結させる独自アーキテクチャを解説。": [
+        "ja/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "コンピュート適正化、スポットインスタンス、ストレージライフサイクル、データベース接続プーリング、FinOpsユニットエコノミクスを網羅した包括的コスト削減ガイド。": [
+        "ja/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Monaco Editorの高度な構文解析と言語インテリジェンス、そしてゼロ遅延のサンドボックス実行を両立するGB Coderの独自アーキテクチャを詳細解説。": [
+        "ja/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "宣言的記述、調整ループ（Reconciliation Loop）、プッシュ型とプル型の比較、Argo CD、Flux CD、シークレット管理、ドリフト検出、ポリシー・アズ・コードを網羅したGitOpsアーキテクチャ徹底解説。": [
+        "ja/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Webエンジニア向けMLパイプライン完全ガイド。データ収集、データリーク防止、ONNX Runtime Webによるブラウザ推論、FastAPIによるサーバー推論、MLOpsドリフト監視の実装手法。": [
+        "ja/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "ブラウザ内画像最適化パイプラインの技術比較。パフォーマンス重視のWebアプリケーションにおけるHTML5 Canvas、WebPエンコード、AVIF圧縮率とCPU負荷を検証します。": [
+        "ja/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "公式OWASP Top 10:2025全10カテゴリの詳細解説：根本原因分析、コードレベルの緩和策、ソフトウェアサプライチェーンセキュリティ、多層防御アーキテクチャの完全ガイド。": [
+        "ja/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "RESTとGraphQLのアーキテクチャ比較。HTTPエッジキャッシュ、ペイロード最適化、スキーマ進化、クエリの複雑性、DataLoaderパターンを実践的に評価。": [
+        "ja/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "LadeStackの開発者ツールに関するお問い合わせ、フィードバック、技術支援。admin@ladestack.in まで直接ご連絡ください。": [
+        "ja/contact/index.html"
+      ],
+      "LadeStack開発者ツールの包括的ドキュメント。アーキテクチャガイド、クライアントサイドWebAssemblyワークフロー、更新履歴。": [
+        "ja/docs/index.html"
+      ],
+      "GB CoderでWebコードを即座に構築、実行、プレビュー。Monaco Editor、リアルタイムDOMプレビュー、WebContainer Node.js実行、ローカル優先プライバシー。完全無料。": [
+        "ja/gb-coder/index.html"
+      ],
+      "ブラウザ上で動作する高性能開発ツール：コードエディタ、17種類のプライベートPDFツール、画像圧縮、キャリア支援ツール。完全無料・ローカル実行。": [
+        "ja/index.html"
+      ],
+      "LadeStackがクライアントサイドWebAssembly、ローカルIndexedDB、透明性のある方針を通じてデータを保護する方法について説明します。": [
+        "ja/privacy/index.html"
+      ],
+      "LadeStackの全ページ、開発者ツール、ドキュメント、アーキテクチャガイドを一覧できるインデックスです。": [
+        "ja/sitemap/index.html"
+      ],
+      "LadeStack開発者ツールのサポート。技術ドキュメントの閲覧、トラブルシューティング、またはエンジニアリングチームへの直接のお問い合わせをご案内します。": [
+        "ja/support/index.html"
+      ],
+      "LadeStack開発者ツールの利用規約、知的財産の帰属、クライアントサイド実行の免責事項およびライセンス規定をご確認ください。": [
+        "ja/terms/index.html"
+      ],
+      "LadeStack의 설립 배경, 핵심 엔지니어링 원칙, 검증된 제품 생태계를 확인하세요. 소프트웨어 아키텍트 Girish Lade가 설립했습니다.": [
+        "ko/about/index.html"
+      ],
+      "LadeStack의 검증된 브라우저 개발 도구를 살펴보세요. 플래그십 IDE인 GB Coder와 함께 프라이버시 중심의 실용적인 웹 도구를 제공합니다.": [
+        "ko/apps/index.html"
+      ],
+      "분산 시스템을 위한 API 속도 제한 및 스로틀링 알고리즘 분석. 토큰 버킷, 슬라이딩 윈도우, Redis Lua 스크립트를 통한 원자적 구현과 표준 HTTP 헤더 설계.": [
+        "ko/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "데이터 모델, 보안 아키텍처, 실시간 동기화, 서버리스 함수, 셀프 호스팅 가능 여부 및 벤더 락인 관점에서 Firebase, Supabase, Appwrite를 객관적으로 비교합니다.": [
+        "ko/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "리버스 프록시, 분산 인증, Redis 토큰 버킷 속도 제한, 서킷 브레이커, Envoy 구성 및 서비스 메시 비교를 다루는 엔터프라이즈급 API 게이트웨이 설계 가이드.": [
+        "ko/blog/building-api-gateways-microservices/index.html"
+      ],
+      "벡터 데이터베이스, 하이브리드 검색, 리랭킹 및 출처 검증을 결합한 프로덕션급 검색 증강 생성(RAG) 시스템의 완벽한 아키텍처 설계 가이드.": [
+        "ko/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Stripe 연동, 암호화 웹훅 검증, 멱등성 상태 머신, 멀티테넌트 권한 동기화를 다루는 프로덕션급 SaaS 구독 결제 아키텍처 엔지니어링 가이드.": [
+        "ko/blog/building-subscription-billing-systems/index.html"
+      ],
+      "서버 업로드 없이 브라우저 RAM 상에서 WebAssembly와 Uint8Array 버퍼를 활용하여 문서를 병합, 분할 및 최적화하는 LadeStack의 클라이언트 연산 아키텍처.": [
+        "ko/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "컴퓨팅 리사이징, 스팟 인스턴스, 스토리지 라이프사이클 관리, 데이터베이스 커넥션 풀링, FinOps 단위 경제성을 아우르는 실용적 비용 절감 가이드.": [
+        "ko/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Monaco Editor의 고성능 구문 분석과 무지연 격리 샌드박스 실행을 결합한 GB Coder의 클라이언트 중심 아키텍처 기술 심층 분석.": [
+        "ko/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "선언적 시스템 정의, 지속적 조정 루프(Reconciliation Loop), 푸시 vs 풀 방식 비교, Argo CD 및 Flux CD 아키텍처, 시크릿 관리, 정책 기반 코드 제어를 다루는 GitOps 심층 가이드.": [
+        "ko/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "웹 엔지니어를 위한 종합 MLOps 파이프라인 가이드. 데이터 수집, 데이터 누수 방지, ONNX Runtime Web을 통한 브라우저 추론, FastAPI 서버 추론 및 운영 환경 드리프트 모니터링.": [
+        "ko/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "브라우저 내 이미지 최적화 파이프라인에 대한 심층 기술 비교. 성능 중심 웹 애플리케이션을 위한 HTML5 Canvas, WebP 인코딩, AVIF 압축률과 CPU 처리 효율을 분석합니다.": [
+        "ko/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "공식 OWASP Top 10:2025 10대 카테고리 심층 분석: 근본 원인 분석, 코드 레벨 완화 전략, 소프트웨어 공급망 보안, 심층 방어 아키텍처 완벽 해설.": [
+        "ko/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST와 GraphQL의 심층 아키텍처 비교. HTTP 엣지 캐싱, 페이로드 최적화, 스키마 진화, 쿼리 복잡도, DataLoader 패턴의 실무적 분석.": [
+        "ko/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "LadeStack 개발자 도구에 대한 문의, 피드백, 기술 지원을 요청하세요. admin@ladestack.in을 통해 직접 지원해 드립니다.": [
+        "ko/contact/index.html"
+      ],
+      "LadeStack 개발자 도구를 위한 상세 문서입니다. 아키텍처 가이드, 클라이언트 사이드 WebAssembly 워크플로, 플랫폼 변경 내역을 확인하세요.": [
+        "ko/docs/index.html"
+      ],
+      "GB Coder로 웹 코드를 즉시 작성, 실행 및 미리보기하세요. Monaco Editor, 실시간 DOM 미리보기, WebContainer Node.js 런타임, 로컬 우선 프라이버시. 완전 무료.": [
+        "ko/gb-coder/index.html"
+      ],
+      "고성능 브라우저 기반 개발 도구: 코드 에디터, 프라이빗 17-in-1 PDF 툴킷, 이미지 압축, 커리어 유틸리티. 클라이언트 실행, 평생 무료.": [
+        "ko/index.html"
+      ],
+      "LadeStack이 클라이언트 사이드 WebAssembly 실행, 로컬 IndexedDB 보관, 투명한 운영을 통해 데이터를 보호하는 방식을 안내합니다.": [
+        "ko/privacy/index.html"
+      ],
+      "LadeStack의 전체 공개 페이지, 개발자 도구, 기술 문서 및 블로그 목록을 한눈에 확인할 수 있는 디렉터리입니다.": [
+        "ko/sitemap/index.html"
+      ],
+      "LadeStack 개발자 도구에 대한 지원을 받으세요. 기술 문서, 문제 해결 가이드 및 엔지니어링 팀 직접 문의 채널을 제공합니다.": [
+        "ko/support/index.html"
+      ],
+      "LadeStack 개발자 도구 이용약관, 지식재산권 귀속, 클라이언트 사이드 실행 한계 및 법적 면책 규정을 확인하세요.": [
+        "ko/terms/index.html"
+      ],
+      "Learn how LadeStack protects your data through client-side WebAssembly execution, local IndexedDB persistence, and transparent data practices.": [
+        "privacy/index.html"
+      ],
+      "Conheça a origem da LadeStack, nossos princípios essenciais de engenharia e o ecossistema de ferramentas verificadas. Fundado pelo arquiteto de software Girish Lade.": [
+        "pt/about/index.html"
+      ],
+      "Conheça as ferramentas de desenvolvimento no navegador da LadeStack, apresentando a IDE principal GB Coder e utilitários focados em privacidade.": [
+        "pt/apps/index.html"
+      ],
+      "Guia técnico de engenharia sobre algoritmos de limitação de taxa (Rate Limiting) e controle de vazão (Throttling). Implementação atômica de Token Bucket com Redis e Lua, e cabeçalhos HTTP padronizados.": [
+        "pt/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Uma comparação arquitetural detalhada e objetiva de Firebase, Supabase e Appwrite: modelos de dados, segurança e RLS, protocolos em tempo real, edge functions, auto-hospedagem e riscos de vendor lock-in.": [
+        "pt/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Guia completo de arquitetura de API Gateway para produção: proxy reverso, autenticação distribuída, rate limiting com Redis, circuit breakers e Envoy.": [
+        "pt/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Guia completo de arquitetura para projetar sistemas de Geração Aumentada por Recuperação (RAG) em produção com bancos vetoriais, busca híbrida e reranking.": [
+        "pt/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Um guia completo de engenharia para arquitetar sistemas de cobrança por assinatura prontos para produção com Stripe, verificação de webhooks, máquinas de estado idempotentes e sincronização de permissões multi-inquilino.": [
+        "pt/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Como as ferramentas de PDF da LadeStack processam, mesclam e otimizam documentos diretamente na memória RAM do navegador usando WebAssembly e buffers Uint8Array sem upload para servidores.": [
+        "pt/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Dimensionamento de instâncias, instâncias Spot, ciclo de vida do S3, pooling de conexões de banco de dados e economia unitária com FinOps.": [
+        "pt/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Uma análise técnica aprofundada da arquitetura de motor duplo do GB Coder, integrando o Monaco Editor com execução isolada em sandbox de latência zero.": [
+        "pt/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "Guia arquitetural aprofundado sobre GitOps: estado declarativo, loops de reconciliação contínua, comparação Push vs Pull, Argo CD, Flux CD, gestão de segredos e conformidade com Policy-as-Code.": [
+        "pt/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Guia completo de MLOps para engenheiros web: coleta de dados, prevenção de vazamento de dados, inferência no navegador com ONNX Runtime Web, microsserviços FastAPI e monitoramento de drift.": [
+        "pt/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Uma análise técnica aprofundada de pipelines de otimização de imagem no navegador, avaliando HTML5 Canvas, codificação WebP e taxas de compressão AVIF para aplicações de alta performance.": [
+        "pt/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Análise técnica detalhada das categorias oficiais do OWASP Top 10:2025: causas raízes, mitigações a nível de código, segurança da cadeia de suprimentos e arquitetura de defesa em profundidade.": [
+        "pt/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "Avaliação arquitetural aprofundada comparando REST e GraphQL. Cache HTTP em redes CDN, otimização de payload, resolução do problema N+1 e o padrão DataLoader.": [
+        "pt/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Entre em contato com a LadeStack para dúvidas sobre ferramentas, feedback e suporte técnico. Assistência direta em admin@ladestack.in.": [
+        "pt/contact/index.html"
+      ],
+      "Documentação técnica abrangente das ferramentas LadeStack. Guias de arquitetura, fluxos WebAssembly no cliente e histórico de versões.": [
+        "pt/docs/index.html"
+      ],
+      "Crie, execute e pré-visualize código web instantaneamente com o GB Coder. Monaco Editor, pré-visualização DOM em tempo real, execução Node.js via WebContainer e privacidade local. Gratuito.": [
+        "pt/gb-coder/index.html"
+      ],
+      "Ferramentas de alta performance no navegador: editor de código, kit PDF 17-em-1, compressão de imagens. Gratuito, execução local.": [
+        "pt/index.html"
+      ],
+      "Saiba como a LadeStack protege seus dados por meio de execução WebAssembly no cliente, persistência local em IndexedDB e práticas transparentes.": [
+        "pt/privacy/index.html"
+      ],
+      "Explore o diretório completo da LadeStack: ferramentas de desenvolvimento, documentação técnica, guias e publicações de engenharia.": [
+        "pt/sitemap/index.html"
+      ],
+      "Obtenha suporte para as ferramentas para desenvolvedores da LadeStack. Consulte documentações técnicas, tire dúvidas ou fale diretamente com a equipe de engenharia.": [
+        "pt/support/index.html"
+      ],
+      "Analise os Termos de Serviço das ferramentas LadeStack, titularidade de propriedade intelectual, limites de execução local e isenções legais.": [
+        "pt/terms/index.html"
+      ],
+      "Узнайте об истоках LadeStack, ключевых принципах и проверенной экосистеме продуктов. Основано инженером Girish Lade.": [
+        "ru/about/index.html"
+      ],
+      "Изучите проверенные браузерные продукты LadeStack: флагманскую IDE GB Coder и специализированные утилиты с защитой конфиденциальности.": [
+        "ru/apps/index.html"
+      ],
+      "Инженерное руководство по алгоритмам ограничения скорости API (Rate Limiting) и троттлинга. Анализ Token Bucket, Sliding Window, атомарная реализация на Redis Lua и заголовки HTTP.": [
+        "ru/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Объективное архитектурное сравнение Firebase, Supabase и Appwrite: модели данных, безопасность и RLS, протоколы синхронизации в реальном времени, edge-функции, автономное развертывание и риски vendor lock-in.": [
+        "ru/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Полное руководство по проектированию production-ready API Gateway: обратный прокси, распределенная аутентификация, алгоритм token bucket в Redis, circuit breakers и Envoy.": [
+        "ru/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Полное практическое руководство по архитектуре Retrieval-Augmented Generation (RAG): векторные базы данных, гибридный поиск, реранкинг и проверяемые цитирования.": [
+        "ru/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Практическое руководство по созданию надежной биллинговой архитектуры для SaaS с интеграцией Stripe, верификацией вебхуков, автоматом состояний и синхронизацией прав.": [
+        "ru/blog/building-subscription-billing-systems/index.html"
+      ],
+      "Как инструменты LadeStack обрабатывают, объединяют и оптимизируют документы PDF непосредственно в оперативной памяти браузера с помощью WebAssembly и буферов Uint8Array без передачи данных на сервер.": [
+        "ru/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "Комплексное руководство по снижению затрат на облако: райтсайзинг compute-ресурсов, спот-инстансы, жизненный цикл S3, пулинг БД и юнит-экономика FinOps.": [
+        "ru/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Технический разбор двухдвижковой архитектуры GB Coder: интеграция Monaco Editor с изолированной песочницей исполнения без задержек.": [
+        "ru/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "Архитектурное руководство по GitOps: декларативное состояние, циклы синхронизации (Reconciliation), сравнение Push и Pull, Argo CD, Flux CD, управление секретами и Policy-as-Code.": [
+        "ru/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Полное руководство по MLOps для веб-инженеров: сбор данных, предотвращение data leakage, инференс в браузере через ONNX Runtime Web, микросервисы на FastAPI и мониторинг дрейфа данных.": [
+        "ru/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Техническое сравнение конвейеров оптимизации изображений на стороне клиента: анализ HTML5 Canvas, кодирования WebP и алгоритмов AVIF для высокопроизводительных веб-приложений.": [
+        "ru/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Детальный инженерный разбор официальных категорий OWASP Top 10:2025: безопасность цепочек поставок ПО, анализ первопричин, безопасное кодирование и эшелонированная оборона.": [
+        "ru/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "Глубокое сравнение REST и GraphQL. Анализ HTTP-кэширования на edge-узлах, оптимизации нагрузки, эволюции схемы, N+1 проблемы и паттерна DataLoader.": [
+        "ru/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Свяжитесь с LadeStack для вопросов по инструментам, обратной связи и технической помощи. Почта: admin@ladestack.in.": [
+        "ru/contact/index.html"
+      ],
+      "Полная техническая документация инструментов разработчика LadeStack. Руководства по архитектуре, клиентоориентированные процессы WebAssembly и история версий.": [
+        "ru/docs/index.html"
+      ],
+      "Создавайте, запускайте и тестируйте код прямо в браузере с GB Coder. Monaco Editor, мгновенный DOM предпросмотр, WebContainer Node.js и локальная приватность. Бесплатно.": [
+        "ru/gb-coder/index.html"
+      ],
+      "Высокопроизводительные инструменты в браузере: редактор кода, 17-в-1 PDF набор, оптимизация изображений. Бесплатно, локальное выполнение.": [
+        "ru/index.html"
+      ],
+      "Узнайте, как LadeStack защищает ваши данные с помощью исполнения WebAssembly на стороне клиента, локального хранилища IndexedDB и прозрачных правил.": [
+        "ru/privacy/index.html"
+      ],
+      "Полный каталог LadeStack: инструменты разработчика, техническая документация, руководства по архитектуре и ресурсы платформы.": [
+        "ru/sitemap/index.html"
+      ],
+      "Техническая поддержка инструментов разработчика LadeStack. Изучите документацию, ответы на частые вопросы или свяжитесь с инженерной командой напрямую.": [
+        "ru/support/index.html"
+      ],
+      "Ознакомьтесь с Условиями обслуживания инструментов разработчика LadeStack, правами интеллектуальной собственности, ограничениями и отказом от гарантий.": [
+        "ru/terms/index.html"
+      ],
+      "Explore the full human-readable directory of LadeStack: developer tools, documentation, architecture guides, and platform resources.": [
+        "sitemap/index.html"
+      ],
+      "Get help with LadeStack developer tools. Browse technical documentation, troubleshooting answers, or contact our engineering team directly.": [
+        "support/index.html"
+      ],
+      "Review the Terms of Service governing the use of LadeStack developer tools, licensing terms, client-side execution boundaries, and legal disclaimers.": [
+        "terms/index.html"
+      ],
+      "LadeStack'in çıkış noktasını, temel mühendislik ilkelerini ve doğrulanmış ürün ekosistemini keşfedin. Yazılım mimarı Girish Lade tarafından kuruldu.": [
+        "tr/about/index.html"
+      ],
+      "LadeStack'in doğrulanmış tarayıcı içi araçlarını keşfedin. Amiral gemisi GB Coder IDE ve gizlilik odaklı odaklanmış web araçları.": [
+        "tr/apps/index.html"
+      ],
+      "Dağıtık sistemler için API istek sınırlama (Rate Limiting) ve kısma (Throttling) algoritmaları. Token Bucket, Sliding Window, Redis Lua ile atomik çalıştırma ve standart HTTP başlıkları.": [
+        "tr/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "Firebase, Supabase ve Appwrite arasında tarafsız mimari karşılaştırma: veri modelleri, güvenlik ve RLS, gerçek zamanlı protokoller, edge fonksiyonları, self-hosting olanakları ve vendor lock-in dengeleri.": [
+        "tr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "Ters proxy, dağıtık kimlik doğrulama, Redis belirteç kovası hız sınırlaması, devre kesiciler ve Envoy yapılandırması ile üretim düzeyinde API Gateway rehberi.": [
+        "tr/blog/building-api-gateways-microservices/index.html"
+      ],
+      "Vektör veritabanları, hibrit arama, yeniden sıralama (reranking) ve kaynak doğrulama mekanizmalarını birleştiren kurumsal Retrieval-Augmented Generation (RAG) mimari rehberi.": [
+        "tr/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "Stripe ile üretime hazır abonelik faturalandırma mimarileri, güvenli webhook doğrulaması, tekrarlanabilir durum makineleri ve çok kiracılı yetki senkronizasyonu için kapsamlı mühendislik rehberi.": [
+        "tr/blog/building-subscription-billing-systems/index.html"
+      ],
+      "LadeStack PDF araçlarının WebAssembly ve Uint8Array arabellekleri kullanarak belgeleri sunucuya yüklemeden doğrudan tarayıcı belleğinde nasıl işlediği, birleştirdiği ve optimize ettiğinin teknik incelemesi.": [
+        "tr/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "İşlemci boyutlandırması, spot bulut sunucuları, S3 depolama yaşam döngüsü, veritabanı bağlantı havuzu ve FinOps birim ekonomisi ile maliyet düşürme rehberi.": [
+        "tr/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "Monaco Editor'ün zengin sözdizimi zekası ile sıfır gecikmeli izole korumalı alan çalıştırmasını birleştiren GB Coder mimari analizi.": [
+        "tr/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "GitOps mimarisinin derinlemesine analizi: bildirime dayalı durum, sürekli mutabakat döngüleri (Reconciliation), Push vs Pull karşılaştırması, Argo CD, Flux CD, gizli anahtar yönetimi ve kod olarak politika.": [
+        "tr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Web mühendisleri için kapsamlı MLOps rehberi: Veri toplama, veri sızıntısını önleme, ONNX Runtime Web ile tarayıcı çıkarımı, FastAPI mikroservisleri ve üretim drift takibi.": [
+        "tr/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "Yüksek performanslı web uygulamalarında tarayıcı içi görsel optimizasyonu: HTML5 Canvas, WebP kodlama ve AVIF sıkıştırma oranlarının teknik incelemesi ve CPU başarım analizi.": [
+        "tr/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "Resmi OWASP Top 10:2025 kategorilerinin ayrıntılı mühendislik analizi: kök nedenler, kod düzeyinde azaltma önlemleri, yazılım tedarik zinciri güvenliği ve derinlemesine savunma mimarisi.": [
+        "tr/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "REST ve GraphQL mimarilerinin kapsamlı analizi. HTTP uç nokta önbelleğe alma, veri yükü optimizasyonu, şema evrimi, N+1 problemi ve DataLoader örüntüsü.": [
+        "tr/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "Geliştirici araçları, geri bildirimler ve teknik destek için LadeStack ile iletişime geçin. Doğrudan e-posta: admin@ladestack.in.": [
+        "tr/contact/index.html"
+      ],
+      "LadeStack geliştirici araçları için kapsamlı teknik belgeler. Mimari kılavuzları, istemci taraflı WebAssembly iş akışları ve sürüm geçmişi.": [
+        "tr/docs/index.html"
+      ],
+      "GB Coder ile doğrudan tarayıcınızda kod yazın, çalıştırın ve önizleyin. Monaco Editor, anlık DOM önizlemesi, WebContainer Node.js ve yerel gizlilik. Ücretsiz.": [
+        "tr/gb-coder/index.html"
+      ],
+      "Yüksek performanslı tarayıcı içi geliştirici araçları: kod düzenleyici, 17’si 1 arada özel PDF araçları, görsel sıkıştırma. Tamamen ücretsiz, yerel yürütme.": [
+        "tr/index.html"
+      ],
+      "LadeStack’in istemci taraflı WebAssembly çalıştırması, yerel IndexedDB depolaması ve şeffaf veri ilkeleriyle verilerinizi nasıl koruduğunu öğrenin.": [
+        "tr/privacy/index.html"
+      ],
+      "LadeStack’in geliştirici araçları, teknik dokümantasyon, mimari rehberleri ve blog yazılarını içeren eksiksiz dizinini inceleyin.": [
+        "tr/sitemap/index.html"
+      ],
+      "LadeStack geliştirici araçları için teknik destek alın. Belgeleri inceleyin, sorun giderme yanıtlarını okuyun veya mühendislik ekibimizle doğrudan iletişime geçin.": [
+        "tr/support/index.html"
+      ],
+      "LadeStack geliştirici araçlarını yöneten Kullanım Koşullarını, fikri mülkiyet haklarını, istemci taraflı çalıştırma sınırlarını ve yasal sorumluluk reddini inceleyin.": [
+        "tr/terms/index.html"
+      ],
+      "了解 LadeStack 的诞生初心、核心技术原则与经过验证的产品矩阵。由软件架构师 Girish Lade 创立。": [
+        "zh/about/index.html"
+      ],
+      "探索 LadeStack 经严格验证的浏览器端开发者产品，包括旗舰级 GB Coder IDE 与多款专注于数据隐私保护的实用 Web 工具。": [
+        "zh/apps/index.html"
+      ],
+      "深入剖析分布式系统中的 API 限流与节流算法。基于令牌桶、滑动窗口、Redis Lua 脚本原子实现以及标准 HTTP 响应头的设计实战。": [
+        "zh/blog/api-rate-limiting-throttling-strategies/index.html"
+      ],
+      "从底层数据模型、安全与鉴权机制、实时数据同步、边缘函数、私有化部署及厂商锁定风险等核心维度，全面客观对比 Firebase、Supabase 与 Appwrite。": [
+        "zh/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html"
+      ],
+      "涵盖反向代理、分布式认证、Redis令牌桶限流、断路器、Envoy配置以及服务网格对比的企业级微服务API网关架构指南。": [
+        "zh/blog/building-api-gateways-microservices/index.html"
+      ],
+      "生产级检索增强生成（RAG）系统架构设计指南：涵盖向量数据库、分块算法、混合检索、交叉编码重排与引用可溯源机制。": [
+        "zh/blog/building-rag-applications-vector-databases/index.html"
+      ],
+      "面向生产级 SaaS 订阅计费系统的实战架构指南，涵盖 Stripe 集成、加密 Webhook 校验、幂等状态机设计以及多租户权益同步机制。": [
+        "zh/blog/building-subscription-billing-systems/index.html"
+      ],
+      "深入解析LadeStack的PDF工具如何利用WebAssembly与Uint8Array二进制缓冲区，在浏览器内存中直接完成文档合并与优化，实现无须服务器中转的安全处理。": [
+        "zh/blog/client-side-pdf-manipulation-webassembly/index.html"
+      ],
+      "涵盖计算资源合理化、竞价实例、对象存储生命周期、数据库连接池化与FinOps单元经济学的系统化云成本控制指南。": [
+        "zh/blog/cloud-cost-optimization-strategies-startups/index.html"
+      ],
+      "深度剖析GB Coder的双引擎架构设计，平衡Monaco Editor的高级语法智能与毫秒级沙箱隔离执行。": [
+        "zh/blog/gb-coder-dual-engine-architecture/index.html"
+      ],
+      "深入解析 GitOps 核心架构：声明式系统定义、连续调和循环（Reconciliation Loop）、Push 与 Pull 模式对比、Argo CD 与 Flux CD 选型、密钥安全与代码化策略。": [
+        "zh/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "专为前端与全栈工程师打造的 MLOps 指南。深入解析数据采集、数据泄露防范、ONNX Runtime Web 浏览器端推理、FastAPI 微服务推理及生产环境漂移监控。": [
+        "zh/blog/machine-learning-pipelines-for-web-developers/index.html"
+      ],
+      "深入对比现代浏览器端图像优化技术，评估HTML5 Canvas、WebP编码与AVIF在性能优先型Web应用中的压缩比率与计算开销。": [
+        "zh/blog/modern-web-image-compression-standards/index.html"
+      ],
+      "官方 OWASP Top 10:2025 十大安全风险深度工程解析：软件供应链安全、根本原因分析、代码级防护方案与纵深防御架构完整指南。": [
+        "zh/blog/owasp-top-10-complete-mitigation-guide/index.html"
+      ],
+      "深入剖析 REST 与 GraphQL 的架构差异。从 HTTP 边缘缓存、数据负载优化、模式演进、查询复杂度及 DataLoader 批处理模式展开工程实战评估。": [
+        "zh/blog/rest-vs-graphql-choosing-right-api-paradigm/index.html"
+      ],
+      "就开发者工具咨询、使用反馈与技术支持与 LadeStack 取得联系。直通邮箱：admin@ladestack.in。": [
+        "zh/contact/index.html"
+      ],
+      "LadeStack 开发者工具技术文档库。架构说明指南、客户端 WebAssembly 工作流与平台版本发布历史。": [
+        "zh/docs/index.html"
+      ],
+      "使用 GB Coder 在浏览器中即刻构建、运行和预览 Web 代码。Monaco Editor、实时 DOM 预览、WebContainer Node.js 运行时、本地优先隐私保护。完全免费。": [
+        "zh/gb-coder/index.html"
+      ],
+      "高性能浏览器端开发工具：代码编辑器、17 合 1 私密 PDF 工具箱、图片压缩与职业效率工具。完全免费，客户端本地运行。": [
+        "zh/index.html"
+      ],
+      "了解 LadeStack 如何依托客户端 WebAssembly 执行、本地 IndexedDB 存储与透明规则保障您的数据安全。": [
+        "zh/privacy/index.html"
+      ],
+      "浏览 LadeStack 的全站目录索引：涵盖开发者工具、架构文档、工程实践与平台核心资源。": [
+        "zh/sitemap/index.html"
+      ],
+      "获取 LadeStack 开发者工具的技术支持。查阅架构文档、排查指南，或直接联系我们的工程团队。": [
+        "zh/support/index.html"
+      ],
+      "审阅规范使用 LadeStack 开发者工具的服务条款、知识产权归属、客户端执行免责声明与商业授权范围。": [
+        "zh/terms/index.html"
+      ]
+    },
+    "shortDescriptions": [
+      {
+        "relPath": "zh/sitemap/index.html",
+        "desc": "浏览 LadeStack 的全站目录索引：涵盖开发者工具、架构文档、工程实践与平台核心资源。",
+        "len": 46
+      },
+      {
+        "relPath": "zh/support/index.html",
+        "desc": "获取 LadeStack 开发者工具的技术支持。查阅架构文档、排查指南，或直接联系我们的工程团队。",
+        "len": 49
+      }
+    ],
+    "longDescriptions": [
+      {
+        "relPath": "blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "A comprehensive engineering guide to API rate limiting and throttling algorithms, featuring Token Bucket Redis implementations, sliding window counters, and standard HTTP headers.",
+        "len": 179
+      },
+      {
+        "relPath": "blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "An objective, in-depth architectural comparison of Firebase, Supabase, and Appwrite covering data models, security paradigms, real-time protocols, edge functions, self-hosting viability, and vendor lock-in tradeoffs.",
+        "len": 216
+      },
+      {
+        "relPath": "blog/building-ai-powered-code-review-systems/index.html",
+        "desc": "A production engineering guide to building automated, AST-aware AI code review pipelines that combine static analysis, pull request diff parsing, and structured LLM evaluations.",
+        "len": 177
+      },
+      {
+        "relPath": "blog/building-api-gateways-microservices/index.html",
+        "desc": "Architectural blueprint for engineering high-throughput API gateways: reverse proxy routing, JWT validation, token-bucket throttling, Envoy configurations, and defense-in-depth.",
+        "len": 177
+      },
+      {
+        "relPath": "blog/building-serverless-backends-with-baas/index.html",
+        "desc": "An architectural guide to engineering production-grade serverless backends with BaaS, covering event-driven triggers, lightweight edge functions, cold-start mitigation, and secure token verification.",
+        "len": 199
+      },
+      {
+        "relPath": "blog/building-subscription-billing-systems/index.html",
+        "desc": "A comprehensive engineering guide to designing production-ready subscription billing architectures with Stripe, robust webhook verification, idempotent state machines, and multi-tenant entitlement syncing.",
+        "len": 205
+      },
+      {
+        "relPath": "blog/building-zero-downtime-deployment-pipelines/index.html",
+        "desc": "Engineering zero-downtime deployment pipelines: blue-green and canary rollouts, traffic shifting, graceful shutdown, health probes, and expand-contract database migrations.",
+        "len": 172
+      },
+      {
+        "relPath": "blog/cloud-cost-optimization-strategies-startups/index.html",
+        "desc": "A comprehensive engineering guide to slashing cloud spend: compute rightsizing, spot orchestration, storage lifecycle policies, egress mitigation, and FinOps unit economics.",
+        "len": 173
+      },
+      {
+        "relPath": "blog/future-of-ai-in-software-development/index.html",
+        "desc": "An architectural analysis of how AI is transforming software engineering, examining the shift from code completion to agentic workflows, deterministic execution loops, and sandboxed developer runtimes.",
+        "len": 201
+      },
+      {
+        "relPath": "blog/generative-ai-for-content-creation/index.html",
+        "desc": "A production engineering guide to building Generative AI content workflows: structured JSON output, hallucination mitigation, token cost optimization, and human-in-the-loop validation.",
+        "len": 184
+      },
+      {
+        "relPath": "blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "Deep-dive architectural guide to GitOps: declarative desired state, reconciliation loops, pull vs push workflows, Argo CD, Flux CD, secret management, drift detection, and policy-as-code.",
+        "len": 187
+      },
+      {
+        "relPath": "blog/infrastructure-as-code-terraform-pulumi/index.html",
+        "desc": "Architectural comparison of Infrastructure as Code: declarative HCL vs general-purpose programming with Pulumi, state management, concurrency locking, drift detection, and policy-as-code.",
+        "len": 187
+      },
+      {
+        "relPath": "blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "A comprehensive guide for web engineers on architecting end-to-end ML pipelines: data ingestion, model serving, browser inference with ONNX Runtime Web, and operational monitoring.",
+        "len": 180
+      },
+      {
+        "relPath": "blog/mlops-deploying-ml-models-production/index.html",
+        "desc": "Architectural blueprint for MLOps: model registries, automated CI/CD training pipelines, low-latency containerized inference serving, data drift detection, and canary rollouts.",
+        "len": 176
+      },
+      {
+        "relPath": "blog/multi-tenant-saas-architecture-patterns/index.html",
+        "desc": "An architectural guide to multi-tenant database patterns, comparing shared-schema RLS, schema-per-tenant, and database-per-tenant models with transaction-safe connection pooling.",
+        "len": 178
+      },
+      {
+        "relPath": "blog/real-time-data-sync-backend-services/index.html",
+        "desc": "An authoritative engineering guide to real-time data sync across distributed web applications, covering WebSockets, Server-Sent Events, database change data capture (CDC), optimistic UI updates, and conflict resolution.",
+        "len": 219
+      },
+      {
+        "relPath": "blog/scaling-saas-applications-million-users/index.html",
+        "desc": "An in-depth engineering blueprint for scaling multi-tenant SaaS platforms from early traction to high concurrency, covering database read replicas, connection pooling, caching strategies, and resilient asynchronous worker queues.",
+        "len": 229
+      },
+      {
+        "relPath": "blog/zero-trust-security-web-applications/index.html",
+        "desc": "A production guide to implementing Zero Trust web application architecture, covering cryptographic identity verification, Content Security Policy Level 3, and iframe isolation.",
+        "len": 176
+      },
+      {
+        "relPath": "es/blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "Guía técnica de ingeniería sobre algoritmos de limitación de tasa (Rate Limiting) y regulación de flujo (Throttling). Implementación atómica de Token Bucket en Redis con scripts Lua y cabeceras HTTP estándar.",
+        "len": 208
+      },
+      {
+        "relPath": "es/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "Comparación técnica objetiva y en profundidad de Firebase, Supabase y Appwrite: modelos de datos, seguridad y RLS, protocolos en tiempo real, funciones edge, autoalojamiento y riesgos de dependencia de proveedor.",
+        "len": 212
+      },
+      {
+        "relPath": "es/blog/building-subscription-billing-systems/index.html",
+        "desc": "Guía completa de ingeniería para diseñar arquitecturas de facturación por suscripción listas para producción con Stripe, verificación de webhooks, máquinas de estado idempotentes y sincronización de derechos multiinquilino.",
+        "len": 223
+      },
+      {
+        "relPath": "es/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "desc": "Cómo las herramientas de PDF de LadeStack unen, extraen y optimizan documentos directamente en la memoria RAM del navegador mediante WebAssembly y buffers Uint8Array sin enviar archivos al servidor.",
+        "len": 198
+      },
+      {
+        "relPath": "es/blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "Guía arquitectónica exhaustiva sobre GitOps: estado declarativo, bucles de reconciliación continua, comparación Push vs Pull, Argo CD, Flux CD, gestión de secretos y Policy-as-Code.",
+        "len": 181
+      },
+      {
+        "relPath": "es/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "Guía completa de MLOps para ingenieros web: ingesta de datos, prevención de data leakage, inferencia en navegador con ONNX Runtime Web, microservicios FastAPI y monitorización de drift.",
+        "len": 185
+      },
+      {
+        "relPath": "es/blog/modern-web-image-compression-standards/index.html",
+        "desc": "Análisis técnico de los canales de optimización de imágenes en el navegador, evaluando HTML5 Canvas, codificación WebP y ratios de compresión AVIF para aplicaciones web de alto rendimiento.",
+        "len": 189
+      },
+      {
+        "relPath": "es/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "desc": "Análisis técnico exhaustivo de las categorías oficiales de OWASP Top 10:2025: causas raíz, mitigaciones a nivel de código, seguridad de la cadena de suministro y arquitectura de defensa en profundidad.",
+        "len": 201
+      },
+      {
+        "relPath": "es/gb-coder/index.html",
+        "desc": "Cree, ejecute y previsualice código web al instante con GB Coder. Monaco Editor, vista previa en tiempo real del DOM, ejecución Node.js con WebContainer y privacidad local. Gratis.",
+        "len": 180
+      },
+      {
+        "relPath": "es/support/index.html",
+        "desc": "Obtenga asistencia técnica sobre las herramientas de desarrollo de LadeStack. Consulte la documentación, resuelva dudas o contacte directamente con nuestro equipo de ingeniería.",
+        "len": 177
+      },
+      {
+        "relPath": "fr/blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "Guide technique d'ingénierie sur les algorithmes de rate limiting et de throttling. Implémentation atomique de Token Bucket avec Redis et scripts Lua, compteurs glissants et en-têtes HTTP standard.",
+        "len": 197
+      },
+      {
+        "relPath": "fr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "Une comparaison architecturale objective de Firebase, Supabase et Appwrite : modèles de données, sécurité et RLS, protocoles temps réel, fonctions edge, auto-hébergement et risques de verrouillage fournisseur.",
+        "len": 209
+      },
+      {
+        "relPath": "fr/blog/building-rag-applications-vector-databases/index.html",
+        "desc": "Guide architectural complet pour concevoir des systèmes de génération augmentée de récupération (RAG) en production avec bases vectorielles, recherche hybride et réévaluation.",
+        "len": 175
+      },
+      {
+        "relPath": "fr/blog/building-subscription-billing-systems/index.html",
+        "desc": "Un guide d'ingénierie complet pour concevoir des architectures de facturation par abonnement prêtes pour la production avec Stripe, la vérification des webhooks, des machines à états idempotentes et la synchronisation des droits multi-locataires.",
+        "len": 246
+      },
+      {
+        "relPath": "fr/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "desc": "Découvrez comment les outils PDF de LadeStack fusionnent et optimisent les documents directement dans la RAM du navigateur grâce à WebAssembly et aux tampons Uint8Array sans aucun envoi vers un serveur.",
+        "len": 202
+      },
+      {
+        "relPath": "fr/blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "Guide architectural complet sur GitOps : déclaratif, boucles de réconciliation, comparaison Push vs Pull, Argo CD, Flux CD, gestion des secrets, détection de dérive et Policy-as-Code.",
+        "len": 183
+      },
+      {
+        "relPath": "fr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "Guide complet de MLOps pour les ingénieurs Web : collecte de données, prévention du data leakage, inférence navigateur via ONNX Runtime Web, microservices FastAPI et surveillance du drift.",
+        "len": 188
+      },
+      {
+        "relPath": "fr/blog/modern-web-image-compression-standards/index.html",
+        "desc": "Comparaison technique des pipelines d'optimisation d'images dans le navigateur. Évaluation de Canvas HTML5, de l'encodage WebP et d'AVIF pour des applications web haute performance.",
+        "len": 181
+      },
+      {
+        "relPath": "fr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "desc": "Analyse technique approfondie des catégories officielles de l'OWASP Top 10:2025 : causes racines, remédiations au niveau du code, sécurité de la chaîne d'approvisionnement et défense en profondeur.",
+        "len": 197
+      },
+      {
+        "relPath": "fr/gb-coder/index.html",
+        "desc": "Créez, exécutez et prévisualisez du code web instantanément avec GB Coder. Monaco Editor, prévisualisation DOM en direct, runtime Node.js WebContainer et confidentialité locale. Gratuit.",
+        "len": 186
+      },
+      {
+        "relPath": "pt/blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "Guia técnico de engenharia sobre algoritmos de limitação de taxa (Rate Limiting) e controle de vazão (Throttling). Implementação atômica de Token Bucket com Redis e Lua, e cabeçalhos HTTP padronizados.",
+        "len": 201
+      },
+      {
+        "relPath": "pt/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "Uma comparação arquitetural detalhada e objetiva de Firebase, Supabase e Appwrite: modelos de dados, segurança e RLS, protocolos em tempo real, edge functions, auto-hospedagem e riscos de vendor lock-in.",
+        "len": 203
+      },
+      {
+        "relPath": "pt/blog/building-subscription-billing-systems/index.html",
+        "desc": "Um guia completo de engenharia para arquitetar sistemas de cobrança por assinatura prontos para produção com Stripe, verificação de webhooks, máquinas de estado idempotentes e sincronização de permissões multi-inquilino.",
+        "len": 220
+      },
+      {
+        "relPath": "pt/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "desc": "Como as ferramentas de PDF da LadeStack processam, mesclam e otimizam documentos diretamente na memória RAM do navegador usando WebAssembly e buffers Uint8Array sem upload para servidores.",
+        "len": 188
+      },
+      {
+        "relPath": "pt/blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "Guia arquitetural aprofundado sobre GitOps: estado declarativo, loops de reconciliação contínua, comparação Push vs Pull, Argo CD, Flux CD, gestão de segredos e conformidade com Policy-as-Code.",
+        "len": 193
+      },
+      {
+        "relPath": "pt/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "Guia completo de MLOps para engenheiros web: coleta de dados, prevenção de vazamento de dados, inferência no navegador com ONNX Runtime Web, microsserviços FastAPI e monitoramento de drift.",
+        "len": 189
+      },
+      {
+        "relPath": "pt/blog/modern-web-image-compression-standards/index.html",
+        "desc": "Uma análise técnica aprofundada de pipelines de otimização de imagem no navegador, avaliando HTML5 Canvas, codificação WebP e taxas de compressão AVIF para aplicações de alta performance.",
+        "len": 187
+      },
+      {
+        "relPath": "pt/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "desc": "Análise técnica detalhada das categorias oficiais do OWASP Top 10:2025: causas raízes, mitigações a nível de código, segurança da cadeia de suprimentos e arquitetura de defesa em profundidade.",
+        "len": 192
+      },
+      {
+        "relPath": "pt/gb-coder/index.html",
+        "desc": "Crie, execute e pré-visualize código web instantaneamente com o GB Coder. Monaco Editor, pré-visualização DOM em tempo real, execução Node.js via WebContainer e privacidade local. Gratuito.",
+        "len": 189
+      },
+      {
+        "relPath": "ru/blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "Инженерное руководство по алгоритмам ограничения скорости API (Rate Limiting) и троттлинга. Анализ Token Bucket, Sliding Window, атомарная реализация на Redis Lua и заголовки HTTP.",
+        "len": 180
+      },
+      {
+        "relPath": "ru/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "Объективное архитектурное сравнение Firebase, Supabase и Appwrite: модели данных, безопасность и RLS, протоколы синхронизации в реальном времени, edge-функции, автономное развертывание и риски vendor lock-in.",
+        "len": 208
+      },
+      {
+        "relPath": "ru/blog/building-api-gateways-microservices/index.html",
+        "desc": "Полное руководство по проектированию production-ready API Gateway: обратный прокси, распределенная аутентификация, алгоритм token bucket в Redis, circuit breakers и Envoy.",
+        "len": 171
+      },
+      {
+        "relPath": "ru/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "desc": "Как инструменты LadeStack обрабатывают, объединяют и оптимизируют документы PDF непосредственно в оперативной памяти браузера с помощью WebAssembly и буферов Uint8Array без передачи данных на сервер.",
+        "len": 199
+      },
+      {
+        "relPath": "ru/blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "Архитектурное руководство по GitOps: декларативное состояние, циклы синхронизации (Reconciliation), сравнение Push и Pull, Argo CD, Flux CD, управление секретами и Policy-as-Code.",
+        "len": 179
+      },
+      {
+        "relPath": "ru/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "Полное руководство по MLOps для веб-инженеров: сбор данных, предотвращение data leakage, инференс в браузере через ONNX Runtime Web, микросервисы на FastAPI и мониторинг дрейфа данных.",
+        "len": 184
+      },
+      {
+        "relPath": "ru/blog/modern-web-image-compression-standards/index.html",
+        "desc": "Техническое сравнение конвейеров оптимизации изображений на стороне клиента: анализ HTML5 Canvas, кодирования WebP и алгоритмов AVIF для высокопроизводительных веб-приложений.",
+        "len": 175
+      },
+      {
+        "relPath": "ru/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "desc": "Детальный инженерный разбор официальных категорий OWASP Top 10:2025: безопасность цепочек поставок ПО, анализ первопричин, безопасное кодирование и эшелонированная оборона.",
+        "len": 172
+      },
+      {
+        "relPath": "tr/blog/api-rate-limiting-throttling-strategies/index.html",
+        "desc": "Dağıtık sistemler için API istek sınırlama (Rate Limiting) ve kısma (Throttling) algoritmaları. Token Bucket, Sliding Window, Redis Lua ile atomik çalıştırma ve standart HTTP başlıkları.",
+        "len": 186
+      },
+      {
+        "relPath": "tr/blog/baas-platforms-compared-firebase-supabase-appwrite/index.html",
+        "desc": "Firebase, Supabase ve Appwrite arasında tarafsız mimari karşılaştırma: veri modelleri, güvenlik ve RLS, gerçek zamanlı protokoller, edge fonksiyonları, self-hosting olanakları ve vendor lock-in dengeleri.",
+        "len": 204
+      },
+      {
+        "relPath": "tr/blog/building-rag-applications-vector-databases/index.html",
+        "desc": "Vektör veritabanları, hibrit arama, yeniden sıralama (reranking) ve kaynak doğrulama mekanizmalarını birleştiren kurumsal Retrieval-Augmented Generation (RAG) mimari rehberi.",
+        "len": 174
+      },
+      {
+        "relPath": "tr/blog/building-subscription-billing-systems/index.html",
+        "desc": "Stripe ile üretime hazır abonelik faturalandırma mimarileri, güvenli webhook doğrulaması, tekrarlanabilir durum makineleri ve çok kiracılı yetki senkronizasyonu için kapsamlı mühendislik rehberi.",
+        "len": 195
+      },
+      {
+        "relPath": "tr/blog/client-side-pdf-manipulation-webassembly/index.html",
+        "desc": "LadeStack PDF araçlarının WebAssembly ve Uint8Array arabellekleri kullanarak belgeleri sunucuya yüklemeden doğrudan tarayıcı belleğinde nasıl işlediği, birleştirdiği ve optimize ettiğinin teknik incelemesi.",
+        "len": 206
+      },
+      {
+        "relPath": "tr/blog/gitops-managing-infrastructure-with-git/index.html",
+        "desc": "GitOps mimarisinin derinlemesine analizi: bildirime dayalı durum, sürekli mutabakat döngüleri (Reconciliation), Push vs Pull karşılaştırması, Argo CD, Flux CD, gizli anahtar yönetimi ve kod olarak politika.",
+        "len": 206
+      },
+      {
+        "relPath": "tr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "desc": "Web mühendisleri için kapsamlı MLOps rehberi: Veri toplama, veri sızıntısını önleme, ONNX Runtime Web ile tarayıcı çıkarımı, FastAPI mikroservisleri ve üretim drift takibi.",
+        "len": 172
+      },
+      {
+        "relPath": "tr/blog/modern-web-image-compression-standards/index.html",
+        "desc": "Yüksek performanslı web uygulamalarında tarayıcı içi görsel optimizasyonu: HTML5 Canvas, WebP kodlama ve AVIF sıkıştırma oranlarının teknik incelemesi ve CPU başarım analizi.",
+        "len": 174
+      },
+      {
+        "relPath": "tr/blog/owasp-top-10-complete-mitigation-guide/index.html",
+        "desc": "Resmi OWASP Top 10:2025 kategorilerinin ayrıntılı mühendislik analizi: kök nedenler, kod düzeyinde azaltma önlemleri, yazılım tedarik zinciri güvenliği ve derinlemesine savunma mimarisi.",
+        "len": 186
+      }
+    ],
+    "missingH1": [],
+    "multipleH1": [
+      {
+        "relPath": "blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "blog/fine-tuning-llms-domain-specific-tasks/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "blog/multi-tenant-saas-architecture-patterns/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "es/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "es/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "fr/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "fr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ja/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ja/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ko/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ko/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "pt/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "pt/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ru/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "ru/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "tr/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "tr/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "zh/blog/building-rag-applications-vector-databases/index.html",
+        "count": 2
+      },
+      {
+        "relPath": "zh/blog/machine-learning-pipelines-for-web-developers/index.html",
+        "count": 2
+      }
+    ],
+    "emptyH1": [],
+    "headingSkips": [],
+    "missingCanonical": [],
+    "invalidCanonicalHost": [],
+    "canonicalPathMismatch": [
+      {
+        "relPath": "404.html",
+        "canonical": "https://ladestack.in/404",
+        "expectedCanonical": "https://ladestack.in/404.html"
+      }
+    ],
+    "canonicalTrailingSlashError": [],
+    "missingLang": [],
+    "langMismatch": [],
+    "inadvertentNoindex": [],
+    "redirectMissingNoindex": [],
+    "missingOgTitle": [],
+    "missingOgDescription": [],
+    "missingOgImage": [],
+    "brokenOgImage": [],
+    "missingTwitterCard": []
+  },
+  "structuredData": {
+    "pagesWithSchema": 233,
+    "schemaTypes": {
+      "Organization": 18,
+      "AboutPage": 9,
+      "CollectionPage": 9,
+      "BlogPosting": 134,
+      "BreadcrumbList": 134,
+      "Blog": 9,
+      "ContactPage": 9,
+      "TechArticle": 9,
+      "SoftwareApplication": 18,
+      "WebSite": 9,
+      "FAQPage": 18,
+      "WebPage": 27
+    },
+    "syntaxErrors": [],
+    "schemaDefects": []
+  },
+  "links": {
+    "brokenInternalLinks": [],
+    "brokenInternalAnchors": [],
+    "targetBlankWithoutNoopener": [
+      {
+        "relPath": "es/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "es/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "fr/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "fr/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "ja/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "ja/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "ko/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "ko/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "pt/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "pt/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "ru/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "ru/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "tr/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "tr/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      },
+      {
+        "relPath": "zh/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
+      },
+      {
+        "relPath": "zh/gb-coder/index.html",
+        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
+      }
+    ],
+    "trailingSlashInInternalLinks": []
+  },
+  "images": {
+    "missingAlt": [],
+    "missingDimensions": [],
+    "brokenImages": [
+      {
+        "relPath": "apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "es/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "es/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "es/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "es/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "fr/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "fr/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "fr/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "fr/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "ja/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "ja/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "ja/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "ja/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "ko/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "ko/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "ko/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "ko/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "pt/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "pt/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "pt/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "pt/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "ru/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "ru/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "ru/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "ru/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "tr/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "tr/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "tr/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "tr/apps/index.html",
+        "src": "/icons/land.svg"
+      },
+      {
+        "relPath": "zh/apps/index.html",
+        "src": "/icons/pdf.svg"
+      },
+      {
+        "relPath": "zh/apps/index.html",
+        "src": "/icons/image.svg"
+      },
+      {
+        "relPath": "zh/apps/index.html",
+        "src": "/icons/resume.svg"
+      },
+      {
+        "relPath": "zh/apps/index.html",
+        "src": "/icons/land.svg"
+      }
+    ]
+  },
+  "accessibility": {
+    "missingMainLandmark": [],
+    "missingSkipLink": [],
+    "emptyButtons": [],
+    "genericLinkText": []
+  },
+  "security": {
+    "mixedContent": [],
+    "externalScripts": [],
+    "secretsFound": []
+  }
+}
