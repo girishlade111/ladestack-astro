@@ -234,7 +234,7 @@ const structuredData = [
               type="button"
               data-copy-share-link
               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-xs text-muted-foreground hover:text-foreground transition-colors"
-              aria-label="Copy link to article"
+              aria-label="Share Link - Copy link to article"
             >
               <Icon name="link" class="w-3.5 h-3.5" />
               <span data-copy-label>Share Link</span>
@@ -253,7 +253,7 @@ const structuredData = [
 
     {/* Featured Cover Image */}
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
-      <div class="rounded-2xl border border-border overflow-hidden bg-surface shadow-elevated">
+      <div class="rounded-2xl border border-border overflow-hidden bg-surface shadow-elevated aspect-[16/9] w-full">
         <img
           src={data.coverImage}
           alt={data.coverAlt}
@@ -261,7 +261,7 @@ const structuredData = [
           height="450"
           loading="eager"
           decoding="async"
-          class="w-full h-auto max-h-[420px] object-cover object-center"
+          class="w-full h-full object-cover object-center aspect-[16/9]"
         />
       </div>
     </div>
@@ -302,6 +302,17 @@ const structuredData = [
         <article class="lg:col-span-8 max-w-[75ch] prose prose-invert prose-emerald prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-headings:font-bold prose-h2:text-2xl prose-h2:border-b prose-h2:border-border/60 prose-h2:pb-2 prose-h3:text-xl prose-p:leading-relaxed prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-code:font-mono prose-code:text-emerald-400 prose-pre:bg-slate-950 prose-pre:border prose-pre:border-border prose-pre:rounded-xl prose-pre:shadow-soft">
           <slot />
         </article>
+        <script is:inline>
+          (function () {
+            var inputs = document.querySelectorAll('article input[type="checkbox"]');
+            for (var i = 0; i < inputs.length; i++) {
+              var input = inputs[i];
+              var label = input.parentElement ? input.parentElement.textContent.trim() : 'Checklist item';
+              input.setAttribute('role', 'presentation');
+              input.setAttribute('aria-label', label || 'Checklist item');
+            }
+          })();
+        </script>
 
         {/* Desktop Sticky Sidebar: TOC + Related Tools */}
         <aside class="hidden lg:block lg:col-span-4 sticky top-24 space-y-6">

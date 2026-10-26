@@ -25,7 +25,7 @@ const current = languages.find((l) => l.code === currentLang) ?? languages[0];
     id="lang-menu-button"
     aria-expanded="false"
     aria-haspopup="true"
-    aria-label={`Select language. Current language: ${current.label}`}
+    aria-label={`${current.code.toUpperCase()} - Select language: ${current.label}`}
     class="inline-flex items-center gap-1.5 h-9 px-2.5 text-xs font-medium text-muted-foreground hover:text-foreground rounded-lg border border-border/80 bg-surface/60 hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
   >
     <Icon name="globe" class="w-3.5 h-3.5" />
