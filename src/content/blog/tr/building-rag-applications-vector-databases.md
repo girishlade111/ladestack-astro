@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Vektör Veritabanları ile RAG Uygulamaları Geliştirme: Veri Alımı, Parçalama ve Arama Mimarisi
-
 Büyük Dil Modelleri (LLM), genel metin analizi, sentezleme ve kod üretiminde olağanüstü kabiliyetler sunmaktadır. Ancak kurumsal yazılım ekosistemlerinde doğrudan kullanıldıklarında iki temel kısıtla karşılaşırlar: **eğitim verisinin zaman aşımı sınırı (knowledge cutoff)** ve kaynakta bulunmayan bilgileri ikna edici şekilde uydurma eğilimi olan **halüsinasyonlar (confabulation)**.
 
 **Retrieval-Augmented Generation (RAG)**, bilgi depolama katmanını modelin parametrik belleğinden ayırarak bu sorunu çözer. Tüm kurumsal belgelerin modeli yeniden eğiterek öğretilmesi yerine, harici bir bilgi getirme sisteminden (genellikle bir vektör veritabanı) ilgili metin parçacıkları sorgulanır ve çıkarım anında modelin bağlam penceresine dinamik olarak eklenir.

@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Pipelines de Machine Learning para Desarrolladores Web: de la Ingesta a la Inferencia en Navegador y Servidor
-
 En las aplicaciones web contemporáneas, el Machine Learning (ML) ha dejado de ser una disciplina teórica aislada para convertirse en un elemento fundamental de la experiencia de usuario. Desde recomendaciones personalizadas y comprensión de intención de búsqueda hasta prevención de fraude en tiempo real y procesamiento multimedia en cliente, los ingenieros web deben integrar modelos predictivos directamente en sus pilas tecnológicas de producción.
 
 Sin embargo, para muchos equipos de desarrollo, llevar modelos creados en Jupyter Notebooks por científicos de datos hacia arquitecturas web de alta concurrencia entraña serios riesgos. Las discrepancias de preprocesamiento entre entrenamiento e inferencia (training-serving skew), la fuga de datos (data leakage), la latencia de red y la degradación predictiva a lo largo del tiempo (data drift) son obstáculos frecuentes.

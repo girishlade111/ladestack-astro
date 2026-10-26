@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Construindo Aplicações RAG com Bancos de Dados Vetoriais: Ingestão, Chunking e Arquitetura de Busca
-
 Modelos de Linguagem de Grande Porte (LLMs) demonstram capacidades notáveis de síntese linguística e raciocínio generalista. Contudo, ao serem implantados em ambientes corporativos de produção, os modelos de base esbarram em dois limites estruturais: a **data de corte de seus dados de treino (knowledge cutoff)** e a propensão a gerar afirmações verossímeis, porém factualmente falsas, conhecidas como **alucinações (confabulation)**.
 
 A arquitetura de **Geração Aumentada por Recuperação (RAG - Retrieval-Augmented Generation)** resolve esse dilema desacoplando a memória de armazenamento de conhecimento da memória paramétrica da rede neural. Em vez de exigir que o LLM memorize toda a base documental interna da organização, o sistema RAG extrai dinamicamente trechos textuais relevantes de um mecanismo de busca especializado (tipicamente um banco de dados vetorial) e os injeta na janela de contexto no momento da inferência.

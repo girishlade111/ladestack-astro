@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Building RAG Applications with Vector Databases: Ingestion, Chunking, and Retrieval Architecture
-
 Large Language Models (LLMs) excel at linguistic synthesis, code generation, and reasoning across generalized public corpora. However, off-the-shelf foundation models exhibit two fundamental operational constraints when deployed in enterprise software: **temporal boundaries** (their training cutoff precludes real-time organizational knowledge) and **epistemic confabulation** (the tendency to generate plausible-sounding falsehoods when internal weights fail to retrieve exact factual facts).
 
 Retrieval-Augmented Generation (RAG) addresses these limitations by decoupling knowledge storage from parametric memory. Rather than asking an LLM to memorize all documentation, schemas, and historical logs, RAG retrieves relevant document passages from a specialized information retrieval system—typically a vector database—and injects them dynamically into the model's inference context window.

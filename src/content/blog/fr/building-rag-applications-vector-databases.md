@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Créer des applications RAG avec des bases de données vectorielles : ingestion, découpage et architecture de recherche
-
 Les grands modèles de langage (LLM) excellent dans la synthèse linguistique et le raisonnement généraliste. Toutefois, lorsqu'ils sont déployés au sein d'applications d'entreprise, les modèles de fondation rencontrent deux limites structurelles : la **date limite de leurs données d'apprentissage (knowledge cutoff)** et la tendance à formuler des affirmations plausibles mais factuellement inexactes, qualifiées **d'hallucinations (confabulation)**.
 
 L'architecture **Retrieval-Augmented Generation (RAG)** résout ce défi en dissociant la mémoire de stockage de connaissances de la mémoire paramétrique du modèle. Plutôt que d'imposer au LLM la mémorisation exhaustive des bases documentaires internes, le système RAG extrait dynamiquement les passages pertinents depuis un système d'information spécialisé — le plus souvent une base de données vectorielle — et les injecte dans la fenêtre de contexte au moment de l'inférence.

@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Web Geliştiricileri İçin Makine Öğrenimi Boru Hatları: Veri Toplamadan Tarayıcı ve Sunucu Çıkarımına
-
 Modern web uygulamalarında makine öğrenimi (ML), yalnızca arka planda çalışan akademik araştırmalardan çıkarak kullanıcı deneyiminin merkezine yerleşmiştir. Kişiselleştirilmiş öneriler, arama niyeti ayrıştırma, gerçek zamanlı dolandırıcılık tespiti ve istemci tarafı görsel işleme gibi özellikler, web mühendislerinin akıllı tahmin modellerini doğrudan üretim mimarilerine entegre etmesini gerektirmektedir.
 
 Ancak birçok web mühendisliği ekibi için veri bilimi uzmanlarının hazırladığı Jupyter Notebook modellerini yüksek erişilebilirlikli bir web servisine taşımak ciddi zorluklar barındırır. Eğitim ile çıkarım arasındaki ön işleme uyumsuzlukları (training-serving skew), veri sızıntısı (data leakage), ağ gecikmeleri ve zamanla düşen model doğruluğu (data drift) bu engellerin başında gelir.
