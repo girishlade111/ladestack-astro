@@ -19,6 +19,7 @@ export interface Props {
   currentLocale?: Locale;
   currentPath?: string;
   alternateUrls?: Partial<Record<Locale, string>>;
+  direction?: 'down' | 'up';
   class?: string;
 }
 
@@ -26,6 +27,7 @@ const {
   currentLocale = DEFAULT_LOCALE,
   currentPath = Astro.url.pathname,
   alternateUrls,
+  direction = 'down',
   class: className = '',
 } = Astro.props;
 
@@ -37,6 +39,10 @@ const availableLocales = alternateUrls
   ? (Object.keys(alternateUrls) as Locale[])
   : getAvailableLocalesForRoute(basePath);
 const isFullyTranslated = availableLocales.length === LOCALES.length;
+
+const menuPositionClass = direction === 'up'
+  ? 'bottom-full mb-2 right-0'
+  : 'top-full mt-2 right-0';
 ---
 
 <div class={`relative inline-block text-left ${className}`} data-language-switcher>
@@ -55,7 +61,7 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
 
   <div
     data-lang-menu
-    class="hidden absolute right-0 top-full mt-2 w-64 rounded-xl border border-border bg-surface p-1.5 shadow-elevated z-50 focus:outline-none"
+    class={`hidden absolute ${menuPositionClass} w-64 rounded-xl border border-border bg-surface p-1.5 shadow-elevated z-50 focus:outline-none`}
     role="menu"
     aria-orientation="vertical"
     tabindex="-1"
@@ -143,46 +149,72 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
 
 <script is:inline>
   (function () {
-    document.querySelectorAll('[data-language-switcher]').forEach(function (container) {
-      var trigger = container.querySelector('[data-lang-trigger]');
-      var menu = container.querySelector('[data-lang-menu]');
-      var chevron = container.querySelector('[data-lang-chevron]');
-      if (!trigger || !menu) return;
+    function initLanguageSwitchers() {
+      document.querySelectorAll('[data-language-switcher]').forEach(function (container) {
+        if (container.__langInitialized) return;
+        container.__langInitialized = true;
 
-      function openMenu() {
-        menu.classList.remove('hidden');
-        trigger.setAttribute('aria-expanded', 'true');
-        if (chevron) chevron.classList.add('rotate-180');
-      }
+        var trigger = container.querySelector('[data-lang-trigger]');
+        var menu = container.querySelector('[data-lang-menu]');
+        var chevron = container.querySelector('[data-lang-chevron]');
+        if (!trigger || !menu) return;
 
-      function closeMenu() {
-        menu.classList.add('hidden');
-        trigger.setAttribute('aria-expanded', 'false');
-        if (chevron) chevron.classList.remove('rotate-180');
-      }
-
-      trigger.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
+        function openMenu() {
+          menu.classList.remove('hidden');
+          trigger.setAttribute('aria-expanded', 'true');
+          if (chevron) chevron.classList.add('rotate-180');
         }
-      });
 
-      document.addEventListener('click', function (e) {
-        if (!container.contains(e.target)) {
-          closeMenu();
+        function closeMenu() {
+          menu.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+          if (chevron) chevron.classList.remove('rotate-180');
         }
-      });
 
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
-          closeMenu();
-          trigger.focus();
-        }
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+          // Close any other open switchers on the page
+          document.querySelectorAll('[data-language-switcher]').forEach(function (other) {
+            if (other !== container) {
+              var otherTrigger = other.querySelector('[data-lang-trigger]');
+              var otherMenu = other.querySelector('[data-lang-menu]');
+              var otherChevron = other.querySelector('[data-lang-chevron]');
+              if (otherMenu) otherMenu.classList.add('hidden');
+              if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+              if (otherChevron) otherChevron.classList.remove('rotate-180');
+            }
+          });
+
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        document.addEventListener('click', function (e) {
+          if (!container.contains(e.target)) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && trigger.getAttribute('aria-expanded') === 'true') {
+            closeMenu();
+            trigger.focus();
+          }
+        });
       });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLanguageSwitchers);
+    } else {
+      initLanguageSwitchers();
+    }
+    document.addEventListener('astro:page-load', initLanguageSwitchers);
   })();
 </script>

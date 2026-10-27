@@ -4,70 +4,86 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 210 20% 98%;
     --foreground: 222 47% 11%;
     --surface: 0 0% 100%;
     --surface-elevated: 0 0% 100%;
-    --surface-muted: 210 40% 96%;
+    --surface-muted: 210 20% 96%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 161 94% 24%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    --brand: 161 94% 24%;
-    --brand-hover: 161 94% 19%;
+    --brand: 221 83% 53%;
+    --brand-hover: 224 76% 45%;
     --brand-foreground: 0 0% 100%;
-    --brand-subtle: 161 94% 24% / 0.08;
-    --brand-border: 161 94% 24% / 0.2;
-    --secondary: 210 40% 96%;
+    --brand-subtle: 221 83% 53% / 0.08;
+    --brand-border: 221 83% 53% / 0.20;
+    --secondary: 210 20% 96%;
     --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
+    --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
+    --accent: 210 20% 96%;
     --accent-foreground: 222 47% 11%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 214 32% 91%;
-    --border-subtle: 210 40% 94%;
+    --border-subtle: 210 20% 94%;
     --input: 214 32% 91%;
-    --ring: 161 94% 24%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
-    --success: 161 94% 24%;
+    --success: 142 71% 45%;
     --warning: 38 92% 50%;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --surface: 222 47% 10%;
-    --surface-elevated: 222 44% 13%;
-    --surface-muted: 222 41% 14%;
-    --card: 222 47% 10%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 10%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 222 47% 6%;
+    --background: 224 71% 4%;
+    --foreground: 210 20% 98%;
+    --surface: 222 47% 7%;
+    --surface-elevated: 217 33% 12%;
+    --surface-muted: 217 33% 10%;
+    --card: 222 47% 7%;
+    --card-foreground: 210 20% 98%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --brand: 217 91% 60%;
+    --brand-hover: 213 94% 68%;
+    --brand-foreground: 0 0% 100%;
+    --brand-subtle: 217 91% 60% / 0.12;
+    --brand-border: 217 91% 60% / 0.28;
+    --secondary: 217 33% 10%;
+    --secondary-foreground: 210 20% 98%;
+    --muted: 217 33% 10%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 10%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 217 33% 17%;
+    --border-subtle: 222 47% 12%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+  }
+
+  /* Style isolation lock for the preserved 'How LadeStack operates' & Bento section */
+  .preserved-bento-lock {
+    --brand: 161 94% 24%;
+    --brand-hover: 161 94% 19%;
+    --brand-foreground: 0 0% 100%;
+    --brand-subtle: 161 94% 24% / 0.08;
+    --brand-border: 161 94% 24% / 0.20;
+  }
+  .dark .preserved-bento-lock {
     --brand: 160 84% 39%;
     --brand-hover: 158 64% 52%;
     --brand-foreground: 222 47% 6%;
     --brand-subtle: 160 84% 39% / 0.12;
     --brand-border: 160 84% 39% / 0.28;
-    --secondary: 222 41% 14%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 222 41% 14%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 222 41% 14%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62% 40%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 18%;
-    --border-subtle: 222 40% 13%;
-    --input: 217 33% 18%;
-    --ring: 160 84% 39%;
-    --success: 160 84% 39%;
-    --warning: 38 92% 50%;
   }
 
   * {

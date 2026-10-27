@@ -73,7 +73,7 @@ const postsByCategory = blogPosts.reduce((acc, post) => {
     {/* Hero */}
     <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <Badge variant="emerald" class="mb-4">{data.hero.badge}</Badge>
+        <Badge variant="brand" class="mb-4">{data.hero.badge}</Badge>
         <h1 class="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight">
           {data.hero.title}
         </h1>
@@ -138,7 +138,7 @@ const postsByCategory = blogPosts.reduce((acc, post) => {
                     {app.comingSoon ? (
                       <span class="text-[10px] text-muted-foreground font-mono">{data.sections.tools.comingSoon}</span>
                     ) : (
-                      <span class="text-[10px] text-emerald-500 font-mono font-semibold">{data.sections.tools.live}</span>
+                      <span class="text-[10px] text-success font-mono font-semibold">{data.sections.tools.live}</span>
                     )}
                   </div>
                   <h3 class="text-sm font-semibold text-foreground group-hover:text-brand transition-colors">

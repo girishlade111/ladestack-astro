@@ -5,6 +5,7 @@
  * accessible newsletter input, sitemap link, and social channels.
  */
 import Icon from './Icon.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 import { useTranslations, getLocalizedPath, type Locale } from '../i18n';
 
 interface Props {
@@ -125,13 +126,15 @@ const socials = [
 
     {/* Bottom row */}
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
-      <div class="flex items-center gap-3">
+      <div class="flex flex-wrap items-center gap-3">
         <span>© {new Date().getFullYear()} Lade Stack. Built by Girish Lade. {t('footer.rights')}</span>
         <span>·</span>
-        <a href="/sitemap" class="hover:text-foreground underline underline-offset-4">Sitemap</a>
+        <a href={getLocalizedPath('/sitemap', locale)} class="hover:text-foreground underline underline-offset-4">Sitemap</a>
       </div>
 
       <div class="flex items-center gap-4">
+        <LanguageSwitcher currentLocale={locale} direction="up" />
+        <div class="h-4 w-px bg-border hidden sm:block"></div>
         {
           socials.map((s) => (
             <a

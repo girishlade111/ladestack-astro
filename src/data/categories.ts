@@ -41,7 +41,7 @@ export const CATEGORY_COLORS: Record<string, CategoryColors> = {
   'Virtual Machines': { bg: 'bg-teal-500/10', text: 'text-teal-600 dark:text-teal-400', border: 'border-teal-500/20', dot: 'bg-teal-500' },
   'DevOps & CI/CD': { bg: 'bg-amber-500/10', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-500/20', dot: 'bg-amber-500' },
   'Security in Web Apps': { bg: 'bg-red-500/10', text: 'text-red-600 dark:text-red-400', border: 'border-red-500/20', dot: 'bg-red-500' },
-  'AI Production Systems': { bg: 'bg-emerald-500/10', text: 'text-emerald-600 dark:text-emerald-400', border: 'border-emerald-500/20', dot: 'bg-emerald-500' },
+  'AI Production Systems': { bg: 'bg-success/10', text: 'text-success', border: 'border-success/20', dot: 'bg-success' },
 };
 
 export function categoryColors(category: string): CategoryColors {
