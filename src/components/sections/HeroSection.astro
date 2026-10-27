@@ -8,6 +8,7 @@
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
+import AnimatedShinyText from '../ui/animated-shiny-text.astro';
 import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
 
 interface Props {
@@ -67,8 +68,7 @@ const trustPills = [
       <!-- Primary CTAs -->
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
         <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto shadow-md">
-          <span>{t('hero.ctaPrimary')}</span>
-          <Icon name="arrow-right" class="w-4 h-4" />
+          <AnimatedShinyText>{t('hero.ctaPrimary')}</AnimatedShinyText>
         </Button>
         <Button href={appsHref} variant="outline" size="lg" class="w-full sm:w-auto">
           <span>{t('hero.ctaSecondary')}</span>
