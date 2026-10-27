@@ -252,3 +252,15 @@ pre.astro-code code span[style*="color:#6a737d"],
 pre.astro-code code span[style*="color: #6a737d"] {
   color: #9CA3AF !important; /* Neutral-400: 5.6:1 contrast against #24292E */
 }
+
+/* View Transitions API Animated Theme Toggler */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Scoped to AnimatedThemeToggler — the toggler sets the data-attribute and the variable only during a theme toggle */
+html[data-magicui-theme-vt="active"]::view-transition-group(root) {
+  animation-duration: var(--magicui-theme-toggle-vt-duration, 400ms);
+}
