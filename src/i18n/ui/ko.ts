@@ -88,7 +88,7 @@ export const ko: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': '간결한 워크플로우',
-  'howItWorks.title': 'LadeStack 동작 방식',
+  'howItWorks.title': 'GB Coder 동작 방식',
   'howItWorks.subtitle': '플랫폼의 모든 유틸리티는 3가지 명확한 원칙을 따릅니다.',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': '즉시 브라우저 접속',
