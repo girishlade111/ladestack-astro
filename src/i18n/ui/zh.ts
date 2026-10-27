@@ -88,7 +88,7 @@ export const zh: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': '简捷高效的工作流',
-  'howItWorks.title': 'LadeStack 运作流程',
+  'howItWorks.title': 'GB Coder 运作流程',
   'howItWorks.subtitle': '平台上的每一项工具均遵循三条直观透明的基本原则。',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': '即开即用，直接访问',
