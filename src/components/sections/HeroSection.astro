@@ -24,34 +24,31 @@ const trustPills = [
 ];
 ---
 
-<section class="relative pt-6 pb-20 sm:pt-10 sm:pb-32 overflow-hidden bg-background">
+<section class="relative pt-8 pb-20 sm:pt-14 sm:pb-32 overflow-hidden bg-background">
   <!-- Lamp / Conic Spotlight Stage -->
-  <div class="relative flex w-full flex-col items-center justify-start isolate z-0 pointer-events-none select-none overflow-hidden h-[22rem] sm:h-[26rem] -mb-[16rem] sm:-mb-[18rem]" aria-hidden="true">
+  <div class="relative flex w-full flex-col items-center justify-start isolate z-0 pointer-events-none select-none overflow-hidden h-[20rem] sm:h-[24rem] -mb-[14rem] sm:-mb-[16rem]" aria-hidden="true">
     <div class="relative flex w-full flex-1 items-center justify-center isolate z-0">
       <!-- Left Cone -->
-      <div class="lamp-cone-left absolute inset-auto right-1/2 h-56 w-[16rem] sm:w-[26rem] md:w-[30rem] overflow-visible">
-        <div class="absolute w-full left-0 bg-background h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] [-webkit-mask-image:linear-gradient(to_top,white,transparent)]"></div>
+      <div class="lamp-cone-left absolute inset-auto right-1/2 h-56 w-[16rem] sm:w-[26rem] md:w-[32rem] overflow-visible">
+        <div class="absolute w-full left-0 bg-background h-36 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] [-webkit-mask-image:linear-gradient(to_top,white,transparent)]"></div>
         <div class="absolute w-36 sm:w-44 h-full left-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)] [-webkit-mask-image:linear-gradient(to_right,white,transparent)]"></div>
       </div>
 
       <!-- Right Cone -->
-      <div class="lamp-cone-right absolute inset-auto left-1/2 h-56 w-[16rem] sm:w-[26rem] md:w-[30rem] overflow-visible">
+      <div class="lamp-cone-right absolute inset-auto left-1/2 h-56 w-[16rem] sm:w-[26rem] md:w-[32rem] overflow-visible">
         <div class="absolute w-36 sm:w-44 h-full right-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)] [-webkit-mask-image:linear-gradient(to_left,white,transparent)]"></div>
-        <div class="absolute w-full right-0 bg-background h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] [-webkit-mask-image:linear-gradient(to_top,white,transparent)]"></div>
+        <div class="absolute w-full right-0 bg-background h-36 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)] [-webkit-mask-image:linear-gradient(to_top,white,transparent)]"></div>
       </div>
 
       <!-- Ambient glow behind the bulb -->
-      <div class="absolute top-1/2 h-44 w-full translate-y-6 bg-background blur-2xl"></div>
-      <div class="absolute inset-auto z-40 h-36 w-[22rem] sm:w-[28rem] -translate-y-1/2 rounded-full bg-brand/30 dark:bg-brand/50 opacity-60 blur-3xl"></div>
+      <div class="absolute top-1/2 h-40 w-full translate-y-6 bg-background/80 blur-2xl"></div>
+      <div class="absolute inset-auto z-40 h-32 w-[22rem] sm:w-[28rem] -translate-y-1/2 rounded-full bg-brand/25 dark:bg-brand/45 opacity-60 blur-3xl"></div>
 
       <!-- Core lamp bulb -->
-      <div class="lamp-bulb absolute inset-auto z-30 h-36 w-[12rem] sm:w-[16rem] -translate-y-[5.5rem] rounded-full bg-brand/40 dark:bg-brand/60 blur-2xl"></div>
+      <div class="lamp-bulb absolute inset-auto z-30 h-32 w-[12rem] sm:w-[16rem] -translate-y-[5rem] rounded-full bg-brand/35 dark:bg-brand/55 blur-2xl"></div>
 
-      <!-- Emitter horizontal bar line -->
-      <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[16rem] sm:w-[28rem] -translate-y-[6.5rem] bg-brand dark:bg-brand-hover shadow-[0_0_18px_hsl(var(--brand))]"></div>
-
-      <!-- Top curtain preventing hard upper line -->
-      <div class="absolute inset-auto z-40 h-44 w-full -translate-y-[12rem] bg-background"></div>
+      <!-- Emitter horizontal bar line (smoothly tapered at both ends) -->
+      <div class="lamp-bar absolute inset-auto z-50 h-[2px] w-[16rem] sm:w-[28rem] -translate-y-[5.8rem] rounded-full"></div>
     </div>
   </div>
 
@@ -243,19 +240,34 @@ const trustPills = [
 
 <style>
   .lamp-cone-left {
-    background-image: conic-gradient(from 70deg at 50% 0%, hsl(var(--brand) / 0.55) 0deg, transparent 55deg, transparent 360deg);
+    background-image: conic-gradient(from 70deg at 50% 0%, hsl(var(--brand) / 0.45) 0deg, transparent 55deg, transparent 360deg);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 75%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 75%, transparent);
   }
 
   .lamp-cone-right {
-    background-image: conic-gradient(from 290deg at 50% 0%, transparent 0deg, transparent 305deg, hsl(var(--brand) / 0.55) 360deg);
+    background-image: conic-gradient(from 290deg at 50% 0%, transparent 0deg, transparent 305deg, hsl(var(--brand) / 0.45) 360deg);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 75%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 75%, transparent);
   }
 
   :global(.dark) .lamp-cone-left {
-    background-image: conic-gradient(from 70deg at 50% 0%, hsl(var(--brand) / 0.7) 0deg, transparent 60deg, transparent 360deg);
+    background-image: conic-gradient(from 70deg at 50% 0%, hsl(var(--brand) / 0.65) 0deg, transparent 60deg, transparent 360deg);
   }
 
   :global(.dark) .lamp-cone-right {
-    background-image: conic-gradient(from 290deg at 50% 0%, transparent 0deg, transparent 300deg, hsl(var(--brand) / 0.7) 360deg);
+    background-image: conic-gradient(from 290deg at 50% 0%, transparent 0deg, transparent 300deg, hsl(var(--brand) / 0.65) 360deg);
+  }
+
+  .lamp-bar {
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--brand) / 0.2) 15%, hsl(var(--brand)) 50%, hsl(var(--brand) / 0.2) 85%, transparent 100%);
+    box-shadow: 0 0 20px 2px hsl(var(--brand) / 0.65);
+    animation: lamp-bar-expand 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  :global(.dark) .lamp-bar {
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--brand) / 0.3) 15%, hsl(var(--brand-hover)) 50%, hsl(var(--brand) / 0.3) 85%, transparent 100%);
+    box-shadow: 0 0 24px 3px hsl(var(--brand));
   }
 
   @keyframes lamp-bar-expand {
@@ -300,10 +312,6 @@ const trustPills = [
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .lamp-bar {
-    animation: lamp-bar-expand 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
   }
 
   .lamp-bulb {
