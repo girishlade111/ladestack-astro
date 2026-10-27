@@ -88,7 +88,7 @@ export const tr: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': 'İŞ AKIŞI KOLAYLIĞI',
-  'howItWorks.title': 'LadeStack nasıl çalışır',
+  'howItWorks.title': 'GB Coder nasıl çalışır',
   'howItWorks.subtitle': 'Platformumuzdaki her araç üç şeffaf ilke doğrultusunda işler.',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': 'Anında Tarayıcı Erişimi',
