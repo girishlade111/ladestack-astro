@@ -5,6 +5,7 @@
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
+import AnimatedShinyText from '../ui/animated-shiny-text.astro';
 import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
 
 interface Props {
@@ -34,8 +35,7 @@ const appsHref = getLocalizedPath('/apps', locale);
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
-            <span>{t('cta.button')}</span>
-            <Icon name="arrow-right" class="w-4 h-4" />
+            <AnimatedShinyText>{t('cta.button')}</AnimatedShinyText>
           </Button>
           <Button href={appsHref} variant="outline" size="lg" class="w-full sm:w-auto">
             <span>Explore All Utilities</span>

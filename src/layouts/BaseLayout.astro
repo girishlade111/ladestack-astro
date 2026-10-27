@@ -61,7 +61,7 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=optional"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <script is:inline>
@@ -106,18 +106,25 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
 
     {!hideFooter && <Footer locale={currentLocale} />}
 
-    <script is:inline>
-      (function () {
-        document.addEventListener('click', function (e) {
-          var t = e.target.closest('[data-theme-toggle]');
-          if (!t) return;
-          var el = document.documentElement;
-          var isDark = el.classList.toggle('dark');
-          try {
-            localStorage.setItem('ladestack-theme', isDark ? 'dark' : 'light');
-          } catch (err) {}
+    <script>
+      import { executeThemeTransition, type TransitionVariant } from '../components/ui/animated-theme-toggler';
+
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement | null;
+        const btn = target?.closest('[data-theme-toggle]') as HTMLElement | null;
+        if (!btn) return;
+
+        const variant = (btn.getAttribute('data-vt-variant') || 'circle') as TransitionVariant;
+        const duration = parseInt(btn.getAttribute('data-vt-duration') || '400', 10);
+        const fromCenter = btn.getAttribute('data-vt-from-center') === 'true';
+
+        executeThemeTransition({
+          button: btn,
+          variant,
+          duration,
+          fromCenter,
         });
-      })();
+      });
     </script>
   </body>
 </html>

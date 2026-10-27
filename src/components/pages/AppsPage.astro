@@ -9,6 +9,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../Icon.astro';
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import AnimatedShinyText from '../ui/animated-shiny-text.astro';
+import BorderBeam from '../ui/BorderBeam.astro';
 import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
 import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
 import { getAppsData } from '../../i18n/pages/apps';
@@ -106,6 +108,7 @@ const structuredData = [
         </div>
 
         <div class="rounded-2xl border border-brand/30 bg-surface p-6 sm:p-10 shadow-soft relative overflow-hidden group">
+          <BorderBeam size={250} duration={12} delay={0} colorFrom="#ffaa40" colorTo="#9c40ff" borderWidth={1.5} />
           <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand/5 rounded-full blur-3xl pointer-events-none"></div>
 
           <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative z-10">
@@ -139,8 +142,7 @@ const structuredData = [
               {/* Action Buttons */}
               <div class="flex flex-wrap items-center gap-3">
                 <Button href="https://code.ladestack.in/" target="_blank" size="md">
-                  <span>{data.flagship.ctaStudio}</span>
-                  <Icon name="arrow-up-right" class="w-4 h-4" />
+                  <AnimatedShinyText>{data.flagship.ctaStudio}</AnimatedShinyText>
                 </Button>
                 <Button href={getLocalizedPath('/gb-coder', locale)} variant="outline" size="md">
                   <span>{data.flagship.ctaFeatures}</span>
@@ -153,8 +155,8 @@ const structuredData = [
             <div class="w-full lg:w-72 rounded-xl border border-border bg-background p-5 text-xs font-mono space-y-3 shrink-0">
               <div class="flex items-center justify-between pb-2 border-b border-border">
                 <span class="text-muted-foreground">{data.flagship.statusLabels.statusKey}</span>
-                <span class="text-emerald-500 font-semibold flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span class="text-success font-semibold flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-success"></span>
                   {data.flagship.statusLabels.statusValue}
                 </span>
               </div>
@@ -218,7 +220,7 @@ const structuredData = [
                       <h4 class="text-base font-semibold text-foreground group-hover:text-brand transition-colors">
                         {app.title}
                       </h4>
-                      <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                      <span class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-success/10 text-success border border-success/20">
                         {data.utilities.liveBadge}
                       </span>
                     </div>

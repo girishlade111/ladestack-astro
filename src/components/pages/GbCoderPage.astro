@@ -9,6 +9,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../Icon.astro';
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import AnimatedShinyText from '../ui/animated-shiny-text.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 import Accordion from '../ui/Accordion.astro';
 import AccordionItem from '../ui/AccordionItem.astro';
@@ -97,12 +98,10 @@ const structuredData = [
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
-            <span>{data.hero.ctaStudio}</span>
-            <Icon name="arrow-right" class="w-4 h-4" />
+            <AnimatedShinyText>{data.hero.ctaStudio}</AnimatedShinyText>
           </Button>
           <Button href="https://code.ladestack.in/app/projects" target="_blank" variant="outline" size="lg" class="w-full sm:w-auto">
-            <span>{data.hero.ctaProjects}</span>
-            <Icon name="arrow-up-right" class="w-4 h-4 text-muted-foreground" />
+            <AnimatedShinyText>{data.hero.ctaProjects}</AnimatedShinyText>
           </Button>
         </div>
 
@@ -302,8 +301,7 @@ const structuredData = [
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Button href="https://code.ladestack.in/app/projects" target="_blank" size="lg" class="w-full sm:w-auto">
-            <span>{data.cta.launchStudioBtn}</span>
-            <Icon name="arrow-right" class="w-4 h-4" />
+            <AnimatedShinyText>{data.cta.launchStudioBtn}</AnimatedShinyText>
           </Button>
           <Button href={getLocalizedPath('/apps', locale)} variant="outline" size="lg" class="w-full sm:w-auto">
             <span>{data.cta.exploreAllBtn}</span>

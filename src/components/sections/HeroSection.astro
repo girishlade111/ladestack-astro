@@ -1,11 +1,14 @@
 ---
 /**
  * HeroSection.astro
- * Minimal, high-craft developer hero with studio visual mockup.
- * Strictly adheres to craft floor: no eyebrow/kicker labels, authentic product storytelling.
+ * Premium developer hero with authentic Aceternity-inspired conic lamp spotlight
+ * directly flush against the navbar, casting an expanding light cone downward
+ * onto focal typography, CTAs, trust strip, and interactive studio workbench.
+ * Token-driven, WCAG 2.2 compliant, zero emoji, full i18n support.
  */
 import Icon from '../Icon.astro';
 import Button from '../ui/Button.astro';
+import AnimatedShinyText from '../ui/animated-shiny-text.astro';
 import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
 
 interface Props {
@@ -23,27 +26,49 @@ const trustPills = [
 ];
 ---
 
-<section class="relative pt-14 pb-20 sm:pt-24 sm:pb-32 overflow-hidden">
-  {/* Ambient Studio Lighting */}
-  <div class="pointer-events-none absolute inset-0 hero-glow -z-10" aria-hidden="true"></div>
+<section class="relative z-0 flex w-full flex-col items-center justify-start overflow-hidden bg-background pt-0 pb-20 sm:pb-32">
+  <!-- Lamp / Downward Expanding Spotlight Stage (Flush with Navbar) -->
+  <div class="absolute top-0 isolate z-0 flex w-full flex-1 items-start justify-center pointer-events-none select-none" aria-hidden="true">
+    <div class="absolute top-0 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
-      {/* Primary H1: No kicker/eyebrow, heading carries its own authority */}
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground text-balance leading-[1.08]">
-        {t('hero.titleLine1')} <span class="text-brand">{t('hero.titleLine2')}</span>
+    <!-- Main central ambient glow: fills center between cones -->
+    <div class="lamp-glow absolute inset-auto z-50 h-36 w-[28rem] translate-y-[30%] rounded-full opacity-80 blur-3xl"></div>
+
+    <!-- Core lamp bulb beam: adds bright intensity directly under emitter bar -->
+    <div class="lamp-bulb absolute top-0 z-30 h-36 -translate-y-[20%] w-[16rem] rounded-full blur-2xl"></div>
+
+    <!-- Top lamp emitter line (touching navbar directly) -->
+    <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[30rem] translate-y-[10%]"></div>
+
+    <!-- Left gradient cone: spreads downward and outward to the left -->
+    <div class="lamp-cone-left absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem]">
+      <div class="lamp-mask-bottom absolute w-full left-0 h-40 bottom-0 z-20"></div>
+      <div class="lamp-mask-left absolute w-40 h-full left-0 bottom-0 z-20"></div>
+    </div>
+
+    <!-- Right gradient cone: spreads downward and outward to the right -->
+    <div class="lamp-cone-right absolute inset-auto left-1/2 h-56 w-[30rem]">
+      <div class="lamp-mask-right absolute w-40 h-full right-0 bottom-0 z-20"></div>
+      <div class="lamp-mask-bottom absolute w-full right-0 h-40 bottom-0 z-20"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20">
+    <div class="flex flex-col items-center text-center max-w-3xl mx-auto hero-animate-in">
+      <!-- Primary H1: Focal display title framed directly inside the downward expanding beam -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground text-balance leading-[1.08]">
+        {t('hero.titleLine1')} <span class="text-brand dark:text-blue-400">{t('hero.titleLine2')}</span>
       </h1>
 
-      {/* Subtitle */}
-      <p class="mt-6 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl text-pretty">
+      <!-- Subtitle -->
+      <p class="mt-6 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl text-pretty">
         {t('hero.description')}
       </p>
 
-      {/* Primary CTAs */}
-      <div class="mt-8 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-        <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto">
-          <span>{t('hero.ctaPrimary')}</span>
-          <Icon name="arrow-right" class="w-4 h-4" />
+      <!-- Primary CTAs -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+        <Button href="https://code.ladestack.in/" target="_blank" size="lg" class="w-full sm:w-auto shadow-md">
+          <AnimatedShinyText>{t('hero.ctaPrimary')}</AnimatedShinyText>
         </Button>
         <Button href={appsHref} variant="outline" size="lg" class="w-full sm:w-auto">
           <span>{t('hero.ctaSecondary')}</span>
@@ -51,23 +76,23 @@ const trustPills = [
         </Button>
       </div>
 
-      {/* Trust cues */}
-      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-muted-foreground">
+      <!-- Trust cues -->
+      <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-muted-foreground">
         {
           trustPills.map((p) => (
-            <div class="inline-flex items-center gap-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/80 border border-border backdrop-blur-sm shadow-soft">
               <Icon name={p.icon} class="w-4 h-4 text-brand" />
-              <span>{p.text}</span>
+              <span class="font-medium text-foreground/85">{p.text}</span>
             </div>
           ))
         }
       </div>
     </div>
 
-    {/* ── Studio Product Visual Mockup ── */}
-    <div class="mt-14 sm:mt-20 max-w-5xl mx-auto">
-      <div class="rounded-2xl border border-border bg-surface shadow-elevated overflow-hidden transition-all duration-300 hover:border-border/80">
-        {/* IDE Titlebar */}
+    <!-- Studio Product Visual Mockup -->
+    <div class="mt-14 sm:mt-20 max-w-5xl mx-auto hero-animate-delay">
+      <div class="rounded-2xl border border-border bg-surface shadow-elevated overflow-hidden transition-all duration-300 hover:border-border-strong">
+        <!-- IDE Titlebar -->
         <div class="flex items-center justify-between px-4 py-3 bg-surface-muted border-b border-border text-xs text-muted-foreground select-none">
           <div class="flex items-center gap-2">
             <div class="flex gap-1.5">
@@ -96,9 +121,9 @@ const trustPills = [
           </div>
         </div>
 
-        {/* IDE Main Workspace */}
+        <!-- IDE Main Workspace -->
         <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-border bg-background">
-          {/* Left Editor Pane */}
+          <!-- Left Editor Pane -->
           <div class="lg:col-span-7 p-5 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
             <div class="space-y-1 text-muted-foreground">
               <div class="flex gap-4">
@@ -135,7 +160,7 @@ const trustPills = [
               </div>
             </div>
 
-            {/* In-editor inline notification */}
+            <!-- In-editor inline notification -->
             <div class="mt-6 p-3 rounded-lg border border-brand/30 bg-brand/5 flex items-center justify-between gap-3 text-xs">
               <div class="flex items-center gap-2">
                 <Icon name="check-circle-2" class="w-4 h-4 text-brand" />
@@ -145,7 +170,7 @@ const trustPills = [
             </div>
           </div>
 
-          {/* Right Live Preview / Metric Pane */}
+          <!-- Right Live Preview / Metric Pane -->
           <div class="lg:col-span-5 p-5 sm:p-6 bg-surface/50 flex flex-col justify-between gap-6">
             <div>
               <div class="flex items-center justify-between pb-3 border-b border-border text-xs">
@@ -195,12 +220,12 @@ const trustPills = [
               </div>
             </div>
 
-            {/* Quick Action in Preview */}
+            <!-- Quick Action in Preview -->
             <div class="pt-4 border-t border-border flex items-center justify-between">
               <span class="text-xs text-muted-foreground">{t('hero.browserCompatibility')}</span>
               <a
                 href={appsHref}
-                class="text-xs font-medium text-brand hover:underline inline-flex items-center gap-1"
+                class="text-xs font-medium text-brand hover:underline inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded"
               >
                 <span>{t('hero.viewAppsLink')}</span>
                 <Icon name="arrow-right" class="w-3 h-3" />
@@ -212,3 +237,84 @@ const trustPills = [
     </div>
   </div>
 </section>
+
+<style>
+  :root {
+    --lamp-beam: rgba(2, 132, 199, 0.4);
+    --lamp-glow: rgba(14, 165, 233, 0.45);
+    --lamp-line: rgba(2, 132, 199, 0.9);
+    --lamp-line-glow: rgba(14, 165, 233, 0.8);
+  }
+
+  :global(.dark) {
+    --lamp-beam: rgba(255, 255, 255, 0.65);
+    --lamp-glow: rgba(255, 255, 255, 0.65);
+    --lamp-line: rgba(255, 255, 255, 0.95);
+    --lamp-line-glow: rgba(255, 255, 255, 0.85);
+  }
+
+  .lamp-cone-left {
+    background-image: conic-gradient(from 70deg at 50% 0%, var(--lamp-beam), transparent, transparent);
+  }
+
+  .lamp-cone-right {
+    background-image: conic-gradient(from 290deg at 50% 0%, transparent, transparent, var(--lamp-beam));
+  }
+
+  .lamp-bar {
+    background-color: var(--lamp-line);
+    box-shadow: 0 0 20px var(--lamp-line-glow), 0 0 40px var(--lamp-line-glow);
+  }
+
+  .lamp-glow {
+    background-color: var(--lamp-glow);
+  }
+
+  .lamp-bulb {
+    background-color: var(--lamp-glow);
+  }
+
+  .lamp-mask-bottom {
+    background-color: var(--background);
+    mask-image: linear-gradient(to top, black, transparent);
+    -webkit-mask-image: linear-gradient(to top, black, transparent);
+  }
+
+  .lamp-mask-left {
+    background-color: var(--background);
+    mask-image: linear-gradient(to right, black, transparent);
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+  }
+
+  .lamp-mask-right {
+    background-color: var(--background);
+    mask-image: linear-gradient(to left, black, transparent);
+    -webkit-mask-image: linear-gradient(to left, black, transparent);
+  }
+
+  @keyframes hero-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-animate-in {
+    animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  .hero-animate-delay {
+    animation: hero-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animate-in,
+    .hero-animate-delay {
+      animation: none !important;
+    }
+  }
+</style>

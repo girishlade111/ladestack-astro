@@ -1,0 +1,13 @@
+---
+/**
+ * Application Pagination Adapter
+ * Exports standard Pagination component matching the requested @/components/application/pagination/pagination path.
+ */
+import Pagination, { type Props as PaginationProps } from '../../ui/Pagination.astro';
+
+export type Props = PaginationProps;
+
+const props = Astro.props;
+---
+
+<Pagination {...props} />
