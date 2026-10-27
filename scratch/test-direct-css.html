@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Direct CSS Lamp Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: 224 71% 4%;
+      --foreground: 210 40% 98%;
+      --lamp-beam: rgba(2, 132, 199, 0.45);
+      --lamp-glow: rgba(14, 165, 233, 0.5);
+      --lamp-line: rgba(2, 132, 199, 0.9);
+      --lamp-line-glow: rgba(14, 165, 233, 0.8);
+    }
+    :root.dark,
+    .dark {
+      --background: 224 71% 4%;
+      --foreground: 210 40% 98%;
+      --lamp-beam: rgba(255, 255, 255, 0.65);
+      --lamp-glow: rgba(255, 255, 255, 0.65);
+      --lamp-line: rgba(255, 255, 255, 0.95);
+      --lamp-line-glow: rgba(255, 255, 255, 0.85);
+    }
+
+    .lamp-cone-left {
+      background-image: conic-gradient(from 70deg at 50% 0%, var(--lamp-beam), transparent, transparent);
+    }
+    .lamp-cone-right {
+      background-image: conic-gradient(from 290deg at 50% 0%, transparent, transparent, var(--lamp-beam));
+    }
+    .lamp-bar {
+      background-color: var(--lamp-line);
+      box-shadow: 0 0 20px var(--lamp-line-glow), 0 0 40px var(--lamp-line-glow);
+    }
+    .lamp-glow {
+      background-color: var(--lamp-glow);
+    }
+    .lamp-bulb {
+      background-color: var(--lamp-glow);
+    }
+    .lamp-mask-bottom {
+      background-color: #090d16;
+      mask-image: linear-gradient(to top, black, transparent);
+      -webkit-mask-image: linear-gradient(to top, black, transparent);
+    }
+    .lamp-mask-left {
+      background-color: #090d16;
+      mask-image: linear-gradient(to right, black, transparent);
+      -webkit-mask-image: linear-gradient(to right, black, transparent);
+    }
+    .lamp-mask-right {
+      background-color: #090d16;
+      mask-image: linear-gradient(to left, black, transparent);
+      -webkit-mask-image: linear-gradient(to left, black, transparent);
+    }
+  </style>
+</head>
+<body class="bg-[#090d16] text-white min-h-screen">
+
+  <!-- Header mockup -->
+  <header class="h-16 border-b border-white/10 flex items-center px-8 text-sm">
+    <span class="font-bold text-white">LadeStack</span>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative z-0 flex min-h-[85vh] w-full flex-col items-center justify-start overflow-hidden bg-[#090d16] pt-24">
+    <!-- Lamp Stack -->
+    <div class="absolute top-0 isolate z-0 flex w-full flex-1 items-start justify-center pointer-events-none select-none">
+      <div class="absolute top-0 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
+
+      <!-- Main glow -->
+      <div class="lamp-glow absolute inset-auto z-50 h-36 w-[28rem] translate-y-[30%] rounded-full opacity-80 blur-3xl"></div>
+
+      <!-- Lamp bulb -->
+      <div class="lamp-bulb absolute top-0 z-30 h-36 -translate-y-[20%] w-[16rem] rounded-full blur-2xl"></div>
+
+      <!-- Top line -->
+      <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[30rem] translate-y-[10%]"></div>
+
+      <!-- Left gradient cone -->
+      <div class="lamp-cone-left absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem]">
+        <div class="lamp-mask-bottom absolute w-full left-0 h-40 bottom-0 z-20"></div>
+        <div class="lamp-mask-left absolute w-40 h-full left-0 bottom-0 z-20"></div>
+      </div>
+
+      <!-- Right gradient cone -->
+      <div class="lamp-cone-right absolute inset-auto left-1/2 h-56 w-[30rem]">
+        <div class="lamp-mask-right absolute w-40 h-full right-0 bottom-0 z-20"></div>
+        <div class="lamp-mask-bottom absolute w-full right-0 h-40 bottom-0 z-20"></div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-50 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+        Build, Edit, and Optimize <span class="text-blue-400">Directly in Your Browser.</span>
+      </h1>
+      <p class="mt-6 text-lg sm:text-xl text-neutral-400 max-w-2xl leading-relaxed">
+        High-performance developer utilities with client-side execution. Zero server uploads, zero subscription walls, and instant performance across all tools.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <button class="px-6 py-3 rounded-lg bg-white text-black font-semibold hover:bg-neutral-200 transition">Explore 17+ Tools</button>
+        <button class="px-6 py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/10 transition">Launch Studio IDE</button>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
