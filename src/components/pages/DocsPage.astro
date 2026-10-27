@@ -228,7 +228,7 @@ const structuredData = [
 
         <div class="mt-6 pt-4 border-t border-border flex justify-end">
           <form method="dialog">
-            <Button variant="outline" size="sm">{data.categoriesSection.closeGuide}</Button>
+            <Button type="submit" variant="outline" size="sm">{data.categoriesSection.closeGuide}</Button>
           </form>
         </div>
       </dialog>
@@ -271,7 +271,7 @@ const structuredData = [
 
         <div class="mt-6 pt-4 border-t border-border flex justify-end">
           <form method="dialog">
-            <Button variant="outline" size="sm">{data.articlesSection.closeArticle}</Button>
+            <Button type="submit" variant="outline" size="sm">{data.articlesSection.closeArticle}</Button>
           </form>
         </div>
       </dialog>
@@ -280,33 +280,70 @@ const structuredData = [
 
   <script is:inline>
     (function () {
-      var searchInput = document.querySelector('[data-docs-search]');
-      if (searchInput) {
-        searchInput.addEventListener('input', function (e) {
-          var q = (e.target.value || '').toLowerCase().trim();
-          document.querySelectorAll('[data-docs-cat]').forEach(function (card) {
-            var text = (card.getAttribute('data-search-text') || '').toLowerCase();
-            if (!q || text.indexOf(q) !== -1) {
-              card.style.display = '';
-            } else {
-              card.style.display = 'none';
+      function initDocs() {
+        var searchInput = document.querySelector('[data-docs-search]');
+        if (searchInput && !searchInput.__docsBound) {
+          searchInput.__docsBound = true;
+          searchInput.addEventListener('input', function (e) {
+            var q = (e.target.value || '').toLowerCase().trim();
+            document.querySelectorAll('[data-docs-cat]').forEach(function (card) {
+              var text = (card.getAttribute('data-search-text') || '').toLowerCase();
+              if (!q || text.indexOf(q) !== -1) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        }
+
+        document.querySelectorAll('[data-docs-cat]').forEach(function (btn) {
+          if (btn.__docsBound) return;
+          btn.__docsBound = true;
+          btn.addEventListener('click', function () {
+            var d = document.querySelector('[data-docs-dialog="' + btn.getAttribute('data-docs-cat') + '"]');
+            if (d && d.showModal) d.showModal();
+          });
+        });
+
+        document.querySelectorAll('[data-docs-open-article]').forEach(function (btn) {
+          if (btn.__docsBound) return;
+          btn.__docsBound = true;
+          btn.addEventListener('click', function () {
+            var d = document.querySelector('[data-docs-article-dialog="' + btn.getAttribute('data-docs-open-article') + '"]');
+            if (d && d.showModal) d.showModal();
+          });
+        });
+
+        document.querySelectorAll('dialog').forEach(function (dialog) {
+          if (dialog.__docsBound) return;
+          dialog.__docsBound = true;
+
+          // Close on clicking backdrop
+          dialog.addEventListener('click', function (e) {
+            var rect = dialog.getBoundingClientRect();
+            var isInDialog = (
+              rect.top <= e.clientY &&
+              e.clientY <= rect.top + rect.height &&
+              rect.left <= e.clientX &&
+              e.clientX <= rect.left + rect.width
+            );
+            if (!isInDialog) {
+              dialog.close();
             }
+          });
+
+          // Explicitly close dialog on submit or button click
+          dialog.querySelectorAll('form[method="dialog"] button, [data-dialog-close]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              dialog.close();
+            });
           });
         });
       }
 
-      document.querySelectorAll('[data-docs-cat]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var d = document.querySelector('[data-docs-dialog="' + btn.getAttribute('data-docs-cat') + '"]');
-          if (d && d.showModal) d.showModal();
-        });
-      });
-      document.querySelectorAll('[data-docs-open-article]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var d = document.querySelector('[data-docs-article-dialog="' + btn.getAttribute('data-docs-open-article') + '"]');
-          if (d && d.showModal) d.showModal();
-        });
-      });
+      initDocs();
+      document.addEventListener('astro:page-load', initDocs);
     })();
   </script>
 </BaseLayout>
