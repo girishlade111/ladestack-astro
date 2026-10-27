@@ -50,7 +50,7 @@ export const ko: AppsPageData = {
         description: '브라우저 메모리 내에서 PDF 병합, 분할, 압축, 보안 암호화, 회전, 포맷 변환을 수행하는 클라이언트 도구.',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'LS PDF 아이콘',
       },
       {
@@ -59,7 +59,7 @@ export const ko: AppsPageData = {
         description: '로컬 Canvas 처리를 통해 최신 포맷(WebP, AVIF, PNG, JPEG)을 즉각 최적화하는 클라이언트 이미지 압축기.',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'LS Image 아이콘',
       },
       {
@@ -68,7 +68,7 @@ export const ko: AppsPageData = {
         description: '실시간 점수 측정, 실시간 미리보기, 원클릭 PDF 내보내기를 지원하는 ATS 최적화 이력서 작성기.',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Swift Resume 아이콘',
       },
       {
@@ -77,7 +77,7 @@ export const ko: AppsPageData = {
         description: '인도 지역별 토지 면적 단위(Bigha, Guntha, Acre, Hectare)를 주별 공식에 맞추어 정밀 환산하는 도구.',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Bharat Land 아이콘',
       },
     ],

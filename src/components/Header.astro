@@ -201,40 +201,40 @@ const navLinks = [
       </button>
     </div>
     <div class="mt-3 grid gap-1">
-      <a href="/apps" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
+      <a href={getLocalizedPath('/apps', activeLocale)} class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
           <Icon name="layers" class="w-4 h-4 text-brand" />
           <span>Apps & Tools Gallery</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/apps</span>
+        <span class="text-xs text-muted-foreground font-mono">{getLocalizedPath('/apps', activeLocale)}</span>
       </a>
-      <a href="/gb-coder" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
+      <a href={getLocalizedPath('/gb-coder', activeLocale)} class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
           <Icon name="code-2" class="w-4 h-4 text-brand" />
           <span>GB Coder</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/gb-coder</span>
+        <span class="text-xs text-muted-foreground font-mono">{getLocalizedPath('/gb-coder', activeLocale)}</span>
       </a>
-      <a href="/blog" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
+      <a href={getLocalizedPath('/blog', activeLocale)} class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
           <Icon name="file-text" class="w-4 h-4 text-brand" />
           <span>Engineering Blog</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/blog</span>
+        <span class="text-xs text-muted-foreground font-mono">{getLocalizedPath('/blog', activeLocale)}</span>
       </a>
-      <a href="/docs" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
+      <a href={getLocalizedPath('/docs', activeLocale)} class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
           <Icon name="book-open" class="w-4 h-4 text-brand" />
           <span>Documentation & Guides</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/docs</span>
+        <span class="text-xs text-muted-foreground font-mono">{getLocalizedPath('/docs', activeLocale)}</span>
       </a>
-      <a href="/sitemap" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
+      <a href={getLocalizedPath('/sitemap', activeLocale)} class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-foreground hover:bg-surface-muted transition-colors">
         <div class="flex items-center gap-2.5">
           <Icon name="map-pin" class="w-4 h-4 text-brand" />
           <span>Index & Sitemap</span>
         </div>
-        <span class="text-xs text-muted-foreground font-mono">/sitemap</span>
+        <span class="text-xs text-muted-foreground font-mono">{getLocalizedPath('/sitemap', activeLocale)}</span>
       </a>
     </div>
   </div>

@@ -50,7 +50,7 @@ export const ja: AppsPageData = {
         description: 'ブラウザメモリ内でPDFの結合、分割、圧縮、保護、回転、変換を行うクライアントサイドツール。',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'LS PDF アイコン',
       },
       {
@@ -59,7 +59,7 @@ export const ja: AppsPageData = {
         description: 'ローカルCanvas処理を用いた、最新画像形式（WebP、AVIF、PNG、JPEG）のクライアントサイド画像最適化ツール。',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'LS Image アイコン',
       },
       {
@@ -68,7 +68,7 @@ export const ja: AppsPageData = {
         description: 'リアルタイムスコアリング、ライブプレビュー、PDFエクスポートを備えたATS最適化レジュメビルダー。',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Swift Resume アイコン',
       },
       {
@@ -77,7 +77,7 @@ export const ja: AppsPageData = {
         description: 'インド各地域の土地測定単位（Bigha、Guntha、Acre、Hectare）に対応した州別高精度換算ツール。',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Bharat Land アイコン',
       },
     ],

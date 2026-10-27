@@ -158,6 +158,8 @@ For any page that declares an alternate URL, the target page MUST reciprocate by
 - **SEO Impact**: Search engines indexing `/ja/blog`, `/zh/blog`, etc., will index English snippets, degrading click-through rates (CTR) and violating localized SERP expectations.
 - **Root Cause**: `src/components/blog/BlogIndexPage.astro` lines 75–76 pass English string literals instead of fetching localized strings from `src/i18n/pages/blog/{locale}.ts`.
 - **Recommended Remediation**: Update `BlogIndexPage.astro` to consume localized title/description from the i18n store.
+- **Phase 4B-1 Status**: **RESOLVED**. Created `src/i18n/pages/blog/` architecture for all 9 locales with authentic localized titles, meta descriptions, Open Graph metadata, and hero content. Verified by `scratch/verify-blog-i18n.mjs`.
+
 
 ### DEFECT-I18N-002 (P2): Quick Jump Search Modal Abruptly Navigates to English Routes
 - **Affected Context**: When a user opens the Quick Jump modal (`Cmd+K`) from a non-English page (e.g. `https://ladestack.in/ja/docs`).

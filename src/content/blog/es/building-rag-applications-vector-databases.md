@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Construcción de Aplicaciones RAG con Bases de Datos Vectoriales: Ingesta, Chunking y Arquitectura de Búsqueda
-
 Los Modelos de Lenguaje de Gran Tamaño (LLMs) ofrecen capacidades sobresalientes de síntesis y razonamiento generalista. Sin embargo, al desplegarse en entornos empresariales, los modelos base se topan con dos restricciones fundamentales: el **límite temporal de sus datos de entrenamiento (knowledge cutoff)** y la tendencia a generar afirmaciones plausibles pero totalmente ficticias, conocidas como **alucinaciones (confabulation)**.
 
 La arquitectura **Retrieval-Augmented Generation (RAG)** soluciona este dilema desacoplando el almacenamiento de conocimientos de la memoria paramétrica del modelo. En lugar de forzar al LLM a memorizar toda la documentación y bases de datos corporativas, el sistema RAG extrae dinámicamente fragmentos de texto relevantes desde un motor de información especializado —generalmente una base de datos vectorial— y los incorpora al contexto de inferencia en tiempo real.

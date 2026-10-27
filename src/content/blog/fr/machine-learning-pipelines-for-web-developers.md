@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Pipelines de Machine Learning pour développeurs Web : de l'ingestion à l'inférence navigateur et serveur
-
 Dans les applications Web contemporaines, le Machine Learning (ML) a dépassé le cadre des laboratoires de recherche pour devenir un composant central de l'expérience utilisateur. Qu'il s'agisse de recommandations personnalisées, de classification d'intention, de détection de fraude en temps réel ou de traitement d'images côté client, les ingénieurs Web doivent intégrer des modèles prédictifs au cœur de leurs architectures.
 
 Cependant, pour de nombreuses équipes d'ingénierie, porter un modèle issu d'un Jupyter Notebook vers un environnement de production hautement disponible soulève de sérieux défis techniques. Les décalages de prétraitement entre entraînement et inférence (training-serving skew), les fuites de données (data leakage), la latence réseau et la dégradation des performances dans le temps (data drift) constituent des pièges fréquents.

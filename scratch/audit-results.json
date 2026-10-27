@@ -314,15 +314,7 @@
         "blog/implementing-oauth2-openid-connect/index.html"
       ],
       "Blog – Engineering Insights &amp; Technical Guides | LadeStack": [
-        "blog/index.html",
-        "es/blog/index.html",
-        "fr/blog/index.html",
-        "ja/blog/index.html",
-        "ko/blog/index.html",
-        "pt/blog/index.html",
-        "ru/blog/index.html",
-        "tr/blog/index.html",
-        "zh/blog/index.html"
+        "blog/index.html"
       ],
       "Infrastructure as Code: Comparing Terraform, OpenTofu, and Pulumi in Modern Cloud Environments | LadeStack Blog": [
         "blog/infrastructure-as-code-terraform-pulumi/index.html"
@@ -402,6 +394,9 @@
       "GitOps: Gestión de Infraestructura y Kubernetes con Git como Única Fuente de Verdad | LadeStack Blog": [
         "es/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "Blog – Perspectivas de Ingeniería y Guías Técnicas | LadeStack": [
+        "es/blog/index.html"
+      ],
       "Pipelines de Machine Learning para Desarrolladores Web: de la Ingesta a la Inferencia en Navegador y Servidor | LadeStack Blog": [
         "es/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -470,6 +465,9 @@
       ],
       "GitOps : Gestion des infrastructures et de Kubernetes avec Git comme source unique de vérité | LadeStack Blog": [
         "fr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Blog – Perspectives d&#39;ingénierie et guides techniques | LadeStack": [
+        "fr/blog/index.html"
       ],
       "Pipelines de Machine Learning pour développeurs Web : de l&#39;ingestion à l&#39;inférence navigateur et serveur | LadeStack Blog": [
         "fr/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -546,6 +544,9 @@
       "GitOps：Gitを唯一の信頼できる情報源とするインフラおよびKubernetes管理 | LadeStack Blog": [
         "ja/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "ブログ – エンジニアリングインサイト＆技術ガイド | LadeStack": [
+        "ja/blog/index.html"
+      ],
       "Web開発者のための機械学習パイプライン：データ取り込みからブラウザ＆サーバー推論まで | LadeStack Blog": [
         "ja/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -614,6 +615,9 @@
       ],
       "GitOps: Git을 단일 진실 공급원으로 활용한 인프라 및 쿠버네티스 관리 | LadeStack Blog": [
         "ko/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "블로그 – 엔지니어링 인사이트 및 기술 가이드 | LadeStack": [
+        "ko/blog/index.html"
       ],
       "웹 개발자를 위한 머신러닝 파이프라인: 데이터 수집부터 브라우저 및 서버 추론까지 | LadeStack Blog": [
         "ko/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -687,6 +691,9 @@
       "GitOps: Gerenciamento de Infraestrutura e Kubernetes com Git como Fonte Única da Verdade | LadeStack Blog": [
         "pt/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "Blog – Insights de Engenharia e Guias Técnicos | LadeStack": [
+        "pt/blog/index.html"
+      ],
       "Pipelines de Machine Learning para Desenvolvedores Web: da Ingestão à Inferência no Navegador e Servidor | LadeStack Blog": [
         "pt/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -755,6 +762,9 @@
       ],
       "GitOps: Управление инфраструктурой и Kubernetes с Git как единым источником истины | LadeStack Blog": [
         "ru/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Блог – Инженерные инсайты и технические руководства | LadeStack": [
+        "ru/blog/index.html"
       ],
       "Пайплайны машинного обучения для веб-разработчиков: от сбора данных до инференса в браузере и на сервере | LadeStack Blog": [
         "ru/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -834,6 +844,9 @@
       "GitOps: Git&#39;i Tek Doğruluk Kaynağı Olarak Kullanarak Altyapı ve Kubernetes Yönetimi | LadeStack Blog": [
         "tr/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "Blog – Mühendislik İçgörüleri ve Teknik Rehberler | LadeStack": [
+        "tr/blog/index.html"
+      ],
       "Web Geliştiricileri İçin Makine Öğrenimi Boru Hatları: Veri Toplamadan Tarayıcı ve Sunucu Çıkarımına | LadeStack Blog": [
         "tr/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -902,6 +915,9 @@
       ],
       "GitOps：以 Git 为唯一可信源管理基础设施与 Kubernetes | LadeStack Blog": [
         "zh/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "博客 – 工程深度解析与技术指南 | LadeStack": [
+        "zh/blog/index.html"
       ],
       "Web 开发者机器学习全流程：从数据采集到浏览器与服务端推理 | LadeStack Blog": [
         "zh/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -1540,15 +1556,7 @@
         "blog/implementing-oauth2-openid-connect/index.html"
       ],
       "Explore technical architecture deep-dives, WebAssembly benchmarks, client-side security guides, and developer tooling insights from the LadeStack team.": [
-        "blog/index.html",
-        "es/blog/index.html",
-        "fr/blog/index.html",
-        "ja/blog/index.html",
-        "ko/blog/index.html",
-        "pt/blog/index.html",
-        "ru/blog/index.html",
-        "tr/blog/index.html",
-        "zh/blog/index.html"
+        "blog/index.html"
       ],
       "Architectural comparison of Infrastructure as Code: declarative HCL vs general-purpose programming with Pulumi, state management, concurrency locking, drift detection, and policy-as-code.": [
         "blog/infrastructure-as-code-terraform-pulumi/index.html"
@@ -1628,6 +1636,9 @@
       "Guía arquitectónica exhaustiva sobre GitOps: estado declarativo, bucles de reconciliación continua, comparación Push vs Pull, Argo CD, Flux CD, gestión de secretos y Policy-as-Code.": [
         "es/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "Explore análisis de arquitectura técnica, pruebas de WebAssembly, guías de seguridad en cliente e información sobre herramientas de desarrollo de LadeStack.": [
+        "es/blog/index.html"
+      ],
       "Guía completa de MLOps para ingenieros web: ingesta de datos, prevención de data leakage, inferencia en navegador con ONNX Runtime Web, microservicios FastAPI y monitorización de drift.": [
         "es/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -1696,6 +1707,9 @@
       ],
       "Guide architectural complet sur GitOps : déclaratif, boucles de réconciliation, comparaison Push vs Pull, Argo CD, Flux CD, gestion des secrets, détection de dérive et Policy-as-Code.": [
         "fr/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Analyses d'architecture technique, benchmarks WebAssembly, guides de sécurité côté client et aperçus d'outils pour développeurs par l'équipe LadeStack.": [
+        "fr/blog/index.html"
       ],
       "Guide complet de MLOps pour les ingénieurs Web : collecte de données, prévention du data leakage, inférence navigateur via ONNX Runtime Web, microservices FastAPI et surveillance du drift.": [
         "fr/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -1772,6 +1786,9 @@
       "宣言的記述、調整ループ（Reconciliation Loop）、プッシュ型とプル型の比較、Argo CD、Flux CD、シークレット管理、ドリフト検出、ポリシー・アズ・コードを網羅したGitOpsアーキテクチャ徹底解説。": [
         "ja/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "LadeStackチームによる技術アーキテクチャの深層解説、WebAssemblyベンチマーク、クライアントサイドセキュリティガイド、開発者向け知見をお届けします。": [
+        "ja/blog/index.html"
+      ],
       "Webエンジニア向けMLパイプライン完全ガイド。データ収集、データリーク防止、ONNX Runtime Webによるブラウザ推論、FastAPIによるサーバー推論、MLOpsドリフト監視の実装手法。": [
         "ja/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -1840,6 +1857,9 @@
       ],
       "선언적 시스템 정의, 지속적 조정 루프(Reconciliation Loop), 푸시 vs 풀 방식 비교, Argo CD 및 Flux CD 아키텍처, 시크릿 관리, 정책 기반 코드 제어를 다루는 GitOps 심층 가이드.": [
         "ko/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "LadeStack 팀이 전하는 기술 아키텍처 심층 분석, WebAssembly 벤치마크, 클라이언트 측 보안 가이드 및 개발자 도구 인사이트를 살펴보세요.": [
+        "ko/blog/index.html"
       ],
       "웹 엔지니어를 위한 종합 MLOps 파이프라인 가이드. 데이터 수집, 데이터 누수 방지, ONNX Runtime Web을 통한 브라우저 추론, FastAPI 서버 추론 및 운영 환경 드리프트 모니터링.": [
         "ko/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -1913,6 +1933,9 @@
       "Guia arquitetural aprofundado sobre GitOps: estado declarativo, loops de reconciliação contínua, comparação Push vs Pull, Argo CD, Flux CD, gestão de segredos e conformidade com Policy-as-Code.": [
         "pt/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "Explore análises de arquitetura técnica, benchmarks WebAssembly, guias de segurança no cliente e insights sobre ferramentas de desenvolvimento da LadeStack.": [
+        "pt/blog/index.html"
+      ],
       "Guia completo de MLOps para engenheiros web: coleta de dados, prevenção de vazamento de dados, inferência no navegador com ONNX Runtime Web, microsserviços FastAPI e monitoramento de drift.": [
         "pt/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -1981,6 +2004,9 @@
       ],
       "Архитектурное руководство по GitOps: декларативное состояние, циклы синхронизации (Reconciliation), сравнение Push и Pull, Argo CD, Flux CD, управление секретами и Policy-as-Code.": [
         "ru/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "Технические архитектурные обзоры, бенчмарки WebAssembly, руководства по клиентской безопасности и инсайты по инструментам разработчика от LadeStack.": [
+        "ru/blog/index.html"
       ],
       "Полное руководство по MLOps для веб-инженеров: сбор данных, предотвращение data leakage, инференс в браузере через ONNX Runtime Web, микросервисы на FastAPI и мониторинг дрейфа данных.": [
         "ru/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -2060,6 +2086,9 @@
       "GitOps mimarisinin derinlemesine analizi: bildirime dayalı durum, sürekli mutabakat döngüleri (Reconciliation), Push vs Pull karşılaştırması, Argo CD, Flux CD, gizli anahtar yönetimi ve kod olarak politika.": [
         "tr/blog/gitops-managing-infrastructure-with-git/index.html"
       ],
+      "LadeStack ekibinden teknik mimari incelemeleri, WebAssembly kıyaslamaları, istemci tarafı güvenlik rehberleri ve geliştirici araçları analizleri.": [
+        "tr/blog/index.html"
+      ],
       "Web mühendisleri için kapsamlı MLOps rehberi: Veri toplama, veri sızıntısını önleme, ONNX Runtime Web ile tarayıcı çıkarımı, FastAPI mikroservisleri ve üretim drift takibi.": [
         "tr/blog/machine-learning-pipelines-for-web-developers/index.html"
       ],
@@ -2128,6 +2157,9 @@
       ],
       "深入解析 GitOps 核心架构：声明式系统定义、连续调和循环（Reconciliation Loop）、Push 与 Pull 模式对比、Argo CD 与 Flux CD 选型、密钥安全与代码化策略。": [
         "zh/blog/gitops-managing-infrastructure-with-git/index.html"
+      ],
+      "探索 LadeStack 团队带来的技术架构深度剖析、WebAssembly 基准测试、客户端安全指南及现代化开发者工具实践洞察。": [
+        "zh/blog/index.html"
       ],
       "专为前端与全栈工程师打造的 MLOps 指南。深入解析数据采集、数据泄露防范、ONNX Runtime Web 浏览器端推理、FastAPI 微服务推理及生产环境漂移监控。": [
         "zh/blog/machine-learning-pipelines-for-web-developers/index.html"
@@ -2501,84 +2533,7 @@
       }
     ],
     "missingH1": [],
-    "multipleH1": [
-      {
-        "relPath": "blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "blog/fine-tuning-llms-domain-specific-tasks/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "blog/multi-tenant-saas-architecture-patterns/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "es/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "es/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "fr/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "fr/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ja/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ja/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ko/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ko/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "pt/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "pt/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ru/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "ru/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "tr/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "tr/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "zh/blog/building-rag-applications-vector-databases/index.html",
-        "count": 2
-      },
-      {
-        "relPath": "zh/blog/machine-learning-pipelines-for-web-developers/index.html",
-        "count": 2
-      }
-    ],
+    "multipleH1": [],
     "emptyH1": [],
     "headingSkips": [],
     "missingCanonical": [],
@@ -2623,231 +2578,13 @@
   "links": {
     "brokenInternalLinks": [],
     "brokenInternalAnchors": [],
-    "targetBlankWithoutNoopener": [
-      {
-        "relPath": "es/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "es/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "fr/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "fr/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "ja/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "ja/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "ko/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "ko/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "pt/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "pt/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "ru/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "ru/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "tr/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "tr/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      },
-      {
-        "relPath": "zh/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/\" target=\"_blank\" class=\"text-xs font-semibold text-brand hover:u"
-      },
-      {
-        "relPath": "zh/gb-coder/index.html",
-        "link": "<a href=\"https://code.ladestack.in/app/projects\" target=\"_blank\" class=\"text-xs font-semibold text-b"
-      }
-    ],
+    "targetBlankWithoutNoopener": [],
     "trailingSlashInInternalLinks": []
   },
   "images": {
     "missingAlt": [],
     "missingDimensions": [],
-    "brokenImages": [
-      {
-        "relPath": "apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "es/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "es/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "es/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "es/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "fr/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "fr/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "fr/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "fr/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "ja/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "ja/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "ja/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "ja/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "ko/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "ko/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "ko/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "ko/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "pt/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "pt/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "pt/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "pt/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "ru/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "ru/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "ru/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "ru/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "tr/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "tr/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "tr/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "tr/apps/index.html",
-        "src": "/icons/land.svg"
-      },
-      {
-        "relPath": "zh/apps/index.html",
-        "src": "/icons/pdf.svg"
-      },
-      {
-        "relPath": "zh/apps/index.html",
-        "src": "/icons/image.svg"
-      },
-      {
-        "relPath": "zh/apps/index.html",
-        "src": "/icons/resume.svg"
-      },
-      {
-        "relPath": "zh/apps/index.html",
-        "src": "/icons/land.svg"
-      }
-    ]
+    "brokenImages": []
   },
   "accessibility": {
     "missingMainLandmark": [],

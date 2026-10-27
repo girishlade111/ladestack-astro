@@ -23,8 +23,6 @@ relatedProduct: "GB Coder"
 contentType: "tutorial"
 ---
 
-# Fine-Tuning LLMs for Domain-Specific Tasks: LoRA, QLoRA, and Dataset Engineering
-
 While foundational Large Language Models (LLMs) such as Llama 3, Mistral, and Claude exhibit remarkable general-purpose natural language capabilities, applying them to specialized enterprise domains often exposes significant friction. Generalist models frequently fail to adhere to rigid internal formatting conventions, miss proprietary dialect and terminology, or require excessively verbose multi-shot system prompts that inflate latency and API token costs.
 
 When teams encounter these hurdles, the immediate instinct is often to jump directly into **Fine-Tuning**. However, fine-tuning is widely misunderstood. Many engineering teams mistakenly treat fine-tuning as a mechanism to "teach" an LLM their company's internal documentation, only to discover that the fine-tuned model still hallucinates factual dates, version numbers, and technical specifications.

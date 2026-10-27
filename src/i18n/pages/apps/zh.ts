@@ -50,7 +50,7 @@ export const zh: AppsPageData = {
         description: '在浏览器本地内存中实现 PDF 合并、拆分、压缩、保护、旋转与格式转换的客户端工具箱。',
         url: 'https://pdf.ladestack.in/',
         domain: 'pdf.ladestack.in',
-        icon: '/icons/pdf.svg',
+        icon: '/ls-pdf-project.svg',
         iconAlt: 'LS PDF 图标',
       },
       {
@@ -59,7 +59,7 @@ export const zh: AppsPageData = {
         description: '基于本地 Canvas 算法的高效图片压缩器，支持 WebP、AVIF、PNG、JPEG 等主流现代格式。',
         url: 'https://img.ladestack.in/',
         domain: 'img.ladestack.in',
-        icon: '/icons/image.svg',
+        icon: '/ls-img-project.svg',
         iconAlt: 'LS Image 图标',
       },
       {
@@ -68,7 +68,7 @@ export const zh: AppsPageData = {
         description: '集成实时评分、Markdown 实时预览与一键导出 PDF 的 ATS 简历生成工具。',
         url: 'https://resume.ladestack.in/',
         domain: 'resume.ladestack.in',
-        icon: '/icons/resume.svg',
+        icon: '/swift-resume-project.svg',
         iconAlt: 'Swift Resume 图标',
       },
       {
@@ -77,7 +77,7 @@ export const zh: AppsPageData = {
         description: '涵盖印度各邦地域土地测量单位（Bigha、Guntha、Acre、Hectare）的高精度换算工具。',
         url: 'https://land.ladestack.in/',
         domain: 'land.ladestack.in',
-        icon: '/icons/land.svg',
+        icon: '/bharat-land-project.svg',
         iconAlt: 'Bharat Land 图标',
       },
     ],
