@@ -1,0 +1,49 @@
+---
+/**
+ * BorderBeam.astro
+ * An animated beam of light which travels along the border of its container.
+ * Zero-runtime-JS, pure GPU-accelerated CSS matching MagicUI specification.
+ */
+export interface Props {
+  size?: number;
+  duration?: number;
+  delay?: number;
+  colorFrom?: string;
+  colorTo?: string;
+  reverse?: boolean;
+  initialOffset?: number;
+  borderWidth?: number;
+  class?: string;
+}
+
+const {
+  size = 200,
+  duration = 10,
+  delay = 0,
+  colorFrom = '#ffaa40',
+  colorTo = '#9c40ff',
+  reverse = false,
+  initialOffset = 0,
+  borderWidth = 1.5,
+  class: className = '',
+} = Astro.props;
+---
+
+<div
+  class={`pointer-events-none absolute inset-0 rounded-[inherit] border-beam-container ${className}`.trim()}
+  style={`--border-beam-width: ${borderWidth}px;`}
+  aria-hidden="true"
+>
+  <div
+    class="border-beam-tracer"
+    style={`
+      --border-beam-size: ${size}px;
+      --border-beam-duration: ${duration}s;
+      --border-beam-delay: ${-delay}s;
+      --color-from: ${colorFrom};
+      --color-to: ${colorTo};
+      --border-beam-direction: ${reverse ? 'reverse' : 'normal'};
+      --border-beam-offset: ${initialOffset}%;
+    `}
+  ></div>
+</div>

@@ -345,3 +345,38 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   );
 }
 
+/* ───────────────────────────────────────────────────────────────
+   Border Beam (MagicUI animated perimeter light streak)
+   ─────────────────────────────────────────────────────────────── */
+@keyframes border-beam {
+  0% {
+    offset-distance: var(--border-beam-offset, 0%);
+  }
+  100% {
+    offset-distance: calc(var(--border-beam-offset, 0%) + 100%);
+  }
+}
+
+.border-beam-container {
+  border: var(--border-beam-width, 1.5px) solid transparent;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.border-beam-tracer {
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  width: var(--border-beam-size, 200px);
+  background: linear-gradient(to left, var(--color-from, #ffaa40), var(--color-to, #9c40ff), transparent);
+  offset-path: rect(0 auto auto 0 round var(--border-beam-size, 200px));
+  offset-anchor: 100% 50%;
+  animation: border-beam var(--border-beam-duration, 10s) infinite linear;
+  animation-direction: var(--border-beam-direction, normal);
+  animation-delay: var(--border-beam-delay, 0s);
+}
+
+
