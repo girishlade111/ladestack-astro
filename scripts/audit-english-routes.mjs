@@ -33,6 +33,9 @@ const LOCALIZED_SUBPAGES = [
   // Phase 3D-B Modernized Multilingual Articles (all 9 languages localized)
   { path: 'blog/building-subscription-billing-systems/index.html', canonical: 'https://ladestack.in/blog/building-subscription-billing-systems', expectedHreflangs: 10 },
   { path: 'blog/baas-platforms-compared-firebase-supabase-appwrite/index.html', canonical: 'https://ladestack.in/blog/baas-platforms-compared-firebase-supabase-appwrite', expectedHreflangs: 10 },
+  // Phase 3D-C Modernized Multilingual Articles (all 9 languages localized)
+  { path: 'blog/building-api-gateways-microservices/index.html', canonical: 'https://ladestack.in/blog/building-api-gateways-microservices', expectedHreflangs: 10 },
+  { path: 'blog/cloud-cost-optimization-strategies-startups/index.html', canonical: 'https://ladestack.in/blog/cloud-cost-optimization-strategies-startups', expectedHreflangs: 10 },
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
@@ -48,6 +51,10 @@ const ENGLISH_ONLY_SUBPAGES = [
   { path: 'blog/scaling-saas-applications-million-users/index.html', canonical: 'https://ladestack.in/blog/scaling-saas-applications-million-users', expectedHreflangs: 0 },
   { path: 'blog/building-serverless-backends-with-baas/index.html', canonical: 'https://ladestack.in/blog/building-serverless-backends-with-baas', expectedHreflangs: 0 },
   { path: 'blog/real-time-data-sync-backend-services/index.html', canonical: 'https://ladestack.in/blog/real-time-data-sync-backend-services', expectedHreflangs: 0 },
+  // Phase 3D-C English-only modernized articles
+  { path: 'blog/multi-cloud-architecture-aws-azure-gcp/index.html', canonical: 'https://ladestack.in/blog/multi-cloud-architecture-aws-azure-gcp', expectedHreflangs: 0 },
+  { path: 'blog/containers-vs-vms-when-to-use-each/index.html', canonical: 'https://ladestack.in/blog/containers-vs-vms-when-to-use-each', expectedHreflangs: 0 },
+  { path: 'blog/optimizing-vm-performance-production-workloads/index.html', canonical: 'https://ladestack.in/blog/optimizing-vm-performance-production-workloads', expectedHreflangs: 0 },
 ];
 
 let failed = false;
@@ -106,13 +113,8 @@ for (const page of ENGLISH_ONLY_SUBPAGES) {
   }
 }
 
-console.log('\n--- 3. Auditing 12 Verified Remaining Legacy Fallback Routes (Zero False Alternates) ---');
+console.log('\n--- 3. Auditing 7 Verified Remaining Legacy Fallback Routes (Zero False Alternates) ---');
 const LEGACY_FALLBACK_SUBPAGES = [
-  'building-api-gateways-microservices',
-  'cloud-cost-optimization-strategies-startups',
-  'multi-cloud-architecture-aws-azure-gcp',
-  'containers-vs-vms-when-to-use-each',
-  'optimizing-vm-performance-production-workloads',
   'gitops-managing-infrastructure-with-git',
   'building-zero-downtime-deployment-pipelines',
   'infrastructure-as-code-terraform-pulumi',
@@ -163,6 +165,6 @@ for (const page of LEGACY_FALLBACK_SUBPAGES) {
 if (failed) {
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY (19 LOCALIZED + 9 ENGLISH-ONLY + 12 LEGACY FALLBACK)!');
+  console.log('\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY (21 LOCALIZED + 12 ENGLISH-ONLY + 7 LEGACY FALLBACK)!');
   process.exit(0);
 }

@@ -2,11 +2,6 @@ import fs from 'node:fs';
 import { blogPosts } from '../src/data/blogPosts.ts';
 
 const VERIFIED_REMAINING_LEGACY_SLUGS = [
-  'building-api-gateways-microservices',
-  'cloud-cost-optimization-strategies-startups',
-  'multi-cloud-architecture-aws-azure-gcp',
-  'containers-vs-vms-when-to-use-each',
-  'optimizing-vm-performance-production-workloads',
   'gitops-managing-infrastructure-with-git',
   'building-zero-downtime-deployment-pipelines',
   'infrastructure-as-code-terraform-pulumi',
@@ -52,6 +47,6 @@ if (nonEnClean) {
   console.log('All 8 non-English indexes verified clean (0 legacy cards).');
 }
 
-const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 12 && missing.length === 0 && nonEnClean && exactMatch;
+const passed = hasLegacySection && legacyMatches.length === unmigrated.length && unmigrated.length === 7 && missing.length === 0 && nonEnClean && exactMatch;
 console.log('Legacy Archive Validation Result:', passed ? '✅ PASS' : '❌ FAIL');
 if (!passed) process.exit(1);

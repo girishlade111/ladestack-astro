@@ -76,15 +76,91 @@
 ## 5. Next Action & Future Handoff (Phase 3D-C)
 
 1. **Sprint Initialized:** `Phase 3D-C` (Controlled Legacy Blog Migration — Batch 3)
-2. **Current Branch:** `feature/phase-3d-b-blog-migration` (Ready for user review; DO NOT push or merge without authorization)
+2. **Current Branch:** `feature/phase-3d-c-blog-migration`
 3. **Verified Baseline for Phase 3D-C:**
-   - 90 Markdown articles
+   - 90 Markdown articles (18 EN + 72 non-EN)
    - 12 remaining legacy fallback articles
    - 27 preserved canonical legacy URLs
    - 214 total HTML output files in `dist/`
-4. **Next Recommended Batch Slugs (Batch 3):**
+4. **Target Batch Slugs (Batch 3):**
    - `building-api-gateways-microservices`
    - `cloud-cost-optimization-strategies-startups`
    - `multi-cloud-architecture-aws-azure-gcp`
    - `containers-vs-vms-when-to-use-each`
    - `optimizing-vm-performance-production-workloads`
+5. **Target Multilingual Expansion Topics (2 Topics × 8 Locales = 16 MD):**
+   - `building-api-gateways-microservices`
+   - `cloud-cost-optimization-strategies-startups`
+
+---
+
+## 6. Phase 3D-C Execution State
+
+- **BASELINE_COMMIT:** `4896236` (*"docs: update migration report and add inventory integrity report for phase 3d-b blog articles"*)
+- **CURRENT_BRANCH:** `feature/phase-3d-c-blog-migration`
+- **CURRENT_SPRINT:** Phase 3D-C (Batch 3: 5 English Migrations + 2 Multilingual Expansions)
+- **SPRINT_STATUS:** `PHASE_3D_C_COMPLETE`
+- **CURRENT_STAGE:** Sprint Acceptance Gate Verified
+- **CURRENT_ARTICLE:** All 5 Target Articles Completed & Verified
+- **CURRENT_TASK:** Phase 3D-C Complete — Ready for Phase 3D-D
+- **FILES_CREATED (21 Markdown Documents):**
+  - English (5):
+    - `src/content/blog/en/building-api-gateways-microservices.md`
+    - `src/content/blog/en/cloud-cost-optimization-strategies-startups.md`
+    - `src/content/blog/en/multi-cloud-architecture-aws-azure-gcp.md`
+    - `src/content/blog/en/containers-vs-vms-when-to-use-each.md`
+    - `src/content/blog/en/optimizing-vm-performance-production-workloads.md`
+  - Multilingual Expansion (16 across 8 locales):
+    - `ja` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `ko` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `zh` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `ru` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `tr` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `fr` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `pt` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+    - `es` (2): `building-api-gateways-microservices.md`, `cloud-cost-optimization-strategies-startups.md`
+- **FILES_MODIFIED:**
+  - `scripts/test-phase3-blog.mjs`
+  - `scripts/audit-english-routes.mjs`
+  - `scratch/verify-dist-blog.mjs`
+  - `LADESTACK_PHASE_3D_ARTICLE_INVENTORY.md`
+  - `LADESTACK_PHASE_3D_TRANSLATION_MATRIX.md`
+  - `PHASE_3D_CHECKPOINT.md`
+- **LAST_VERIFIED_STEP:** Interactive Browser Subagent QA (`phase_3d_c_qa_1792913462616.webp`)
+- **LAST_SUCCESSFUL_TEST:** Full Regression Suite (`npm run build`, `npm run test:i18n`, `test-phase3-blog.mjs`, `audit-english-routes.mjs`, `check-all-links.mjs`, `verify-dist-blog.mjs`, `verify_canonicals.mjs`) — 0 errors, Exit code 0
+- **NEXT_EXACT_ACTION:** Await user authorization for Phase 3D-D handoff
+- **KNOWN_BLOCKERS:** None
+
+| Stage / Item | Status | Verification Detail |
+|:---|:---:|:---|
+| Git Preflight & Branch Safety | `VERIFIED` | On `feature/phase-3d-c-blog-migration`, clean tree, baseline `4896236` |
+| Article 1 (`building-api-gateways-microservices`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 2 (`cloud-cost-optimization-strategies-startups`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 3 (`multi-cloud-architecture-aws-azure-gcp`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 4 (`containers-vs-vms-when-to-use-each`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Article 5 (`optimizing-vm-performance-production-workloads`) | `VERIFIED` | English Content Collections guide created; `astro sync` & `check` passed |
+| Multilingual Batch 1 (`ja`, `ko`) | `VERIFIED` | 4 localized documents created; `astro sync` & `check` passed |
+| Multilingual Batch 2 (`zh`, `ru`) | `VERIFIED` | 4 localized documents created; `astro sync` & `check` passed |
+| Multilingual Batch 3 (`tr`, `fr`) | `VERIFIED` | 4 localized documents created; `astro sync` & `check` passed |
+| Multilingual Batch 4 (`pt`, `es`) | `VERIFIED` | 4 localized documents created; `astro sync` & `check` passed |
+| Test Hardening & SSG Build | `VERIFIED` | 218 pages + 12 stubs = 230 HTML files in `dist/`; all test suites passed |
+| Browser Subagent QA | `VERIFIED` | Recorded at `phase_3d_c_qa_1792913462616.webp`; desktop & mobile viewports verified |
+| Reports & Checkpoint Finalization | `VERIFIED` | Inventory, matrix, checkpoint, and migration report completed |
+
+---
+
+## 7. Next Phase Handoff (Phase 3D-D)
+
+- **Starting Markdown Count:** 111 (23 EN + 88 non-EN)
+- **Starting Remaining Legacy Fallbacks:** 7
+- **Target Final Remaining Slugs for Migration in Phase 3D-D:**
+  1. `gitops-managing-infrastructure-with-git`
+  2. `building-zero-downtime-deployment-pipelines`
+  3. `infrastructure-as-code-terraform-pulumi`
+  4. `owasp-top-10-complete-mitigation-guide`
+  5. `implementing-oauth2-openid-connect`
+  6. `mlops-deploying-ml-models-production`
+  7. `monitoring-ai-systems-in-production`
+- **Projected Final Markdown Count after Phase 3D-D:** 127 Markdown documents (27 original historical + 3 flagship = 30 English Markdown articles)
+- **Legacy Fallback Count after Phase 3D-D:** 0 (Full modernization of all 27 legacy articles achieved)
+
