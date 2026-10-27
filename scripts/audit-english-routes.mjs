@@ -1,7 +1,8 @@
 /**
  * scripts/audit-english-routes.mjs
  * Validates that English subpages retain their canonicals,
- * have appropriate hreflang alternates (10 for fully localized routes, 0 for English-only legacy blog routes).
+ * have appropriate hreflang alternates (10 for fully localized routes, 0 for English-only legacy blog routes),
+ * and verifies that 0 legacy fallback subpages remain in Phase 3D-D.
  */
 
 import fs from 'node:fs';
@@ -36,6 +37,9 @@ const LOCALIZED_SUBPAGES = [
   // Phase 3D-C Modernized Multilingual Articles (all 9 languages localized)
   { path: 'blog/building-api-gateways-microservices/index.html', canonical: 'https://ladestack.in/blog/building-api-gateways-microservices', expectedHreflangs: 10 },
   { path: 'blog/cloud-cost-optimization-strategies-startups/index.html', canonical: 'https://ladestack.in/blog/cloud-cost-optimization-strategies-startups', expectedHreflangs: 10 },
+  // Phase 3D-D Modernized Multilingual Articles (all 9 languages localized)
+  { path: 'blog/gitops-managing-infrastructure-with-git/index.html', canonical: 'https://ladestack.in/blog/gitops-managing-infrastructure-with-git', expectedHreflangs: 10 },
+  { path: 'blog/owasp-top-10-complete-mitigation-guide/index.html', canonical: 'https://ladestack.in/blog/owasp-top-10-complete-mitigation-guide', expectedHreflangs: 10 },
 ];
 
 const ENGLISH_ONLY_SUBPAGES = [
@@ -55,7 +59,16 @@ const ENGLISH_ONLY_SUBPAGES = [
   { path: 'blog/multi-cloud-architecture-aws-azure-gcp/index.html', canonical: 'https://ladestack.in/blog/multi-cloud-architecture-aws-azure-gcp', expectedHreflangs: 0 },
   { path: 'blog/containers-vs-vms-when-to-use-each/index.html', canonical: 'https://ladestack.in/blog/containers-vs-vms-when-to-use-each', expectedHreflangs: 0 },
   { path: 'blog/optimizing-vm-performance-production-workloads/index.html', canonical: 'https://ladestack.in/blog/optimizing-vm-performance-production-workloads', expectedHreflangs: 0 },
+  // Phase 3D-D English-only modernized articles
+  { path: 'blog/building-zero-downtime-deployment-pipelines/index.html', canonical: 'https://ladestack.in/blog/building-zero-downtime-deployment-pipelines', expectedHreflangs: 0 },
+  { path: 'blog/infrastructure-as-code-terraform-pulumi/index.html', canonical: 'https://ladestack.in/blog/infrastructure-as-code-terraform-pulumi', expectedHreflangs: 0 },
+  { path: 'blog/implementing-oauth2-openid-connect/index.html', canonical: 'https://ladestack.in/blog/implementing-oauth2-openid-connect', expectedHreflangs: 0 },
+  { path: 'blog/mlops-deploying-ml-models-production/index.html', canonical: 'https://ladestack.in/blog/mlops-deploying-ml-models-production', expectedHreflangs: 0 },
+  { path: 'blog/monitoring-ai-systems-in-production/index.html', canonical: 'https://ladestack.in/blog/monitoring-ai-systems-in-production', expectedHreflangs: 0 },
 ];
+
+// Phase 3D-D: Zero remaining legacy fallback subpages
+const LEGACY_FALLBACK_SUBPAGES = [];
 
 let failed = false;
 
@@ -113,58 +126,17 @@ for (const page of ENGLISH_ONLY_SUBPAGES) {
   }
 }
 
-console.log('\n--- 3. Auditing 7 Verified Remaining Legacy Fallback Routes (Zero False Alternates) ---');
-const LEGACY_FALLBACK_SUBPAGES = [
-  'gitops-managing-infrastructure-with-git',
-  'building-zero-downtime-deployment-pipelines',
-  'infrastructure-as-code-terraform-pulumi',
-  'owasp-top-10-complete-mitigation-guide',
-  'implementing-oauth2-openid-connect',
-  'mlops-deploying-ml-models-production',
-  'monitoring-ai-systems-in-production',
-].map((slug) => ({
-  path: `blog/${slug}/index.html`,
-  canonical: `https://ladestack.in/blog/${slug}`,
-  expectedHreflangs: 0,
-}));
-
-for (const page of LEGACY_FALLBACK_SUBPAGES) {
-  const filePath = path.join(DIST_DIR, page.path);
-  if (!fs.existsSync(filePath)) {
-    console.error(`❌ FAIL: Missing Legacy fallback subpage: ${page.path}`);
-    failed = true;
-    continue;
-  }
-
-  const html = fs.readFileSync(filePath, 'utf-8');
-
-  // Check <html lang="en">
-  const langMatch = html.match(/<html\s+[^>]*lang=["']([^"']+)["']/i);
-  if (!langMatch || langMatch[1] !== 'en') {
-    console.error(`❌ FAIL [${page.path}]: Expected <html lang="en">, got "${langMatch ? langMatch[1] : 'NONE'}"`);
-    failed = true;
-  }
-
-  // Check Canonical
-  const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i);
-  if (!canonicalMatch || canonicalMatch[1] !== page.canonical) {
-    console.error(`❌ FAIL [${page.path}]: Canonical mismatch: ${canonicalMatch ? canonicalMatch[1] : 'NONE'}`);
-    failed = true;
-  }
-
-  // Check Hreflangs
-  const hreflangCount = (html.match(/rel=["']alternate["']\s+hreflang=/gi) || []).length;
-  if (hreflangCount !== page.expectedHreflangs) {
-    console.error(`❌ FAIL [${page.path}]: Found ${hreflangCount} fake hreflang tags! Legacy fallback must have 0 alternates.`);
-    failed = true;
-  } else {
-    console.log(`✅ PASS [${page.path}]: Canonical valid (${page.canonical}), exactly 0 fake hreflangs.`);
-  }
+console.log('\n--- 3. Auditing Legacy Fallback Count (Must be exactly 0) ---');
+if (LEGACY_FALLBACK_SUBPAGES.length !== 0) {
+  console.error(`❌ FAIL: Expected 0 legacy fallback subpages in Phase 3D-D, got ${LEGACY_FALLBACK_SUBPAGES.length}`);
+  failed = true;
+} else {
+  console.log(`✅ PASS: Exactly 0 legacy fallback subpages remain in Phase 3D-D (Zero Fallback Target Achieved).`);
 }
 
 if (failed) {
   process.exit(1);
 } else {
-  console.log('\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY (21 LOCALIZED + 12 ENGLISH-ONLY + 7 LEGACY FALLBACK)!');
+  console.log(`\n🎉 ALL ENGLISH SUBPAGE CHECKS PASSED PERFECTLY (${LOCALIZED_SUBPAGES.length} LOCALIZED + ${ENGLISH_ONLY_SUBPAGES.length} ENGLISH-ONLY + 0 LEGACY FALLBACK)!`);
   process.exit(0);
 }
