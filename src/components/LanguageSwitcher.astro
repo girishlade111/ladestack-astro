@@ -118,6 +118,7 @@ const menuPositionClass = direction === 'up'
               href={targetUrl}
               role="menuitem"
               lang={loc}
+              data-lang-choice={loc}
               title={titleAttr}
               class={`flex items-center justify-between px-3 py-2 text-xs rounded-lg transition-colors group ${
                 isCurrent
@@ -209,6 +210,19 @@ const menuPositionClass = direction === 'up'
         });
       });
     }
+
+    // Persist language selection when user clicks a language option
+    document.addEventListener('click', function (e) {
+      var target = e.target && e.target.closest ? e.target.closest('[data-lang-choice]') : null;
+      if (target) {
+        var choice = target.getAttribute('data-lang-choice');
+        if (choice) {
+          try {
+            localStorage.setItem('ladestack-locale', choice);
+          } catch (err) {}
+        }
+      }
+    });
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initLanguageSwitchers);

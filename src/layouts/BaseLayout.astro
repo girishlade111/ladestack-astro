@@ -67,12 +67,98 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
     <script is:inline>
       (function () {
         try {
-          const stored = localStorage.getItem('ladestack-theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (stored === 'dark' || (!stored && prefersDark)) {
-            document.documentElement.classList.add('dark');
+          // ── 1. THEME: Universal OS/Device/Browser Sync (Windows, macOS, iOS, Android, Linux) ──
+          var media = window.matchMedia('(prefers-color-scheme: dark)');
+          var storedTheme = null;
+          try {
+            storedTheme = localStorage.getItem('ladestack-theme') || localStorage.getItem('theme');
+          } catch (err) {}
+
+          function applyTheme(isDark) {
+            if (isDark) {
+              document.documentElement.classList.add('dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+            }
+          }
+
+          if (storedTheme === 'dark') {
+            applyTheme(true);
+          } else if (storedTheme === 'light') {
+            applyTheme(false);
           } else {
-            document.documentElement.classList.remove('dark');
+            // Unconditionally match device / OS preference
+            applyTheme(media.matches);
+          }
+
+          var handleThemeChange = function (e) {
+            try {
+              var currentStored = localStorage.getItem('ladestack-theme') || localStorage.getItem('theme');
+              if (!currentStored) {
+                applyTheme(e.matches);
+              }
+            } catch (err) {}
+          };
+
+          if (typeof media.addEventListener === 'function') {
+            media.addEventListener('change', handleThemeChange);
+          } else if (typeof media.addListener === 'function') {
+            media.addListener(handleThemeChange);
+          }
+
+          // ── 2. LANGUAGE: Device/Browser Locale Auto-Detection & Persistence ──
+          var isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent || '');
+          if (!isBot) {
+            var supportedLocales = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
+            var storedLocale = null;
+            try {
+              storedLocale = localStorage.getItem('ladestack-locale');
+            } catch (err) {}
+
+            var pathname = window.location.pathname || '/';
+            var segments = pathname.replace(/^\/+/, '').split('/');
+            var firstSegment = segments[0] || '';
+            var currentUrlLocale = (supportedLocales.indexOf(firstSegment) !== -1 && firstSegment !== 'en')
+              ? firstSegment
+              : 'en';
+
+            var targetLocale = null;
+            if (storedLocale && supportedLocales.indexOf(storedLocale) !== -1) {
+              targetLocale = storedLocale;
+            } else {
+              var navLangs = navigator.languages || [navigator.language || 'en'];
+              for (var i = 0; i < navLangs.length; i++) {
+                var rawLang = (navLangs[i] || '').toLowerCase().trim();
+                var primary = rawLang.split('-')[0];
+                if (supportedLocales.indexOf(primary) !== -1) {
+                  targetLocale = primary;
+                  break;
+                }
+              }
+              if (!targetLocale) {
+                targetLocale = 'en';
+              }
+            }
+
+            // Only redirect if current route differs from target locale
+            if (targetLocale && targetLocale !== currentUrlLocale) {
+              var cleanPath = currentUrlLocale === 'en'
+                ? pathname
+                : '/' + segments.slice(1).join('/');
+              if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
+              if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+                cleanPath = cleanPath.slice(0, -1);
+              }
+
+              var destination = targetLocale === 'en'
+                ? cleanPath
+                : (cleanPath === '/' ? '/' + targetLocale : '/' + targetLocale + cleanPath);
+
+              var searchParams = window.location.search || '';
+              if (destination !== pathname && searchParams.indexOf('no-redirect') === -1) {
+                window.location.replace(destination + searchParams + (window.location.hash || ''));
+              }
+            }
           }
         } catch (e) {}
       })();
