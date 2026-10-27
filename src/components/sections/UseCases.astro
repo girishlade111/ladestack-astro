@@ -10,9 +10,10 @@ import { useTranslations, getLocalizedPath, type Locale } from '../../i18n';
 
 interface Props {
   locale?: Locale;
+  class?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', class: className = '' } = Astro.props;
 const t = useTranslations(locale);
 const appsHref = getLocalizedPath('/apps', locale);
 
@@ -28,7 +29,7 @@ const useCases = [
       'Real-time live preview with QR device testing and ZIP export',
     ],
     tool: 'GB Coder',
-    href: '/gb-coder',
+    href: 'https://code.ladestack.in/',
   },
   {
     id: 'privacy',
@@ -59,7 +60,7 @@ const useCases = [
 ];
 ---
 
-<section id="use-cases" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30" data-use-cases>
+<section id="use-cases" class={`py-16 sm:py-24 border-b border-border bg-background ${className}`.trim()} data-use-cases>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
       eyebrow={t('useCases.eyebrow')}
