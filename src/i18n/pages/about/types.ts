@@ -13,13 +13,20 @@ export interface AboutPageData {
     titleHighlight: string;
     description: string;
   };
+  stats?: Array<{
+    value: string;
+    label: string;
+    icon?: string;
+  }>;
   founder: {
     leadershipEyebrow: string;
     meetFounderTitle: string;
     name: string;
     role: string;
     badge: string;
+    education?: string;
     bio: string;
+    journeyQuote?: string;
     skillsLabel: string;
     skills: string[];
     socialLabels: {
@@ -28,6 +35,43 @@ export interface AboutPageData {
       instagram: string;
       email: string;
     };
+  };
+  timeline?: {
+    eyebrow: string;
+    title: string;
+    p1: string;
+    p2: string;
+    p3: string;
+    milestones: Array<{
+      year: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  pivot?: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    legacyTitle: string;
+    legacyBadge: string;
+    legacyPoints: string[];
+    modernTitle: string;
+    modernBadge: string;
+    modernPoints: string[];
+    quote: string;
+  };
+  missionVision?: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    missionEyebrow: string;
+    missionTitle: string;
+    missionDesc: string;
+    missionTags: string[];
+    visionEyebrow: string;
+    visionTitle: string;
+    visionDesc: string;
+    visionQuote: string;
   };
   genesis: {
     eyebrow: string;
