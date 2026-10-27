@@ -95,6 +95,13 @@ const structuredData = [
               {section.paragraphs.map((p) => (
                 <p>{p}</p>
               ))}
+              {section.listItems && (
+                <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm pt-1">
+                  {section.listItems.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))
         }

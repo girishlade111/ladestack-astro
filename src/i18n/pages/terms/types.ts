@@ -6,6 +6,7 @@
 export interface TermsSection {
   title: string;
   paragraphs: string[];
+  listItems?: string[];
 }
 
 export interface TermsPageData {
