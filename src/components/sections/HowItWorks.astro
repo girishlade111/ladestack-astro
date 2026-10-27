@@ -10,9 +10,10 @@ import { useTranslations, type Locale } from '../../i18n';
 
 interface Props {
   locale?: Locale;
+  class?: string;
 }
 
-const { locale = 'en' } = Astro.props;
+const { locale = 'en', class: className = '' } = Astro.props;
 const t = useTranslations(locale);
 
 const steps = [
@@ -37,7 +38,7 @@ const steps = [
 ];
 ---
 
-<section id="how-it-works" class="preserved-bento-lock py-20 sm:py-28 border-t border-border bg-background">
+<section id="how-it-works" class={`preserved-bento-lock py-20 sm:py-28 border-b border-border bg-background ${className}`.trim()}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeader
       eyebrow={t('howItWorks.eyebrow')}
