@@ -16,6 +16,7 @@ import Accordion from '../ui/Accordion.astro';
 import AccordionItem from '../ui/AccordionItem.astro';
 import HowItWorks from '../sections/HowItWorks.astro';
 import CodeStudioMockup from '../ui/CodeStudioMockup.astro';
+import UseCases from '../sections/UseCases.astro';
 import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
 import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
 import { getGbCoderData } from '../../i18n/pages/gb-coder';
@@ -322,6 +323,9 @@ const structuredData = [
         </div>
       </div>
     </section>
+
+    {/* ── BUILT FOR MODERN ENGINEERING WORKFLOWS (USE CASES) ── */}
+    <UseCases locale={locale} />
 
     {/* ── BROWSER SUPPORT TRANSPARENCY ── */}
     <section class="py-16 sm:py-24 border-b border-border bg-background">
