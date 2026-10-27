@@ -99,8 +99,8 @@ const structuredData = [
   structuredData={structuredData}
 >
   <div class="min-h-screen bg-background text-foreground">
-    {/* ── SECTION 1: Page Header / Hero ── */}
-    <section class="relative pt-20 pb-14 border-b border-border bg-surface-muted/20">
+    {/* ── SECTION 1: Page Header / Hero & Stats ── */}
+    <section class="relative pt-20 pb-16 border-b border-border bg-surface-muted/20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <Badge variant="brand" size="md" class="mb-4">
           {data.hero.badge}
@@ -111,11 +111,31 @@ const structuredData = [
         <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed text-pretty">
           {data.hero.description}
         </p>
+
+        {data.stats && (
+          <div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {data.stats.map((stat) => (
+              <div class="rounded-xl border border-border bg-surface p-5 text-center shadow-soft flex flex-col justify-center items-center hover:border-brand/40 transition-colors">
+                {stat.icon && (
+                  <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center mb-2">
+                    <Icon name={stat.icon} class="w-4 h-4" />
+                  </div>
+                )}
+                <div class="text-2xl sm:text-3xl font-bold font-mono text-foreground tracking-tight">
+                  {stat.value}
+                </div>
+                <div class="text-xs text-muted-foreground mt-1 font-medium leading-snug">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
 
-    {/* ── SECTION 2: Founder Profile ── */}
-    <section class="py-14 sm:py-20 border-b border-border bg-background">
+    {/* ── SECTION 2: Founder Profile & Background ── */}
+    <section class="py-16 sm:py-24 border-b border-border bg-background">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-6">
           <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
@@ -129,7 +149,7 @@ const structuredData = [
         <div class="rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-elevated relative overflow-hidden">
           <BorderBeam size={250} duration={12} delay={0} colorFrom="#ffaa40" colorTo="#9c40ff" borderWidth={1.5} />
           <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 lg:gap-10 relative z-10">
-            {/* ── Founder Photo with Original 2:3 Aspect Ratio ── */}
+            {/* ── Founder Photo with 2:3 Aspect Ratio ── */}
             <div class="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-none md:w-[280px] lg:w-[320px] shrink-0 group self-center md:self-auto">
               <div class="w-full h-full aspect-[2/3] rounded-2xl overflow-hidden border-2 border-brand/40 shadow-soft bg-surface-muted relative">
                 <img
@@ -159,15 +179,29 @@ const structuredData = [
                       {data.founder.role}
                     </p>
                   </div>
-                  <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-surface-muted border border-border text-xs font-mono text-muted-foreground self-center sm:self-auto">
-                    <Icon name="shield-check" class="w-3.5 h-3.5 text-brand" />
-                    <span>{data.founder.badge}</span>
+                  <div class="flex flex-wrap items-center justify-center md:justify-end gap-2">
+                    {data.founder.education && (
+                      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-muted border border-border text-xs font-mono text-muted-foreground">
+                        <Icon name="award" class="w-3.5 h-3.5 text-brand" />
+                        <span>{data.founder.education}</span>
+                      </div>
+                    )}
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-muted border border-border text-xs font-mono text-muted-foreground">
+                      <Icon name="shield-check" class="w-3.5 h-3.5 text-brand" />
+                      <span>{data.founder.badge}</span>
+                    </div>
                   </div>
                 </div>
 
                 <p class="text-sm sm:text-base text-muted-foreground leading-relaxed text-pretty">
                   {data.founder.bio}
                 </p>
+
+                {data.founder.journeyQuote && (
+                  <div class="p-4 rounded-xl border border-border bg-surface-muted/50 text-xs sm:text-sm text-foreground/90 italic leading-relaxed text-left">
+                    "{data.founder.journeyQuote}"
+                  </div>
+                )}
               </div>
 
               <div>
@@ -216,52 +250,170 @@ const structuredData = [
       </div>
     </section>
 
-    {/* ── SECTION 3: Origin, Mission & Vision ── */}
-    <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div class="lg:col-span-6 space-y-6">
-            <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
-              {data.genesis.eyebrow}
-            </span>
-            <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              {data.genesis.title}
-            </h2>
-            <div class="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
-              <p>{data.genesis.p1}</p>
-              <p>{data.genesis.p2}</p>
-              <p>{data.genesis.p3}</p>
+    {/* ── SECTION 3: The Origin & Timeline ("Built from a developer's real frustrations") ── */}
+    {data.timeline && (
+      <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow={data.timeline.eyebrow}
+            title={data.timeline.title}
+          />
+
+          <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            {/* Left: Chronological Milestones */}
+            <div class="lg:col-span-5 relative pl-6 border-l-2 border-border space-y-8">
+              {data.timeline.milestones.map((m) => (
+                <div class="relative group">
+                  <div class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full border-2 border-brand bg-background group-hover:bg-brand transition-colors"></div>
+                  <span class="inline-block px-2.5 py-0.5 rounded-md bg-brand/10 text-brand font-mono text-xs font-semibold mb-1">
+                    {m.year}
+                  </span>
+                  <h4 class="text-base font-bold text-foreground">{m.title}</h4>
+                  <p class="mt-1 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    {m.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: Narrative */}
+            <div class="lg:col-span-7 rounded-2xl border border-border bg-surface p-6 sm:p-10 shadow-soft space-y-4">
+              <span class="text-xs font-mono text-brand font-semibold uppercase tracking-wider">
+                Founder Narrative
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-foreground">
+                Solving our own bottlenecks first
+              </h3>
+              <div class="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <p>{data.timeline.p1}</p>
+                <p>{data.timeline.p2}</p>
+                <p>{data.timeline.p3}</p>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
+    )}
 
-          <div class="lg:col-span-6 space-y-6">
-            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
-              <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-                  <Icon name="target" class="w-4 h-4" />
+    {/* ── SECTION 4: The Pivot Point (Architectural Paradigm Shift) ── */}
+    {data.pivot && (
+      <section class="py-16 sm:py-24 border-b border-border bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow={data.pivot.eyebrow}
+            title={data.pivot.title}
+            description={data.pivot.subtitle}
+          />
+
+          <div class="mt-12 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+              {/* Legacy Cloud Model Card */}
+              <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-card flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <Badge variant="outline" size="sm">{data.pivot.legacyBadge}</Badge>
+                    <Icon name="x-circle" class="w-5 h-5 text-muted-foreground/70" />
+                  </div>
+                  <h3 class="text-xl font-bold text-foreground mb-4">{data.pivot.legacyTitle}</h3>
+                  <ul class="space-y-3 text-xs sm:text-sm text-muted-foreground">
+                    {data.pivot.legacyPoints.map((pt) => (
+                      <li class="flex items-start gap-2.5">
+                        <Icon name="x" class="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 class="text-lg font-semibold text-foreground">{data.genesis.missionTitle}</h3>
               </div>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                {data.genesis.missionDesc}
-              </p>
+
+              {/* LadeStack Standard Card */}
+              <div class="rounded-2xl border border-brand/50 bg-surface p-6 sm:p-8 shadow-card flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-brand/10 blur-2xl pointer-events-none"></div>
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <Badge variant="brand" size="sm">{data.pivot.modernBadge}</Badge>
+                    <Icon name="check-circle-2" class="w-5 h-5 text-brand" />
+                  </div>
+                  <h3 class="text-xl font-bold text-foreground mb-4">{data.pivot.modernTitle}</h3>
+                  <ul class="space-y-3 text-xs sm:text-sm text-foreground">
+                    {data.pivot.modernPoints.map((pt) => (
+                      <li class="flex items-start gap-2.5">
+                        <Icon name="check" class="w-4 h-4 text-brand shrink-0 mt-0.5" />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft space-y-4">
-              <div class="flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center">
-                  <Icon name="compass" class="w-4 h-4" />
-                </div>
-                <h3 class="text-lg font-semibold text-foreground">{data.genesis.visionTitle}</h3>
-              </div>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                {data.genesis.visionDesc}
+            {/* Quote banner */}
+            <div class="mt-8 p-6 sm:p-8 rounded-2xl border border-border bg-surface-muted/30 text-center">
+              <p class="text-sm sm:text-base font-medium text-foreground max-w-3xl mx-auto leading-relaxed">
+                "{data.pivot.quote}"
               </p>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    )}
+
+    {/* ── SECTION 5: Purpose-Driven Engineering (Mission & Vision) ── */}
+    {data.missionVision && (
+      <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            eyebrow={data.missionVision.eyebrow}
+            title={data.missionVision.title}
+            description={data.missionVision.subtitle}
+          />
+
+          <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Mission Card */}
+            <div class="rounded-2xl border border-border bg-surface p-8 shadow-card flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+                  {data.missionVision.missionEyebrow}
+                </span>
+                <h3 class="text-2xl font-bold text-foreground mt-2 mb-4">
+                  {data.missionVision.missionTitle}
+                </h3>
+                <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  {data.missionVision.missionDesc}
+                </p>
+              </div>
+              <div class="mt-6 pt-6 border-t border-border flex flex-wrap gap-2">
+                {data.missionVision.missionTags.map((tag) => (
+                  <span class="px-2.5 py-1 rounded-md bg-surface-muted border border-border text-xs font-mono text-foreground/80">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Vision Card */}
+            <div class="rounded-2xl border border-border bg-surface p-8 shadow-card flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+                  {data.missionVision.visionEyebrow}
+                </span>
+                <h3 class="text-2xl font-bold text-foreground mt-2 mb-4">
+                  {data.missionVision.visionTitle}
+                </h3>
+                <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  {data.missionVision.visionDesc}
+                </p>
+              </div>
+              <div class="mt-6 pt-6 border-t border-border">
+                <p class="text-xs font-mono text-brand italic">
+                  "{data.missionVision.visionQuote}"
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
 
     {/* ── SECTION 4: Engineering Principles ── */}
     <section class="py-16 sm:py-24 border-b border-border bg-background">
