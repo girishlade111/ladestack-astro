@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
 import typography from "@tailwindcss/typography";
 
-function withOpacity(variableName: string) {
+function withOpacity(variableName: string): any {
   return ({ opacityValue }: { opacityValue?: string }) => {
     if (opacityValue !== undefined) {
       return `color-mix(in oklch, var(${variableName}) calc(${opacityValue} * 100%), transparent)`;
