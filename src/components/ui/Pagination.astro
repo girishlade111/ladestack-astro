@@ -1,0 +1,82 @@
+---
+/**
+ * Pagination.astro
+ * Standardized Pagination component for blog and archive pages.
+ * Displays Previous, numbered pages with ellipsis, and Next buttons.
+ * Token-driven, accessible (ARIA), supports responsive mobile/desktop display.
+ */
+import Icon from '../Icon.astro';
+
+export interface Props {
+  currentPage?: number;
+  totalPages?: number;
+  class?: string;
+}
+
+const {
+  currentPage = 1,
+  totalPages = 1,
+  class: className = '',
+} = Astro.props;
+---
+
+<nav
+  data-pagination-container
+  aria-label="Blog Pagination"
+  class={`flex items-center justify-between border-t border-border pt-6 mt-12 w-full select-none ${className}`.trim()}
+>
+  <!-- Previous Button -->
+  <button
+    type="button"
+    data-pagination-prev
+    disabled={currentPage <= 1}
+    aria-label="Previous page"
+    class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border bg-surface text-sm font-medium text-foreground hover:bg-surface-muted hover:border-brand/40 transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+  >
+    <Icon name="arrow-left" class="w-4 h-4" />
+    <span>Previous</span>
+  </button>
+
+  <!-- Desktop Page Numbers -->
+  <div
+    data-pagination-pages
+    class="hidden sm:flex items-center gap-1.5"
+    role="navigation"
+    aria-label="Pagination Pages"
+  >
+    <!-- Rendered dynamically or server-rendered for initial page 1 -->
+    {
+      Array.from({ length: totalPages }, (_, i) => i + 1).slice(0, 5).map((page) => (
+        <button
+          type="button"
+          data-pagination-page={page}
+          aria-current={page === currentPage ? 'page' : undefined}
+          class={`w-9 h-9 rounded-lg flex items-center justify-center text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            page === currentPage
+              ? 'bg-primary text-primary-foreground font-semibold shadow-soft'
+              : 'text-muted-foreground hover:text-foreground hover:bg-surface-muted border border-transparent hover:border-border'
+          }`}
+        >
+          {page}
+        </button>
+      ))
+    }
+  </div>
+
+  <!-- Mobile Page Indicator -->
+  <div class="sm:hidden font-mono text-xs text-muted-foreground px-2 py-1 bg-surface-muted rounded border border-border/60">
+    Page <span data-pagination-mobile-current>{currentPage}</span> of <span data-pagination-mobile-total>{totalPages}</span>
+  </div>
+
+  <!-- Next Button -->
+  <button
+    type="button"
+    data-pagination-next
+    disabled={currentPage >= totalPages}
+    aria-label="Next page"
+    class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border bg-surface text-sm font-medium text-foreground hover:bg-surface-muted hover:border-brand/40 transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+  >
+    <span>Next</span>
+    <Icon name="arrow-right" class="w-4 h-4" />
+  </button>
+</nav>
