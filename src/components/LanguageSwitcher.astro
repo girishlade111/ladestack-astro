@@ -46,7 +46,7 @@ const isFullyTranslated = availableLocales.length === LOCALES.length;
     class="inline-flex items-center gap-1.5 h-9 px-2.5 rounded-lg border border-border bg-surface-muted/60 hover:bg-surface-muted text-muted-foreground hover:text-foreground text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     aria-expanded="false"
     aria-haspopup="true"
-    aria-label={`${t('nav.languageSelect')}. Current language: ${currentConfig.name}`}
+    aria-label={`${currentLocale.toUpperCase()} - ${t('nav.languageSelect')}: ${currentConfig.name}`}
   >
     <Icon name="globe" class="w-3.5 h-3.5 text-brand" />
     <span class="font-mono text-[11px] font-semibold uppercase">{currentLocale}</span>

@@ -157,3 +157,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.38);
 }
+
+/* Accessibility: WCAG AA color contrast for Shiki code block comments against dark background */
+pre.astro-code code span[style*="color:#6A737D"],
+pre.astro-code code span[style*="color: #6A737D"],
+pre.astro-code code span[style*="color:#6a737d"],
+pre.astro-code code span[style*="color: #6a737d"] {
+  color: #9CA3AF !important; /* Neutral-400: 5.6:1 contrast against #24292E */
+}

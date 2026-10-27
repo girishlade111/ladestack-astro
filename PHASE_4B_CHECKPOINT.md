@@ -79,5 +79,41 @@ FILES_MODIFIED:
   - LADESTACK_PHASE_4B_2_DEPENDENCY_AUDIT.md
   - LADESTACK_PHASE_4B_2_SECURITY_PERFORMANCE_REPORT.md
 KNOWN_BLOCKERS: NONE
-NEXT_EXACT_ACTION: Phase 4C Edge Deployment Gate (Awaiting Operator Trigger)
+NEXT_EXACT_ACTION: Phase 4C-1 Quality Gate Complete
+
+---
+
+## PHASE 4C-1 LIGHTHOUSE PERFORMANCE & ACCESSIBILITY REMEDIATION
+ACTIVE_BRANCH: feature/phase-4c-1-performance-accessibility
+STARTING_HEAD: c90ad6f7fca1dd79a37e9b03f21e6d8e8d1fe0a6
+CURRENT_TASK: PHASE_4C_1_COMPLETE_LOCAL
+PREVIEW_READINESS: READY_FOR_PREVIEW_DEPLOYMENT_APPROVAL
+LAST_VERIFIED_STEP: FULL_16_SUITE_REGRESSION_AND_BROWSER_QA_PASS
+LAST_SUCCESSFUL_TEST: All 16 regression suites passed exit code 0 + multi-viewport browser QA (0 errors)
+METRICS_SUMMARY:
+  - Homepage CLS: 0.166 -> 0.000 (Target <= 0.10 MET)
+  - OWASP Article CLS: 0.212 -> 0.000 (Target <= 0.10 MET)
+  - Japanese Blog TBT: 3,041ms -> 0ms (Target <= 200ms MET)
+  - OWASP Accessibility: 91 -> 100 (100% automated check pass rate)
+  - All Target Routes Accessibility: 100
+  - All Target Routes CLS: 0.000
+FILES_CREATED:
+  - LADESTACK_PHASE_4C_1_LIGHTHOUSE_ROOT_CAUSE.md
+  - LADESTACK_PHASE_4C_1_PERFORMANCE_REMEDIATION.md
+  - LADESTACK_PHASE_4C_1_ACCESSIBILITY_REMEDIATION.md
+  - LADESTACK_PHASE_4C_1_FINAL_RELEASE_GATE.md
+  - scratch/test-phase4c1.mjs
+  - scratch/run-full-regression-matrix.mjs
+  - scratch/compare-benchmarks.mjs
+  - scratch/run-post-benchmarks.mjs
+FILES_MODIFIED:
+  - src/layouts/BaseLayout.astro (font-display: optional)
+  - src/styles/global.css (Shiki code comment contrast)
+  - src/components/LanguageSwitcher.astro (accessible name includes visible locale)
+  - src/components/ui/LanguageSwitcher.astro (accessible name includes visible code)
+  - src/components/blog/BlogPostLayout.astro (aspect-[16/9] cover container, task list checkbox aria-labels, share button label)
+  - PHASE_4B_CHECKPOINT.md
+  - LADESTACK_PHASE_4B_3_FINAL_RELEASE_RISK_REGISTER.md
+REMOTE_OPERATIONS: ZERO (Strictly Local)
+NEXT_EXACT_ACTION: Awaiting User Approval for Preview Deployment / Git Push
 
