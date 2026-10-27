@@ -1,0 +1,23 @@
+---
+/**
+ * AnimatedShinyText.astro
+ * Light glare shimmer animation that pans across text.
+ * Optimized for both light theme and dark theme, conforming to project tokens.
+ */
+export interface Props {
+  shimmerWidth?: number;
+  class?: string;
+}
+
+const {
+  shimmerWidth = 100,
+  class: className = '',
+  ...rest
+} = Astro.props;
+---
+
+<span
+  style={`--shiny-width: ${shimmerWidth}px;`}
+  class={`animated-shiny-text ${className}`.trim()}
+  {...rest}
+><slot /></span>
