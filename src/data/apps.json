@@ -157,5 +157,22 @@
     "createdAt": "2025-03-28",
     "popularityScore": 78,
     "iconAlt": "Bharat Land Converter icon"
+  },
+  {
+    "id": "md2pdf",
+    "slug": "md2pdf",
+    "title": "MD2PDF — Markdown to PDF",
+    "tagline": "Client-side Markdown to vector PDF compiler with KaTeX math & syntax highlighting",
+    "description": "Convert GitHub-flavored Markdown to publication-grade vector PDF files directly in your browser. Features syntax highlighting, LaTeX math typesetting, print CSS control, and 100% client-side privacy.",
+    "icon": "/md2pdf-project.svg",
+    "category": "Productivity",
+    "features": ["Client-Side Only", "KaTeX Math", "Syntax Highlighting", "Zero Uploads"],
+    "timeToValue": "Instant",
+    "integrations": ["KaTeX", "PrismJS", "Print CSS", "Browser Engine"],
+    "lifetimeFree": true,
+    "landingUrl": "https://md2pdf.ladestack.in/",
+    "createdAt": "2025-03-29",
+    "popularityScore": 86,
+    "iconAlt": "MD2PDF icon"
   }
 ]
