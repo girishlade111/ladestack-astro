@@ -1,0 +1,73 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Icon from '../Icon.astro';
+
+export interface Props extends HTMLAttributes<'button'> {
+  text?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+}
+
+const {
+  text = 'Button',
+  href,
+  target,
+  rel,
+  class: className = '',
+  type = 'button',
+  disabled = false,
+  ...rest
+} = Astro.props;
+
+const slotContent = Astro.slots.has('default') ? await Astro.slots.render('default') : null;
+const buttonText = slotContent?.trim() ? slotContent : text;
+
+const baseStyles = 'group relative inline-flex items-center justify-center w-auto cursor-pointer overflow-hidden rounded-full border border-border bg-background p-2 px-6 text-center font-semibold text-foreground transition-all duration-300 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none';
+
+const classes = `${baseStyles} ${className}`.trim();
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      rel={target === '_blank' ? (rel ?? 'noopener noreferrer') : rel}
+      class={classes}
+      {...rest}
+    >
+      <div class="flex items-center justify-center gap-2">
+        <div class="h-2 w-2 rounded-full bg-primary transition-all duration-300 group-hover:scale-[100.8]"></div>
+        <span class="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+          <Fragment set:html={buttonText} />
+        </span>
+      </div>
+      <div class="text-primary-foreground absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
+        <span><Fragment set:html={buttonText} /></span>
+        <Icon name="arrow-right" class="w-4 h-4 shrink-0" />
+      </div>
+    </a>
+  ) : (
+    <button
+      type={type}
+      disabled={disabled}
+      class={classes}
+      {...rest}
+    >
+      <div class="flex items-center justify-center gap-2">
+        <div class="h-2 w-2 rounded-full bg-primary transition-all duration-300 group-hover:scale-[100.8]"></div>
+        <span class="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+          <Fragment set:html={buttonText} />
+        </span>
+      </div>
+      <div class="text-primary-foreground absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
+        <span><Fragment set:html={buttonText} /></span>
+        <Icon name="arrow-right" class="w-4 h-4 shrink-0" />
+      </div>
+    </button>
+  )
+}
