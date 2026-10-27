@@ -63,10 +63,16 @@ const socials = [
       {/* Brand & Pitch column */}
       <div class="lg:col-span-2 flex flex-col justify-between">
         <div class="space-y-4">
-          <a href={homeHref} class="flex items-center gap-2.5">
-            <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-brand-foreground shadow-soft">
-              <Icon name="code-2" class="w-4 h-4" />
-            </div>
+          <a href={homeHref} class="flex items-center gap-2.5 group">
+            <img
+              src="/logo.png"
+              alt="LadeStack Logo"
+              class="w-7 h-7 object-contain transition-transform group-hover:scale-105"
+              width="28"
+              height="28"
+              loading="lazy"
+              decoding="async"
+            />
             <span class="text-lg font-semibold tracking-tight text-foreground">LadeStack</span>
           </a>
           <p class="text-sm text-muted-foreground leading-relaxed max-w-sm">

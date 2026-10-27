@@ -41,9 +41,15 @@ const navLinks = [
   <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
     {/* ── LEFT: Logo ── */}
     <a href={homeHref} class="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-lg p-1">
-      <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center text-brand-foreground shadow-soft transition-transform group-hover:scale-105">
-        <Icon name="code-2" class="w-4 h-4" />
-      </div>
+      <img
+        src="/logo.png"
+        alt="LadeStack Logo"
+        class="w-8 h-8 object-contain transition-transform group-hover:scale-105"
+        width="32"
+        height="32"
+        loading="eager"
+        decoding="async"
+      />
       <span class="text-base font-semibold tracking-tight text-foreground">
         LadeStack
       </span>
@@ -97,9 +103,15 @@ const navLinks = [
     <div>
       <div class="flex items-center justify-between pb-6 border-b border-border">
         <a href={homeHref} class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center text-brand-foreground">
-            <Icon name="code-2" class="w-4 h-4" />
-          </div>
+          <img
+            src="/logo.png"
+            alt="LadeStack Logo"
+            class="w-7 h-7 object-contain"
+            width="28"
+            height="28"
+            loading="lazy"
+            decoding="async"
+          />
           <span class="text-base font-semibold text-foreground">LadeStack</span>
         </a>
         <button
