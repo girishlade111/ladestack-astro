@@ -77,11 +77,13 @@ This Final Pre-Release Risk Register tracks all operational, security, performan
 ## 4. Pre-Release Deployment Checklist & Signoff Conditions
 
 Prior to initiating Phase 4C (Deployment & Edge Verification):
-1. [x] **Safe Git State**: Branch `feature/phase-4b-3-security-closure` active from verified HEAD `d06b609`. Zero remote pushes.
+1. [x] **Safe Git State**: Branch `feature/phase-4c-2-preview-readiness` active from verified HEAD `d4447e3`. Zero remote pushes.
 2. [x] **Code-Level Security**: `postcss-selector-parser@6.1.5` installed; vulnerable `6.0.10` eliminated.
 3. [x] **Zero CSS Regression**: Byte-for-byte identical stylesheet generation confirmed.
-4. [x] **Headers Prepared**: Security headers configured in `vercel.json` without dangerous HSTS flags.
-5. [x] **Edge Redirects Preserved**: All 12 status 301 redirects tested and active.
-6. [x] **Full Regression Matrix Passed**: All 14 automated suites green.
-7. [x] **Real Browser QA**: 4 viewports tested across 8 routes; 0 console errors.
-8. [ ] **Post-Deploy Edge Audit**: Inspect live headers on Vercel preview/production URL (Scoped strictly to Phase 4C).
+4. [x] **Headers Prepared**: Security headers configured in `vercel.json` without dangerous HSTS flags (`SECURITY_HEADERS_EDGE_VERIFICATION_PENDING`).
+5. [x] **Edge Redirects Preserved**: All 12 status 301 redirects tested and active (`EDGE_301_VERIFICATION_PENDING`).
+6. [x] **Full Regression Matrix Passed**: All 16 automated suites green (exit code 0).
+7. [x] **Controlled 5-Run Lab Benchmark**: CLS 0.000, TBT 0ms, A11y 100 site-wide (`FIELD_DATA_NOT_AVAILABLE`).
+8. [x] **I18n Blog Inventory Verified**: Exactly 13 articles per non-English locale, 30 English; zero leaks or duplicates.
+9. [x] **Deployment Safety Preflight**: Production project `lade-stack-ai-dev-hub` (Vite) identified; isolated preview protocol established.
+10. [ ] **Operator Authorized Isolated Preview Deployment**: Awaiting user approval.

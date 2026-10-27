@@ -21,6 +21,11 @@ READY_FOR_PREVIEW_DEPLOYMENT_APPROVAL
 ```
 *(Notice: Preview readiness does NOT authorize deployment. The user must explicitly approve any preview deployment or remote Git push. No remote operations have been executed.)*
 
+> **Phase 4C-2 Reconciliation Addendum (October 26, 2026)**:
+> 1. **Inventory Clarification**: Corrected prior report note regarding card counts. `/ja/blog` renders exactly **13 articles** (the 104 figure was the total non-English collection inventory across all 8 locales).
+> 2. **Controlled 5-Run Benchmark**: Reconciled LCP metrics under clean-room conditions (Home 2.85s, Apps 2.76s, Blog 2.92s, JA Blog 2.87s, OWASP 2.90s), confirming zero TBT and 0.000 CLS across all 5 routes.
+> 3. **Successor Document**: See `LADESTACK_PHASE_4C_2_FINAL_DECISION.md` for current preview safety gate.
+
 ---
 
 ## 2. Executive Verification Summary
