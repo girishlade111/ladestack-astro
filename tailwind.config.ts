@@ -103,6 +103,10 @@ export default {
         elevated: "0 12px 28px -6px rgba(0, 0, 0, 0.09), 0 4px 10px -2px rgba(0, 0, 0, 0.04)",
         brand: "0 0 0 1px hsl(var(--brand-border)), 0 4px 16px -2px hsl(var(--brand-subtle))",
       },
+      backgroundImage: {
+        "gradient-conic":
+          "conic-gradient(var(--conic-position, from 0deg at center), var(--tw-gradient-stops))",
+      },
       transitionTimingFunction: {
         expo: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
