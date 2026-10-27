@@ -220,7 +220,7 @@ export const en: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': 'WORKFLOW SIMPLICITY',
-  'howItWorks.title': 'How LadeStack operates',
+  'howItWorks.title': 'How GB Coder operates',
   'howItWorks.subtitle': 'Three straightforward principles guide every utility on our platform.',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': 'Instant Browser Access',
