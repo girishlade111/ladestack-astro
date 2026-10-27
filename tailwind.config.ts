@@ -158,11 +158,20 @@ export default {
           from: { opacity: "0", transform: "translateY(6px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "shiny-text": {
+          "0%, 90%, 100%": {
+            "background-position": "calc(-100% - var(--shiny-width, 100px)) 0",
+          },
+          "30%, 60%": {
+            "background-position": "calc(100% + var(--shiny-width, 100px)) 0",
+          },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
         "slide-down": "slide-down 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
         "slide-up": "slide-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "shiny-text": "shiny-text 8s infinite",
       },
     },
   },
