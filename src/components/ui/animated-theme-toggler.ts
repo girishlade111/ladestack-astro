@@ -126,3 +126,120 @@ export function getThemeTransitionClipPaths(
       ];
   }
 }
+
+export interface ThemeTransitionOptions {
+  button?: HTMLElement | null;
+  variant?: TransitionVariant;
+  duration?: number;
+  fromCenter?: boolean;
+  theme?: "light" | "dark";
+  onThemeChange?: (theme: "light" | "dark") => void;
+}
+
+export function executeThemeTransition(options: ThemeTransitionOptions = {}): void {
+  const {
+    button = null,
+    variant = "circle",
+    duration = 400,
+    fromCenter = false,
+    theme,
+    onThemeChange,
+  } = options;
+
+  const root = document.documentElement;
+  if (root.dataset.magicuiThemeVt === "active") return;
+
+  const isControlled = theme !== undefined;
+  const isDarkNow = isControlled ? theme === "dark" : root.classList.contains("dark");
+  const newTheme = !isDarkNow;
+
+  const applyTheme = () => {
+    root.classList.toggle("dark", newTheme);
+    try {
+      localStorage.setItem("ladestack-theme", newTheme ? "dark" : "light");
+      localStorage.setItem("theme", newTheme ? "dark" : "light");
+    } catch {}
+    if (onThemeChange) {
+      onThemeChange(newTheme ? "dark" : "light");
+    }
+  };
+
+  if (typeof document.startViewTransition !== "function") {
+    applyTheme();
+    return;
+  }
+
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+
+  let x: number;
+  let y: number;
+  if (fromCenter || !button) {
+    x = viewportWidth / 2;
+    y = viewportHeight / 2;
+  } else {
+    const rect = button.getBoundingClientRect();
+    x = rect.left + rect.width / 2;
+    y = rect.top + rect.height / 2;
+  }
+
+  const maxRadius = Math.hypot(
+    Math.max(x, viewportWidth - x),
+    Math.max(y, viewportHeight - y)
+  );
+
+  const clipPath = getThemeTransitionClipPaths(
+    variant,
+    x,
+    y,
+    maxRadius,
+    viewportWidth,
+    viewportHeight
+  );
+
+  root.dataset.magicuiThemeVt = "active";
+  root.style.setProperty("--magicui-theme-toggle-vt-duration", `${duration}ms`);
+  root.style.setProperty("--magicui-theme-vt-clip-from", clipPath[0]);
+
+  let activeAnim: Animation | null = null;
+  const cleanup = () => {
+    delete root.dataset.magicuiThemeVt;
+    root.style.removeProperty("--magicui-theme-toggle-vt-duration");
+    root.style.removeProperty("--magicui-theme-vt-clip-from");
+    if (activeAnim) {
+      activeAnim.cancel();
+      activeAnim = null;
+    }
+  };
+
+  const transition = document.startViewTransition(() => {
+    applyTheme();
+  });
+
+  if (typeof transition?.finished?.finally === "function") {
+    transition.finished.finally(cleanup).catch(() => {});
+  } else {
+    cleanup();
+  }
+
+  const ready = transition?.ready;
+  if (ready && typeof ready.then === "function") {
+    ready
+      .then(() => {
+        const anim = root.animate(
+          {
+            clipPath,
+          },
+          {
+            duration,
+            easing: variant === "star" ? "linear" : "ease-in-out",
+            fill: "forwards",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        );
+        activeAnim = anim;
+      })
+      .catch(() => {});
+  }
+}
+

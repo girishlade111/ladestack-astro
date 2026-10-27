@@ -1,0 +1,46 @@
+---
+/**
+ * AnimatedThemeToggler.astro
+ * Animated theme toggle using the View Transitions API with configurable clip-path shapes and origin.
+ * Pure Astro/vanilla implementation matching MagicUI specification.
+ */
+import Icon from '../Icon.astro';
+import type { TransitionVariant } from './animated-theme-toggler';
+
+export interface Props {
+  variant?: TransitionVariant;
+  duration?: number;
+  fromCenter?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const {
+  variant = 'circle',
+  duration = 400,
+  fromCenter = false,
+  class: className = '',
+  id,
+  ...rest
+} = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  data-vt-variant={variant}
+  data-vt-duration={duration}
+  data-vt-from-center={fromCenter ? 'true' : undefined}
+  id={id}
+  class={`p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand ${className}`.trim()}
+  aria-label="Toggle theme"
+  {...rest}
+>
+  <span class="dark:hidden">
+    <Icon name="moon" class="w-4 h-4" />
+  </span>
+  <span class="hidden dark:inline">
+    <Icon name="sun" class="w-4 h-4" />
+  </span>
+  <span class="sr-only">Toggle theme</span>
+</button>
