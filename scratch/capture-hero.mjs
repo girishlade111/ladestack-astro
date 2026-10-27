@@ -57,30 +57,41 @@ server.listen(PORT, async () => {
     // Desktop Viewport
     const page = await browser.newPage({ viewport: { width: 1440, height: 960 } });
     await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
-
-    // Wait for animations
-    await page.waitForTimeout(1200);
-
-    const heroSection = page.locator('section').first();
-    await heroSection.screenshot({ path: path.join(ARTIFACT_DIR, 'hero-light-desktop.png') });
-    console.log('[CAPTURED] hero-light-desktop.png');
+    await page.waitForTimeout(500);
 
     // Switch to dark theme
     const themeBtn = page.locator('button[data-theme-toggle]').first();
     if (await themeBtn.count() > 0) {
       await themeBtn.click();
-      await page.waitForTimeout(600);
-      await heroSection.screenshot({ path: path.join(ARTIFACT_DIR, 'hero-dark-desktop.png') });
-      console.log('[CAPTURED] hero-dark-desktop.png');
+      await page.waitForTimeout(500);
     }
 
-    // Mobile Viewport
-    const mobilePage = await browser.newPage({ viewport: { width: 375, height: 812 } });
-    await mobilePage.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle' });
-    await mobilePage.waitForTimeout(1200);
-    const mobileHero = mobilePage.locator('section').first();
-    await mobileHero.screenshot({ path: path.join(ARTIFACT_DIR, 'hero-light-mobile.png') });
-    console.log('[CAPTURED] hero-light-mobile.png');
+    const data = await page.evaluate(() => {
+      const header = document.querySelector('header');
+      const bar = document.querySelector('.lamp-bar');
+      const coneLeft = document.querySelector('.lamp-cone-left');
+      const section = document.querySelector('section');
+      return {
+        headerBottom: header?.getBoundingClientRect().bottom,
+        sectionTop: section?.getBoundingClientRect().top,
+        barRect: bar?.getBoundingClientRect(),
+        coneLeftRect: coneLeft?.getBoundingClientRect(),
+        scrollY: window.scrollY
+      };
+    });
+    console.log('[DEBUG LAMP DATA]', JSON.stringify(data, null, 2));
+
+    // Desktop Viewport - Dark
+    await page.screenshot({ path: path.join(ARTIFACT_DIR, 'hero-dark-viewport.png') });
+    console.log('[CAPTURED] hero-dark-viewport.png');
+
+    // Switch back to light theme
+    if (await themeBtn.count() > 0) {
+      await themeBtn.click();
+      await page.waitForTimeout(500);
+      await page.screenshot({ path: path.join(ARTIFACT_DIR, 'hero-light-viewport.png') });
+      console.log('[CAPTURED] hero-light-viewport.png');
+    }
 
     await browser.close();
   } catch (err) {
