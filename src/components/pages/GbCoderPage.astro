@@ -14,6 +14,7 @@ import SectionHeader from '../ui/SectionHeader.astro';
 import CodeComparison from '../ui/CodeComparison.astro';
 import Accordion from '../ui/Accordion.astro';
 import AccordionItem from '../ui/AccordionItem.astro';
+import HowItWorks from '../sections/HowItWorks.astro';
 import { LOCALES, LOCALE_CONFIG, type Locale } from '../../i18n/config';
 import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
 import { getGbCoderData } from '../../i18n/pages/gb-coder';
@@ -144,6 +145,9 @@ const structuredData = [
         </div>
       </div>
     </section>
+
+    {/* ── HOW GB CODER OPERATES ── */}
+    <HowItWorks locale={locale} />
 
     {/* ── TWO DEDICATED ENVIRONMENTS ── */}
     <section class="py-16 sm:py-24 border-b border-border bg-background">
