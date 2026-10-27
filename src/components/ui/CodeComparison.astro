@@ -12,11 +12,16 @@ export interface Props {
   beforeCode: string;
   afterCode: string;
   language?: string;
+  beforeLanguage?: string;
+  afterLanguage?: string;
   filename?: string;
+  beforeFilename?: string;
+  afterFilename?: string;
   lightTheme?: string;
   darkTheme?: string;
   beforeLabel?: string;
   afterLabel?: string;
+  highlightColor?: string;
   class?: string;
 }
 
@@ -24,33 +29,43 @@ const {
   beforeCode,
   afterCode,
   language = 'typescript',
+  beforeLanguage,
+  afterLanguage,
   filename = 'app.ts',
+  beforeFilename,
+  afterFilename,
   lightTheme = 'github-light',
   darkTheme = 'github-dark',
-  beforeLabel = 'before: legacy dev environment',
-  afterLabel = 'after: gb coder in-browser ai ide',
+  beforeLabel = 'before',
+  afterLabel = 'after',
+  highlightColor = 'rgba(101, 117, 133, 0.16)',
   class: className = '',
 } = Astro.props;
+
+const resolvedBeforeLang = beforeLanguage || (beforeCode.trim().includes('FROM ') ? 'docker' : language);
+const resolvedAfterLang = afterLanguage || language;
+const resolvedBeforeFilename = beforeFilename || (beforeCode.trim().includes('FROM ') ? 'Dockerfile' : filename);
+const resolvedAfterFilename = afterFilename || filename;
 ---
 
-<div class={`w-full max-w-5xl mx-auto code-comparison-wrapper ${className}`.trim()}>
-  <div class="relative w-full overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
+<div class={`w-full max-w-5xl mx-auto code-comparison-wrapper ${className}`.trim()} style={`--highlight-color: ${highlightColor};`}>
+  <div class="group border-border relative w-full overflow-hidden rounded-xl border bg-surface shadow-card">
     <div class="relative grid grid-cols-1 md:grid-cols-2">
       <!-- ── LEFT: Before ── -->
       <div class="leftside border-border md:border-r flex flex-col min-w-0">
         <div class="border-b border-border bg-surface-muted/60 text-foreground flex items-center justify-between px-4 py-2.5 text-xs font-mono select-none">
           <div class="flex items-center gap-2 min-w-0">
             <Icon name="file-text" class="w-4 h-4 text-muted-foreground shrink-0" />
-            <span class="truncate font-medium">{filename}</span>
+            <span class="truncate font-medium">{resolvedBeforeFilename}</span>
           </div>
           <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-destructive/10 text-destructive border border-destructive/20 shrink-0">
             {beforeLabel}
           </span>
         </div>
-        <div class="flex-1 overflow-x-auto bg-surface-muted/15">
+        <div class="flex-1 overflow-x-auto bg-surface-muted/15 p-1">
           <Code
             code={beforeCode.trim()}
-            lang={language as any}
+            lang={resolvedBeforeLang as any}
             themes={{ light: lightTheme, dark: darkTheme }}
             wrap={false}
           />
@@ -62,16 +77,16 @@ const {
         <div class="border-b border-border bg-surface-muted/60 text-foreground flex items-center justify-between px-4 py-2.5 text-xs font-mono select-none">
           <div class="flex items-center gap-2 min-w-0">
             <Icon name="code-2" class="w-4 h-4 text-brand shrink-0" />
-            <span class="truncate font-medium">{filename}</span>
+            <span class="truncate font-medium">{resolvedAfterFilename}</span>
           </div>
           <span class="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-brand/10 text-brand border border-brand/20 shrink-0">
             {afterLabel}
           </span>
         </div>
-        <div class="flex-1 overflow-x-auto bg-surface-muted/15">
+        <div class="flex-1 overflow-x-auto bg-surface-muted/15 p-1">
           <Code
             code={afterCode.trim()}
-            lang={language as any}
+            lang={resolvedAfterLang as any}
             themes={{ light: lightTheme, dark: darkTheme }}
             wrap={false}
           />
@@ -81,7 +96,7 @@ const {
 
     <!-- ── CENTER VS BADGE ── -->
     <div
-      class="border-border bg-surface text-foreground font-mono font-bold absolute top-1/2 left-1/2 hidden h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border shadow-elevated text-xs md:flex z-20 pointer-events-none"
+      class="border-border bg-surface text-foreground font-mono font-bold absolute top-1/2 left-1/2 hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-md border text-xs md:flex z-20 pointer-events-none shadow-sm"
       aria-hidden="true"
     >
       VS
