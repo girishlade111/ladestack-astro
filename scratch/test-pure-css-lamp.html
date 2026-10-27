@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Pure CSS Lamp Test</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #090d16;
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    header {
+      height: 64px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .hero-section {
+      position: relative;
+      z-index: 0;
+      display: flex;
+      min-height: 85vh;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow: hidden;
+      background-color: #090d16;
+      padding-top: 5rem;
+    }
+
+    .lamp-stage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      pointer-events: none;
+      user-select: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .lamp-blur {
+      position: absolute;
+      top: 0;
+      z-index: 50;
+      height: 12rem;
+      width: 100%;
+      background: transparent;
+      opacity: 0.1;
+      backdrop-filter: blur(12px);
+    }
+
+    .lamp-main-glow {
+      position: absolute;
+      z-index: 50;
+      height: 9rem;
+      width: 28rem;
+      transform: translateY(30%);
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.6);
+      opacity: 0.8;
+      filter: blur(48px);
+    }
+
+    .lamp-bulb {
+      position: absolute;
+      top: 0;
+      z-index: 30;
+      height: 9rem;
+      width: 16rem;
+      transform: translateY(-20%);
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.6);
+      filter: blur(24px);
+    }
+
+    .lamp-bar {
+      position: absolute;
+      z-index: 50;
+      height: 2px;
+      width: 30rem;
+      transform: translateY(10%);
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.95);
+    }
+
+    .lamp-cone-left {
+      position: absolute;
+      right: 50%;
+      height: 14rem;
+      width: 30rem;
+      overflow: visible;
+      background-image: conic-gradient(from 70deg at center top, rgba(255, 255, 255, 0.6) 0deg, transparent 60deg, transparent 360deg);
+    }
+
+    .lamp-cone-right {
+      position: absolute;
+      left: 50%;
+      height: 14rem;
+      width: 30rem;
+      overflow: visible;
+      background-image: conic-gradient(from 290deg at center top, transparent 0deg, transparent 300deg, rgba(255, 255, 255, 0.6) 360deg);
+    }
+
+    .mask-bottom {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      height: 10rem;
+      background: #090d16;
+      z-index: 20;
+      -webkit-mask-image: linear-gradient(to top, white, transparent);
+      mask-image: linear-gradient(to top, white, transparent);
+    }
+
+    .mask-left {
+      position: absolute;
+      width: 10rem;
+      height: 100%;
+      left: 0;
+      bottom: 0;
+      background: #090d16;
+      z-index: 20;
+      -webkit-mask-image: linear-gradient(to right, white, transparent);
+      mask-image: linear-gradient(to right, white, transparent);
+    }
+
+    .mask-right {
+      position: absolute;
+      width: 10rem;
+      height: 100%;
+      right: 0;
+      bottom: 0;
+      background: #090d16;
+      z-index: 20;
+      -webkit-mask-image: linear-gradient(to left, white, transparent);
+      mask-image: linear-gradient(to left, white, transparent);
+    }
+
+    .content-box {
+      position: relative;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    p {
+      margin-top: 1.5rem;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #94a3b8;
+      max-width: 40rem;
+    }
+
+    .btn-row {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      background: #ffffff;
+      color: #000000;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <span>LadeStack</span>
+  </header>
+
+  <section class="hero-section">
+    <div class="lamp-stage">
+      <div class="lamp-blur"></div>
+      <div class="lamp-main-glow"></div>
+      <div class="lamp-bulb"></div>
+      <div class="lamp-bar"></div>
+
+      <!-- Left Cone -->
+      <div class="lamp-cone-left">
+        <div class="mask-bottom"></div>
+        <div class="mask-left"></div>
+      </div>
+
+      <!-- Right Cone -->
+      <div class="lamp-cone-right">
+        <div class="mask-right"></div>
+        <div class="mask-bottom"></div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h1>
+        Build, Edit, and Optimize <span style="color: #60a5fa;">Directly in Your Browser.</span>
+      </h1>
+      <p>
+        High-performance developer utilities with client-side execution. Zero server uploads, zero subscription walls, and instant performance across all tools.
+      </p>
+      <div class="btn-row">
+        <button class="btn-primary">Explore 17+ Tools</button>
+        <button class="btn-secondary">Launch Studio IDE</button>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
