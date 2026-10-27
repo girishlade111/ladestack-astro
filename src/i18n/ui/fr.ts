@@ -88,7 +88,7 @@ export const fr: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': 'SIMPLICITÉ DU PROCESSUS',
-  'howItWorks.title': 'Comment fonctionne LadeStack',
+  'howItWorks.title': 'Comment fonctionne GB Coder',
   'howItWorks.subtitle': 'Trois principes directeurs clairs sous-tendent chaque outil de notre plateforme.',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': 'Accès immédiat sur navigateur',

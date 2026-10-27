@@ -88,7 +88,7 @@ export const ja: UIStrings = {
 
   // How It Works
   'howItWorks.eyebrow': 'シンプルな運用フロー',
-  'howItWorks.title': 'LadeStackの仕組み',
+  'howItWorks.title': 'GB Coderの仕組み',
   'howItWorks.subtitle': '当プラットフォームのすべてのユーティリティは、3つの明確な原則に基づいています。',
   'howItWorks.step1Num': '01',
   'howItWorks.step1Title': 'ブラウザから即座にアクセス',
