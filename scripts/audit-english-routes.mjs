@@ -16,6 +16,7 @@ const LOCALIZED_SUBPAGES = [
   { path: 'apps/index.html', canonical: 'https://ladestack.in/apps', expectedHreflangs: 10 },
   { path: 'docs/index.html', canonical: 'https://ladestack.in/docs', expectedHreflangs: 10 },
   { path: 'blog/index.html', canonical: 'https://ladestack.in/blog', expectedHreflangs: 10 },
+  { path: 'faq/index.html', canonical: 'https://ladestack.in/faq', expectedHreflangs: 10 },
   { path: 'contact/index.html', canonical: 'https://ladestack.in/contact', expectedHreflangs: 10 },
   { path: 'support/index.html', canonical: 'https://ladestack.in/support', expectedHreflangs: 10 },
   { path: 'privacy/index.html', canonical: 'https://ladestack.in/privacy', expectedHreflangs: 10 },

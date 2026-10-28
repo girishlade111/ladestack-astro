@@ -23,6 +23,7 @@ export const trSitemap: SitemapPageData = {
         { title: 'Dokümantasyon', href: '/docs', desc: 'Teknik şartnameler, mimari rehberleri ve platform sürüm geçmişi' },
         { title: 'Destek Merkezi', href: '/support', desc: 'Teknik yardım kanalları, tarayıcı uyumluluk kılavuzları ve SSS' },
         { title: 'İletişim', href: '/contact', desc: 'Kurucu doğrudan posta kutusu, mühendislik kanalları ve geri bildirim' },
+              { title: 'Sıkça Sorulan Sorular (SSS)', href: '/faq', desc: 'Platform yetenekleri, gizlilik, GB Coder IDE ve geliştirici araçları hakkında sık sorulan sorular' },
       ],
     },
     tools: {

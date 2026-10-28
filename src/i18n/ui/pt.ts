@@ -20,6 +20,7 @@ export const pt: UIStrings = {
   'nav.languageSelect': 'Selecionar idioma',
   'nav.openMenu': 'Abrir menu',
   'nav.closeMenu': 'Fechar menu',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': 'Ferramentas de desenvolvimento de alto desempenho direto no navegador, criadas para velocidade e privacidade.',

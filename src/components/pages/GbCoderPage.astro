@@ -12,8 +12,6 @@ import Button from '../ui/Button.astro';
 import AnimatedShinyText from '../ui/animated-shiny-text.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 import CodeComparison from '../ui/CodeComparison.astro';
-import Accordion from '../ui/Accordion.astro';
-import AccordionItem from '../ui/AccordionItem.astro';
 import HowItWorks from '../sections/HowItWorks.astro';
 import CodeStudioMockup from '../ui/CodeStudioMockup.astro';
 import UseCases from '../sections/UseCases.astro';
@@ -364,25 +362,6 @@ const structuredData = [
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    {/* ── FAQ SECTION ── */}
-    <section class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          eyebrow={data.faqs.eyebrow}
-          title={data.faqs.title}
-          description={data.faqs.description}
-        />
-
-        <Accordion>
-          {data.faqs.items.map((faq, index) => (
-            <AccordionItem question={faq.q} open={index === 0}>
-              <p>{faq.a}</p>
-            </AccordionItem>
-          ))}
-        </Accordion>
       </div>
     </section>
 

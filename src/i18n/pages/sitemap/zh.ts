@@ -23,6 +23,7 @@ export const zhSitemap: SitemapPageData = {
         { title: '技术文档', href: '/docs', desc: '技术规范、执行架构剖析与平台版本发布历史' },
         { title: '支持中心', href: '/support', desc: '技术支持渠道、浏览器兼容性说明与常见问题答疑' },
         { title: '联系我们', href: '/contact', desc: '直通创始人的电子邮箱、工程探讨与需求建议反馈' },
+              { title: '常见问题解答 (FAQ)', href: '/faq', desc: '涵盖平台功能、数据隐私、GB Coder IDE 和开发人员工具的常见问题解答' },
       ],
     },
     tools: {

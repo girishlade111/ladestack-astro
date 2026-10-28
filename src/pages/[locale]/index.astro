@@ -19,7 +19,6 @@ import CoreValuesSection from '../../components/sections/CoreValuesSection.astro
 import MetricsImpactSection from '../../components/sections/MetricsImpactSection.astro';
 import FreeForeverSection from '../../components/sections/FreeForeverSection.astro';
 import DeveloperCommunitySection from '../../components/sections/DeveloperCommunitySection.astro';
-import DeveloperFaq, { getFaqs } from '../../components/sections/DeveloperFaq.astro';
 import CtaBanner from '../../components/sections/CtaBanner.astro';
 import { LOCALES, DEFAULT_LOCALE, LOCALE_CONFIG, type Locale } from '../../i18n/config';
 import { getHreflangLinks, useTranslations } from '../../i18n/utils';
@@ -41,7 +40,6 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const hreflangs = getHreflangLinks('/', LOCALES);
 const canonicalUrl = `https://ladestack.in/${locale}`;
-const localizedFaqs = getFaqs(locale);
 const config = LOCALE_CONFIG[locale];
 
 const structuredData = [
@@ -92,19 +90,6 @@ const structuredData = [
     description: t('seo.homeDescription'),
     publisher: { '@type': 'Organization', name: 'Lade Stack' },
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    inLanguage: locale,
-    mainEntity: localizedFaqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
-      },
-    })),
-  },
 ];
 ---
 
@@ -137,6 +122,5 @@ const structuredData = [
   <MetricsImpactSection locale={locale} />
   <FreeForeverSection locale={locale} />
   <DeveloperCommunitySection locale={locale} />
-  <DeveloperFaq locale={locale} />
   <CtaBanner locale={locale} />
 </BaseLayout>

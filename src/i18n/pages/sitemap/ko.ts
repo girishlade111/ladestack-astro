@@ -23,6 +23,7 @@ export const koSitemap: SitemapPageData = {
         { title: '기술 문서', href: '/docs', desc: '기술 사양, 아키텍처 가이드 및 플랫폼 릴리스 내역' },
         { title: '지원 센터', href: '/support', desc: '기술 지원 채널, 브라우저 호환성 안내 및 자주 묻는 질문' },
         { title: '문의하기', href: '/contact', desc: '창립자 직접 메일, 엔지니어링 문의 및 피드백 접수' },
+              { title: '자주 묻는 질문 (FAQ)', href: '/faq', desc: '플랫폼 기능, 데이터 프라이버시, GB Coder IDE 및 개발자 도구에 관한 자주 묻는 질문' },
       ],
     },
     tools: {

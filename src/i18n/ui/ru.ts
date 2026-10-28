@@ -20,6 +20,7 @@ export const ru: UIStrings = {
   'nav.languageSelect': 'Выбрать язык',
   'nav.openMenu': 'Открыть меню',
   'nav.closeMenu': 'Закрыть меню',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': 'Высокопроизводительные браузерные инструменты разработки, созданные для скорости и конфиденциальности.',

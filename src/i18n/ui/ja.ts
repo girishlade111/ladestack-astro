@@ -20,6 +20,7 @@ export const ja: UIStrings = {
   'nav.languageSelect': '言語を選択',
   'nav.openMenu': 'メニューを開く',
   'nav.closeMenu': 'メニューを閉じる',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': '速度とプライバシーを追求した、ブラウザ完結型の高性能開発ツール。',

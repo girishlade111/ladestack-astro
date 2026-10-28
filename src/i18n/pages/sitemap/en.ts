@@ -23,6 +23,7 @@ export const enSitemap: SitemapPageData = {
         { title: 'Documentation & Guides', href: '/docs', desc: 'Comprehensive technical specifications, operational architecture guides, and platform release history' },
         { title: 'Support Center', href: '/support', desc: 'Technical assistance channels, browser compatibility specifications, FAQs, and contact forms' },
         { title: 'Contact Us', href: '/contact', desc: 'Direct engineering inbox (admin@ladestack.in), GitHub issue tracker (github.com/girishlade111), and inquiry forms' },
+              { title: 'FAQ & Knowledge Base', href: '/faq', desc: 'Frequently asked questions covering platform capabilities, privacy, GB Coder IDE, and developer tools' },
       ],
     },
     tools: {

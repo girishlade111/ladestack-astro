@@ -23,6 +23,7 @@ export const jaSitemap: SitemapPageData = {
         { title: 'ドキュメント', href: '/docs', desc: '技術仕様、アーキテクチャガイド、プラットフォームの更新履歴' },
         { title: 'サポートセンター', href: '/support', desc: '技術支援窓口、ブラウザ互換性ガイド、よくあるご質問' },
         { title: 'お問い合わせ', href: '/contact', desc: '創設者直通窓口、エンジニアリング相談、フィードバックフォーム' },
+              { title: 'よくある質問 (FAQ)', href: '/faq', desc: 'プラットフォームの機能、プライバシー、GB Coder IDE、開発者ツールに関するよくある質問' },
       ],
     },
     tools: {

@@ -23,6 +23,7 @@ export const ptSitemap: SitemapPageData = {
         { title: 'Documentação', href: '/docs', desc: 'Especificações técnicas, guias de arquitetura e histórico de lançamentos' },
         { title: 'Central de Suporte', href: '/support', desc: 'Canais de assistência técnica, compatibilidade de navegadores e FAQ' },
         { title: 'Fale Conosco', href: '/contact', desc: 'Canal direto com o fundador, dúvidas técnicas e formulários de feedback' },
+              { title: 'Perguntas Frequentes (FAQ)', href: '/faq', desc: 'Perguntas frequentes sobre capacidades da plataforma, privacidade, GB Coder e ferramentas de desenvolvedor' },
       ],
     },
     tools: {

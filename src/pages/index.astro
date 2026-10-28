@@ -12,7 +12,6 @@ import CoreValuesSection from '../components/sections/CoreValuesSection.astro';
 import MetricsImpactSection from '../components/sections/MetricsImpactSection.astro';
 import FreeForeverSection from '../components/sections/FreeForeverSection.astro';
 import DeveloperCommunitySection from '../components/sections/DeveloperCommunitySection.astro';
-import DeveloperFaq, { faqs } from '../components/sections/DeveloperFaq.astro';
 import CtaBanner from '../components/sections/CtaBanner.astro';
 import { LOCALES, type Locale } from '../i18n/config';
 import { getHreflangLinks, useTranslations } from '../i18n/utils';
@@ -68,18 +67,6 @@ const structuredData = [
     publisher: { '@type': 'Organization', name: 'Lade Stack' },
     url: 'https://ladestack.in',
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
-      },
-    })),
-  },
 ];
 ---
 
@@ -112,6 +99,5 @@ const structuredData = [
   <MetricsImpactSection locale={locale} />
   <FreeForeverSection locale={locale} />
   <DeveloperCommunitySection locale={locale} />
-  <DeveloperFaq locale={locale} />
   <CtaBanner locale={locale} />
 </BaseLayout>

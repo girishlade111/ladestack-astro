@@ -1,0 +1,180 @@
+---
+/**
+ * src/components/pages/FaqPage.astro
+ * Dedicated, fully localized FAQ page component consolidating:
+ * 1. General LadeStack FAQs (14 entries)
+ * 2. GB Coder AI IDE FAQs (15 entries)
+ * Total: 29 categorized FAQ entries per locale across all 9 languages.
+ * Fully accessible with native Accordion primitives, schema.org FAQPage structured data,
+ * and light/dark theme support.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import Button from '../ui/Button.astro';
+import SectionHeader from '../ui/SectionHeader.astro';
+import Accordion from '../ui/Accordion.astro';
+import AccordionItem from '../ui/AccordionItem.astro';
+import { LOCALES, type Locale } from '../../i18n/config';
+import { getHreflangLinks, getLocalizedPath } from '../../i18n/utils';
+import { getFaqPageData } from '../../i18n/pages/faq';
+import { getFaqs } from '../sections/DeveloperFaq.astro';
+import { getGbCoderData } from '../../i18n/pages/gb-coder';
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const data = getFaqPageData(locale);
+const canonicalUrl = `https://ladestack.in${getLocalizedPath('/faq', locale)}`;
+const hreflangs = getHreflangLinks('/faq', LOCALES);
+
+// Category A: General LadeStack FAQs (14 items)
+const generalFaqs = getFaqs(locale);
+
+// Category B: GB Coder AI IDE FAQs (15 items)
+const gbCoderData = getGbCoderData(locale);
+const gbCoderFaqs = gbCoderData.faqs.items;
+
+// Consolidated 29 FAQs for JSON-LD schema
+const allFaqs = [...generalFaqs, ...gbCoderFaqs];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    name: data.seo.title,
+    description: data.seo.description,
+    url: canonicalUrl,
+    inLanguage: locale,
+    mainEntity: allFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={data.seo.title}
+  description={data.seo.description}
+  canonical={canonicalUrl}
+  locale={locale}
+  hreflangs={hreflangs}
+  robots={{ index: true, follow: true, custom: 'max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}
+  openGraph={{
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    url: canonicalUrl,
+    type: 'website',
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  twitter={{
+    card: 'summary_large_image',
+    title: data.seo.ogTitle,
+    description: data.seo.ogDescription,
+    image: 'https://ladestack.in/og-image.png',
+  }}
+  structuredData={structuredData}
+>
+  <div class="min-h-screen bg-background text-foreground">
+    {/* ── HERO SECTION ── */}
+    <section class="relative pt-20 pb-12 sm:pt-28 sm:pb-16 border-b border-border bg-surface-muted/20 text-center">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Badge variant="brand" class="mb-4">{data.hero.badge}</Badge>
+        <h1 class="text-3xl sm:text-5xl font-bold text-foreground tracking-tight leading-tight">
+          {data.hero.title}
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          {data.hero.description}
+        </p>
+
+        {/* Quick jump category anchors */}
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="#general"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-sm font-medium text-foreground hover:border-brand/40 hover:bg-surface-muted/60 transition-colors shadow-soft"
+          >
+            <Icon name="layers" class="w-4 h-4 text-brand" />
+            <span>{data.nav.generalTab}</span>
+            <span class="text-xs font-mono text-muted-foreground">({generalFaqs.length})</span>
+          </a>
+          <a
+            href="#gb-coder"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-sm font-medium text-foreground hover:border-brand/40 hover:bg-surface-muted/60 transition-colors shadow-soft"
+          >
+            <Icon name="code-2" class="w-4 h-4 text-brand" />
+            <span>{data.nav.gbCoderTab}</span>
+            <span class="text-xs font-mono text-muted-foreground">({gbCoderFaqs.length})</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CATEGORY A: GENERAL LADESTACK FAQS ── */}
+    <section id="general" class="py-16 sm:py-24 border-b border-border bg-background">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={data.generalSection.eyebrow}
+          title={data.generalSection.title}
+          description={data.generalSection.description}
+        />
+
+        <Accordion>
+          {generalFaqs.map((faq, index) => (
+            <AccordionItem question={faq.q} open={index === 0}>
+              <p>{faq.a}</p>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+
+    {/* ── CATEGORY B: GB CODER AI IDE FAQS ── */}
+    <section id="gb-coder" class="py-16 sm:py-24 border-b border-border bg-surface-muted/20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={data.gbCoderSection.eyebrow}
+          title={data.gbCoderSection.title}
+          description={data.gbCoderSection.description}
+        />
+
+        <Accordion>
+          {gbCoderFaqs.map((faq, index) => (
+            <AccordionItem question={faq.q} open={index === 0}>
+              <p>{faq.a}</p>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+
+    {/* ── BOTTOM CTA ── */}
+    <section class="py-16 sm:py-24 bg-background text-center">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+          {data.cta.title}
+        </h2>
+        <p class="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          {data.cta.description}
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <Button href={getLocalizedPath('/contact', locale)} size="lg" class="w-full sm:w-auto">
+            <span>{data.cta.contactBtn}</span>
+            <Icon name="mail" class="w-4 h-4 ml-2" />
+          </Button>
+          <Button href={getLocalizedPath('/docs', locale)} variant="outline" size="lg" class="w-full sm:w-auto">
+            <span>{data.cta.docsBtn}</span>
+            <Icon name="book-open" class="w-4 h-4 ml-2" />
+          </Button>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

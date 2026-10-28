@@ -20,6 +20,7 @@ export const ko: UIStrings = {
   'nav.languageSelect': '언어 선택',
   'nav.openMenu': '메뉴 열기',
   'nav.closeMenu': '메뉴 닫기',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': '속도와 데이터 프라이버시를 위해 설계된 브라우저 기반 고성능 개발자 도구.',

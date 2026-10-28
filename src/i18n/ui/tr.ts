@@ -20,6 +20,7 @@ export const tr: UIStrings = {
   'nav.languageSelect': 'Dil seçin',
   'nav.openMenu': 'Menüyü aç',
   'nav.closeMenu': 'Menüyü kapat',
+  'nav.faq': 'SSS',
 
   // Footer
   'footer.tagline': 'Hız ve gizlilik için geliştirilmiş, tarayıcı tabanlı yüksek performanslı geliştirici araçları.',

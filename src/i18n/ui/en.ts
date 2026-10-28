@@ -18,6 +18,7 @@ export interface UIStrings {
   'nav.languageSelect': string;
   'nav.openMenu': string;
   'nav.closeMenu': string;
+  'nav.faq': string;
 
   // Footer
   'footer.tagline': string;
@@ -172,6 +173,7 @@ export const en: UIStrings = {
   'nav.languageSelect': 'Select language',
   'nav.openMenu': 'Open menu',
   'nav.closeMenu': 'Close menu',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': 'High-performance, in-browser developer tools built for speed and privacy.',

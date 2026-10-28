@@ -56,6 +56,7 @@ const expectedFullyLocalizedRoutes = [
   '/apps',
   '/docs',
   '/blog',
+  '/faq',
   '/contact',
   '/support',
   '/privacy',
@@ -70,7 +71,7 @@ for (const route of expectedFullyLocalizedRoutes) {
   }
 }
 
-console.log(`✓ All 11 public core routes (including /blog) are registered for all 9 locales.`);
+console.log(`✓ All 12 public core routes (including /blog and /faq) are registered for all 9 locales.`);
 
 console.log('\n--- 4. Testing Route Path Helpers ---');
 const pathTests = [
@@ -90,6 +91,10 @@ const pathTests = [
   { path: '/blog', locale: 'ja', expected: '/ja/blog' },
   { path: '/blog', locale: 'zh', expected: '/zh/blog' },
   { path: '/blog', locale: 'fr', expected: '/fr/blog' },
+  { path: '/faq', locale: 'en', expected: '/faq' },
+  { path: '/faq', locale: 'ja', expected: '/ja/faq' },
+  { path: '/faq', locale: 'ko', expected: '/ko/faq' },
+  { path: '/faq', locale: 'es', expected: '/es/faq' },
   { path: '/contact', locale: 'tr', expected: '/tr/contact' },
   { path: '/support', locale: 'es', expected: '/es/support' },
   { path: '/privacy', locale: 'ko', expected: '/ko/privacy' },
@@ -103,7 +108,7 @@ for (const test of pathTests) {
     throw new Error(`Path test failed: getLocalizedPath("${test.path}", "${test.locale}") => expected "${test.expected}", got "${actual}"`);
   }
 }
-console.log('✓ All 19 path transformation assertions passed.');
+console.log('✓ All 23 path transformation assertions passed.');
 
 console.log('\n--- 5. Testing Reciprocal Hreflang Generation ---');
 for (const route of expectedFullyLocalizedRoutes) {
@@ -123,5 +128,5 @@ if (blogHreflangs.length !== 0) {
   throw new Error(`Expected 0 hreflangs for single-locale route /blog, got ${blogHreflangs.length}`);
 }
 
-console.log('✓ Hreflang generation is reciprocal, includes x-default for all 10 core routes, and omits false alternates for English-only blog routes.');
+console.log('✓ Hreflang generation is reciprocal, includes x-default for all 11 core routes, and omits false alternates for English-only blog routes.');
 console.log('\n✅ All automated i18n tests PASSED successfully!');

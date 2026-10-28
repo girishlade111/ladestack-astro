@@ -20,6 +20,7 @@ export const zh: UIStrings = {
   'nav.languageSelect': '选择语言',
   'nav.openMenu': '打开菜单',
   'nav.closeMenu': '关闭菜单',
+  'nav.faq': '常见问题',
 
   // Footer
   'footer.tagline': '专为速度与数据隐私而打造的高性能浏览器端开发者工具。',

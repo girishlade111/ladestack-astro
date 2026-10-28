@@ -23,6 +23,7 @@ export const frSitemap: SitemapPageData = {
         { title: 'Documentation', href: '/docs', desc: 'Spécifications techniques, guides d’architecture et historique des versions' },
         { title: 'Centre d’assistance', href: '/support', desc: 'Canaux d’aide technique, compatibilité des navigateurs et FAQ' },
         { title: 'Contactez-nous', href: '/contact', desc: 'Boîte de réception directe du fondateur et formulaires de retour' },
+              { title: 'Foire Aux Questions (FAQ)', href: '/faq', desc: 'Questions fréquemment posées sur les fonctionnalités, la confidentialité, GB Coder et les outils de développement' },
       ],
     },
     tools: {

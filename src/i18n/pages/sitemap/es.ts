@@ -23,6 +23,7 @@ export const esSitemap: SitemapPageData = {
         { title: 'Documentación', href: '/docs', desc: 'Especificaciones técnicas, guías de arquitectura e historial de versiones' },
         { title: 'Centro de Soporte', href: '/support', desc: 'Canales de soporte técnico, guías de compatibilidad de navegadores y FAQ' },
         { title: 'Contacto', href: '/contact', desc: 'Buzón directo del fundador, canales de ingeniería y formularios de consulta' },
+              { title: 'Preguntas Frecuentes (FAQ)', href: '/faq', desc: 'Preguntas frecuentes sobre capacidades de la plataforma, privacidad, GB Coder y herramientas para desarrolladores' },
       ],
     },
     tools: {

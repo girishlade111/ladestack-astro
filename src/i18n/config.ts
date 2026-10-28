@@ -108,6 +108,7 @@ export const ROUTE_LOCALE_REGISTRY: Record<string, readonly Locale[]> = {
   '/apps': LOCALES,
   '/docs': LOCALES,
   '/blog': LOCALES,
+  '/faq': LOCALES,
   '/contact': LOCALES,
   '/support': LOCALES,
   '/privacy': LOCALES,

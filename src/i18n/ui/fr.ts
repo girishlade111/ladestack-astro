@@ -20,6 +20,7 @@ export const fr: UIStrings = {
   'nav.languageSelect': 'Choisir la langue',
   'nav.openMenu': 'Ouvrir le menu',
   'nav.closeMenu': 'Fermer le menu',
+  'nav.faq': 'FAQ',
 
   // Footer
   'footer.tagline': 'Outils pour développeurs haute performance, exécutés dans le navigateur, conçus pour la rapidité et la confidentialité.',
