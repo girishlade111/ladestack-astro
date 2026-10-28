@@ -32,24 +32,24 @@ const trustPills = [
     <div class="absolute top-0 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
 
     <!-- Main central ambient glow: fills center between cones -->
-    <div class="lamp-glow absolute inset-auto z-50 h-36 w-[28rem] translate-y-[30%] rounded-full opacity-80 blur-3xl"></div>
+    <div class="lamp-glow absolute inset-auto z-50 h-32 sm:h-36 w-[18rem] sm:w-[28rem] translate-y-[30%] rounded-full opacity-80 blur-3xl"></div>
 
     <!-- Core lamp bulb beam: adds bright intensity directly under emitter bar -->
-    <div class="lamp-bulb absolute top-0 z-30 h-36 -translate-y-[20%] w-[16rem] rounded-full blur-2xl"></div>
+    <div class="lamp-bulb absolute top-0 z-30 h-32 sm:h-36 -translate-y-[20%] w-[14rem] sm:w-[16rem] rounded-full blur-2xl"></div>
 
     <!-- Top lamp emitter line (touching navbar directly) -->
-    <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[30rem] translate-y-[10%]"></div>
+    <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[18rem] sm:w-[26rem] md:w-[30rem] translate-y-[10%]"></div>
 
     <!-- Left gradient cone: spreads downward and outward to the left -->
-    <div class="lamp-cone-left absolute inset-auto right-1/2 h-56 overflow-visible w-[30rem]">
-      <div class="lamp-mask-bottom absolute w-full left-0 h-40 bottom-0 z-20"></div>
-      <div class="lamp-mask-left absolute w-40 h-full left-0 bottom-0 z-20"></div>
+    <div class="lamp-cone-left absolute inset-auto right-1/2 h-48 sm:h-56 overflow-visible w-[18rem] sm:w-[26rem] md:w-[30rem]">
+      <div class="lamp-mask-bottom absolute w-full left-0 h-32 sm:h-40 bottom-0 z-20"></div>
+      <div class="lamp-mask-left absolute w-24 sm:w-40 h-full left-0 bottom-0 z-20"></div>
     </div>
 
     <!-- Right gradient cone: spreads downward and outward to the right -->
-    <div class="lamp-cone-right absolute inset-auto left-1/2 h-56 w-[30rem]">
-      <div class="lamp-mask-right absolute w-40 h-full right-0 bottom-0 z-20"></div>
-      <div class="lamp-mask-bottom absolute w-full right-0 h-40 bottom-0 z-20"></div>
+    <div class="lamp-cone-right absolute inset-auto left-1/2 h-48 sm:h-56 w-[18rem] sm:w-[26rem] md:w-[30rem]">
+      <div class="lamp-mask-right absolute w-24 sm:w-40 h-full right-0 bottom-0 z-20"></div>
+      <div class="lamp-mask-bottom absolute w-full right-0 h-32 sm:h-40 bottom-0 z-20"></div>
     </div>
   </div>
 
@@ -57,7 +57,7 @@ const trustPills = [
     <div class="flex flex-col items-center text-center max-w-3xl mx-auto hero-animate-in">
       <!-- Primary H1: Focal display title framed directly inside the downward expanding beam -->
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground text-balance leading-[1.08]">
-        {t('hero.titleLine1')} <span class="text-brand dark:text-blue-400">{t('hero.titleLine2')}</span>
+        {t('hero.titleLine1')} <span class="text-[#0076FF] dark:text-[#FBA528]">{t('hero.titleLine2')}</span>
       </h1>
 
       <!-- Subtitle -->
@@ -93,17 +93,21 @@ const trustPills = [
 
 <style>
   :root {
-    --lamp-beam: rgba(2, 132, 199, 0.4);
-    --lamp-glow: rgba(14, 165, 233, 0.45);
-    --lamp-line: rgba(2, 132, 199, 0.9);
-    --lamp-line-glow: rgba(14, 165, 233, 0.8);
+    /* Light Theme: Soft Sky-Blue Spotlight */
+    --lamp-beam: rgba(56, 189, 248, 0.38);
+    --lamp-glow: rgba(56, 189, 248, 0.42);
+    --lamp-bulb: rgba(14, 165, 233, 0.45);
+    --lamp-line: #0284C7;
+    --lamp-line-glow: rgba(14, 165, 233, 0.65);
   }
 
   :global(.dark) {
-    --lamp-beam: rgba(255, 255, 255, 0.65);
-    --lamp-glow: rgba(255, 255, 255, 0.65);
-    --lamp-line: rgba(255, 255, 255, 0.95);
-    --lamp-line-glow: rgba(255, 255, 255, 0.85);
+    /* Dark Theme: Soft Warm Amber Spotlight */
+    --lamp-beam: rgba(245, 158, 11, 0.52);
+    --lamp-glow: rgba(245, 158, 11, 0.55);
+    --lamp-bulb: rgba(251, 191, 36, 0.60);
+    --lamp-line: #FDE68A;
+    --lamp-line-glow: rgba(245, 158, 11, 0.85);
   }
 
   .lamp-cone-left {
@@ -116,7 +120,7 @@ const trustPills = [
 
   .lamp-bar {
     background-color: var(--lamp-line);
-    box-shadow: 0 0 20px var(--lamp-line-glow), 0 0 40px var(--lamp-line-glow);
+    box-shadow: 0 0 15px var(--lamp-line-glow), 0 0 35px var(--lamp-line-glow), 0 0 55px var(--lamp-line-glow);
   }
 
   .lamp-glow {
@@ -124,7 +128,7 @@ const trustPills = [
   }
 
   .lamp-bulb {
-    background-color: var(--lamp-glow);
+    background-color: var(--lamp-bulb);
   }
 
   .lamp-mask-bottom {
