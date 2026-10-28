@@ -1,0 +1,100 @@
+---
+/**
+ * CoreValuesSection.astro
+ * Presentation of LadeStack's 4 Core Values and Guiding Principles.
+ * Responsive card grid with token-based theme compatibility, zero emoji, WCAG AA contrast.
+ */
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import { getLandingData } from '../../i18n/pages/landing';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const data = getLandingData(locale).coreValues;
+---
+
+<section id="values" class="py-20 sm:py-28 border-t border-border bg-surface-muted/30 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+      <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+        {data.eyebrow}
+      </span>
+      <h2 class="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground text-balance">
+        {data.title} <span class="text-brand">{data.titleHighlight}</span>
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty">
+        {data.subtitle}
+      </p>
+    </div>
+
+    {/* 4 Core Value Cards */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      {
+        data.values.map((v) => (
+          <div class="rounded-2xl border border-border bg-surface p-6 sm:p-7 shadow-soft flex flex-col justify-between hover:border-brand/40 transition-all duration-200">
+            <div>
+              {/* Header with Number & Badge */}
+              <div class="flex items-center justify-between mb-5">
+                <span class="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-brand/10 text-brand border border-brand/20">
+                  {v.number}
+                </span>
+                <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-surface-muted text-muted-foreground border border-border">
+                  {v.badge}
+                </span>
+              </div>
+
+              {/* Title & Tagline */}
+              <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center mb-4">
+                <Icon name={v.badgeIcon} class="w-5 h-5" />
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-bold text-foreground tracking-tight">
+                {v.title}
+              </h3>
+              <p class="text-xs text-brand font-medium mt-0.5 mb-3">
+                {v.tagline}
+              </p>
+
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
+                {v.description}
+              </p>
+            </div>
+
+            {/* Bullet Points */}
+            <ul class="space-y-2 pt-4 border-t border-border/80 text-xs text-foreground/85">
+              {
+                v.bullets.map((b) => (
+                  <li class="flex items-start gap-2">
+                    <Icon name="check" class="w-3.5 h-3.5 text-brand flex-shrink-0 mt-0.5" />
+                    <span>{b}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Guiding Principles Strip */}
+    <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 text-center shadow-soft">
+      <span class="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground block mb-4">
+        {data.principlesEyebrow}
+      </span>
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+        {
+          data.principles.map((principle) => (
+            <Badge variant="outline" size="sm" class="bg-surface-muted/40 hover:bg-surface-muted transition-colors py-1 px-3">
+              {principle}
+            </Badge>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

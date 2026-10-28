@@ -1,0 +1,189 @@
+---
+/**
+ * MissionVisionSection.astro
+ * Presentation of LadeStack's Mission, Vision, Journey, and Open Approach.
+ * Designed using modern design tokens, full i18n, zero emoji, WCAG AA contrast.
+ */
+import Icon from '../Icon.astro';
+import Badge from '../ui/Badge.astro';
+import { getLandingData } from '../../i18n/pages/landing';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const data = getLandingData(locale).missionVision;
+---
+
+<section id="about" class="py-20 sm:py-28 border-t border-border bg-background relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Header */}
+    <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+      <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+        {data.eyebrow}
+      </span>
+      <h2 class="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground text-balance">
+        {data.title} <span class="text-brand">{data.titleHighlight}</span>
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed text-pretty">
+        {data.subtitle}
+      </p>
+    </div>
+
+    {/* Snapshot Stats Strip */}
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12 sm:mb-16">
+      {
+        data.stats.map((s) => (
+          <div class="flex flex-col items-center justify-center p-5 rounded-xl border border-border bg-surface text-center shadow-soft hover:border-brand/40 transition-colors">
+            <span class="text-2xl sm:text-3xl font-bold font-mono text-foreground tracking-tight">
+              {s.value}
+            </span>
+            <span class="text-xs text-muted-foreground mt-1 font-medium">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Bento Grid: Mission (Left) & Vision/Approach (Right) */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+      {/* ── Left Column: Mission Card ── */}
+      <div class="lg:col-span-6 rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft flex flex-col justify-between h-full">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center">
+                <Icon name="target" class="w-5 h-5" />
+              </div>
+              <div>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+                  {data.mission.eyebrow}
+                </span>
+                <p class="text-xs text-muted-foreground">{data.mission.tagline}</p>
+              </div>
+            </div>
+            <Badge variant="outline" size="sm">Core Purpose</Badge>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-bold text-foreground tracking-tight mb-3">
+            {data.mission.headline}
+          </h3>
+
+          <p class="text-sm sm:text-base text-foreground/90 leading-relaxed mb-4">
+            {data.mission.body}
+          </p>
+
+          <blockquote class="text-xs sm:text-sm text-muted-foreground leading-relaxed italic border-l-2 border-brand/40 pl-4 py-1 mb-8 bg-surface-muted/20 rounded-r-lg">
+            "{data.mission.context}"
+          </blockquote>
+        </div>
+
+        {/* Timeline */}
+        <div class="pt-6 border-t border-border">
+          <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-muted-foreground mb-5">
+            {data.mission.timelineTitle}
+          </h4>
+
+          <div class="relative pl-6 space-y-6 border-l border-border/80">
+            {
+              data.mission.timeline.map((item) => (
+                <div class="relative group">
+                  <div class="absolute -left-[31px] top-1 w-3 h-3 rounded-full border-2 border-brand bg-background group-hover:bg-brand transition-colors" aria-hidden="true"></div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-brand/10 text-brand">
+                      {item.year}
+                    </span>
+                    <span class="text-sm font-semibold text-foreground">
+                      {item.label}
+                    </span>
+                  </div>
+                  <p class="text-xs text-muted-foreground leading-relaxed">
+                    {item.desc}
+                  </p>
+                  <p class="text-[11px] text-muted-foreground/80 mt-1">
+                    {item.detail}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      {/* ── Right Column: Vision & Approach Cards ── */}
+      <div class="lg:col-span-6 flex flex-col gap-6 sm:gap-8 h-full">
+        {/* Vision Card */}
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft flex-1">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center">
+                <Icon name="eye" class="w-5 h-5" />
+              </div>
+              <div>
+                <span class="text-xs font-mono font-semibold uppercase tracking-wider text-brand">
+                  {data.vision.eyebrow}
+                </span>
+                <p class="text-xs text-muted-foreground">{data.vision.tagline}</p>
+              </div>
+            </div>
+            <Badge variant="outline" size="sm">Long-Term</Badge>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-bold text-foreground tracking-tight mb-3">
+            {data.vision.headline}
+          </h3>
+
+          <p class="text-sm sm:text-base text-foreground/90 leading-relaxed mb-6">
+            {data.vision.body}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {
+              data.vision.features.map((feat) => (
+                <div class="flex items-center gap-2.5 p-3 rounded-xl border border-border/80 bg-surface-muted/20 hover:border-brand/30 transition-colors">
+                  <div class="w-7 h-7 rounded-lg bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
+                    <Icon name={feat.icon} class="w-4 h-4" />
+                  </div>
+                  <span class="text-xs font-medium text-foreground leading-snug">
+                    {feat.text}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        {/* Approach / Open by default Card */}
+        <div class="rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-soft">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
+              <Icon name="sparkles" class="w-5 h-5" />
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                <h3 class="text-lg font-bold text-foreground">
+                  {data.approach.title}
+                </h3>
+                <span class="text-xs font-mono text-muted-foreground">Public Standards</span>
+              </div>
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
+                {data.approach.body}
+              </p>
+              <div class="flex flex-wrap items-center gap-2">
+                {
+                  data.approach.badges.map((b) => (
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-brand/10 text-brand border border-brand/20">
+                      <Icon name="check-circle-2" class="w-3.5 h-3.5" />
+                      <span>{b}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
