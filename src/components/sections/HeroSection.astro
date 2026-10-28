@@ -35,8 +35,8 @@ const trustPills = [
     <!-- Layer 2: Main Downward Projection Beam (Directional colored light field) -->
     <div class="lamp-beam absolute top-0 w-[380px] sm:w-[560px] md:w-[700px] h-[240px] sm:h-[320px] pointer-events-none"></div>
 
-    <!-- Layer 1: Luminous Source Hotspot (Bright aura directly beneath the diffuser lens) -->
-    <div class="lamp-source absolute top-[13px] sm:top-[15px] w-[220px] sm:w-[280px] md:w-[320px] h-[14px] sm:h-[18px] rounded-full pointer-events-none"></div>
+    <!-- Layer 1: Luminous Source Linear Emitter (Continuous horizontal aura along the full diffuser length) -->
+    <div class="lamp-source absolute top-[13px] sm:top-[15px] w-[180px] sm:w-[220px] md:w-[250px] lg:w-[270px] h-[16px] sm:h-[20px] rounded-full pointer-events-none"></div>
 
     <!-- Physical SVG Minimal Tray Lamp Housing -->
     <div class="relative z-10 flex justify-center w-full">
@@ -69,22 +69,20 @@ const trustPills = [
             <stop offset="100%" stop-color="#7B6149" stop-opacity="0" />
           </linearGradient>
           <linearGradient id="diffuser-lens-dark" x1="22" y1="16" x2="298" y2="16" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#B45309" />
-            <stop offset="10%" stop-color="#D97706" />
-            <stop offset="24%" stop-color="#F59E0B" />
-            <stop offset="38%" stop-color="#FEF08A" />
-            <stop offset="50%" stop-color="#FFFFFF" />
-            <stop offset="62%" stop-color="#FEF08A" />
-            <stop offset="76%" stop-color="#F59E0B" />
-            <stop offset="90%" stop-color="#D97706" />
-            <stop offset="100%" stop-color="#B45309" />
+            <stop offset="0%" stop-color="#D97706" />
+            <stop offset="5%" stop-color="#F59E0B" />
+            <stop offset="12%" stop-color="#FEF08A" />
+            <stop offset="20%" stop-color="#FFFFFF" />
+            <stop offset="80%" stop-color="#FFFFFF" />
+            <stop offset="88%" stop-color="#FEF08A" />
+            <stop offset="95%" stop-color="#F59E0B" />
+            <stop offset="100%" stop-color="#D97706" />
           </linearGradient>
           <linearGradient id="diffuser-core-dark" x1="36" y1="16" x2="284" y2="16" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.5" />
-            <stop offset="22%" stop-color="#FEF08A" stop-opacity="0.9" />
-            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="1" />
-            <stop offset="78%" stop-color="#FEF08A" stop-opacity="0.9" />
-            <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.5" />
+            <stop offset="0%" stop-color="#FEF08A" stop-opacity="0.6" />
+            <stop offset="8%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="92%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="100%" stop-color="#FEF08A" stop-opacity="0.6" />
           </linearGradient>
 
           <!-- LIGHT THEME GRADIENTS (Cool Slate/Aluminum Metallic Housing + Sky-Blue Diffuser) -->
@@ -109,21 +107,19 @@ const trustPills = [
           </linearGradient>
           <linearGradient id="diffuser-lens-light" x1="22" y1="16" x2="298" y2="16" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stop-color="#0284C7" />
-            <stop offset="10%" stop-color="#0EA5E9" />
-            <stop offset="24%" stop-color="#38BDF8" />
-            <stop offset="38%" stop-color="#BAE6FD" />
-            <stop offset="50%" stop-color="#FFFFFF" />
-            <stop offset="62%" stop-color="#BAE6FD" />
-            <stop offset="76%" stop-color="#38BDF8" />
-            <stop offset="90%" stop-color="#0EA5E9" />
+            <stop offset="5%" stop-color="#38BDF8" />
+            <stop offset="12%" stop-color="#BAE6FD" />
+            <stop offset="20%" stop-color="#FFFFFF" />
+            <stop offset="80%" stop-color="#FFFFFF" />
+            <stop offset="88%" stop-color="#BAE6FD" />
+            <stop offset="95%" stop-color="#38BDF8" />
             <stop offset="100%" stop-color="#0284C7" />
           </linearGradient>
           <linearGradient id="diffuser-core-light" x1="36" y1="16" x2="284" y2="16" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.5" />
-            <stop offset="22%" stop-color="#BAE6FD" stop-opacity="0.9" />
-            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="1" />
-            <stop offset="78%" stop-color="#BAE6FD" stop-opacity="0.9" />
-            <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.5" />
+            <stop offset="0%" stop-color="#BAE6FD" stop-opacity="0.6" />
+            <stop offset="8%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="92%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="100%" stop-color="#BAE6FD" stop-opacity="0.6" />
           </linearGradient>
         </defs>
 
