@@ -133,6 +133,46 @@ export const zh: GbCoderPageData = {
         q: 'GB Coder 是否完全免费？',
         a: '是的，完全免费。没有付费订阅层级，无需绑定信用卡，也没有每日编译次数配额。由 Girish Lade 作为 LadeStack 开放生态的重要一环进行长期开发与维护。',
       },
+      {
+        q: "如何在 GB Coder 中创建新项目？",
+        a: "打开 GB Coder 并选择适合您的开发环境。对于使用 HTML、CSS 和 JavaScript 进行的快速客户端原型设计，请启动 Static Editor。对于需要 npm 依赖和前端框架的全栈 Node.js 项目，请在 WebContainer IDE 中启动工作区，并选用现成模板或直接新建文件。",
+      },
+      {
+        q: "我可以在 GB Coder 中编写和编辑哪些编程语言？",
+        a: "GB Coder 采用微软 Monaco Editor 引擎，为 JavaScript、TypeScript、HTML、CSS、JSON 和 Markdown 等语言提供语法高亮、自动补全、括号配色及代码折叠等现代化编辑体验。编辑器支持多种语言的代码编写，而浏览器内的直接运行环境则专注于 Web 技术与 Node.js 运行时。",
+      },
+      {
+        q: "编写代码时是否可以实时预览网页效果？",
+        a: "可以。GB Coder 提供实时预览功能。在 Static Editor 中，当您输入代码时，DOM 变更会在沙箱化 iframe 中以亚毫秒级延迟即时呈现。在 WebContainer IDE 中，预览则由本地开发服务器与模块热替换（HMR）驱动，并支持独立弹出窗口以及局域网移动端 QR 码扫码测试。",
+      },
+      {
+        q: "我可以在 GB Coder 中安装 npm 依赖并运行终端命令吗？",
+        a: "可以，在 WebContainer IDE 环境中均受支持。WebContainer 引擎在浏览器内存中直接运行原生 Node.js 进程，允许您在无需远程云服务器或本地桌面运行环境的情况下，输入终端命令、通过 npm install 安装兼容依赖并执行项目构建脚本。",
+      },
+      {
+        q: "我可以在 GB Coder 中使用现代 JavaScript 框架进行开发吗？",
+        a: "可以。WebContainer IDE 支持 React 和 Vue 等现代前端框架，并内置预配置模板与 Vite 开发服务器。静态打包框架或通过 CDN 引入的组件亦可在 Static Editor 中直接构建与调试。",
+      },
+      {
+        q: "GB Assist AI 助手在编码时能为我提供哪些帮助？",
+        a: "GB Assist 是一款智能代码辅助工具，旨在协助您解读复杂代码、提供架构优化建议、生成实用脚手架代码以及排查运行时错误。所有建议均以内联形式展示，方便您在合并到项目之前进行逐项审查与确认。",
+      },
+      {
+        q: "在 GB Coder 中使用 AI 功能是否需要提供我自己的 API 密钥？",
+        a: "是的。GB Coder 的 AI 功能采用自带密钥（BYOK, Bring-Your-Own-Key）架构。您需要配置来自支持的服务商（如 OpenAI、Anthropic 或 Google Gemini）的私有 API 密钥。请求均通过 HTTPS 直接从浏览器发往服务商接口，LadeStack 绝不会中转、审查或在远程存储您的 API 密钥与代码提示词。",
+      },
+      {
+        q: "GB Coder 中的项目和代码修改是如何保存的？",
+        a: "GB Coder 利用 IndexedDB 将您的项目文件、目录结构和工作区状态保存在本地浏览器中，绝不会将代码上传到 LadeStack 服务器。由于数据保存在设备本地浏览器内，清除浏览记录、使用隐私无痕模式或清除站点存储可能会重置工作区。重要项目请务必定期导出 ZIP 备份。",
+      },
+      {
+        q: "我可以下载或导出 GB Coder 的项目文件吗？",
+        a: "可以。您可以随时将整个工作区导出为标准 ZIP 压缩包。导出的文件完整保留目录结构、源代码和配置文件，方便您在桌面端 VS Code 中继续开发，或直接部署至托管平台与 Git 仓库。",
+      },
+      {
+        q: "如果编辑器、终端或实时预览停止工作该怎么办？",
+        a: "首先请确认您的浏览器是否支持所选开发环境。WebContainer IDE 需要启用 SharedArrayBuffer 和跨域隔离（COOP/COEP）的 Chromium 架构浏览器（Chrome、Edge、Brave）或 Firefox；如在 Safari 等受限环境中使用，请切换至 Static Editor。如遇到异常，建议先导出备份当前文件再刷新页面。若问题仍未解决，请通过 LadeStack 的 Contact 页面提交反馈。",
+      },
     ],
   },
   cta: {

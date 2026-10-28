@@ -133,6 +133,46 @@ export const tr: GbCoderPageData = {
         q: 'GB Coder tamamen ücretsiz mi?',
         a: 'Evet, kullanımı tamamen ücretsizdir. Abonelik ücreti, kredi kartı zorunluluğu veya günlük derleme kotası yoktur. LadeStack açık geliştirici ekosisteminin bir parçası olarak Girish Lade tarafından geliştirilmekte ve sürdürülmektedir.',
       },
+      {
+        q: "GB Coder içinde nasıl yeni bir proje oluşturabilirim?",
+        a: "GB Coder'ı açın ve çalışma alanınız için uygun ortamı seçin. HTML, CSS ve JavaScript ile hızlı istemci tarafı prototipleme yapmak için Static Editor modunu başlatın. npm paketleri ve ön uç çatıları içeren tam yığın Node.js projeleri için WebContainer IDE üzerinde bir çalışma alanı açabilir, hazır başlangıç şablonlarından birini seçebilir veya yeni dosyalar oluşturabilirsiniz.",
+      },
+      {
+        q: "GB Coder içinde hangi programlama dillerini yazabilir ve düzenleyebilirim?",
+        a: "GB Coder, JavaScript, TypeScript, HTML, CSS, JSON ve Markdown dahil olmak üzere birçok dil için sözdizimi vurgulama, otomatik tamamlama, parantez eşleştirme ve kod daraltma özellikleri sunan Microsoft Monaco Editor motorunu kullanır. Çok sayıda dilde düzenleme yapabilirsiniz; ancak tarayıcı içi doğrudan kod çalıştırma Web teknolojileri ve Node.js çalışma ortamlarına odaklanmıştır.",
+      },
+      {
+        q: "Kod yazarken web sitemi canlı olarak önizleyebilir miyim?",
+        a: "Evet. GB Coder gerçek zamanlı canlı önizleme olanağı sunar. Static Editor modunda kod yazdıkça DOM değişiklikleri yalıtılmış bir iframe kum havuzunda milisaniyenin altında bir gecikmeyle anında güncellenir. WebContainer IDE modunda ise önizleme, yerel geliştirme sunucuları ve sıcak modül yenileme (HMR) aracılığıyla sunulur; ayrıca harici pencere ve yerel ağ QR kod testi desteklenir.",
+      },
+      {
+        q: "GB Coder içinde npm paketleri yükleyebilir ve terminal komutları çalıştırabilir miyim?",
+        a: "Evet, WebContainer IDE ortamında çalıştırabilirsiniz. WebContainer motoru, doğrudan tarayıcı belleğinde gerçek Node.js süreçleri yürütür. Bu sayede uzak bir sunucuya veya masaüstü çalışma zamanına ihtiyaç duymadan terminal komutları girebilir, uyumlu paketler için npm install çalıştırabilir ve derleme betiklerini yürütebilirsiniz.",
+      },
+      {
+        q: "GB Coder içinde modern JavaScript çatıları (framework) kullanarak proje geliştirebilir miyim?",
+        a: "Evet. WebContainer IDE, hazır başlangıç şablonları ve Vite geliştirme sunucuları ile React ve Vue gibi modern ön uç çatılarını destekler. Statik çatı derlemeleri veya CDN üzerinden eklenen bileşenler doğrudan Static Editor ortamında da prototiplenebilir.",
+      },
+      {
+        q: "GB Assist yapay zeka asistanı kodlama sırasında bana nasıl yardımcı olabilir?",
+        a: "GB Assist; karmaşık kodları açıklama, mimari iyileştirmeler önerme, işlevsel şablon kodlar üretme ve çalışma zamanı hatalarını inceleme konularında yardımcı olan akıllı bir kodlama yardımcısıdır. Tüm öneriler satır içi olarak sunulur, böylece projenize dahil etmeden önce değişiklikleri inceleyip onaylayabilirsiniz.",
+      },
+      {
+        q: "GB Coder'daki yapay zeka özelliklerini kullanmak için kendi API anahtarım gerekli mi?",
+        a: "Evet. GB Coder yapay zeka özellikleri için Kendi Anahtarını Getir (BYOK - Bring-Your-Own-Key) mimarisini uygular. OpenAI, Anthropic veya Google Gemini gibi desteklenen sağlayıcılardan edindiğiniz özel API anahtarınızı tanımlarsınız. İstekler tarayıcınızdan sağlayıcıya doğrudan HTTPS üzerinden iletilir; LadeStack hiçbir zaman API anahtarlarınızı veya kod istemlerinizi aracı olarak işlemez, incelemez veya kaydetmez.",
+      },
+      {
+        q: "GB Coder'da projelerim ve kod değişikliklerim nasıl kaydedilir?",
+        a: "GB Coder; proje dosyalarınızı, dizin yapınızı ve çalışma alanı durumunuzu IndexedDB kullanarak tarayıcınızın yerel depolama alanına kaydeder. Kodlarınız asla LadeStack sunucularına yüklenmez. Veriler yerel tarayıcıda saklandığı için tarayıcı geçmişini temizlemek, gizli pencere kullanmak veya site verilerini sıfırlamak projeleri silebilir. Önemli çalışmalarınız için düzenli olarak ZIP yedekleri dışa aktarın.",
+      },
+      {
+        q: "GB Coder proje dosyalarımı indirebilir veya dışa aktarabilir miyim?",
+        a: "Evet. Çalışma alanınızın tamamını istediğiniz zaman standart bir ZIP arşivi olarak dışa aktarabilirsiniz. İndirilen arşiv klasör yapınızı, kaynak kodlarınızı ve yapılandırma dosyalarınızı eksiksiz korur; böylece masaüstünüzdeki VS Code üzerinde çalışmaya devam edebilir veya projenizi doğrudan bir sunucuya ve Git deposuna dağıtabilirsiniz.",
+      },
+      {
+        q: "Düzenleyici, terminal veya canlı önizleme çalışmayı durdurursa ne yapmalıyım?",
+        a: "Öncelikle kullandığınız tarayıcının seçilen ortamı desteklediğinden emin olun. WebContainer IDE; SharedArrayBuffer ve çapraz kaynak yalıtımı (COOP/COEP) etkin Chromium tabanlı tarayıcılar (Chrome, Edge, Brave) veya güncel Firefox gerektirir. Safari gibi desteklenmeyen tarayıcılarda Static Editor moduna geçin. Sorun devam ederse çalışmalarınızın yedeğini dışa aktarın ve sayfayı yenileyin. Sorun çözülmezse LadeStack Contact sayfası üzerinden destek talebi iletebilirsiniz.",
+      },
     ],
   },
   cta: {

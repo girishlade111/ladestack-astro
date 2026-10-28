@@ -133,6 +133,46 @@ export const en: GbCoderPageData = {
         q: 'Is GB Coder completely free?',
         a: 'Yes, free to use. There are no subscription tiers, no credit card requirements, and no daily compile quotas. It is developed and maintained by Girish Lade as part of the open LadeStack developer ecosystem.',
       },
+      {
+        q: "How do I create a new project in GB Coder?",
+        a: "Open GB Coder and choose your preferred environment. For rapid client-side prototyping with HTML, CSS, and JavaScript, launch the Static Editor. For full-stack Node.js projects with npm packages and frontend frameworks, start a workspace in the WebContainer IDE and select a starter template or create new files.",
+      },
+      {
+        q: "Which programming languages can I write and edit in GB Coder?",
+        a: "GB Coder uses Microsoft's Monaco Editor engine to provide syntax highlighting, auto-completion, bracket matching, and code folding for languages including JavaScript, TypeScript, HTML, CSS, JSON, and Markdown. While you can write and edit many languages, browser execution is focused on web technologies and Node.js runtimes.",
+      },
+      {
+        q: "Can I preview my website while writing code?",
+        a: "Yes. GB Coder provides real-time live preview. The Static Editor synchronizes DOM changes inside an isolated iframe sandbox as you type with sub-millisecond latency. In the WebContainer IDE, preview is served via local development servers with hot module reloading, detached window options, and local network QR testing.",
+      },
+      {
+        q: "Can I install npm packages and run terminal commands inside GB Coder?",
+        a: "Yes, within the WebContainer IDE. The WebContainer engine runs genuine Node.js processes directly in browser memory, enabling you to execute terminal commands, run npm install for compatible packages, and run development build scripts without requiring a remote server or desktop runtime.",
+      },
+      {
+        q: "Can I develop projects using modern JavaScript frameworks in GB Coder?",
+        a: "Yes. The WebContainer IDE supports modern frontend frameworks such as React and Vue with pre-configured starter templates and Vite development servers. Static framework builds or CDN-delivered components can also be prototyped directly in the Static Editor.",
+      },
+      {
+        q: "What can the GB Assist AI assistant help me do while coding?",
+        a: "GB Assist is an intelligent coding companion designed to help you explain complex code, suggest architectural improvements, generate functional boilerplate, and diagnose runtime bugs. All suggestions are displayed inline so you can review and accept them before incorporating them into your project.",
+      },
+      {
+        q: "Do I need my own API key to use AI features in GB Coder?",
+        a: "Yes. GB Coder follows a Bring-Your-Own-Key (BYOK) architecture for AI features. You provide your own API key from supported providers such as OpenAI, Anthropic, or Google Gemini. Requests are sent directly from your browser to the provider over HTTPS; LadeStack never proxies, inspects, or stores your API keys or code prompts.",
+      },
+      {
+        q: "How are my projects and code changes saved in GB Coder?",
+        a: "GB Coder stores your project files, directory structure, and workspace state locally in your browser using IndexedDB. Your code is never uploaded to LadeStack servers. Because persistence relies on local browser storage, clearing site data or browsing in private mode may remove stored projects. Always export regular ZIP backups for important work.",
+      },
+      {
+        q: "Can I download or export my GB Coder project files?",
+        a: "Yes. You can export your entire workspace at any time as a standard ZIP archive. The downloaded archive preserves your complete folder structure, source code, and configuration files, making it easy to continue development locally in VS Code or deploy to any hosting provider.",
+      },
+      {
+        q: "What should I do if the editor, terminal, or live preview stops working?",
+        a: "First verify that your browser supports the chosen environment. The WebContainer IDE requires Chromium-based browsers (Chrome, Edge, Brave) or modern Firefox with SharedArrayBuffer and cross-origin isolation enabled; if unsupported (such as in Safari), use the Static Editor. If issues arise, export a backup of your work and reload the page. For persistent problems, submit a report via LadeStack's Contact page.",
+      },
     ],
   },
   cta: {

@@ -133,6 +133,46 @@ export const fr: GbCoderPageData = {
         q: 'GB Coder est-il totalement gratuit ?',
         a: 'Oui, son utilisation est entièrement gratuite. Il n’y a aucun niveau payant, aucune carte bancaire requise et aucun quota quotidien. Il est développé et maintenu par Girish Lade au sein de l’écosystème ouvert LadeStack.',
       },
+      {
+        q: "Comment créer un nouveau projet dans GB Coder ?",
+        a: "Ouvrez GB Coder et choisissez l'environnement adapté à votre projet. Pour un prototypage côté client ultra-rapide en HTML, CSS et JavaScript, lancez le Static Editor. Pour des projets complets Node.js avec paquets npm et frameworks modernes, démarrez un espace de travail dans le WebContainer IDE et sélectionnez un modèle de départ ou créez de nouveaux fichiers.",
+      },
+      {
+        q: "Quels langages de programmation puis-je écrire et éditer dans GB Coder ?",
+        a: "GB Coder s'appuie sur le moteur Monaco Editor de Microsoft pour offrir la coloration syntaxique, l'autocomplétion, la correspondance des parenthèses et le pliage de code pour JavaScript, TypeScript, HTML, CSS, JSON et Markdown. Si l'édition prend en charge de multiples langages, l'exécution directe dans le navigateur est optimisée pour les technologies web et les environnements Node.js.",
+      },
+      {
+        q: "Puis-je prévisualiser mon site web en direct pendant que j'écris du code ?",
+        a: "Oui. GB Coder intègre une prévisualisation en direct et en temps réel. Avec le Static Editor, les modifications du DOM sont synchronisées dans une iframe sandbox isolée avec une latence inférieure à la milliseconde au fil de votre saisie. Dans le WebContainer IDE, l'aperçu est servi par des serveurs de développement locaux avec rechargement à chaud (HMR), fenêtre détachée et test par code QR sur réseau local.",
+      },
+      {
+        q: "Puis-je installer des paquets npm et exécuter des commandes de terminal dans GB Coder ?",
+        a: "Oui, dans l'environnement WebContainer IDE. Le moteur WebContainer exécute d'authentiques processus Node.js directement dans la mémoire de votre navigateur, ce qui vous permet de lancer des commandes de terminal, d'exécuter npm install pour les paquets compatibles et de lancer des scripts de build sans serveur distant ni installation locale.",
+      },
+      {
+        q: "Puis-je développer des projets avec des frameworks JavaScript modernes dans GB Coder ?",
+        a: "Oui. Le WebContainer IDE prend en charge les frameworks front-end modernes tels que React et Vue grâce à des modèles de démarrage préconfigurés et des serveurs de développement Vite. Les builds statiques ou composants intégrés via CDN peuvent également être prototypés directement dans le Static Editor.",
+      },
+      {
+        q: "En quoi l'assistant IA GB Assist peut-il m'aider pendant le développement ?",
+        a: "GB Assist est un compagnon de code intelligent conçu pour expliquer du code complexe, suggérer des améliorations d'architecture, générer du code réutilisable et diagnostiquer les erreurs d'exécution. Toutes les suggestions s'affichent directement dans l'éditeur pour vous permettre de vérifier et valider les modifications avant de les intégrer.",
+      },
+      {
+        q: "Dois-je fournir ma propre clé API pour utiliser les fonctionnalités IA dans GB Coder ?",
+        a: "Oui. GB Coder applique un modèle Bring-Your-Own-Key (BYOK). Vous configurez votre propre clé API privée issue de fournisseurs compatibles tels qu'OpenAI, Anthropic ou Google Gemini. Les requêtes sont transmises directement de votre navigateur vers le fournisseur en HTTPS ; LadeStack ne relaie, n'inspecte et ne stocke jamais vos clés API ni vos invites de code.",
+      },
+      {
+        q: "Comment mes projets et mes modifications de code sont-ils sauvegardés dans GB Coder ?",
+        a: "GB Coder enregistre vos fichiers de projet, votre arborescence et l'état de votre espace de travail localement dans votre navigateur grâce à IndexedDB. Votre code n'est jamais transféré ni stocké sur les serveurs de LadeStack. Comme les données résident sur votre appareil, vider le cache, utiliser la navigation privée ou effacer les données de site peut réinitialiser vos projets. Exportez régulièrement des archives ZIP pour vos travaux importants.",
+      },
+      {
+        q: "Puis-je télécharger ou exporter les fichiers de mon projet GB Coder ?",
+        a: "Oui. Vous pouvez exporter l'intégralité de votre espace de travail sous forme d'archive ZIP standard à tout moment. L'archive téléchargée conserve l'arborescence complète des dossiers, le code source et les fichiers de configuration, vous permettant de continuer le développement localement dans VS Code ou de déployer votre code sur n'importe quel hébergeur ou dépôt Git.",
+      },
+      {
+        q: "Que faire si l'éditeur, le terminal ou l'aperçu en direct cesse de fonctionner ?",
+        a: "Vérifiez d'abord que votre navigateur prend en charge l'environnement sélectionné. Le WebContainer IDE nécessite un navigateur basé sur Chromium (Chrome, Edge, Brave) ou Firefox récent avec SharedArrayBuffer et isolation cross-origin (COOP/COEP) activés ; si votre navigateur n'est pas compatible (comme Safari), utilisez le Static Editor. En cas de problème, exportez une sauvegarde de vos fichiers puis actualisez la page. Si le souci persiste, contactez l'équipe via la page Contact de LadeStack.",
+      },
     ],
   },
   cta: {
