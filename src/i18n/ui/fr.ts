@@ -136,6 +136,36 @@ export const fr: UIStrings = {
   'faq.q4': 'Qui conçoit et maintient LadeStack ?',
   'faq.a4':
     'LadeStack est conçu et maintenu par son fondateur Girish Lade, avec pour objectif d’offrir des outils de développement accessibles et respectueux de la vie privée à l’échelle mondiale.',
+  'faq.q5': 'Que puis-je faire avec LadeStack ?',
+  'faq.a5':
+    'LadeStack rassemble des outils pour développeurs, des utilitaires de code, des outils de traitement documentaire, des utilitaires d’image et des applications de productivité. Explorez la page Applications pour découvrir les outils disponibles et choisir celui qui convient à votre flux de travail.',
+  'faq.q6': 'Dois-je créer un compte pour utiliser les outils LadeStack ?',
+  'faq.a6':
+    'De nombreux outils LadeStack sont accessibles sans création de compte. Chaque application pouvant avoir des exigences spécifiques, veuillez consulter la page de l’outil concerné pour obtenir les détails précis.',
+  'faq.q7': 'Dois-je installer un logiciel pour commencer ?',
+  'faq.a7':
+    'LadeStack propose des outils que vous pouvez lancer directement depuis un navigateur web compatible. Vous pouvez ouvrir la page Applications, choisir un outil et commencer sans installer d’application de bureau distincte pour ces fonctionnalités en ligne.',
+  'faq.q8': 'Puis-je utiliser LadeStack sur mobile et tablette ?',
+  'faq.a8':
+    'Le site web de LadeStack est conçu pour les ordinateurs, tablettes et appareils mobiles. Toutefois, certains outils de développement avancés peuvent offrir une meilleure ergonomie sur grand écran ou présenter des limitations liées au navigateur.',
+  'faq.q9': 'Comment démarrer avec GB Coder ?',
+  'faq.a9':
+    'Ouvrez la page GB Coder depuis le menu de navigation ou le catalogue Applications, puis suivez le lien de lancement pour accéder à l’éditeur. GB Coder offre un environnement de développement dans le navigateur pour concevoir et modifier votre code.',
+  'faq.q10': 'Quelles sont les langues disponibles sur le site LadeStack ?',
+  'faq.a10':
+    'Le site web LadeStack prend en charge l’anglais, le japonais, le coréen, le chinois, le russe, le turc, le français, le portugais et l’espagnol. Vous pouvez changer la langue à l’aide du sélecteur situé dans la navigation ou le pied de page. Certains articles ou outils individuels peuvent avoir une disponibilité linguistique spécifique.',
+  'faq.q11': 'LadeStack prend-il en charge les thèmes sombre et clair ?',
+  'faq.a11':
+    'Oui. LadeStack propose des thèmes clair et sombre pour vous permettre de choisir votre confort visuel. Utilisez le commutateur de thème dans la barre de navigation pour passer de l’un à l’autre. Votre préférence est mémorisée lors de la navigation entre les pages dans le même navigateur.',
+  'faq.q12': 'Puis-je copier ou télécharger les résultats générés par les outils LadeStack ?',
+  'faq.a12':
+    'Les options de copie et de téléchargement varient selon l’outil utilisé. Lorsqu’elles sont disponibles, vous pouvez utiliser les commandes de copie, d’exportation ou de téléchargement pour enregistrer vos résultats. Consultez l’interface de chaque outil pour connaître ses options spécifiques.',
+  'faq.q13': 'Comment découvrir les nouveaux outils et mises à jour de LadeStack ?',
+  'faq.a13':
+    'Consultez la page Applications pour explorer l’ensemble des outils LadeStack actuels. Vous pouvez également lire le blog du site pour suivre les actualités produits, les guides techniques et les mises à jour. De nouveaux lancements et perfectionnements sont apportés régulièrement.',
+  'faq.q14': 'Comment signaler un bug ou suggérer une nouvelle fonctionnalité ?',
+  'faq.a14':
+    'Vous pouvez utiliser la page Contact de LadeStack pour transmettre vos retours, signaler un dysfonctionnement ou proposer une amélioration. Pour signaler un bug, précisez l’outil concerné, votre navigateur et les étapes de reproduction afin de faciliter les investigations.',
 
   // CTA Banner
   'cta.title': 'Prêt à accélérer vos développements ?',

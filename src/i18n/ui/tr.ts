@@ -136,6 +136,36 @@ export const tr: UIStrings = {
   'faq.q4': 'LadeStack’i kim geliştiriyor ve yönetiyor?',
   'faq.a4':
     'LadeStack, kurucusu Girish Lade tarafından dünya çapındaki geliştiricilere erişilebilir, gizlilik odaklı araçlar sağlamak amacıyla tasarlanmakta ve sürdürülmektedir.',
+  'faq.q5': 'LadeStack ile neler yapabilirim?',
+  'faq.a5':
+    'LadeStack geliştirici araçlarını, kodlama yardımcılarını, belge işleme araçlarını, görsel optimizasyon servislerini ve üretkenlik uygulamalarını bir araya getirir. Mevcut araçları keşfetmek ve iş akışınıza en uygun olanı seçmek için Uygulamalar sayfasını inceleyebilirsiniz.',
+  'faq.q6': 'LadeStack araçlarını kullanmak için hesap oluşturmam gerekir mi?',
+  'faq.a6':
+    'Birçok LadeStack aracına hesap oluşturmadan doğrudan erişebilirsiniz. Bazı özel uygulamaların farklı gereksinimleri olabileceğinden ilgili aracın sayfasındaki detayları kontrol etmenizi öneririz.',
+  'faq.q7': 'Başlamak için herhangi bir yazılım yüklemem gerekiyor mu?',
+  'faq.a7':
+    'LadeStack, desteklenen bir web tarayıcısından doğrudan başlatabileceğiniz araçlar sunar. Uygulamalar sayfasını açıp bir araç seçebilir ve tarayıcı tabanlı bu özellikler için harici bir masaüstü uygulaması yüklemeden hemen kullanmaya başlayabilirsiniz.',
+  'faq.q8': 'LadeStack’i cep telefonlarında ve tabletlerde kullanabilir miyim?',
+  'faq.a8':
+    'LadeStack web sitesi masaüstü, tablet ve mobil cihazlar için duyarlı biçimde tasarlanmıştır. Bununla birlikte, bazı gelişmiş geliştirme araçları geniş ekranlarda daha verimli bir deneyim sunabilir veya mobil tarayıcılarda belirli kısıtlamalara sahip olabilir.',
+  'faq.q9': 'GB Coder ile çalışmaya nasıl başlayabilirim?',
+  'faq.a9':
+    'Gezinme menüsünden veya Uygulamalar dizininden GB Coder sayfasını açın, ardından editöre erişmek için mevcut başlatma bağlantısını takip edin. GB Coder, kod yazmanız ve düzenlemeniz için tarayıcı tabanlı modern bir geliştirme ortamı sağlar.',
+  'faq.q10': 'LadeStack web sitesinde hangi diller destekleniyor?',
+  'faq.a10':
+    'LadeStack web sitesi İngilizce, Japonca, Korece, Çince, Rusça, Türkçe, Fransızca, Portekizce ve İspanyolca dillerini destekler. Gezinme çubuğunda veya altbilgide yer alan dil seçiciyi kullanarak web sitesi dilini dilediğiniz zaman değiştirebilirsiniz. Bazı münferit makaleler ve araçlar farklı dil seçeneklerine sahip olabilir.',
+  'faq.q11': 'LadeStack karanlık ve aydınlık tema desteğine sahip mi?',
+  'faq.a11':
+    'Evet. LadeStack, görsel tercihinize göre seçebileceğiniz karanlık ve aydınlık temalar sunar. Aralarında geçiş yapmak için gezinme çubuğundaki tema düğmesini kullanabilirsiniz. Tercihiniz aynı tarayıcıda sayfalar arasında gezinirken korunur.',
+  'faq.q12': 'LadeStack araçları tarafından üretilen sonuçları kopyalayabilir veya indirebilir miyim?',
+  'faq.a12':
+    'Kopyalama ve indirme seçenekleri kullandığınız araca bağlı olarak değişir. Desteklenen araçlarda sonuçlarınızı kaydetmek için mevcut kopyalama, dışa aktarma veya indirme düğmelerini kullanabilirsiniz. Belirli çıktı seçenekleri için ilgili aracın arayüzünü inceleyebilirsiniz.',
+  'faq.q13': 'Yeni yayınlanan LadeStack araçlarını ve güncellemeleri nasıl takip edebilirim?',
+  'faq.a13':
+    'Güncel LadeStack araç koleksiyonunu incelemek için Uygulamalar sayfasını ziyaret edebilirsiniz. Ayrıca ürün duyuruları, teknik makaleler ve güncellemeler için web sitesinin blog sayfasını takip edebilirsiniz. Yeni sürümler ve geliştirmeler zaman içinde eklenmeye devam etmektedir.',
+  'faq.q14': 'Bir hatayı nasıl bildirebilirim veya yeni bir özellik nasıl önerebilirim?',
+  'faq.a14':
+    'Geri bildirimde bulunmak, bir sorunu bildirmek veya geliştirme önerisi iletmek için LadeStack İletişim sayfasını kullanabilirsiniz. Bir hata bildirirken sorunun daha hızlı araştırılabilmesi için etkilenen aracı, kullandığınız tarayıcıyı ve sorunu yeniden oluşturma adımlarını belirtmenizi rica ederiz.',
 
   // CTA Banner
   'cta.title': 'İş akışınızı hızlandırmaya hazır mısınız?',
