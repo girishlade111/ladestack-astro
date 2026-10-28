@@ -27,3 +27,4 @@ export function getFaqPageData(locale: Locale): FaqPageData {
 }
 
 export * from './types';
+

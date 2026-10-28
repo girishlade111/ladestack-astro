@@ -33,3 +33,4 @@ export const pt: FaqPageData = {
     docsBtn: 'Explorar Documentação',
   },
 };
+

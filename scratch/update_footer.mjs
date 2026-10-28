@@ -14,3 +14,4 @@ if (!content.includes(target)) {
 content = content.replace(target, replacement);
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully updated Footer.astro');
+

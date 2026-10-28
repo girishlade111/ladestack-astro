@@ -45,3 +45,4 @@ for (const loc of locales) {
 }
 
 console.log('Finished updating nav.faq across all UI dictionaries.');
+

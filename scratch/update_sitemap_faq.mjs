@@ -25,3 +25,4 @@ for (const [lang, item] of Object.entries(items)) {
   fs.writeFileSync(filePath, content, 'utf8');
   console.log(`Updated sitemap for ${lang}`);
 }
+

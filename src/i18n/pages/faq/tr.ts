@@ -33,3 +33,4 @@ export const tr: FaqPageData = {
     docsBtn: 'Dokümantasyonu İnceleyin',
   },
 };
+

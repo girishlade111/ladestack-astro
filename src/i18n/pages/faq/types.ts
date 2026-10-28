@@ -36,3 +36,4 @@ export interface FaqPageData {
     docsBtn: string;
   };
 }
+

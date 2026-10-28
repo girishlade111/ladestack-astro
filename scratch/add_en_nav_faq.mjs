@@ -11,3 +11,4 @@ enContent = enContent.replace(
 );
 fs.writeFileSync(enPath, enContent, 'utf-8');
 console.log('Added nav.faq to en.ts dictionary');
+

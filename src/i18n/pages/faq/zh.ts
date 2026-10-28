@@ -33,3 +33,4 @@ export const zh: FaqPageData = {
     docsBtn: '浏览技术文档',
   },
 };
+

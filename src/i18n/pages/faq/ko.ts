@@ -33,3 +33,4 @@ export const ko: FaqPageData = {
     docsBtn: '문서 둘러보기',
   },
 };
+

@@ -33,3 +33,4 @@ export const ja: FaqPageData = {
     docsBtn: 'ドキュメントを見る',
   },
 };
+

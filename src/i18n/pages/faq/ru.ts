@@ -33,3 +33,4 @@ export const ru: FaqPageData = {
     docsBtn: 'Перейти к документации',
   },
 };
+

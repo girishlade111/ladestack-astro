@@ -21,3 +21,4 @@ content = content.replace(faqSectionRegex, '');
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully updated GbCoderPage.astro');
+
