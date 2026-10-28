@@ -41,3 +41,4 @@ analyze('Rendered Desktop Dark', 'scratch/rendered_hero/rendered_desktop_dark.pn
 analyze('Rendered Desktop Light', 'scratch/rendered_hero/rendered_desktop_light.png')
 analyze('Rendered Mobile Dark', 'scratch/rendered_hero/rendered_mobile_dark.png')
 analyze('Rendered Mobile Light', 'scratch/rendered_hero/rendered_mobile_light.png')
+

@@ -31,3 +31,4 @@ for name, path in images.items():
     for r, g, b, x, y in brightest:
         print(f"  rgb({r},{g},{b}) / #{r:02x}{g:02x}{b:02x} at ({x}, {y})")
 
+

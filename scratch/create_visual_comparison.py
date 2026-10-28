@@ -54,3 +54,4 @@ make_comparison(
     'scratch/comparisons/light_mobile_comparison.png',
     'Light Mobile'
 )
+

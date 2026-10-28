@@ -19,3 +19,4 @@ for i in range(12):
         r1, g1, b1 = ref_img.getpixel((ref_cx, ref_y))
         r2, g2, b2 = ren_img.getpixel((ren_cx, ren_y))
         print(f"{ref_y:5d} | rgb({r1:3d},{g1:3d},{b1:3d}) #{r1:02x}{g1:02x}{b1:02x} | {ren_y:5d} | rgb({r2:3d},{g2:3d},{b2:3d}) #{r2:02x}{g2:02x}{b2:02x}")
+

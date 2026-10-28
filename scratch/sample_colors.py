@@ -46,3 +46,4 @@ analyze_image('dark_desktop', r'C:/Users/Girish Lade/.gemini/antigravity/brain/3
 analyze_image('light_desktop', r'C:/Users/Girish Lade/.gemini/antigravity/brain/3f7541f6-1ec3-4538-bb77-0de47c88bb87/.user_uploaded/media_1793184987140_f49af50a.png')
 analyze_image('dark_mobile', r'C:/Users/Girish Lade/.gemini/antigravity/brain/3f7541f6-1ec3-4538-bb77-0de47c88bb87/.user_uploaded/media_1793184987135_d17cfd6e.png')
 analyze_image('light_mobile', r'C:/Users/Girish Lade/.gemini/antigravity/brain/3f7541f6-1ec3-4538-bb77-0de47c88bb87/.user_uploaded/media_1793184987135_8a372ef7.png')
+
