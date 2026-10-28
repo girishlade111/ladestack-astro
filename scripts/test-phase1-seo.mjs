@@ -171,15 +171,43 @@ function waitForServer(url, timeout = 25000) {
 }
 
 const PREVIEW_PORT = 4398;
-const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
+const PREVIEW_URL = `http://127.0.0.1:${PREVIEW_PORT}`;
 
-const server = spawn('npx', ['astro', 'preview', '--port', String(PREVIEW_PORT)], {
-  shell: true,
-  stdio: 'pipe',
+const MIME_TYPES = {
+  '.html': 'text/html',
+  '.css': 'text/css',
+  '.js': 'application/javascript',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.json': 'application/json',
+  '.xml': 'application/xml',
+  '.woff2': 'font/woff2',
+};
+
+const server = http.createServer((req, res) => {
+  let cleanUrl = req.url.split('?')[0].split('#')[0];
+  if (cleanUrl.endsWith('/')) cleanUrl += 'index.html';
+  let filePath = path.join(DIST_DIR, cleanUrl);
+
+  if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+    filePath = path.join(filePath, 'index.html');
+  }
+
+  if (!fs.existsSync(filePath)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+    return;
+  }
+
+  const ext = path.extname(filePath);
+  res.writeHead(200, { 'Content-Type': MIME_TYPES[ext] || 'application/octet-stream' });
+  res.end(fs.readFileSync(filePath));
 });
 
+await new Promise((resolve) => server.listen(PREVIEW_PORT, '127.0.0.1', resolve));
+
 try {
-  await waitForServer(PREVIEW_URL);
   console.log(`Server responsive at ${PREVIEW_URL}`);
 
   const browser = await chromium.launch({ headless: true });
@@ -246,7 +274,7 @@ try {
   console.error(`❌ Browser test execution error: ${err.message}`);
   failed = true;
 } finally {
-  server.kill();
+  server.close ? server.close() : server.kill();
 }
 
 if (failed) {
