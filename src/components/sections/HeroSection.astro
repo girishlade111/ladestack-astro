@@ -27,29 +27,130 @@ const trustPills = [
 ---
 
 <section class="relative z-0 flex w-full flex-col items-center justify-start overflow-hidden bg-background pt-0 pb-20 sm:pb-32">
-  <!-- Lamp / Downward Expanding Spotlight Stage (Flush with Navbar) -->
-  <div class="absolute top-0 isolate z-0 flex w-full flex-1 items-start justify-center pointer-events-none select-none" aria-hidden="true">
-    <div class="absolute top-0 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
+  <!-- Minimal Tray Lamp Stage (SVG Physical Housing + CSS Emitted Lighting) -->
+  <div class="absolute top-0 isolate z-0 flex w-full flex-col items-center pointer-events-none select-none overflow-visible" aria-hidden="true">
+    <!-- Layer 3: Ambient Diffusion (Wide soft atmosphere) -->
+    <div class="lamp-ambient absolute top-0 w-[540px] sm:w-[780px] md:w-[960px] h-[300px] sm:h-[400px] pointer-events-none"></div>
 
-    <!-- Main central ambient glow: fills center between cones -->
-    <div class="lamp-glow absolute inset-auto z-50 h-32 sm:h-36 w-[18rem] sm:w-[28rem] translate-y-[30%] rounded-full opacity-80 blur-3xl"></div>
+    <!-- Layer 2: Main Downward Projection Beam (Directional colored light field) -->
+    <div class="lamp-beam absolute top-0 w-[380px] sm:w-[560px] md:w-[700px] h-[240px] sm:h-[320px] pointer-events-none"></div>
 
-    <!-- Core lamp bulb beam: adds bright intensity directly under emitter bar -->
-    <div class="lamp-bulb absolute top-0 z-30 h-32 sm:h-36 -translate-y-[20%] w-[14rem] sm:w-[16rem] rounded-full blur-2xl"></div>
+    <!-- Layer 1: Luminous Source Hotspot (Bright aura directly beneath the diffuser lens) -->
+    <div class="lamp-source absolute top-[13px] sm:top-[15px] w-[220px] sm:w-[280px] md:w-[320px] h-[14px] sm:h-[18px] rounded-full pointer-events-none"></div>
 
-    <!-- Top lamp emitter line (touching navbar directly) -->
-    <div class="lamp-bar absolute inset-auto z-50 h-0.5 w-[18rem] sm:w-[26rem] md:w-[30rem] translate-y-[10%]"></div>
+    <!-- Physical SVG Minimal Tray Lamp Housing -->
+    <div class="relative z-10 flex justify-center w-full">
+      <svg
+        class="w-[200px] sm:w-[240px] md:w-[270px] lg:w-[290px] h-auto drop-shadow-md"
+        viewBox="0 0 320 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <!-- DARK THEME GRADIENTS (Warm Bronze/Titanium Metallic Housing + Luminous Amber Diffuser) -->
+          <linearGradient id="tray-metal-dark" x1="160" y1="2" x2="160" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#5C4736" />
+            <stop offset="20%" stop-color="#7B6149" />
+            <stop offset="50%" stop-color="#9A7753" />
+            <stop offset="80%" stop-color="#BD935F" />
+            <stop offset="100%" stop-color="#DFAC68" />
+          </linearGradient>
+          <linearGradient id="tray-rim-dark" x1="160" y1="2" x2="160" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9C7F62" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#735A42" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.8" />
+          </linearGradient>
+          <linearGradient id="tray-spec-dark" x1="28" y1="3" x2="292" y2="3" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7B6149" stop-opacity="0" />
+            <stop offset="25%" stop-color="#CBB196" stop-opacity="0.8" />
+            <stop offset="50%" stop-color="#F4ECE2" stop-opacity="0.95" />
+            <stop offset="75%" stop-color="#CBB196" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#7B6149" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="diffuser-lens-dark" x1="22" y1="16" x2="298" y2="16" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#B45309" />
+            <stop offset="10%" stop-color="#D97706" />
+            <stop offset="24%" stop-color="#F59E0B" />
+            <stop offset="38%" stop-color="#FEF08A" />
+            <stop offset="50%" stop-color="#FFFFFF" />
+            <stop offset="62%" stop-color="#FEF08A" />
+            <stop offset="76%" stop-color="#F59E0B" />
+            <stop offset="90%" stop-color="#D97706" />
+            <stop offset="100%" stop-color="#B45309" />
+          </linearGradient>
+          <linearGradient id="diffuser-core-dark" x1="36" y1="16" x2="284" y2="16" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.5" />
+            <stop offset="22%" stop-color="#FEF08A" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="78%" stop-color="#FEF08A" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#F59E0B" stop-opacity="0.5" />
+          </linearGradient>
 
-    <!-- Left gradient cone: spreads downward and outward to the left -->
-    <div class="lamp-cone-left absolute inset-auto right-1/2 h-48 sm:h-56 overflow-visible w-[18rem] sm:w-[26rem] md:w-[30rem]">
-      <div class="lamp-mask-bottom absolute w-full left-0 h-32 sm:h-40 bottom-0 z-20"></div>
-      <div class="lamp-mask-left absolute w-24 sm:w-40 h-full left-0 bottom-0 z-20"></div>
-    </div>
+          <!-- LIGHT THEME GRADIENTS (Cool Slate/Aluminum Metallic Housing + Sky-Blue Diffuser) -->
+          <linearGradient id="tray-metal-light" x1="160" y1="2" x2="160" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#93A6BD" />
+            <stop offset="25%" stop-color="#8AA3BE" />
+            <stop offset="50%" stop-color="#92AECB" />
+            <stop offset="75%" stop-color="#A5C7E0" />
+            <stop offset="100%" stop-color="#C2E2F8" />
+          </linearGradient>
+          <linearGradient id="tray-rim-light" x1="160" y1="2" x2="160" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+            <stop offset="50%" stop-color="#CBD5E1" stop-opacity="0.7" />
+            <stop offset="100%" stop-color="#0284C7" stop-opacity="0.8" />
+          </linearGradient>
+          <linearGradient id="tray-spec-light" x1="28" y1="3" x2="292" y2="3" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" />
+            <stop offset="20%" stop-color="#FFFFFF" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient id="diffuser-lens-light" x1="22" y1="16" x2="298" y2="16" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0284C7" />
+            <stop offset="10%" stop-color="#0EA5E9" />
+            <stop offset="24%" stop-color="#38BDF8" />
+            <stop offset="38%" stop-color="#BAE6FD" />
+            <stop offset="50%" stop-color="#FFFFFF" />
+            <stop offset="62%" stop-color="#BAE6FD" />
+            <stop offset="76%" stop-color="#38BDF8" />
+            <stop offset="90%" stop-color="#0EA5E9" />
+            <stop offset="100%" stop-color="#0284C7" />
+          </linearGradient>
+          <linearGradient id="diffuser-core-light" x1="36" y1="16" x2="284" y2="16" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.5" />
+            <stop offset="22%" stop-color="#BAE6FD" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="78%" stop-color="#BAE6FD" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.5" />
+          </linearGradient>
+        </defs>
 
-    <!-- Right gradient cone: spreads downward and outward to the right -->
-    <div class="lamp-cone-right absolute inset-auto left-1/2 h-48 sm:h-56 w-[18rem] sm:w-[26rem] md:w-[30rem]">
-      <div class="lamp-mask-right absolute w-24 sm:w-40 h-full right-0 bottom-0 z-20"></div>
-      <div class="lamp-mask-bottom absolute w-full right-0 h-32 sm:h-40 bottom-0 z-20"></div>
+        <!-- DARK THEME FIXTURE (Rendered only when .dark is active) -->
+        <g class="hidden dark:inline">
+          <!-- Upper Metallic Tray Housing -->
+          <rect x="10" y="2" width="300" height="18" rx="9" fill="url(#tray-metal-dark)" stroke="url(#tray-rim-dark)" stroke-width="1" />
+          <!-- Top Specular Highlight Line -->
+          <path d="M 28 3.2 L 292 3.2" stroke="url(#tray-spec-dark)" stroke-width="0.8" stroke-linecap="round" />
+          <!-- Luminous Diffuser Lens Underside -->
+          <rect x="22" y="12.5" width="276" height="7.5" rx="3.75" fill="url(#diffuser-lens-dark)" />
+          <!-- Diffuser Core Slit -->
+          <rect x="36" y="14" width="248" height="3" rx="1.5" fill="url(#diffuser-core-dark)" />
+        </g>
+
+        <!-- LIGHT THEME FIXTURE (Rendered when light mode is active) -->
+        <g class="inline dark:hidden">
+          <!-- Upper Metallic Tray Housing -->
+          <rect x="10" y="2" width="300" height="18" rx="9" fill="url(#tray-metal-light)" stroke="url(#tray-rim-light)" stroke-width="1" />
+          <!-- Top Specular Highlight Line -->
+          <path d="M 28 3.2 L 292 3.2" stroke="url(#tray-spec-light)" stroke-width="0.8" stroke-linecap="round" />
+          <!-- Luminous Diffuser Lens Underside -->
+          <rect x="22" y="12.5" width="276" height="7.5" rx="3.75" fill="url(#diffuser-lens-light)" />
+          <!-- Diffuser Core Slit -->
+          <rect x="36" y="14" width="248" height="3" rx="1.5" fill="url(#diffuser-core-light)" />
+        </g>
+      </svg>
     </div>
   </div>
 
@@ -93,60 +194,34 @@ const trustPills = [
 
 <style>
   :root {
-    /* Light Theme: Soft Sky-Blue Spotlight */
-    --lamp-beam: rgba(56, 189, 248, 0.38);
-    --lamp-glow: rgba(56, 189, 248, 0.42);
-    --lamp-bulb: rgba(14, 165, 233, 0.45);
-    --lamp-line: #0284C7;
-    --lamp-line-glow: rgba(14, 165, 233, 0.65);
+    /* Light Theme: Soft Clear Sky-Blue Illumination */
+    --lamp-source-core: rgba(255, 255, 255, 1.0);
+    --lamp-source-glow: rgba(56, 189, 248, 0.90);
+    --lamp-beam: radial-gradient(ellipse 68% 58% at 50% 0%, rgba(56, 189, 248, 0.44) 0%, rgba(125, 211, 252, 0.32) 30%, rgba(14, 165, 233, 0.20) 55%, rgba(2, 132, 199, 0.08) 75%, transparent 85%);
+    --lamp-ambient: radial-gradient(ellipse 64% 52% at 50% 0%, rgba(56, 189, 248, 0.24) 0%, rgba(125, 211, 252, 0.12) 45%, transparent 75%);
   }
 
   :global(.dark) {
-    /* Dark Theme: Soft Warm Amber Spotlight */
-    --lamp-beam: rgba(245, 158, 11, 0.52);
-    --lamp-glow: rgba(245, 158, 11, 0.55);
-    --lamp-bulb: rgba(251, 191, 36, 0.60);
-    --lamp-line: #FDE68A;
-    --lamp-line-glow: rgba(245, 158, 11, 0.85);
+    /* Dark Theme: Soft Warm Golden Amber Illumination */
+    --lamp-source-core: rgba(255, 255, 255, 1.0);
+    --lamp-source-glow: rgba(251, 191, 36, 0.98);
+    --lamp-beam: radial-gradient(ellipse 68% 58% at 50% 0%, rgba(251, 191, 36, 0.72) 0%, rgba(245, 158, 11, 0.58) 25%, rgba(217, 119, 6, 0.38) 50%, rgba(180, 83, 9, 0.16) 72%, transparent 88%);
+    --lamp-ambient: radial-gradient(ellipse 64% 52% at 50% 0%, rgba(245, 158, 11, 0.36) 0%, rgba(217, 119, 6, 0.18) 45%, transparent 75%);
   }
 
-  .lamp-cone-left {
-    background-image: conic-gradient(from 70deg at 50% 0%, var(--lamp-beam), transparent, transparent);
+  .lamp-ambient {
+    background: var(--lamp-ambient);
+    filter: blur(52px);
   }
 
-  .lamp-cone-right {
-    background-image: conic-gradient(from 290deg at 50% 0%, transparent, transparent, var(--lamp-beam));
+  .lamp-beam {
+    background: var(--lamp-beam);
+    filter: blur(28px);
   }
 
-  .lamp-bar {
-    background-color: var(--lamp-line);
-    box-shadow: 0 0 15px var(--lamp-line-glow), 0 0 35px var(--lamp-line-glow), 0 0 55px var(--lamp-line-glow);
-  }
-
-  .lamp-glow {
-    background-color: var(--lamp-glow);
-  }
-
-  .lamp-bulb {
-    background-color: var(--lamp-bulb);
-  }
-
-  .lamp-mask-bottom {
-    background-color: var(--background);
-    mask-image: linear-gradient(to top, black, transparent);
-    -webkit-mask-image: linear-gradient(to top, black, transparent);
-  }
-
-  .lamp-mask-left {
-    background-color: var(--background);
-    mask-image: linear-gradient(to right, black, transparent);
-    -webkit-mask-image: linear-gradient(to right, black, transparent);
-  }
-
-  .lamp-mask-right {
-    background-color: var(--background);
-    mask-image: linear-gradient(to left, black, transparent);
-    -webkit-mask-image: linear-gradient(to left, black, transparent);
+  .lamp-source {
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, var(--lamp-source-core) 0%, var(--lamp-source-glow) 45%, transparent 100%);
+    filter: blur(8px);
   }
 
   @keyframes hero-fade-up {
