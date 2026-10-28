@@ -13,6 +13,7 @@ export interface Props {
   reverse?: boolean;
   initialOffset?: number;
   borderWidth?: number;
+  radius?: string | number;
   class?: string;
 }
 
@@ -25,8 +26,11 @@ const {
   reverse = false,
   initialOffset = 0,
   borderWidth = 1.5,
+  radius = '1rem',
   class: className = '',
 } = Astro.props;
+
+const radiusValue = typeof radius === 'number' ? `${radius}px` : radius;
 ---
 
 <div
@@ -40,6 +44,7 @@ const {
       --border-beam-size: ${size}px;
       --border-beam-duration: ${duration}s;
       --border-beam-delay: ${-delay}s;
+      --border-beam-radius: ${radiusValue};
       --color-from: ${colorFrom};
       --color-to: ${colorTo};
       --border-beam-direction: ${reverse ? 'reverse' : 'normal'};

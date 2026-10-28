@@ -363,9 +363,10 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   border: var(--border-beam-width, 1.5px) solid transparent;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  -webkit-mask-clip: padding-box, border-box;
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
-  overflow: hidden;
+  mask-clip: padding-box, border-box;
   border-radius: inherit;
 }
 
@@ -374,7 +375,7 @@ html[data-magicui-theme-vt="active"]::view-transition-new(root) {
   aspect-ratio: 1 / 1;
   width: var(--border-beam-size, 200px);
   background: linear-gradient(to left, var(--color-from, #ffaa40), var(--color-to, #9c40ff), transparent);
-  offset-path: rect(0 auto auto 0 round var(--border-beam-size, 200px));
+  offset-path: rect(0 auto auto 0 round var(--border-beam-radius, 1rem));
   offset-anchor: 100% 50%;
   animation: border-beam var(--border-beam-duration, 10s) infinite linear;
   animation-direction: var(--border-beam-direction, normal);
