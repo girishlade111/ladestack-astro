@@ -190,18 +190,24 @@ const trustPills = [
 
 <style>
   :root {
-    /* Light Theme: Soft Clear Sky-Blue Illumination */
+    /* Light Theme: Soft Clear Sky-Blue Linear Illumination */
     --lamp-source-core: rgba(255, 255, 255, 1.0);
     --lamp-source-glow: rgba(56, 189, 248, 0.90);
-    --lamp-beam: radial-gradient(ellipse 68% 58% at 50% 0%, rgba(56, 189, 248, 0.44) 0%, rgba(125, 211, 252, 0.32) 30%, rgba(14, 165, 233, 0.20) 55%, rgba(2, 132, 199, 0.08) 75%, transparent 85%);
+    --lamp-beam:
+      radial-gradient(ellipse 52% 58% at 35% 0%, rgba(56, 189, 248, 0.26) 0%, rgba(125, 211, 252, 0.18) 30%, rgba(14, 165, 233, 0.10) 55%, transparent 80%),
+      radial-gradient(ellipse 52% 58% at 50% 0%, rgba(56, 189, 248, 0.26) 0%, rgba(125, 211, 252, 0.18) 30%, rgba(14, 165, 233, 0.10) 55%, transparent 80%),
+      radial-gradient(ellipse 52% 58% at 65% 0%, rgba(56, 189, 248, 0.26) 0%, rgba(125, 211, 252, 0.18) 30%, rgba(14, 165, 233, 0.10) 55%, transparent 80%);
     --lamp-ambient: radial-gradient(ellipse 64% 52% at 50% 0%, rgba(56, 189, 248, 0.24) 0%, rgba(125, 211, 252, 0.12) 45%, transparent 75%);
   }
 
   :global(.dark) {
-    /* Dark Theme: Soft Warm Golden Amber Illumination */
+    /* Dark Theme: Soft Warm Golden Amber Linear Illumination */
     --lamp-source-core: rgba(255, 255, 255, 1.0);
     --lamp-source-glow: rgba(251, 191, 36, 0.98);
-    --lamp-beam: radial-gradient(ellipse 68% 58% at 50% 0%, rgba(251, 191, 36, 0.72) 0%, rgba(245, 158, 11, 0.58) 25%, rgba(217, 119, 6, 0.38) 50%, rgba(180, 83, 9, 0.16) 72%, transparent 88%);
+    --lamp-beam:
+      radial-gradient(ellipse 52% 58% at 35% 0%, rgba(251, 191, 36, 0.44) 0%, rgba(245, 158, 11, 0.34) 25%, rgba(217, 119, 6, 0.20) 50%, transparent 80%),
+      radial-gradient(ellipse 52% 58% at 50% 0%, rgba(251, 191, 36, 0.44) 0%, rgba(245, 158, 11, 0.34) 25%, rgba(217, 119, 6, 0.20) 50%, transparent 80%),
+      radial-gradient(ellipse 52% 58% at 65% 0%, rgba(251, 191, 36, 0.44) 0%, rgba(245, 158, 11, 0.34) 25%, rgba(217, 119, 6, 0.20) 50%, transparent 80%);
     --lamp-ambient: radial-gradient(ellipse 64% 52% at 50% 0%, rgba(245, 158, 11, 0.36) 0%, rgba(217, 119, 6, 0.18) 45%, transparent 75%);
   }
 
@@ -216,7 +222,15 @@ const trustPills = [
   }
 
   .lamp-source {
-    background: radial-gradient(ellipse 60% 80% at 50% 50%, var(--lamp-source-core) 0%, var(--lamp-source-glow) 45%, transparent 100%);
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      var(--lamp-source-glow) 6%,
+      var(--lamp-source-core) 15%,
+      var(--lamp-source-core) 85%,
+      var(--lamp-source-glow) 94%,
+      transparent 100%
+    );
     filter: blur(8px);
   }
 
