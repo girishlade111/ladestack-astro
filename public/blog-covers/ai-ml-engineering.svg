@@ -47,7 +47,7 @@
   
   <!-- Code Brackets -->
   <g transform="translate(50, 150)" filter="url(#glow)">
-    <text x="0" y="0" font-family="monospace" font-size="40" fill="white" font-weight="bold"><</text>
+    <text x="0" y="0" font-family="monospace" font-size="40" fill="white" font-weight="bold">&lt;</text>
     <text x="30" y="0" font-family="monospace" font-size="40" fill="white" font-weight="bold">/></text>
   </g>
   

@@ -60,5 +60,5 @@
   <text x="200" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" font-weight="bold">Developer Productivity</text>
   
   <!-- Subtitle -->
-  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Efficiency & Workflow Optimization</text>
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Efficiency &amp; Workflow Optimization</text>
 </svg>

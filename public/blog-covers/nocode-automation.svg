@@ -41,7 +41,7 @@
   
   <!-- No-code drag and drop -->
   <rect x="100" y="170" width="200" height="70" rx="8" fill="white" opacity="0.9" filter="url(#shadow)"/>
-  <text x="200" y="185" text-anchor="middle" font-family="Arial, monospace" font-size="10" fill="#065F46">drag & drop</text>
+  <text x="200" y="185" text-anchor="middle" font-family="Arial, monospace" font-size="10" fill="#065F46">drag &amp; drop</text>
   <text x="200" y="200" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#059669">automate workflows</text>
   <text x="200" y="215" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#10B981">build without code</text>
   <text x="200" y="230" text-anchor="middle" font-family="Arial, monospace" font-size="8" fill="#065F46">deploy instantly</text>

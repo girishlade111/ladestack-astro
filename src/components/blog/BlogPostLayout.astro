@@ -136,6 +136,12 @@ const structuredData = [
     })),
   },
 ];
+
+// High-resolution compatible raster social card (1200x630 PNG) for OpenGraph and Twitter cards
+const socialImageRelative = data.coverImage.replace(/\.svg$/, '.png');
+const socialImageUrl = socialImageRelative.startsWith('http')
+  ? socialImageRelative
+  : `https://ladestack.in${socialImageRelative}`;
 ---
 
 <BaseLayout
@@ -151,13 +157,17 @@ const structuredData = [
     description: data.description,
     url: canonical,
     type: 'article',
-    image: data.coverImage.startsWith('http') ? data.coverImage : `https://ladestack.in${data.coverImage}`,
+    image: socialImageUrl,
+    width: 1200,
+    height: 630,
+    alt: data.coverAlt ?? data.title,
   }}
   twitter={{
     card: 'summary_large_image',
     title: data.title,
     description: data.description,
-    image: data.coverImage.startsWith('http') ? data.coverImage : `https://ladestack.in${data.coverImage}`,
+    image: socialImageUrl,
+    alt: data.coverAlt ?? data.title,
   }}
 >
   <div class="min-h-screen bg-background text-foreground">

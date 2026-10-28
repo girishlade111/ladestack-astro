@@ -57,5 +57,5 @@
   
   <!-- Title -->
   <text x="200" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">OBSERVABILITY</text>
-  <text x="200" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="rgba(255,255,255,0.9)">& MONITORING</text>
+  <text x="200" y="298" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="rgba(255,255,255,0.9)">&amp; MONITORING</text>
 </svg>
