@@ -7,6 +7,7 @@ import type { UIStrings } from './en';
 
 export const ko: UIStrings = {
   // Navigation
+  'nav.home': '홈',
   'nav.platform': '플랫폼',
   'nav.apps': '앱',
   'nav.codeStudio': '코드 스튜디오',

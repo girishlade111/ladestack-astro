@@ -5,6 +5,7 @@
 
 export interface UIStrings {
   // Navigation
+  'nav.home': string;
   'nav.platform': string;
   'nav.apps': string;
   'nav.codeStudio': string;
@@ -160,6 +161,7 @@ export interface UIStrings {
 
 export const en: UIStrings = {
   // Navigation
+  'nav.home': 'Home',
   'nav.platform': 'Platform',
   'nav.apps': 'Apps',
   'nav.codeStudio': 'Code Studio',

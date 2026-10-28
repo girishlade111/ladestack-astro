@@ -110,60 +110,6 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
             media.addListener(handleThemeChange);
           }
 
-          // ── 2. LANGUAGE: Device/Browser Locale Auto-Detection & Persistence ──
-          var isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent || '');
-          if (!isBot) {
-            var supportedLocales = ['en', 'ja', 'ko', 'zh', 'ru', 'tr', 'fr', 'pt', 'es'];
-            var storedLocale = null;
-            try {
-              storedLocale = localStorage.getItem('ladestack-locale');
-            } catch (err) {}
-
-            var pathname = window.location.pathname || '/';
-            var segments = pathname.replace(/^\/+/, '').split('/');
-            var firstSegment = segments[0] || '';
-            var currentUrlLocale = (supportedLocales.indexOf(firstSegment) !== -1 && firstSegment !== 'en')
-              ? firstSegment
-              : 'en';
-
-            var targetLocale = null;
-            if (storedLocale && supportedLocales.indexOf(storedLocale) !== -1) {
-              targetLocale = storedLocale;
-            } else {
-              var navLangs = navigator.languages || [navigator.language || 'en'];
-              for (var i = 0; i < navLangs.length; i++) {
-                var rawLang = (navLangs[i] || '').toLowerCase().trim();
-                var primary = rawLang.split('-')[0];
-                if (supportedLocales.indexOf(primary) !== -1) {
-                  targetLocale = primary;
-                  break;
-                }
-              }
-              if (!targetLocale) {
-                targetLocale = 'en';
-              }
-            }
-
-            // Only redirect if current route differs from target locale
-            if (targetLocale && targetLocale !== currentUrlLocale) {
-              var cleanPath = currentUrlLocale === 'en'
-                ? pathname
-                : '/' + segments.slice(1).join('/');
-              if (!cleanPath.startsWith('/')) cleanPath = '/' + cleanPath;
-              if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
-                cleanPath = cleanPath.slice(0, -1);
-              }
-
-              var destination = targetLocale === 'en'
-                ? cleanPath
-                : (cleanPath === '/' ? '/' + targetLocale : '/' + targetLocale + cleanPath);
-
-              var searchParams = window.location.search || '';
-              if (destination !== pathname && searchParams.indexOf('no-redirect') === -1) {
-                window.location.replace(destination + searchParams + (window.location.hash || ''));
-              }
-            }
-          }
         } catch (e) {}
       })();
     </script>

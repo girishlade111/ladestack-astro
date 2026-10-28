@@ -7,6 +7,7 @@ import type { UIStrings } from './en';
 
 export const ru: UIStrings = {
   // Navigation
+  'nav.home': 'Главная',
   'nav.platform': 'Платформа',
   'nav.apps': 'Приложения',
   'nav.codeStudio': 'Код-студия',

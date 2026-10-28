@@ -7,6 +7,7 @@ import type { UIStrings } from './en';
 
 export const tr: UIStrings = {
   // Navigation
+  'nav.home': 'Ana Sayfa',
   'nav.platform': 'Platform',
   'nav.apps': 'Uygulamalar',
   'nav.codeStudio': 'Kod Stüdyosu',

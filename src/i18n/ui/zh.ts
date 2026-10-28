@@ -7,6 +7,7 @@ import type { UIStrings } from './en';
 
 export const zh: UIStrings = {
   // Navigation
+  'nav.home': '首页',
   'nav.platform': '平台',
   'nav.apps': '应用中心',
   'nav.codeStudio': '代码工坊',

@@ -7,6 +7,7 @@ import type { UIStrings } from './en';
 
 export const ja: UIStrings = {
   // Navigation
+  'nav.home': 'ホーム',
   'nav.platform': 'プラットフォーム',
   'nav.apps': 'アプリ',
   'nav.codeStudio': 'コードスタジオ',
