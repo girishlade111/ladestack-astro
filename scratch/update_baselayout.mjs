@@ -10,3 +10,4 @@ content = content.replace(
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully updated BaseLayout.astro');
+

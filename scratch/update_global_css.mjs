@@ -55,3 +55,4 @@ if (content.includes(target.replace(/\n/g, '\r\n'))) {
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully updated global.css');
+

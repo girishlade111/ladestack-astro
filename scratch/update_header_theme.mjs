@@ -49,3 +49,4 @@ if (content.includes(mobileLangTarget.replace(/\n/g, '\r\n'))) {
 
 fs.writeFileSync(filePath, content, 'utf8');
 console.log('Successfully updated Header.astro');
+
