@@ -1,5 +1,4 @@
 import fs from 'node:fs';
-import path from 'node:path';
 
 let pass = true;
 
@@ -7,8 +6,8 @@ let pass = true;
 const faqHtml = fs.readFileSync('dist/faq/index.html', 'utf8');
 
 // Count accordion items
-const accordionMatches = faqHtml.match(/class="[^"]*border border-border[^"]*rounded-xl[^"]*"/g) || [];
-console.log(`[dist/faq/index.html] Accordion count (expected 29): ${accordionMatches.length}`);
+const accordionMatches = faqHtml.match(/<details\s+class="accordion-item/g) || [];
+console.log(`[dist/faq/index.html] Accordion item count (expected 29): ${accordionMatches.length}`);
 if (accordionMatches.length !== 29) {
   console.error(`❌ Expected 29 accordion items, got ${accordionMatches.length}`);
   pass = false;
@@ -17,18 +16,22 @@ if (accordionMatches.length !== 29) {
 }
 
 // Check JSON-LD
-const jsonLdMatch = faqHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-if (jsonLdMatch) {
-  const schemas = JSON.parse(jsonLdMatch[1]);
-  const faqSchema = schemas.find((s) => s['@type'] === 'FAQPage');
-  if (faqSchema && faqSchema.mainEntity && faqSchema.mainEntity.length === 29) {
-    console.log(`✅ Valid FAQPage schema with 29 questions in /faq/index.html`);
-  } else {
-    console.error(`❌ FAQPage schema missing or question count is ${faqSchema?.mainEntity?.length}`);
-    pass = false;
-  }
+const jsonLdRegex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+let match;
+let foundFaqSchema = null;
+while ((match = jsonLdRegex.exec(faqHtml)) !== null) {
+  try {
+    const parsed = JSON.parse(match[1]);
+    if (parsed['@type'] === 'FAQPage') {
+      foundFaqSchema = parsed;
+    }
+  } catch (e) {}
+}
+
+if (foundFaqSchema && Array.isArray(foundFaqSchema.mainEntity) && foundFaqSchema.mainEntity.length === 29) {
+  console.log(`✅ Valid FAQPage schema with 29 questions in /faq/index.html`);
 } else {
-  console.error(`❌ JSON-LD script not found in /faq/index.html`);
+  console.error(`❌ FAQPage schema missing or question count is ${foundFaqSchema?.mainEntity?.length}`);
   pass = false;
 }
 
@@ -42,7 +45,7 @@ for (const locale of locales) {
     continue;
   }
   const locHtml = fs.readFileSync(locFaqPath, 'utf8');
-  const locAccordions = locHtml.match(/class="[^"]*border border-border[^"]*rounded-xl[^"]*"/g) || [];
+  const locAccordions = locHtml.match(/<details\s+class="accordion-item/g) || [];
   if (locAccordions.length !== 29) {
     console.error(`❌ [${locale}] Expected 29 accordion items, got ${locAccordions.length}`);
     pass = false;
@@ -53,31 +56,41 @@ for (const locale of locales) {
 
 // 3. Verify dist/index.html (Homepage) has NO DeveloperFaq and NO FAQPage schema
 const homeHtml = fs.readFileSync('dist/index.html', 'utf8');
-if (homeHtml.includes('Frequently Asked Questions') || homeHtml.includes('Everything you need to know about LadeStack utilities')) {
-  console.error(`❌ Homepage dist/index.html still contains FAQ section!`);
+const homeFaqDetails = homeHtml.match(/<details\s+class="accordion-item/g) || [];
+if (homeFaqDetails.length > 0) {
+  console.error(`❌ Homepage dist/index.html still contains ${homeFaqDetails.length} accordion items!`);
   pass = false;
 } else {
-  console.log(`✅ dist/index.html is clean of FAQ section`);
+  console.log(`✅ dist/index.html has 0 accordion items (FAQ section cleanly removed)`);
 }
-const homeJsonLdMatch = homeHtml.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
-if (homeJsonLdMatch) {
-  const homeSchemas = JSON.parse(homeJsonLdMatch[1]);
-  const homeFaqSchema = homeSchemas.find((s) => s['@type'] === 'FAQPage');
-  if (homeFaqSchema) {
-    console.error(`❌ dist/index.html still contains FAQPage structured data!`);
-    pass = false;
-  } else {
-    console.log(`✅ dist/index.html has zero FAQPage structured data`);
-  }
+
+let homeFaqSchema = null;
+const homeLdRegex = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+let hMatch;
+while ((hMatch = homeLdRegex.exec(homeHtml)) !== null) {
+  try {
+    const parsed = JSON.parse(hMatch[1]);
+    if (parsed['@type'] === 'FAQPage') {
+      homeFaqSchema = parsed;
+    }
+  } catch (e) {}
+}
+
+if (homeFaqSchema) {
+  console.error(`❌ dist/index.html still contains FAQPage structured data!`);
+  pass = false;
+} else {
+  console.log(`✅ dist/index.html has zero FAQPage structured data`);
 }
 
 // 4. Verify dist/gb-coder/index.html has NO FAQ section
 const gbCoderHtml = fs.readFileSync('dist/gb-coder/index.html', 'utf8');
-if (gbCoderHtml.includes('Frequently Asked Questions') || gbCoderHtml.includes('Everything you need to know about GB Coder')) {
-  console.error(`❌ dist/gb-coder/index.html still contains FAQ section!`);
+const gbDetails = gbCoderHtml.match(/<details\s+class="accordion-item/g) || [];
+if (gbDetails.length > 0) {
+  console.error(`❌ dist/gb-coder/index.html still contains ${gbDetails.length} accordion items!`);
   pass = false;
 } else {
-  console.log(`✅ dist/gb-coder/index.html is clean of FAQ section`);
+  console.log(`✅ dist/gb-coder/index.html has 0 accordion items (FAQ section cleanly removed)`);
 }
 
 // 5. Verify footer link to /faq
