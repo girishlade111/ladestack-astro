@@ -75,7 +75,7 @@ const navLinks = [
       <LanguageSwitcher currentLocale={activeLocale} alternateUrls={alternateUrls} />
 
       {/* Theme Toggle */}
-      <AnimatedThemeToggler variant="circle" duration={400} aria-label={t('nav.themeToggle')} />
+      <AnimatedThemeToggler variant="circle" duration={750} aria-label={t('nav.themeToggle')} />
 
       {/* Primary CTA */}
       <Button href="https://code.ladestack.in/" target="_blank" size="sm" class="hidden sm:inline-flex">
@@ -151,6 +151,14 @@ const navLinks = [
           {t('nav.languageSelect')}
         </p>
         <LanguageSwitcher currentLocale={activeLocale} alternateUrls={alternateUrls} class="w-full" />
+      </div>
+
+      {/* Mobile Theme Switcher */}
+      <div class="mt-4 pt-4 border-t border-border flex items-center justify-between">
+        <span class="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+          {t('nav.themeToggle')}
+        </span>
+        <AnimatedThemeToggler variant="circle" duration={750} aria-label={t('nav.themeToggle')} />
       </div>
     </div>
 

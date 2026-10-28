@@ -205,7 +205,7 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
         if (!btn) return;
 
         const variant = (btn.getAttribute('data-vt-variant') || 'circle') as TransitionVariant;
-        const duration = parseInt(btn.getAttribute('data-vt-duration') || '400', 10);
+        const duration = parseInt(btn.getAttribute('data-vt-duration') || '750', 10);
         const fromCenter = btn.getAttribute('data-vt-from-center') === 'true';
 
         executeThemeTransition({
