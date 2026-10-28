@@ -90,6 +90,10 @@ const twitterImage = twitter.image ?? ogImage;
 const ogAlt = openGraph.alt ?? title;
 const ogWidth = openGraph.width ?? 1200;
 const ogHeight = openGraph.height ?? 630;
+
+// Safe effective description resolution: prioritize specific card description, then fallback to base description
+const effectiveOgDescription = openGraph.description ?? description;
+const effectiveTwitterDescription = twitter.description ?? openGraph.description ?? description;
 ---
 
 <title>{title}</title>
@@ -108,7 +112,7 @@ const ogHeight = openGraph.height ?? 630;
 
 {/* Open Graph */}
 <meta property="og:title" content={openGraph.title ?? title} />
-{description && <meta property="og:description" content={openGraph.description ?? description} />}
+{effectiveOgDescription && <meta property="og:description" content={effectiveOgDescription} />}
 <meta property="og:url" content={openGraph.url ?? canonical} />
 <meta property="og:type" content={openGraph.type ?? 'website'} />
 <meta property="og:image" content={ogImage} />
@@ -123,8 +127,8 @@ const ogHeight = openGraph.height ?? 630;
 
 {/* Twitter Card */}
 <meta name="twitter:card" content={twitter.card ?? 'summary_large_image'} />
-<meta name="twitter:title" content={twitter.title ?? title} />
-{description && <meta name="twitter:description" content={twitter.description ?? description} />}
+<meta name="twitter:title" content={twitter.title ?? openGraph.title ?? title} />
+{effectiveTwitterDescription && <meta name="twitter:description" content={effectiveTwitterDescription} />}
 <meta name="twitter:image" content={twitterImage} />
 <meta name="twitter:image:alt" content={twitter.alt ?? ogAlt} />
 {twitter.site && <meta name="twitter:site" content={twitter.site} />}
