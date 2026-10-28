@@ -1,7 +1,10 @@
 /**
  * Animated Theme Toggler helpers and View Transitions API clip-path engine.
  * Supports: circle, square, triangle, diamond, hexagon, rectangle, star.
- * All coordinates are percentages of snapshot reference box (fixes fractional Windows scale issues).
+ * Universal support for Desktop, Tablet, and Mobile across all engines:
+ * - Chromium (Chrome/Edge desktop & Android)
+ * - WebKit (Safari 18+ on iOS/macOS via dynamic CSS keyframes)
+ * - Universal fallback ripple for non-supporting browsers (Firefox, iOS <18, in-app WebViews)
  */
 
 export type TransitionVariant =
@@ -29,14 +32,12 @@ export function getThemeTransitionClipPaths(
   const toX = (x: number) => `${(x / viewportWidth) * 100}%`;
   const toY = (y: number) => `${(y / viewportHeight) * 100}%`;
   const point = (x: number, y: number) => `${toX(x)} ${toY(y)}`;
-  const toRadius = (r: number) =>
-    `${(r / (Math.hypot(viewportWidth, viewportHeight) / Math.SQRT2)) * 100}%`;
 
   switch (variant) {
     case "circle":
       return [
-        `circle(0% at ${point(cx, cy)})`,
-        `circle(${toRadius(maxRadius)} at ${point(cx, cy)})`,
+        `circle(0px at ${cx}px ${cy}px)`,
+        `circle(${Math.ceil(maxRadius)}px at ${cx}px ${cy}px)`,
       ];
     case "square": {
       const halfW = Math.max(cx, viewportWidth - cx);
@@ -121,8 +122,8 @@ export function getThemeTransitionClipPaths(
     }
     default:
       return [
-        `circle(0% at ${point(cx, cy)})`,
-        `circle(${toRadius(maxRadius)} at ${point(cx, cy)})`,
+        `circle(0px at ${cx}px ${cy}px)`,
+        `circle(${Math.ceil(maxRadius)}px at ${cx}px ${cy}px)`,
       ];
   }
 }
@@ -140,7 +141,7 @@ export function executeThemeTransition(options: ThemeTransitionOptions = {}): vo
   const {
     button = null,
     variant = "circle",
-    duration = 400,
+    duration = 750,
     fromCenter = false,
     theme,
     onThemeChange,
@@ -164,13 +165,15 @@ export function executeThemeTransition(options: ThemeTransitionOptions = {}): vo
     }
   };
 
-  if (typeof document.startViewTransition !== "function") {
-    applyTheme();
-    return;
-  }
-
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
+  // Viewport calculation with visualViewport support for mobile dynamic toolbars
+  const viewportWidth =
+    window.visualViewport?.width ||
+    window.innerWidth ||
+    document.documentElement.clientWidth;
+  const viewportHeight =
+    window.visualViewport?.height ||
+    window.innerHeight ||
+    document.documentElement.clientHeight;
 
   let x: number;
   let y: number;
@@ -179,8 +182,13 @@ export function executeThemeTransition(options: ThemeTransitionOptions = {}): vo
     y = viewportHeight / 2;
   } else {
     const rect = button.getBoundingClientRect();
-    x = rect.left + rect.width / 2;
-    y = rect.top + rect.height / 2;
+    if (rect.width === 0 || rect.height === 0) {
+      x = viewportWidth / 2;
+      y = viewportHeight / 2;
+    } else {
+      x = rect.left + rect.width / 2;
+      y = rect.top + rect.height / 2;
+    }
   }
 
   const maxRadius = Math.hypot(
@@ -197,49 +205,157 @@ export function executeThemeTransition(options: ThemeTransitionOptions = {}): vo
     viewportHeight
   );
 
+  const [clipFrom, clipTo] = clipPath;
+
+  const hasViewTransition =
+    typeof document.startViewTransition === "function" &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── FALLBACK FOR BROWSERS WITHOUT VIEW TRANSITIONS (iOS <18, Firefox, WebViews) ──
+  if (!hasViewTransition) {
+    const targetBg = newTheme ? "#090D16" : "#F8FAFC";
+    const overlay = document.createElement("div");
+    overlay.id = "theme-transition-fallback-ripple";
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999999;
+      pointer-events: none;
+      background-color: ${targetBg};
+      clip-path: ${clipFrom};
+      -webkit-clip-path: ${clipFrom};
+      will-change: clip-path;
+    `;
+    document.body.appendChild(overlay);
+
+    const switchTimer = setTimeout(() => {
+      applyTheme();
+    }, duration * 0.55);
+
+    try {
+      const anim = overlay.animate(
+        [
+          { clipPath: clipFrom, webkitClipPath: clipFrom },
+          { clipPath: clipTo, webkitClipPath: clipTo },
+        ],
+        {
+          duration,
+          easing: variant === "star" ? "linear" : "cubic-bezier(0.4, 0, 0.2, 1)",
+          fill: "forwards",
+        }
+      );
+
+      const cleanupFallback = () => {
+        clearTimeout(switchTimer);
+        applyTheme();
+        if (overlay.parentNode) {
+          overlay.remove();
+        }
+      };
+
+      anim.onfinish = cleanupFallback;
+      anim.oncancel = cleanupFallback;
+    } catch (e) {
+      clearTimeout(switchTimer);
+      applyTheme();
+      if (overlay.parentNode) overlay.remove();
+    }
+    return;
+  }
+
+  // ── NATIVE VIEW TRANSITIONS (CHROME / EDGE / SAFARI 18+) ──
   root.dataset.magicuiThemeVt = "active";
   root.style.setProperty("--magicui-theme-toggle-vt-duration", `${duration}ms`);
-  root.style.setProperty("--magicui-theme-vt-clip-from", clipPath[0]);
+  root.style.setProperty("--magicui-theme-vt-clip-from", clipFrom);
+  root.style.setProperty("--magicui-theme-vt-clip-to", clipTo);
+
+  // Injected CSS keyframes for WebKit (Safari 18) and compositor-accelerated animation
+  const styleId = "magicui-theme-vt-keyframes";
+  let dynamicStyle = document.getElementById(styleId) as HTMLStyleElement | null;
+  if (!dynamicStyle) {
+    dynamicStyle = document.createElement("style");
+    dynamicStyle.id = styleId;
+    document.head.appendChild(dynamicStyle);
+  }
+
+  dynamicStyle.textContent = `
+    @keyframes magicui-theme-expand {
+      0% {
+        clip-path: ${clipFrom};
+        -webkit-clip-path: ${clipFrom};
+      }
+      100% {
+        clip-path: ${clipTo};
+        -webkit-clip-path: ${clipTo};
+      }
+    }
+    ::view-transition-new(root) {
+      animation: magicui-theme-expand ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+      mix-blend-mode: normal !important;
+      z-index: 2 !important;
+    }
+    ::view-transition-old(root) {
+      animation: none !important;
+      mix-blend-mode: normal !important;
+      z-index: 1 !important;
+    }
+  `;
 
   let activeAnim: Animation | null = null;
   const cleanup = () => {
     delete root.dataset.magicuiThemeVt;
     root.style.removeProperty("--magicui-theme-toggle-vt-duration");
     root.style.removeProperty("--magicui-theme-vt-clip-from");
+    root.style.removeProperty("--magicui-theme-vt-clip-to");
+    if (dynamicStyle && dynamicStyle.parentNode) {
+      dynamicStyle.remove();
+    }
     if (activeAnim) {
-      activeAnim.cancel();
+      try {
+        activeAnim.cancel();
+      } catch {}
       activeAnim = null;
     }
   };
 
-  const transition = document.startViewTransition(() => {
-    applyTheme();
-  });
+  try {
+    const transition = document.startViewTransition(() => {
+      applyTheme();
+    });
 
-  if (typeof transition?.finished?.finally === "function") {
-    transition.finished.finally(cleanup).catch(() => {});
-  } else {
-    cleanup();
-  }
+    if (typeof transition?.finished?.finally === "function") {
+      transition.finished.finally(cleanup).catch(() => cleanup());
+    } else {
+      setTimeout(cleanup, duration + 50);
+    }
 
-  const ready = transition?.ready;
-  if (ready && typeof ready.then === "function") {
-    ready
-      .then(() => {
-        const anim = root.animate(
-          {
-            clipPath,
-          },
-          {
-            duration,
-            easing: variant === "star" ? "linear" : "ease-in-out",
-            fill: "forwards",
-            pseudoElement: "::view-transition-new(root)",
+    const ready = transition?.ready;
+    if (ready && typeof ready.then === "function") {
+      ready
+        .then(() => {
+          try {
+            const anim = root.animate(
+              {
+                clipPath: [clipFrom, clipTo],
+              },
+              {
+                duration,
+                easing: variant === "star" ? "linear" : "cubic-bezier(0.4, 0, 0.2, 1)",
+                fill: "forwards",
+                pseudoElement: "::view-transition-new(root)",
+              }
+            );
+            activeAnim = anim;
+          } catch (animErr) {
+            // Safari 18 executes the injected CSS keyframe animation smoothly
           }
-        );
-        activeAnim = anim;
-      })
-      .catch(() => {});
+        })
+        .catch(() => {});
+    }
+  } catch (err) {
+    cleanup();
+    applyTheme();
   }
 }
-
