@@ -1,8 +1,128 @@
 ---
-import Pointer, { type Props } from './Pointer.astro';
-export type { Props };
+import type { HTMLAttributes } from 'astro/types';
+import { cn } from '../../lib/utils';
+
+export interface Props extends HTMLAttributes<'div'> {
+  class?: string;
+  id?: string;
+  name?: string;
+}
+
+const {
+  class: className = '',
+  id,
+  name,
+  style,
+  ...rest
+} = Astro.props;
+
+const uniqueId = id || `pointer-${Math.random().toString(36).slice(2, 9)}`;
+const defaultSvgClass = cn(
+  'rotate-[-70deg] stroke-white text-black dark:stroke-black dark:text-white drop-shadow-md',
+  className
+);
 ---
 
-<Pointer {...Astro.props}>
-  <slot />
-</Pointer>
+<div
+  id={uniqueId}
+  data-magic-pointer
+  class="pointer-events-none fixed z-50 transform -translate-x-1/2 -translate-y-1/2 opacity-0 scale-0 transition-[opacity,transform] duration-150 ease-out will-change-transform flex items-center"
+  style={style}
+  aria-hidden="true"
+  {...rest}
+>
+  <slot>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="1"
+      viewBox="0 0 16 16"
+      height="24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+      class={defaultSvgClass}
+    >
+      <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+    </svg>
+    {name && (
+      <span class="ml-1.5 inline-block whitespace-nowrap rounded-full bg-brand px-2 py-0.5 text-xs font-medium text-white shadow-sm">
+        {name}
+      </span>
+    )}
+  </slot>
+</div>
+
+<style>
+  :global([data-pointer-active]),
+  :global([data-pointer-active] *) {
+    cursor: none !important;
+  }
+</style>
+
+<script>
+  function initMagicPointers(): void {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    const pointers = document.querySelectorAll<HTMLElement>(
+      '[data-magic-pointer]:not([data-pointer-ready])'
+    );
+
+    pointers.forEach((pointer) => {
+      pointer.setAttribute('data-pointer-ready', 'true');
+      const parent = pointer.parentElement;
+      if (!parent) return;
+
+      let isHovering = false;
+      let mouseX = 0;
+      let mouseY = 0;
+      let rafId: number | null = null;
+
+      const render = () => {
+        if (isHovering) {
+          pointer.style.left = `${mouseX}px`;
+          pointer.style.top = `${mouseY}px`;
+          rafId = requestAnimationFrame(render);
+        }
+      };
+
+      const show = (e: MouseEvent) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        pointer.style.left = `${mouseX}px`;
+        pointer.style.top = `${mouseY}px`;
+        parent.setAttribute('data-pointer-active', 'true');
+
+        if (!isHovering) {
+          isHovering = true;
+          pointer.classList.remove('opacity-0', 'scale-0');
+          pointer.classList.add('opacity-100', 'scale-100');
+          if (rafId !== null) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(render);
+        }
+      };
+
+      const hide = () => {
+        parent.removeAttribute('data-pointer-active');
+        isHovering = false;
+        if (rafId !== null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        pointer.classList.remove('opacity-100', 'scale-100');
+        pointer.classList.add('opacity-0', 'scale-0');
+      };
+
+      parent.addEventListener('mouseenter', show);
+      parent.addEventListener('mousemove', show);
+      parent.addEventListener('mouseleave', hide);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMagicPointers);
+  } else {
+    initMagicPointers();
+  }
+  document.addEventListener('astro:page-load', initMagicPointers);
+</script>
