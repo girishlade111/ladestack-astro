@@ -119,7 +119,7 @@ for (const file of allHtml) {
 }
 
 assert(indexableCount === 242, `Exactly 242 canonical indexable pages audited (found ${indexableCount})`);
-assert(redirectCount === 12, `Exactly 12 redirect stubs audited (found ${redirectCount})`);
+assert(redirectCount === 14, `Exactly 14 redirect stubs audited (found ${redirectCount})`);
 assert(missingTitles === 0, `All indexable pages have non-empty <title> tags (missing: ${missingTitles})`);
 assert(missingDescriptions === 0, `All indexable pages have non-empty meta descriptions (missing: ${missingDescriptions})`);
 assert(missingOgDescriptions === 0, `All indexable pages have non-empty og:description tags (missing: ${missingOgDescriptions})`);

@@ -164,7 +164,7 @@ function listHtml(dir) {
 
 if (fs.existsSync('dist')) {
   const htmlFiles = listHtml('dist');
-  assert(htmlFiles.length === 255, `dist HTML files count is exactly 255 (found: ${htmlFiles.length})`);
+  assert(htmlFiles.length === 257, `dist HTML files count is exactly 257 (found: ${htmlFiles.length})`);
   
   let redirects = 0;
   let canonicalCount = 0;
@@ -183,9 +183,9 @@ if (fs.existsSync('dist')) {
   });
   
   assert(canonicalCount === 242, `Generated canonical HTML pages count is exactly 242 (found: ${canonicalCount})`);
-  assert(redirects === 12, `Generated 301 redirect stubs count is exactly 12 (found: ${redirects})`);
+  assert(redirects === 14, `Generated 301 redirect stubs count is exactly 14 (found: ${redirects})`);
   assert(errorPageCount === 1, `Generated 404 error page count is exactly 1 (found: ${errorPageCount})`);
-  assert(canonicalCount + redirects + errorPageCount === 255, `Total HTML identity holds: 242 + 12 + 1 = 255`);
+  assert(canonicalCount + redirects + errorPageCount === 257, `Total HTML identity holds: 242 + 14 + 1 = 257`);
 }
 
 // -------------------------------------------------------------

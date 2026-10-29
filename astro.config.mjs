@@ -10,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 const SITE = 'https://ladestack.in';
 
 // ---------------------------------------------------------------------------
-// Redirects — Phase 4B-1 verified edge redirects (12 rules total).
+// Redirects — Phase 4D-3 verified edge redirects (14 rules total).
 // Preserves historical routes, legacy sitemap URLs, and stale numeric posts
 // mapped to canonical slug equivalents.
 // ---------------------------------------------------------------------------
@@ -38,12 +38,14 @@ export default defineConfig({
     '/file-sharing-platform': '/apps',
     '/api-testing-platform': '/apps',
     '/ai-code-viewer-ai': '/gb-coder',
+    '/projects/ai-code-viewer': '/gb-coder',
     '/blog/1': '/blog/future-of-ai-in-software-development',
     '/blog/2': '/blog/building-ai-powered-code-review-systems',
     '/blog/3': '/blog/machine-learning-pipelines-for-web-developers',
     '/blog/4': '/blog/generative-ai-for-content-creation',
     '/blog/5': '/blog/building-rag-applications-vector-databases',
     '/blog/6': '/blog/fine-tuning-llms-domain-specific-tasks',
+    '/blog/14': '/blog/api-rate-limiting-throttling-strategies',
     '/sitemap-pages.xml': '/sitemap-index.xml',
     '/sitemap-blog.xml': '/sitemap-index.xml',
   },

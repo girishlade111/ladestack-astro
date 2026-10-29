@@ -130,7 +130,7 @@ function countFiles(dir, ext) {
 }
 
 const totalHtml = countFiles('dist', '.html');
-assert(totalHtml === 255, `Generated HTML count is exactly 255 (found: ${totalHtml})`);
+assert(totalHtml === 257, `Generated HTML count is exactly 257 (242 canonical + 14 redirects + 1 404) (found: ${totalHtml})`);
 
 const sitemapIndex = fs.readFileSync('dist/sitemap-index.xml', 'utf8');
 assert(sitemapIndex.includes('sitemap-0.xml'), 'dist/sitemap-index.xml points to sitemap-0.xml');

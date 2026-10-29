@@ -22,6 +22,11 @@
       "statusCode": 301
     },
     {
+      "source": "/projects/ai-code-viewer",
+      "destination": "/gb-coder",
+      "statusCode": 301
+    },
+    {
       "source": "/blog/1",
       "destination": "/blog/future-of-ai-in-software-development",
       "statusCode": 301
@@ -49,6 +54,11 @@
     {
       "source": "/blog/6",
       "destination": "/blog/fine-tuning-llms-domain-specific-tasks",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/14",
+      "destination": "/blog/api-rate-limiting-throttling-strategies",
       "statusCode": 301
     },
     {
