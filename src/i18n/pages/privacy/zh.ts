@@ -18,6 +18,7 @@ export const zhPrivacy: PrivacyPageData = {
     text: '本隐私权政策的英文版本为界定 LadeStack 隐私实践的唯一权威法律文本。其他语言的翻译版本仅为便于阅读与参考而提供，未经独立法律顾问认证。',
   },
   highlights: [
+    { icon: 'shield-check', text: '隐私优先分析（需明确授权）' },
     { icon: 'shield-check', text: '纯客户端本地运行' },
     { icon: 'lock', text: '服务器绝不存储文件' },
     { icon: 'check-circle', text: '本地优先系统设计' },
@@ -36,6 +37,7 @@ export const zhPrivacy: PrivacyPageData = {
         '使用本站公开的开发者工具无需注册账户、输入登录凭证或绑定支付卡。网络层面的通信交互严格受限于以下范围：',
       ],
       listItems: [
+        '选择性遥测与访问分析（严格经授权后启用）：我们不投放任何跨站广告追踪器或商业数据收集像素。默认情况下，所有第三方追踪完全处于拦截状态。仅当您在隐私偏好面板中明确同意后，才会启用：(a) Google Analytics 4（衡量 ID: G-C6GRNN3J11），在 Consent Mode v2 下以广告存储完全关闭的方式统计访问；(b) Microsoft Clarity（项目 ID: z5fy1scjjr），在 Consent API v2 下生成匿名交互热力图，且所有表单与输入框均通过 data-clarity-mask 实施严格遮盖脱敏。您可随时通过“Cookie 设置”查看、更改或撤回授权。',
         '基础 Web 服务器访问日志：记录浏览器 User-Agent、来源页面与请求路径等标准诊断数据，仅用于监控系统健康与抵御恶意攻击。',
         '可选的第三方 AI 接入：在 GB Coder 中，若您主动配置了外部 AI 服务的 API 密钥，网络请求将由您的浏览器环境直接发送至指定的第三方接口。',
         '自发来信与咨询：通过邮件客户端发送至 admin@ladestack.in 的邮件内容，仅用于答复您的技术或商务咨询。',
@@ -44,8 +46,8 @@ export const zhPrivacy: PrivacyPageData = {
     {
       title: '3. 本地存储与 Cookie',
       paragraphs: [
-        'LadeStack 仅出于必要的功能性目的使用浏览器本地存储机制（如 localStorage 与 IndexedDB）：即保存深色/浅色主题偏好，以及在页面重载时保留 GB Coder 的工作区工程状态。',
-        '我们坚决不植入任何第三方广告追踪代码、行为分析像素或商业营销 Cookie。',
+        'LadeStack 仅出于必要的平台功能目的使用浏览器本地存储（localStorage 与 IndexedDB），包括深浅主题偏好持久化、GB Coder 代码草稿恢复以及用户隐私选择（键名："ladestack-consent"）。',
+        '仅在获得您的明确同意后，Google Analytics 与 Microsoft Clarity 才会生成必要的测量 Cookie（如 _ga、_clck）。这些 Cookie 严禁用于广告定向，并在您撤回授权时自动从您的设备中清除。',
       ],
     },
     {

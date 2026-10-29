@@ -6,6 +6,7 @@
  */
 import Icon from './Icon.astro';
 import { useTranslations, getLocalizedPath, type Locale } from '../i18n';
+import { getConsentTranslations } from '../i18n/consent';
 
 interface Props {
   locale?: Locale;
@@ -14,6 +15,7 @@ interface Props {
 const { locale = 'en' } = Astro.props;
 const t = useTranslations(locale);
 const homeHref = getLocalizedPath('/', locale);
+const consentT = getConsentTranslations(locale);
 
 const navColumns = [
   {
@@ -136,6 +138,14 @@ const socials = [
         <span>© {new Date().getFullYear()} Lade Stack. Built by Girish Lade. {t('footer.rights')}</span>
         <span>·</span>
         <a href={getLocalizedPath('/sitemap', locale)} class="hover:text-foreground underline underline-offset-4">Sitemap</a>
+        <span>·</span>
+        <button
+          type="button"
+          data-action="open-preferences"
+          class="hover:text-foreground underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand cursor-pointer"
+        >
+          {consentT.persistentTrigger}
+        </button>
       </div>
 
       <div class="flex items-center gap-2">

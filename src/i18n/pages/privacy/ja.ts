@@ -18,6 +18,7 @@ export const jaPrivacy: PrivacyPageData = {
     text: '本プライバシーポリシーの英語版が、LadeStackのプライバシー方針に関する正式な正本となります。他言語による翻訳は情報提供および利便性のためにのみ提供されており、法的認証を受けたものではありません。',
   },
   highlights: [
+    { icon: 'shield-check', text: 'プライバシー分析（同意制）' },
     { icon: 'shield-check', text: 'クライアントサイド実行' },
     { icon: 'lock', text: 'サーバーへのファイル保存なし' },
     { icon: 'check-circle', text: 'ローカルファースト設計' },
@@ -36,6 +37,7 @@ export const jaPrivacy: PrivacyPageData = {
         '本ウェブサイト上の公開ツールを利用するにあたり、アカウント登録、ログイン認証、クレジットカード情報の入力は必要ありません。ネットワーク通信は以下の通り制限されています:',
       ],
       listItems: [
+        'オプトイン制の利用状況分析（同意時のみ有効）: 広告用トラッカーやプロファイリングは一切行いません。初期状態ではすべての分析スクリプトがブロックされています。同意された場合のみ、(a) Google アナリティクス 4（測定ID: G-C6GRNN3J11）による集計ページ閲覧数測定（広告ストレージ無効のConsent Mode v2）、(b) Microsoft Clarity（プロジェクトID: z5fy1scjjr）による匿名のヒートマップ解析（フォーム入力等は data-clarity-mask により完全保護）が実行されます。同意は「Cookie設定」よりいつでも変更・撤回が可能です。',
         '基本的なウェブサーバーアクセスログ: インフラ監視および不正アクセス防止を目的とした、ユーザーエージェント、参照元URL、リクエストパスなどの標準的な診断情報。',
         '任意のサードパーティAI連携: GB Coderにおいてユーザーが外部AIプロバイダーのAPIキーを設定した場合、API通信はブラウザ環境と指定の外部エンドポイント間で直接行われます。',
         '自発的なお問い合わせ: admin@ladestack.in 宛てに送信されたメールは、お問い合わせへの対応のみを目的として処理されます。',
@@ -44,8 +46,8 @@ export const jaPrivacy: PrivacyPageData = {
     {
       title: '3. ローカルストレージとCookie',
       paragraphs: [
-        'LadeStackは、ブラウザのローカルストレージ（localStorageやIndexedDB）を必要な機能目的（ダーク/ライトテーマの設定保存、GB Coderにおけるプロジェクト状態の保持）にのみ使用します。',
-        'サードパーティの広告トラッキングピクセルやマーケティング用Cookieは使用しておりません。',
+        'LadeStackは、ブラウザのローカルストレージ（localStorageやIndexedDB）を必要な機能目的（ダーク/ライトテーマの設定保存、GB Coderのプロジェクト保持、同意状態 "ladestack-consent"）にのみ使用します。',
+        '明示的に同意された場合に限り、Google アナリティクスおよびMicrosoft Clarityによる分析用Cookie（_ga、_clck等）が一時的に生成されます。広告目的には一切使用されず、同意を撤回した際には自動的に削除されます。',
       ],
     },
     {

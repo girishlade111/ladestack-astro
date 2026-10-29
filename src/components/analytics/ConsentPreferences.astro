@@ -1,0 +1,341 @@
+---
+/**
+ * src/components/analytics/ConsentPreferences.astro
+ * Accessible, zero-emoji, privacy-first Cookie Consent Banner & Modal.
+ * Supports all 9 languages, dark/light theme tokens, keyboard traps,
+ * persistent reopening, and granular GA4 / Clarity choices.
+ */
+import Icon from '../Icon.astro';
+import { getConsentTranslations } from '../../i18n/consent';
+import { getLocalizedPath } from '../../i18n/utils';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const t = getConsentTranslations(locale);
+const privacyHref = getLocalizedPath('/privacy', locale);
+---
+
+{/* Persistent Reopen Trigger — Available on every page including /gb-coder */}
+<button
+  type="button"
+  id="ladestack-consent-trigger"
+  data-action="open-preferences"
+  class="fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-border bg-surface/95 hover:bg-surface text-muted-foreground hover:text-foreground text-xs font-mono shadow-soft backdrop-blur-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+  aria-label={t.persistentTrigger}
+>
+  <Icon name="shield-check" class="w-3.5 h-3.5 text-brand" />
+  <span>{t.persistentTrigger}</span>
+</button>
+
+{/* Initial Floating Consent Banner — Shown if no preference in localStorage */}
+<aside
+  id="ladestack-consent-banner"
+  role="region"
+  aria-label={t.bannerTitle}
+  class="hidden fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-md z-50 rounded-2xl border border-border bg-surface p-5 shadow-elevated transition-all duration-300"
+>
+  <div class="flex items-start gap-3 mb-3">
+    <div class="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0 mt-0.5">
+      <Icon name="shield" class="w-4 h-4" />
+    </div>
+    <div class="flex-1 min-w-0">
+      <h2 class="text-sm font-semibold text-foreground tracking-tight">{t.bannerTitle}</h2>
+      <p class="mt-1 text-xs text-muted-foreground leading-relaxed">
+        {t.bannerDesc}{' '}
+        <a href={privacyHref} class="text-brand hover:underline inline-flex items-center gap-0.5">
+          <span>{t.privacyPolicy}</span>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-border/60">
+    <button
+      type="button"
+      data-action="accept-all"
+      class="px-3.5 py-1.5 rounded-lg bg-brand text-brand-foreground hover:bg-brand/90 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      {t.acceptAll}
+    </button>
+    <button
+      type="button"
+      data-action="reject-all"
+      class="px-3.5 py-1.5 rounded-lg border border-border bg-surface hover:bg-surface-muted text-foreground text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      {t.rejectAll}
+    </button>
+    <button
+      type="button"
+      data-action="open-preferences"
+      class="px-2.5 py-1.5 text-xs text-muted-foreground hover:text-foreground font-medium underline underline-offset-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+    >
+      {t.customize}
+    </button>
+  </div>
+</aside>
+
+{/* Granular Preferences Dialog Modal */}
+<div
+  id="ladestack-consent-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="consent-modal-title"
+  aria-describedby="consent-modal-desc"
+  class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+>
+  <div class="relative w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-elevated max-h-[90vh] overflow-y-auto">
+    {/* Close button */}
+    <button
+      type="button"
+      data-action="close-preferences"
+      class="absolute top-4 right-4 p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      aria-label={t.closeAria}
+    >
+      <Icon name="x" class="w-4 h-4" />
+    </button>
+
+    <div class="flex items-center gap-2.5 mb-2">
+      <div class="w-7 h-7 rounded-md bg-brand/10 text-brand flex items-center justify-center">
+        <Icon name="shield-check" class="w-4 h-4" />
+      </div>
+      <h2 id="consent-modal-title" class="text-lg font-bold text-foreground tracking-tight">
+        {t.modalTitle}
+      </h2>
+    </div>
+
+    <p id="consent-modal-desc" class="text-xs text-muted-foreground leading-relaxed mb-6">
+      {t.modalDesc}
+    </p>
+
+    {/* Categories List */}
+    <div class="space-y-4">
+      {/* Category 1: Essential */}
+      <div class="rounded-xl border border-border bg-surface-muted/30 p-4">
+        <div class="flex items-center justify-between gap-3 mb-1.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-foreground">{t.categoryEssentialTitle}</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface border border-border text-muted-foreground">
+              {t.categoryEssentialBadge}
+            </span>
+          </div>
+          <input
+            type="checkbox"
+            checked
+            disabled
+            class="h-4 w-4 rounded border-border text-brand accent-brand cursor-not-allowed opacity-70"
+            aria-label={t.categoryEssentialTitle}
+          />
+        </div>
+        <p class="text-xs text-muted-foreground leading-relaxed">
+          {t.categoryEssentialDesc}
+        </p>
+      </div>
+
+      {/* Category 2: Google Analytics 4 */}
+      <div class="rounded-xl border border-border bg-surface p-4 hover:border-brand/40 transition-colors">
+        <div class="flex items-center justify-between gap-3 mb-1.5">
+          <label for="consent-toggle-ga" class="text-xs font-semibold text-foreground cursor-pointer">
+            {t.categoryGaTitle}
+          </label>
+          <input
+            type="checkbox"
+            id="consent-toggle-ga"
+            class="h-4 w-4 rounded border-border text-brand accent-brand cursor-pointer focus:ring-2 focus:ring-brand"
+          />
+        </div>
+        <p class="text-xs text-muted-foreground leading-relaxed">
+          {t.categoryGaDesc}
+        </p>
+      </div>
+
+      {/* Category 3: Microsoft Clarity */}
+      <div class="rounded-xl border border-border bg-surface p-4 hover:border-brand/40 transition-colors">
+        <div class="flex items-center justify-between gap-3 mb-1.5">
+          <label for="consent-toggle-clarity" class="text-xs font-semibold text-foreground cursor-pointer">
+            {t.categoryClarityTitle}
+          </label>
+          <input
+            type="checkbox"
+            id="consent-toggle-clarity"
+            class="h-4 w-4 rounded border-border text-brand accent-brand cursor-pointer focus:ring-2 focus:ring-brand"
+          />
+        </div>
+        <p class="text-xs text-muted-foreground leading-relaxed">
+          {t.categoryClarityDesc}
+        </p>
+      </div>
+    </div>
+
+    {/* Modal Action Buttons */}
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-2.5 pt-4 border-t border-border">
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          data-action="save-preferences"
+          class="px-4 py-2 rounded-lg bg-brand text-brand-foreground hover:bg-brand/90 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        >
+          {t.savePreferences}
+        </button>
+        <button
+          type="button"
+          data-action="accept-all"
+          class="px-3.5 py-2 rounded-lg border border-border bg-surface hover:bg-surface-muted text-foreground text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+        >
+          {t.acceptAll}
+        </button>
+      </div>
+
+      <button
+        type="button"
+        data-action="reject-all"
+        class="px-3 py-2 text-xs text-muted-foreground hover:text-foreground font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+      >
+        {t.rejectAll}
+      </button>
+    </div>
+
+    {/* Withdrawal info */}
+    <div class="mt-6 pt-4 border-t border-border/60">
+      <p class="text-[11px] font-semibold text-foreground mb-1">{t.withdrawTitle}</p>
+      <p class="text-[11px] text-muted-foreground leading-relaxed mb-2.5">
+        {t.withdrawDesc}
+      </p>
+      <button
+        type="button"
+        data-action="withdraw-consent"
+        class="px-3 py-1.5 rounded-md border border-border text-destructive hover:bg-destructive/10 text-[11px] font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+      >
+        {t.withdrawButton}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  import {
+    getStoredConsent,
+    saveConsent,
+    revokeConsent,
+    initAnalyticsManager,
+  } from '../../scripts/analytics-consent';
+
+  function setupConsentUI(): void {
+    const banner = document.getElementById('ladestack-consent-banner');
+    const modal = document.getElementById('ladestack-consent-modal');
+    const gaCheckbox = document.getElementById('consent-toggle-ga') as HTMLInputElement | null;
+    const clarityCheckbox = document.getElementById('consent-toggle-clarity') as HTMLInputElement | null;
+
+    function refreshCheckboxes(): void {
+      const stored = getStoredConsent();
+      if (gaCheckbox) gaCheckbox.checked = !!stored?.ga;
+      if (clarityCheckbox) clarityCheckbox.checked = !!stored?.clarity;
+    }
+
+    function showBanner(): void {
+      if (banner) banner.classList.remove('hidden');
+    }
+
+    function hideBanner(): void {
+      if (banner) banner.classList.add('hidden');
+    }
+
+    function openModal(): void {
+      refreshCheckboxes();
+      if (modal) {
+        modal.classList.remove('hidden');
+        // Trap focus to close button or first interactive element
+        const firstFocus = modal.querySelector<HTMLElement>('button, [href], input');
+        firstFocus?.focus();
+      }
+    }
+
+    function closeModal(): void {
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Check if initial banner should be shown
+    const existingConsent = getStoredConsent();
+    if (!existingConsent) {
+      showBanner();
+    } else {
+      hideBanner();
+    }
+
+    // Global listener for action clicks
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+
+      const trigger = target.closest<HTMLElement>('[data-action]');
+      if (!trigger) {
+        // Also listen for any generic privacy preferences trigger links
+        if (target.closest('[data-open-privacy-preferences]') || target.closest('[data-consent-trigger]')) {
+          e.preventDefault();
+          openModal();
+        }
+        return;
+      }
+
+      const action = trigger.getAttribute('data-action');
+      if (action === 'accept-all') {
+        saveConsent(true, true);
+        hideBanner();
+        closeModal();
+      } else if (action === 'reject-all') {
+        saveConsent(false, false);
+        hideBanner();
+        closeModal();
+      } else if (action === 'open-preferences') {
+        e.preventDefault();
+        openModal();
+      } else if (action === 'close-preferences') {
+        closeModal();
+      } else if (action === 'save-preferences') {
+        const ga = gaCheckbox ? gaCheckbox.checked : false;
+        const clarity = clarityCheckbox ? clarityCheckbox.checked : false;
+        saveConsent(ga, clarity);
+        hideBanner();
+        closeModal();
+      } else if (action === 'withdraw-consent') {
+        revokeConsent();
+        hideBanner();
+        closeModal();
+        // Soft reload to guarantee clean tracker unloading
+        if (typeof window !== 'undefined') {
+          window.location.reload();
+        }
+      }
+    });
+
+    // Handle Escape key to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Close modal on backdrop click
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Run core analytics bootstrapper
+    initAnalyticsManager();
+  }
+
+  // Ensure DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupConsentUI);
+  } else {
+    setupConsentUI();
+  }
+</script>
+

@@ -18,6 +18,7 @@ export const ptPrivacy: PrivacyPageData = {
     text: 'A versão em inglês desta Política de Privacidade constitui o único texto legal autêntico da LadeStack. As traduções para outros idiomas são disponibilizadas unicamente para fins informativos e de conveniência, sem certificação jurídica independente.',
   },
   highlights: [
+    { icon: 'shield-check', text: 'Analítica com Privacidade (Sob Consentimento)' },
     { icon: 'shield-check', text: 'Execução no Lado do Cliente' },
     { icon: 'lock', text: 'Sem Armazenamento de Arquivos em Servidor' },
     { icon: 'check-circle', text: 'Arquitetura Local-First' },
@@ -36,6 +37,7 @@ export const ptPrivacy: PrivacyPageData = {
         'Não exigimos criação de conta, credenciais de login ou dados de pagamento para usar as ferramentas públicas deste site. As interações de rede estão restritas aos seguintes âmbitos:',
       ],
       listItems: [
+        'Telemetria Opcional e Análise de Experiência (Apenas Mediante Consentimento Prévio): Não utilizamos rastreadores publicitários nem pixels de segmentação de marketing. Por padrão, todas as ferramentas de terceiros estão totalmente bloqueadas. Apenas quando você concede consentimento afirmativo em nossas Preferências de Privacidade, habilitamos: (a) Google Analytics 4 (ID de Medição: G-C6GRNN3J11) para medições agregadas de páginas sob o Google Consent Mode v2, com armazenamento de anúncios desativado; (b) Microsoft Clarity (ID do Projeto: z5fy1scjjr) para diagnósticos de navegação sob a Clarity Consent API v2, com todos os campos de formulário estritamente mascarados (data-clarity-mask). O consentimento pode ser alterado ou revogado a qualquer momento em "Definições de Cookies".',
         'Registros básicos de acesso ao servidor web: dados comuns de diagnóstico, como user-agent do navegador, URL de referência e rotas solicitadas, utilizados exclusivamente para integridade da infraestrutura e mitigação de tráfego malicioso.',
         'Integrações opcionais de IA de terceiros: no GB Coder, o usuário pode configurar voluntariamente suas próprias chaves de API de IA. As requisições de saída ocorrem diretamente entre o navegador do usuário e o provedor terceiro designado.',
         'Comunicações voluntárias: mensagens enviadas para admin@ladestack.in são utilizadas unicamente com o propósito de atender e responder à sua solicitação.',
@@ -44,8 +46,8 @@ export const ptPrivacy: PrivacyPageData = {
     {
       title: '3. Armazenamento Local e Cookies',
       paragraphs: [
-        'A LadeStack utiliza mecanismos de armazenamento local do navegador (localStorage e IndexedDB) apenas para finalidades operacionais indispensáveis: salvar preferências visuais (tema claro ou escuro) e preservar o estado dos projetos no GB Coder.',
-        'Não utilizamos pixels de rastreamento de anúncios de terceiros nem cookies comerciais de marketing.',
+        'A LadeStack utiliza o armazenamento local do navegador (localStorage e IndexedDB) apenas para propósitos operacionais essenciais: salvar a preferência de tema, manter o estado dos projetos no GB Coder e registrar suas decisões de privacidade ("ladestack-consent").',
+        'Cookies analíticos (_ga, _clck) só são emitidos após autorização voluntária. Eles não possuem finalidade publicitária e são removidos imediatamente do seu navegador caso o consentimento seja revogado.',
       ],
     },
     {

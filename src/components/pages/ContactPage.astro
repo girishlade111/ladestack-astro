@@ -137,6 +137,7 @@ const structuredData = [
           <form
             id="contact-form"
             class="space-y-5"
+            data-clarity-mask="true"
             onsubmit="event.preventDefault(); var name=document.getElementById('name').value; var email=document.getElementById('email').value; var sub=document.getElementById('subject').value; var msg=document.getElementById('message').value; var mailtoUrl='mailto:admin@ladestack.in?subject=' + encodeURIComponent(sub || 'LadeStack Inquiry') + '&body=' + encodeURIComponent('From: ' + name + ' (' + email + ')\n\n' + msg); window.location.href=mailtoUrl; document.getElementById('contact-status').classList.remove('hidden');"
           >
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -148,6 +149,7 @@ const structuredData = [
                   type="text"
                   id="name"
                   name="name"
+                  data-clarity-mask="true"
                   required
                   placeholder={data.form.namePlaceholder}
                   class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
@@ -162,6 +164,7 @@ const structuredData = [
                   type="email"
                   id="email"
                   name="email"
+                  data-clarity-mask="true"
                   required
                   placeholder={data.form.emailPlaceholder}
                   class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
@@ -177,6 +180,7 @@ const structuredData = [
                 type="text"
                 id="subject"
                 name="subject"
+                data-clarity-mask="true"
                 required
                 placeholder={data.form.subjectPlaceholder}
                 class="w-full px-3.5 py-2.5 rounded-lg border border-border bg-surface-muted/50 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-brand"
@@ -190,6 +194,7 @@ const structuredData = [
               <textarea
                 id="message"
                 name="message"
+                data-clarity-mask="true"
                 rows="5"
                 required
                 placeholder={data.form.messagePlaceholder}

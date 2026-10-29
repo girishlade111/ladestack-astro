@@ -1,0 +1,37 @@
+---
+/**
+ * src/components/analytics/AnalyticsManager.astro
+ * LadeStack Phase 4E — Central Analytics & Consent Orchestrator
+ *
+ * Enforces Google Consent Mode v2 pre-initialization, loads ConsentPreferences UI,
+ * and maintains unified telemetry lifecycle across all 9 supported locales.
+ */
+import ConsentPreferences from './ConsentPreferences.astro';
+import type { Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+---
+
+{/* Google Consent Mode v2 default denial inline script — Guaranteed execution before any tag */}
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500,
+  });
+</script>
+
+{/* User Consent UI (Persistent Trigger, Initial Banner, Preferences Modal) */}
+<ConsentPreferences locale={locale} />
+

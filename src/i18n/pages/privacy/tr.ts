@@ -18,6 +18,7 @@ export const trPrivacy: PrivacyPageData = {
     text: 'Bu Gizlilik Politikasının İngilizce sürümü, LadeStack’in gizlilik uygulamalarını belirleyen tek yetkili ve yasal metindir. Diğer dillere yapılan çeviriler yalnızca bilgilendirme ve kolaylık sağlamak amacıyla sunulmuş olup bağımsız bir hukuk onayından geçmemiştir.',
   },
   highlights: [
+    { icon: 'shield-check', text: 'Gizlilik Odaklı Analitik (İsteğe Bağlı)' },
     { icon: 'shield-check', text: 'İstemci Taraflı Çalıştırma' },
     { icon: 'lock', text: 'Sunucuda Dosya Saklanmaz' },
     { icon: 'check-circle', text: 'Yerel Öncelikli Mimari' },
@@ -36,6 +37,7 @@ export const trPrivacy: PrivacyPageData = {
         'Bu web sitesindeki genel geliştirici araçlarına erişmek için hesap kaydı, kullanıcı girişi veya ödeme kartı bilgisi gerekmez. Ağ düzeyindeki etkileşimler aşağıdaki kapsamla sınırlıdır:',
       ],
       listItems: [
+        'İsteğe Bağlı Telemetri ve Kullanıcı Deneyimi Analitiği (Yalnızca Açık Rıza ile): Reklam amaçlı izleme çerezleri veya pazarlama pikselleri kullanmıyoruz. Varsayılan olarak tüm üçüncü taraf analitikler engellenmiştir. Yalnızca Gizlilik Tercihleri üzerinden onay vermeniz halinde: (a) Google Consent Mode v2 kapsamında reklam depolaması tamamen kapalı olan Google Analytics 4 (Ölçüm Kimliği: G-C6GRNN3J11) ve (b) Tüm form ve giriş alanlarının data-clarity-mask ile kesinlikle maskelendiği Microsoft Clarity (Proje Kimliği: z5fy1scjjr) etkinleştirilir. İzninizi dilediğiniz zaman "Çerez Ayarları" üzerinden güncelleyebilir veya geri çekebilirsiniz.',
         'Temel web sunucusu erişim günlükleri: Altyapı kararlılığını sağlamak ve kötüye kullanımları önlemek amacıyla tarayıcı kullanıcı aracısı (user-agent), yönlendiren adres ve istenen dosya yollarını içeren standart tanı verileri.',
         'İsteğe bağlı üçüncü taraf yapay zeka entegrasyonları: GB Coder’da kullanıcılar harici yapay zeka sağlayıcılarının API anahtarlarını isteğe bağlı olarak yapılandırabilir. Bu durumda giden istekler kullanıcının tarayıcısından doğrudan ilgili üçüncü taraf uç noktasına iletilir.',
         'Gönüllü iletişimler: admin@ladestack.in adresine e-posta yoluyla gönderilen mesajlar yalnızca sorunuza yanıt vermek amacıyla işlenir.',
@@ -44,8 +46,8 @@ export const trPrivacy: PrivacyPageData = {
     {
       title: '3. Yerel Depolama ve Çerezler',
       paragraphs: [
-        'LadeStack, tarayıcının yerel depolama mekanizmalarını (localStorage ve IndexedDB) yalnızca gerekli işlevsel amaçlar için kullanır: Tema tercihlerini (karanlık/aydınlık) saklamak ve GB Coder projelerini sayfa yenilemeleri arasında korumak.',
-        'Üçüncü taraf reklam izleme pikselleri veya ticari pazarlama çerezleri kesinlikle kullanılmaz.',
+        'LadeStack, tarayıcı yerel depolamasını (localStorage ve IndexedDB) yalnızca temel işlevler için kullanır: tema tercihinin korunması, GB Coder proje durumunun saklanması ve rıza seçiminizin kaydedilmesi ("ladestack-consent").',
+        'Yalnızca açık onay vermeniz durumunda analiz çerezleri (_ga, _clck) oluşturulur. Bu çerezler reklam amaçlı kullanılamaz ve onayınızı geri çektiğinizde cihazınızdan derhal temizlenir.',
       ],
     },
     {

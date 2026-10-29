@@ -21,7 +21,7 @@ export const enPrivacy: PrivacyPageData = {
     { icon: 'shield-check', text: '100% Client-Side Execution' },
     { icon: 'lock', text: 'Zero Server File Storage' },
     { icon: 'check-circle', text: 'Local-First Architecture' },
-    { icon: 'eye-off', text: 'Zero Tracking Pixels' },
+    { icon: 'shield-check', text: 'Privacy-First Analytics (Opt-In)' },
   ],
   sections: [
     {
@@ -53,7 +53,7 @@ export const enPrivacy: PrivacyPageData = {
       ],
       listItems: [
         'Edge Server Access Logs: When your browser requests static HTML, JavaScript, CSS, or WebAssembly bundles, our edge CDN automatically records transient server access logs. These logs capture standard HTTP request metadata, including IP address, user-agent string, operating system version, requesting URL, and HTTP response code. These logs are used strictly for edge caching optimization, DDoS mitigation, and network security diagnostics.',
-        'Zero Behavioral Tracking: We do not deploy third-party advertising cookies, cross-site trackers, biometric fingerprints, or session replay technologies (such as Hotjar or FullStory).',
+        'Optional Telemetry & User Insights (Opt-In Only): LadeStack does not employ advertising trackers, cross-site profiling, or commercial data broker pixels. By default, all third-party analytics are completely blocked. Only after you grant affirmative permission via our Privacy Preferences dialog, we enable: (a) Google Analytics 4 (Measurement ID: G-C6GRNN3J11) for aggregated, cookieless-first pageview and performance measurement under Google Consent Mode v2, with ad storage, ad user data, and personalization strictly denied (see Google Privacy: https://policies.google.com/privacy); and (b) Microsoft Clarity (Project ID: z5fy1scjjr) for aggregated heatmap visualization and session diagnostics under Clarity Consent API v2, with all input fields, contact forms, and keystrokes strictly masked (data-clarity-mask) to prevent sensitive data capture (see Microsoft Privacy: https://privacy.microsoft.com/privacystatement). Visitors can inspect, customize, or revoke consent at any time using the persistent Cookie Settings trigger on any page.',
         'Voluntary Inquiries: If you send an email to admin@ladestack.in, we retain your email address and message thread solely to answer your technical questions or respond to feedback. We never sell, rent, or monetize inquiry correspondence.',
       ],
     },
@@ -63,7 +63,8 @@ export const enPrivacy: PrivacyPageData = {
         'LadeStack utilizes modern browser storage mechanisms exclusively for necessary client-side functional utilities. We do not use commercial marketing or advertising cookies. Storage technologies utilized include:',
       ],
       listItems: [
-        'localStorage: Stores user interface preferences such as dark/light theme state (key: "theme"), active language preferences, and autosaved draft entries in Swift Resume.',
+        'localStorage: Stores user interface preferences such as dark/light theme state (key: "ladestack-theme" or "theme"), active language preferences, autosaved draft entries in Swift Resume, and visitor consent decisions (key: "ladestack-consent").',
+        'First-Party & Provider Cookies: When you grant explicit consent, Google Analytics sets standard measurement cookies (_ga, _gid) and Microsoft Clarity sets session diagnostic cookies (_clck, _clsk). These cookies are strictly non-advertising and are deleted automatically when you withdraw consent via the Cookie Settings interface.',
         'IndexedDB: Powers project persistence within GB Coder, preserving user code files, package dependencies, and folder hierarchies across browser reloads so developers do not lose their work.',
         'Session Storage & Volatile RAM: Temporary state variables and large document ArrayBuffers remain in volatile tab memory and are immediately cleared when the tab is closed.',
         'User Control & Erasure: You have complete sovereignty over locally stored data. You can inspect, modify, or erase all LadeStack storage at any moment through your browser developer tools (Application / Storage tab) or by clearing your browser cache.',

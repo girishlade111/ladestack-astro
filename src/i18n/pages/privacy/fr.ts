@@ -18,6 +18,7 @@ export const frPrivacy: PrivacyPageData = {
     text: 'La version anglaise de cette Politique de confidentialité constitue le texte juridique officiel et faisant foi. Les traductions dans d’autres langues sont fournies uniquement à des fins d’information et de commodité, sans certification juridique indépendante.',
   },
   highlights: [
+    { icon: 'shield-check', text: 'Analytique respectueuse (sur consentement)' },
     { icon: 'shield-check', text: 'Exécution côté client' },
     { icon: 'lock', text: 'Aucun stockage de fichiers sur serveur' },
     { icon: 'check-circle', text: 'Architecture locale prioritaire' },
@@ -36,6 +37,7 @@ export const frPrivacy: PrivacyPageData = {
         'L’utilisation des outils publics sur ce site ne requiert aucune création de compte, identifiant de connexion ni carte de paiement. Les flux réseau sont limités aux éléments suivants :',
       ],
       listItems: [
+        'Télémétrie optionnelle et analyse de l’expérience utilisateur (sur consentement explicite uniquement) : Nous ne déployons aucun traqueur publicitaire ni cookie de ciblage commercial. Par défaut, tous les scripts de suivi tiers sont totalement bloqués. Uniquement après acceptation formelle via notre gestionnaire de préférences, nous activons : (a) Google Analytics 4 (ID de mesure : G-C6GRNN3J11) pour des mesures globales d’audience sous Google Consent Mode v2, avec stockage publicitaire désactivé ; (b) Microsoft Clarity (ID de projet : z5fy1scjjr) pour l’analyse de cartes de chaleur sous Clarity Consent API v2, avec masquage strict de tous les champs de saisie (data-clarity-mask). Vous pouvez ajuster ou révoquer votre consentement à tout moment via "Paramètres des cookies".',
         'Journaux d’accès standards du serveur web : données de diagnostic courantes comprenant l’agent utilisateur du navigateur, l’URL de provenance et les chemins demandés, servant exclusivement à la sécurité et à la surveillance de l’infrastructure.',
         'Intégrations IA tierces optionnelles : dans GB Coder, l’utilisateur peut configurer ses propres clés API d’IA externe. Les requêtes réseau s’effectuent alors directement entre l’environnement du navigateur et le fournisseur tiers désigné.',
         'Communications volontaires : les courriels adressés à admin@ladestack.in sont traités uniquement afin d’apporter une réponse à votre demande.',
@@ -44,8 +46,8 @@ export const frPrivacy: PrivacyPageData = {
     {
       title: '3. Stockage local et cookies',
       paragraphs: [
-        'LadeStack utilise le stockage local du navigateur (localStorage et IndexedDB) uniquement pour des fonctionnalités indispensables : la mémorisation de vos préférences visuelles (thème clair ou sombre) et la conservation de l’état de vos projets dans GB Coder.',
-        'Nous n’utilisons aucun traceur publicitaire tiers ni cookie de ciblage commercial.',
+        'LadeStack utilise les mécanismes de stockage local du navigateur (localStorage et IndexedDB) uniquement pour des fonctionnalités indispensables : conservation du thème, sauvegarde des projets dans GB Coder et enregistrement de vos préférences de consentement ("ladestack-consent").',
+        'Des cookies d’analyse (_ga, _clck) ne sont déposés que si vous y consentez expressément. Ils ne sont jamais utilisés à des fins publicitaires et sont automatiquement purgés en cas de retrait du consentement.',
       ],
     },
     {
