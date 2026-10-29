@@ -57,3 +57,4 @@ for (const r of vercelRedirects) {
 }
 
 console.log('ALL 14 REDIRECTS VALIDATED SUCCESSFULLY!');
+
