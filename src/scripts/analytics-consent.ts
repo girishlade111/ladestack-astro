@@ -1,6 +1,6 @@
 /**
  * src/scripts/analytics-consent.ts
- * LadeStack Phase 4E — Unified Analytics & Consent Management
+ * LadeStack Phase 4E-1 — Unified Analytics & Consent Management
  * Google Analytics 4 (G-C6GRNN3J11) + Microsoft Clarity (z5fy1scjjr)
  *
  * Strict Privacy-First Engineering:
@@ -8,7 +8,8 @@
  * - Strict production hostname restriction (ladestack.in only)
  * - Google Consent Mode v2 (analytics_storage, ad_storage, ad_user_data, ad_personalization)
  * - Microsoft Clarity Consent API v2 (analytics_Storage, ad_Storage)
- * - Zero duplicate tag execution, resilient storage fallback, cookie cleanup on revocation
+ * - Provider-specific transition management and granular cookie cleanup
+ * - Robust in-flight loading guards to prevent duplicate script injection
  */
 
 export const GA_MEASUREMENT_ID = 'G-C6GRNN3J11';
@@ -30,7 +31,9 @@ declare global {
     gtag?: (...args: unknown[]) => void;
     clarity?: (...args: unknown[]) => void;
     __ladestack_ga_loaded?: boolean;
+    __ladestack_ga_loading?: boolean;
     __ladestack_clarity_loaded?: boolean;
+    __ladestack_clarity_loading?: boolean;
     __ladestack_consent_initialized?: boolean;
   }
 }
@@ -62,9 +65,10 @@ export function getStoredConsent(): ConsentState | null {
 }
 
 /**
- * Persists user consent state and applies the appropriate tracking transitions.
+ * Persists user consent state and applies provider-specific tracking transitions.
  */
 export function saveConsent(ga: boolean, clarity: boolean): ConsentState {
+  const prevConsent = getStoredConsent();
   const state: ConsentState = {
     v: 1,
     ts: Date.now(),
@@ -79,18 +83,44 @@ export function saveConsent(ga: boolean, clarity: boolean): ConsentState {
     // Quota or storage access error
   }
 
-  applyConsent(state);
+  const shouldReload = applyConsent(state, prevConsent);
   dispatchConsentEvent(state);
+
+  if (shouldReload && typeof window !== 'undefined') {
+    window.location.reload();
+  }
+
   return state;
 }
 
 /**
  * Revokes all optional consent, updates provider signals to denied,
- * clears tracking cookies, and notifies listeners.
+ * clears all tracking cookies, and triggers a clean reload.
  */
 export function revokeConsent(): ConsentState {
-  const state = saveConsent(false, false);
+  const prevConsent = getStoredConsent();
+  const state: ConsentState = {
+    v: 1,
+    ts: Date.now(),
+    essential: true,
+    ga: false,
+    clarity: false,
+  };
+
+  try {
+    localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Quota or storage access error
+  }
+
+  applyConsent(state, prevConsent);
   clearAnalyticsCookies();
+  dispatchConsentEvent(state);
+
+  if (typeof window !== 'undefined') {
+    window.location.reload();
+  }
+
   return state;
 }
 
@@ -120,12 +150,16 @@ export function getSanitizedLocation(): string {
 
 /**
  * Loads and initializes Google Analytics 4 strictly when authorized.
+ * Enforces in-flight guards, gtag('js', new Date()), and exact measurement configuration.
  */
 export function loadGoogleAnalytics(): void {
   if (typeof window === 'undefined') return;
-  if (window.__ladestack_ga_loaded) return;
+  if (window.__ladestack_ga_loaded || window.__ladestack_ga_loading) return;
 
-  // Update consent mode to granted for analytics_storage
+  // Set in-flight guard immediately to block duplicate injections
+  window.__ladestack_ga_loading = true;
+
+  // Queue affirmative consent update and initialization before script execution
   if (typeof window.gtag === 'function') {
     window.gtag('consent', 'update', {
       analytics_storage: 'granted',
@@ -133,11 +167,19 @@ export function loadGoogleAnalytics(): void {
       ad_user_data: 'denied',
       ad_personalization: 'denied',
     });
+    window.gtag('js', new Date());
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      page_location: getSanitizedLocation(),
+      send_page_view: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+    });
   }
 
   if (!isProductionDomain()) {
     // Non-production test instrumentation: Mark loaded without injecting external tracker
     window.__ladestack_ga_loaded = true;
+    window.__ladestack_ga_loading = false;
     console.info(
       `[LadeStack Analytics] Hostname (${window.location.hostname}) != ${PRODUCTION_HOSTNAME}. GA4 mock initialized.`
     );
@@ -150,6 +192,22 @@ export function loadGoogleAnalytics(): void {
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   script.onload = () => {
     window.__ladestack_ga_loaded = true;
+    window.__ladestack_ga_loading = false;
+    const currentConsent = getStoredConsent();
+    if (currentConsent && !currentConsent.ga) {
+      clearGoogleAnalyticsCookies();
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+        });
+      }
+    }
+  };
+  script.onerror = () => {
+    window.__ladestack_ga_loading = false;
   };
 
   const firstScript = document.getElementsByTagName('script')[0];
@@ -158,29 +216,23 @@ export function loadGoogleAnalytics(): void {
   } else {
     document.head.appendChild(script);
   }
-
-  // Initialize config with sanitized location
-  if (typeof window.gtag === 'function') {
-    window.gtag('config', GA_MEASUREMENT_ID, {
-      page_location: getSanitizedLocation(),
-      send_page_view: true,
-      anonymize_ip: true,
-      allow_google_signals: false,
-      allow_ad_personalization_signals: false,
-    });
-  }
 }
 
 /**
  * Loads and initializes Microsoft Clarity strictly when authorized.
+ * Enforces in-flight guards, Consent API v2, and sensitive parameter casing.
  */
 export function loadMicrosoftClarity(): void {
   if (typeof window === 'undefined') return;
-  if (window.__ladestack_clarity_loaded) return;
+  if (window.__ladestack_clarity_loaded || window.__ladestack_clarity_loading) return;
+
+  // Set in-flight guard immediately
+  window.__ladestack_clarity_loading = true;
 
   if (!isProductionDomain()) {
     // Non-production test instrumentation: Mark loaded without injecting external tracker
     window.__ladestack_clarity_loaded = true;
+    window.__ladestack_clarity_loading = false;
     console.info(
       `[LadeStack Analytics] Hostname (${window.location.hostname}) != ${PRODUCTION_HOSTNAME}. Clarity mock initialized.`
     );
@@ -201,6 +253,20 @@ export function loadMicrosoftClarity(): void {
     t.src = `https://www.clarity.ms/tag/${i}`;
     t.onload = () => {
       window.__ladestack_clarity_loaded = true;
+      window.__ladestack_clarity_loading = false;
+      const currentConsent = getStoredConsent();
+      if (currentConsent && !currentConsent.clarity) {
+        clearClarityCookies();
+        if (typeof window.clarity === 'function') {
+          window.clarity('consentv2', {
+            ad_Storage: 'denied',
+            analytics_Storage: 'denied',
+          });
+        }
+      }
+    };
+    t.onerror = () => {
+      window.__ladestack_clarity_loading = false;
     };
     const y = l.getElementsByTagName(r)[0];
     if (y && y.parentNode) {
@@ -210,7 +276,7 @@ export function loadMicrosoftClarity(): void {
     }
   })(window, document, 'clarity', 'script', CLARITY_PROJECT_ID);
 
-  // Send Clarity Consent v2 signal
+  // Send Clarity Consent v2 signal (exact documented case-sensitive keys)
   if (typeof window.clarity === 'function') {
     window.clarity('consentv2', {
       ad_Storage: 'denied',
@@ -220,13 +286,11 @@ export function loadMicrosoftClarity(): void {
 }
 
 /**
- * Removes analytics cookies on consent revocation across all domain variants.
+ * Generic cookie cleaner for matching prefixes across apex and subdomains.
  */
-export function clearAnalyticsCookies(): void {
+function deleteCookiesByPrefixes(prefixes: string[]): void {
   if (typeof document === 'undefined') return;
-  const targetPrefixes = ['_ga', '_gid', '_gat', '_clck', '_clsk', 'CLID', 'ANONCHK', 'MR', 'MUID', 'SM'];
   const cookies = document.cookie.split(';');
-
   const domains = [
     '',
     window.location.hostname,
@@ -237,8 +301,8 @@ export function clearAnalyticsCookies(): void {
 
   for (const cookie of cookies) {
     const eqPos = cookie.indexOf('=');
-    const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
-    const shouldDelete = targetPrefixes.some((p) => name === p || name.startsWith(`${p}_`));
+    const name = eqPos > -1 ? cookie.slice(0, eqPos).trim() : cookie.trim();
+    const shouldDelete = prefixes.some((p) => name === p || name.startsWith(`${p}_`) || name.startsWith(`${p}-`));
 
     if (shouldDelete) {
       for (const domain of domains) {
@@ -250,13 +314,39 @@ export function clearAnalyticsCookies(): void {
 }
 
 /**
- * Applies a given consent state to active trackers.
+ * Removes first-party Google Analytics cookies without touching Clarity cookies.
  */
-export function applyConsent(consent: ConsentState): void {
-  // 1. Google Analytics
-  if (consent.ga) {
+export function clearGoogleAnalyticsCookies(): void {
+  deleteCookiesByPrefixes(['_ga', '_gid', '_gat', '_gac']);
+}
+
+/**
+ * Removes Microsoft Clarity and associated Bing cookies without touching GA cookies.
+ */
+export function clearClarityCookies(): void {
+  deleteCookiesByPrefixes(['_clck', '_clsk', 'CLID', 'ANONCHK', 'MR', 'MUID', 'SM']);
+}
+
+/**
+ * Removes all analytics cookies (GA4 + Clarity).
+ */
+export function clearAnalyticsCookies(): void {
+  clearGoogleAnalyticsCookies();
+  clearClarityCookies();
+}
+
+/**
+ * Applies a given consent state to active trackers and executes provider-specific transitions.
+ * Returns true if a reload is required to safely unload scripts from the current DOM.
+ */
+export function applyConsent(nextConsent: ConsentState, prevConsent: ConsentState | null = null): boolean {
+  let needsReload = false;
+
+  // 1. Google Analytics transition
+  if (nextConsent.ga) {
     loadGoogleAnalytics();
   } else {
+    const gaWasActive = prevConsent?.ga === true || !!window.__ladestack_ga_loaded || !!window.__ladestack_ga_loading;
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', {
         analytics_storage: 'denied',
@@ -265,19 +355,34 @@ export function applyConsent(consent: ConsentState): void {
         ad_personalization: 'denied',
       });
     }
+    if (gaWasActive) {
+      clearGoogleAnalyticsCookies();
+      if (window.__ladestack_ga_loaded || window.__ladestack_ga_loading) {
+        needsReload = true;
+      }
+    }
   }
 
-  // 2. Microsoft Clarity
-  if (consent.clarity) {
+  // 2. Microsoft Clarity transition
+  if (nextConsent.clarity) {
     loadMicrosoftClarity();
   } else {
+    const clarityWasActive = prevConsent?.clarity === true || !!window.__ladestack_clarity_loaded || !!window.__ladestack_clarity_loading;
     if (typeof window.clarity === 'function') {
       window.clarity('consentv2', {
         ad_Storage: 'denied',
         analytics_Storage: 'denied',
       });
     }
+    if (clarityWasActive) {
+      clearClarityCookies();
+      if (window.__ladestack_clarity_loaded || window.__ladestack_clarity_loading) {
+        needsReload = true;
+      }
+    }
   }
+
+  return needsReload;
 }
 
 /**
@@ -290,7 +395,6 @@ export function initAnalyticsManager(): void {
 
   const stored = getStoredConsent();
   if (stored) {
-    applyConsent(stored);
+    applyConsent(stored, null);
   }
 }
-

@@ -301,13 +301,9 @@ const privacyHref = getLocalizedPath('/privacy', locale);
         hideBanner();
         closeModal();
       } else if (action === 'withdraw-consent') {
-        revokeConsent();
         hideBanner();
         closeModal();
-        // Soft reload to guarantee clean tracker unloading
-        if (typeof window !== 'undefined') {
-          window.location.reload();
-        }
+        revokeConsent();
       }
     });
 

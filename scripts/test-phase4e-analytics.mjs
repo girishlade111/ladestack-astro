@@ -1,36 +1,16 @@
-/**
- * scripts/test-phase4e-analytics.mjs
- * LadeStack Phase 4E — Google Analytics 4 + Microsoft Clarity Automated Verification Suite
- *
- * Verifies:
- * 1. Configuration Integrity: Exact IDs (G-C6GRNN3J11, z5fy1scjjr)
- * 2. 9-Language Localization completeness of consent dictionary
- * 3. Privacy Policy updates across all 9 locales
- * 4. Content Security Policy headers in vercel.json
- * 5. Clarity input masking (data-clarity-mask) in ContactPage.astro
- * 6. Playwright Browser E2E Tests:
- *    - First visit no consent (no tracking scripts)
- *    - Reject all optional
- *    - Accept all
- *    - Accept GA4 only / Clarity only customization
- *    - Revocation & cookie clearing
- *    - Hostname gating (localhost vs ladestack.in)
- *    - Duplicate initialization protection
- */
-
 import fs from 'node:fs';
-import path from 'node:path';
 import http from 'node:http';
+import path from 'node:path';
 import { chromium } from 'playwright';
 
 console.log('============================================================');
-console.log('LADESTACK — PHASE 4E ANALYTICS & CONSENT VERIFICATION SUITE');
+console.log('LADESTACK — PHASE 4E-1 ANALYTICS & CONSENT VERIFICATION SUITE');
 console.log('============================================================\n');
 
 // ---------------------------------------------------------------------------
 // SUITE 1: Tracking Configuration & ID Integrity
 // ---------------------------------------------------------------------------
-console.log('--- SUITE 1: Tracking Configuration & ID Integrity ---');
+console.log('--- SUITE 1: Tracking Configuration, GA4 Init & In-Flight Guards ---');
 
 const analyticsScript = fs.readFileSync('src/scripts/analytics-consent.ts', 'utf8');
 
@@ -48,6 +28,30 @@ if (!analyticsScript.includes("PRODUCTION_HOSTNAME = 'ladestack.in'")) {
   throw new Error('Production hostname is not restricted to ladestack.in');
 }
 console.log('✅ PASS: Production hostname strictly restricted to ladestack.in');
+
+// Check GA4 initialization sequence includes gtag('js', new Date())
+if (!analyticsScript.includes("window.gtag('js', new Date())")) {
+  throw new Error("Missing mandatory window.gtag('js', new Date()) in loadGoogleAnalytics()");
+}
+console.log("✅ PASS: Mandatory window.gtag('js', new Date()) verified in loadGoogleAnalytics()");
+
+// Check in-flight loading guards
+if (
+  !analyticsScript.includes('__ladestack_ga_loading') ||
+  !analyticsScript.includes('__ladestack_clarity_loading')
+) {
+  throw new Error('Missing in-flight loading guards for GA4 or Clarity');
+}
+console.log('✅ PASS: In-flight race condition guards verified for both GA4 & Clarity');
+
+// Check provider-specific cookie cleanup separation
+if (
+  !analyticsScript.includes('clearGoogleAnalyticsCookies') ||
+  !analyticsScript.includes('clearClarityCookies')
+) {
+  throw new Error('Missing provider-specific cookie cleanup functions');
+}
+console.log('✅ PASS: Provider-specific cookie cleanup functions verified');
 
 // Check Google Consent Mode v2 default denial
 const managerScript = fs.readFileSync('src/components/analytics/AnalyticsManager.astro', 'utf8');
@@ -102,45 +106,44 @@ for (const loc of requiredLocales) {
 }
 console.log(`✅ PASS: All ${requiredLocales.length} locales present in CONSENT_TRANSLATIONS`);
 
-// Check zero emoji in consent source
 const emojiRegex = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 if (emojiRegex.test(consentSource)) {
-  throw new Error('Disallowed emoji detected in consent.ts dictionary');
+  throw new Error('Emoji detected in src/i18n/consent.ts! Violates non-negotiable zero-emoji policy.');
 }
 console.log('✅ PASS: Zero emoji verified in consent dictionary');
 
 // ---------------------------------------------------------------------------
-// SUITE 3: Content Security Policy Verification in vercel.json
+// SUITE 3: Content Security Policy (vercel.json)
 // ---------------------------------------------------------------------------
 console.log('\n--- SUITE 3: Content Security Policy (vercel.json) ---');
 
-const vercelJson = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
-const cspHeader = vercelJson.headers[1].headers.find(
-  (h) => h.key === 'Content-Security-Policy-Report-Only'
-);
+const vercelConfig = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+const headersList = vercelConfig.headers || [];
+const cspHeader = headersList
+  .flatMap((h) => h.headers)
+  .find((h) => h.key === 'Content-Security-Policy-Report-Only');
 
 if (!cspHeader) {
-  throw new Error('Missing Content-Security-Policy-Report-Only header in vercel.json');
+  throw new Error('Content-Security-Policy-Report-Only header missing from vercel.json');
 }
 
-const cspValue = cspHeader.value;
-const requiredCspOrigins = [
+const requiredOrigins = [
   'https://www.googletagmanager.com',
-  'https://www.clarity.ms',
-  'https://scripts.clarity.ms',
   'https://*.google-analytics.com',
   'https://*.analytics.google.com',
   'https://*.googletagmanager.com',
+  'https://www.clarity.ms',
+  'https://scripts.clarity.ms',
   'https://*.clarity.ms',
   'https://c.bing.com',
 ];
 
-for (const origin of requiredCspOrigins) {
-  if (!cspValue.includes(origin)) {
-    throw new Error(`CSP is missing required origin: ${origin}`);
+for (const origin of requiredOrigins) {
+  if (!cspHeader.value.includes(origin)) {
+    throw new Error(`CSP is missing required analytics origin: ${origin}`);
   }
 }
-console.log(`✅ PASS: All ${requiredCspOrigins.length} required Google & Clarity origins permitted in CSP`);
+console.log('✅ PASS: All 8 required Google & Clarity origins permitted in CSP');
 
 // ---------------------------------------------------------------------------
 // SUITE 4: Privacy Policy Disclosures across All 9 Locales
@@ -149,46 +152,47 @@ console.log('\n--- SUITE 4: Privacy Policy Disclosures across All 9 Locales ---'
 
 for (const loc of requiredLocales) {
   const privacyFile = `src/i18n/pages/privacy/${loc}.ts`;
+  if (!fs.existsSync(privacyFile)) {
+    throw new Error(`Missing privacy page translation: ${privacyFile}`);
+  }
   const content = fs.readFileSync(privacyFile, 'utf8');
 
   if (!content.includes('G-C6GRNN3J11')) {
-    throw new Error(`Privacy policy [${loc}] is missing GA4 Measurement ID G-C6GRNN3J11`);
+    throw new Error(`[${loc}] Missing GA4 Measurement ID disclosure (G-C6GRNN3J11)`);
   }
   if (!content.includes('z5fy1scjjr')) {
-    throw new Error(`Privacy policy [${loc}] is missing Clarity Project ID z5fy1scjjr`);
+    throw new Error(`[${loc}] Missing Clarity Project ID disclosure (z5fy1scjjr)`);
   }
   if (!content.includes('ladestack-consent')) {
-    throw new Error(`Privacy policy [${loc}] is missing ladestack-consent disclosure`);
+    throw new Error(`[${loc}] Missing ladestack-consent storage key disclosure`);
   }
   console.log(`✅ PASS: [${loc}] Discloses G-C6GRNN3J11, z5fy1scjjr, and ladestack-consent storage`);
 }
 
 // ---------------------------------------------------------------------------
-// SUITE 5: Clarity Form Input Masking (data-clarity-mask)
+// SUITE 5: Clarity Form Input Masking
 // ---------------------------------------------------------------------------
 console.log('\n--- SUITE 5: Clarity Form Input Masking ---');
 
-const contactSource = fs.readFileSync('src/components/pages/ContactPage.astro', 'utf8');
-const maskMatches = [...contactSource.matchAll(/data-clarity-mask="true"/g)];
+const contactPage = fs.readFileSync('src/components/pages/ContactPage.astro', 'utf8');
+const maskMatches = contactPage.match(/data-clarity-mask="true"/g) || [];
+
 if (maskMatches.length < 5) {
-  throw new Error(`Expected at least 5 data-clarity-mask attributes on ContactPage, found ${maskMatches.length}`);
+  throw new Error(`Expected at least 5 data-clarity-mask attributes on ContactPage, found: ${maskMatches.length}`);
 }
 console.log(`✅ PASS: Verified ${maskMatches.length} data-clarity-mask attributes protecting contact form & inputs`);
 
 // ---------------------------------------------------------------------------
-// SUITE 6: Playwright Browser Headless End-to-End Tests
+// SUITE 6: Playwright Browser E2E Consent & Analytics Tests
 // ---------------------------------------------------------------------------
 console.log('\n--- SUITE 6: Playwright Browser E2E Consent & Analytics Tests ---');
 
-// Create local static HTTP server for dist/
-const distDir = path.resolve('dist');
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
-  '.js': 'application/javascript; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.png': 'image/png',
+  '.js': 'application/javascript',
+  '.css': 'text/css',
   '.svg': 'image/svg+xml',
+  '.json': 'application/json',
 };
 
 const server = http.createServer((req, res) => {
@@ -196,24 +200,24 @@ const server = http.createServer((req, res) => {
   if (reqPath.endsWith('/')) reqPath += 'index.html';
   else if (!path.extname(reqPath)) reqPath += '/index.html';
 
-  const filePath = path.join(distDir, reqPath.startsWith('/') ? reqPath.slice(1) : reqPath);
+  const filePath = path.join('dist', reqPath);
   if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
     const ext = path.extname(filePath);
     res.writeHead(200, { 'Content-Type': mimeTypes[ext] || 'application/octet-stream' });
-    fs.createReadStream(filePath).pipe(res);
+    res.end(fs.readFileSync(filePath));
   } else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Not Found');
+    res.writeHead(404);
+    res.end('Not found');
   }
 });
 
-await new Promise((resolve) => server.listen(4399, '127.0.0.1', resolve));
+await new Promise((resolve) => server.listen(4399, resolve));
 console.log('Local test server responsive at http://127.0.0.1:4399');
 
 const browser = await chromium.launch({ headless: true });
 
 try {
-  // 6A. First Visit: No consent in storage -> Banner visible, No external scripts
+  // 6A. Initial visit: Basic Consent Mode (Zero trackers loaded)
   const contextA = await browser.newContext();
   const pageA = await contextA.newPage();
 
@@ -253,7 +257,7 @@ try {
 
   await contextA.close();
 
-  // 6C. New Context: Click Accept All -> Consent stored as true, mock trackers initialized once
+  // 6C. State D: Click Accept All -> Consent stored as true, mock trackers initialized once
   const contextB = await browser.newContext();
   const pageB = await contextB.newPage();
   await pageB.goto('http://127.0.0.1:4399/', { waitUntil: 'domcontentloaded' });
@@ -267,7 +271,7 @@ try {
   if (parsedB.ga !== true || parsedB.clarity !== true) {
     throw new Error(`Expected ga=true, clarity=true, got ${consentB}`);
   }
-  console.log('✅ PASS: Accept All persists { ga: true, clarity: true }');
+  console.log('✅ PASS: Accept All (State D) persists { ga: true, clarity: true }');
 
   // Verify non-production hostname safety: Mocked trackers flagged without remote network requests
   const trackerStatus = await pageB.evaluate(() => ({
@@ -287,25 +291,27 @@ try {
   if (!bannerHidden) throw new Error('Consent banner reappeared despite existing consent');
   console.log('✅ PASS: Consent persists after page reload; banner remains hidden');
 
-  // 6E. Granular Customization: Reopen via trigger, toggle GA4 only
+  // 6E. Granular Customization (State B: GA4 only): Reopen via trigger, toggle GA4 only
   await pageB.click('#ladestack-consent-trigger');
   await pageB.waitForSelector('#ladestack-consent-modal:not(.hidden)');
   console.log('✅ PASS: Preferences modal opened via persistent trigger');
 
-  // Uncheck Clarity, keep GA4 checked
+  // Uncheck Clarity, keep GA4 checked. Since Clarity was previously active, saveConsent triggers controlled reload
   await pageB.uncheck('#consent-toggle-clarity');
   await pageB.check('#consent-toggle-ga');
-  await pageB.click('[data-action="save-preferences"]');
-  await pageB.waitForSelector('#ladestack-consent-modal', { state: 'hidden' });
+  await Promise.all([
+    pageB.waitForNavigation({ waitUntil: 'domcontentloaded' }),
+    pageB.click('[data-action="save-preferences"]'),
+  ]);
 
   const consentC = await pageB.evaluate(() => localStorage.getItem('ladestack-consent'));
   const parsedC = JSON.parse(consentC);
   if (parsedC.ga !== true || parsedC.clarity !== false) {
     throw new Error(`Expected ga=true, clarity=false, got ${consentC}`);
   }
-  console.log('✅ PASS: Granular customization properly saved { ga: true, clarity: false }');
+  console.log('✅ PASS: Granular customization properly saved { ga: true, clarity: false } (State B)');
 
-  // 6F. Revoke All Consent
+  // 6F. Revoke All Consent via modal
   await pageB.click('#ladestack-consent-trigger');
   await pageB.waitForSelector('#ladestack-consent-modal:not(.hidden)');
   await Promise.all([
@@ -318,11 +324,32 @@ try {
   if (parsedD.ga !== false || parsedD.clarity !== false) {
     throw new Error(`Expected ga=false, clarity=false after revocation, got ${consentD}`);
   }
-  console.log('✅ PASS: Revocation resets consent state to { ga: false, clarity: false }');
+  console.log('✅ PASS: Revocation resets consent state to { ga: false, clarity: false } (State A)');
 
   await contextB.close();
 
-  // 6G. Non-English Route: Japanese /ja/about -> Localized banner rendered
+  // 6G. State C: Clarity only from fresh state
+  const contextD = await browser.newContext();
+  const pageD = await contextD.newPage();
+  await pageD.goto('http://127.0.0.1:4399/', { waitUntil: 'domcontentloaded' });
+  await pageD.waitForSelector('#ladestack-consent-banner:not(.hidden)');
+  await pageD.click('#ladestack-consent-trigger');
+  await pageD.waitForSelector('#ladestack-consent-modal:not(.hidden)');
+
+  await pageD.check('#consent-toggle-clarity');
+  await pageD.uncheck('#consent-toggle-ga');
+  await pageD.click('[data-action="save-preferences"]');
+  await pageD.waitForSelector('#ladestack-consent-modal', { state: 'hidden' });
+
+  const consentStateC = await pageD.evaluate(() => localStorage.getItem('ladestack-consent'));
+  const parsedStateC = JSON.parse(consentStateC);
+  if (parsedStateC.ga !== false || parsedStateC.clarity !== true) {
+    throw new Error(`Expected ga=false, clarity=true, got ${consentStateC}`);
+  }
+  console.log('✅ PASS: Granular customization properly saved { ga: false, clarity: true } (State C)');
+  await contextD.close();
+
+  // 6H. Non-English Route: Japanese /ja/about -> Localized banner rendered
   const contextC = await browser.newContext();
   const pageC = await contextC.newPage();
   await pageC.goto('http://127.0.0.1:4399/ja/about', { waitUntil: 'domcontentloaded' });
@@ -350,5 +377,5 @@ try {
 }
 
 console.log('\n============================================================');
-console.log('🎉 ALL PHASE 4E VERIFICATION SUITE ASSERTIONS PASSED!');
+console.log('🎉 ALL PHASE 4E-1 VERIFICATION SUITE ASSERTIONS PASSED!');
 console.log('============================================================');
