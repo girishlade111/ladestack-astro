@@ -13,6 +13,7 @@ import SEO, {
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import AnalyticsManager from '../components/analytics/AnalyticsManager.astro';
+import Analytics from '@vercel/analytics/astro';
 import '../styles/global.css';
 import { DEFAULT_LOCALE, LOCALE_CONFIG, isValidLocale, type Locale } from '../i18n/config';
 import { getLangFromUrl } from '../i18n/utils';
@@ -138,6 +139,7 @@ const dir = LOCALE_CONFIG[currentLocale]?.dir ?? 'ltr';
       structuredData={structuredData}
       lang={currentLocale}
     />
+    <Analytics />
   </head>
   <body class="bg-background text-foreground antialiased flex flex-col min-h-screen">
     {/* Accessible skip link */}
